@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión Municipal - Presentación Comercial</title>
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <script>
-        tailwind.config = {
-            safelist: [
-                // Clases para las cards del chat
-                'space-y-2', 'space-y-1', 'rounded-xl', 'overflow-hidden',
-                'border', 'border-white/10', 'animate-fade-in',
-                'px-3', 'py-2', 'font-bold', 'text-white', 'text-sm',
-                'bg-white/10', 'opacity-90', 'list-disc', 'list-inside'
-            ]
-        }
-    </script>
+    <!-- Usar v3.3.7 porque v3.4.x tiene bug con clases dinámicas (issue #14486) -->
+    <script src="https://cdn.tailwindcss.com/3.3.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -48,14 +38,6 @@
             --primary: #0088cc;
             --primary-dark: #006699;
             --color-primary: #0088cc; /* Para cards del chat */
-        }
-
-        /* Estilos para listas en chat cards */
-        .list-disc {
-            list-style-type: disc;
-        }
-        .list-inside {
-            list-style-position: inside;
         }
 
         /* Theme variations */
@@ -508,9 +490,6 @@
     </style>
 </head>
 <body class="bg-white">
-
-    <!-- Tailwind safelist para clases dinámicas del chat (no borrar) -->
-    <div class="hidden rounded-xl overflow-hidden border border-white/10 bg-white/10 space-y-2 space-y-1 list-disc list-inside opacity-90 animate-fade-in"></div>
 
     <!-- Top Bar - Modern Glassmorphism -->
     <header id="topBar" class="top-bar fixed top-0 left-0 right-0 z-50 px-3 md:px-4 py-2">

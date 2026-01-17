@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Municipal - Presentación Comercial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom color palette */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        /* Theme variations */
+        body[data-theme="light"] {
+            --bg-main: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --border-color: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --hero-gradient-from: #f8fafc;
+            --hero-gradient-to: #ffffff;
+        }
+
+        body[data-theme="dark"] {
+            --bg-main: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --border-color: #334155;
+            --card-bg: rgba(30, 41, 59, 0.95);
+            --hero-gradient-from: #0f172a;
+            --hero-gradient-to: #1e293b;
+        }
+
+        body[data-theme="amber"] {
+            --bg-main: #fefce8;
+            --bg-secondary: #fef9c3;
+            --bg-tertiary: #fef08a;
+            --text-primary: #713f12;
+            --text-secondary: #92400e;
+            --text-tertiary: #a16207;
+            --border-color: #fde047;
+            --card-bg: rgba(254, 252, 232, 0.95);
+            --hero-gradient-from: #fef3c7;
+            --hero-gradient-to: #fefce8;
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #f97316;
+            --accent: #ea580c;
+        }
+
+        body {
+            background: linear-gradient(to bottom,
+                var(--hero-gradient-from, #0f172a) 0%,
+                var(--bg-secondary, #1e293b) 30%,
+                var(--bg-tertiary, #cbd5e1) 60%,
+                var(--bg-main, #ffffff) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary, #0f172a);
+            transition: all 0.5s ease;
+            min-height: 100vh;
+        }
+
+        /* Global themed elements */
+        .content-container {
+            background: var(--card-bg, rgba(255, 255, 255, 0.95));
+            color: var(--text-primary);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-primary) !important;
+        }
+
+        p, span, div {
+            color: var(--text-secondary);
+        }
+
+        .text-slate-900 {
+            color: var(--text-primary) !important;
+        }
+
+        .text-slate-700 {
+            color: var(--text-secondary) !important;
+        }
+
+        .text-slate-600 {
+            color: var(--text-tertiary) !important;
+        }
+
+        .bg-white {
+            background-color: var(--card-bg) !important;
+        }
+
+        .border-slate-200 {
+            border-color: var(--border-color) !important;
+        }
+
+        /* Dark theme adjustments */
+        body[data-theme="dark"] .top-bar {
+            background: rgba(15, 23, 42, 0.7);
+            border-bottom-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body[data-theme="dark"] .top-bar.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body[data-theme="dark"] aside > div {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        /* Amber theme adjustments */
+        body[data-theme="amber"] .top-bar {
+            background: rgba(254, 252, 232, 0.7);
+            border-bottom-color: rgba(253, 224, 71, 0.5);
+        }
+
+        body[data-theme="amber"] aside > div {
+            background: rgba(254, 249, 195, 0.8);
+            border-color: rgba(253, 224, 71, 0.5);
+        }
+
+        /* Theme switcher */
+        .theme-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-btn.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Top bar - Modern Glassmorphism */
+        .top-bar {
+            backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .top-bar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08), 0 1px 0 rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Sidebar progress - Modern */
+        .sidebar-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .sidebar-link.active {
+            color: var(--primary);
+            font-weight: 700;
+            transform: translateX(4px);
+        }
+
+        .sidebar-link.active span:first-child {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+        }
+
+        .sidebar-link:hover {
+            transform: translateX(2px);
+        }
+
+        /* Fade in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animated mesh gradient background */
+        .mesh-gradient {
+            background:
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
+            animation: mesh-animation 15s ease infinite;
+        }
+
+        @keyframes mesh-animation {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Decorative blobs */
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob-animation 20s ease-in-out infinite;
+        }
+
+        @keyframes blob-animation {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glass effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Image container with gradient overlay */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        /* Parallax effect */
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* Phone mockup styles */
+        .phone-mockup {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+        }
+
+        .desktop-mockup {
+            position: relative;
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .terminal-mockup {
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            margin: 4rem 0;
+        }
+
+        /* Progress line */
+        #progress-line {
+            transition: height 0.3s ease;
+        }
+
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Top Bar - Modern Glassmorphism -->
+    <header id="topBar" class="top-bar fixed top-0 left-0 right-0 z-50 px-6 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl shadow-xl transform hover:rotate-6 transition-all duration-300">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black text-slate-900 tracking-tight">Sistema de Gestión Municipal</h1>
+                    <p class="text-xs text-slate-600 font-medium">Plataforma Inteligente • Cloud Native</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Theme Switcher -->
+                <div class="hidden sm:flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full p-1">
+                    <button onclick="setTheme('light')" class="theme-btn bg-white" title="Tema Claro" data-theme="light">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button onclick="setTheme('amber')" class="theme-btn bg-amber-100" title="Tema Ámbar" data-theme="amber">
+                        <i class="fas fa-leaf"></i>
+                    </button>
+                    <button onclick="setTheme('dark')" class="theme-btn bg-slate-900 text-white" title="Tema Oscuro" data-theme="dark">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+
+                <a href="https://reclamos-mun.netlify.app" target="_blank" class="hidden md:block px-4 py-2 font-semibold hover:text-indigo-600 transition-colors" style="color: var(--text-secondary);">
+                    Ver Demo en Vivo
+                </a>
+                <a href="#contacto" class="px-6 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white rounded-full font-bold text-sm hover:shadow-2xl transition-all duration-300 hover:scale-105 shadow-lg">
+                    📧 Solicitar Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Progress (Desktop only) - Modern Design -->
+    <aside class="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
+        <div class="relative bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-slate-200/50 p-6">
+            <div class="absolute left-6 top-8 bottom-8 w-1 bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 rounded-full"></div>
+            <div id="progress-line" class="absolute left-6 top-8 w-1 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg" style="box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);"></div>
+            <nav class="relative space-y-5 pl-8">
+                <a href="#hero" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>Inicio</span>
+                </a>
+                <a href="#problema" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>El Problema</span>
+                </a>
+                <a href="#solucion" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>La Solución</span>
+                </a>
+                <a href="#actores" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>Actores</span>
+                </a>
+                <a href="#pantallas" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>Flujos</span>
+                </a>
+                <a href="#precios" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>Inversión</span>
+                </a>
+                <a href="#contacto" class="sidebar-link group flex items-center gap-3 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-600 transition-all"></span>
+                    <span>Contacto</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20">
+        <!-- Hero Section (Full Width) -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden mb-16 -mt-24">
+                <!-- Background overlay - transparent to blend with body gradient -->
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-purple-900/30 to-transparent">
+                    <!-- Pattern Overlay -->
+                    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+                </div>
+
+                <!-- Animated particles effect -->
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="blob absolute top-20 -right-40 w-96 h-96 bg-indigo-500/20 blur-3xl"></div>
+                    <div class="blob absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 blur-3xl" style="animation-delay: -10s;"></div>
+                    <div class="blob absolute top-1/2 left-1/2 w-96 h-96 bg-pink-500/10 blur-3xl" style="animation-delay: -5s;"></div>
+                </div>
+
+                <div class="relative z-10 text-center fade-in visible px-6">
+                    <div class="inline-block mb-8">
+                        <div class="glass bg-white/10 backdrop-blur-xl flex items-center space-x-3 px-6 py-3 rounded-full shadow-2xl border border-white/20">
+                            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse pulse-glow"></div>
+                            <span class="text-sm font-bold text-white">Sistema en producción 24/7 • +50 municipios</span>
+                        </div>
+                    </div>
+
+                    <h1 class="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
+                        Moderniza tu<br>
+                        <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Municipio Hoy</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+                        Imagina un municipio donde los ciudadanos reportan un bache a las 8 AM,
+                        el sistema asigna al operario más cercano a las 8:05 AM,
+                        y el trabajo está resuelto a las 11:00 AM con fotos del antes y después.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                        <a href="#contacto" class="px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105 hover:-translate-y-1">
+                            📧 Solicitar Demo Gratuita
+                        </a>
+                        <a href="#solucion" class="glass bg-white/10 backdrop-blur-xl border border-white/20 px-8 py-4 text-white rounded-full font-bold text-lg shadow-xl hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                            Ver Cómo Funciona →
+                        </a>
+                    </div>
+
+                    <!-- Modern Dashboard Preview -->
+                    <div class="max-w-6xl mx-auto mt-20 relative">
+                        <!-- Browser mockup -->
+                        <div class="bg-white/10 backdrop-blur-xl rounded-t-2xl border border-white/20 p-3 shadow-2xl">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <div class="flex-1 bg-white/5 rounded px-3 py-1 text-xs text-slate-400 text-left ml-2">
+                                    https://reclamos-mun.netlify.app • Dashboard de Gestión
+                                </div>
+                            </div>
+                            <!-- Dashboard screenshot placeholder with realistic content -->
+                            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg overflow-hidden shadow-2xl" style="aspect-ratio: 16/9;">
+                                <div class="p-8 h-full flex flex-col">
+                                    <!-- Top stats -->
+                                    <div class="grid grid-cols-4 gap-4 mb-6">
+                                        <div class="bg-emerald-500/20 border border-emerald-500/30 rounded-xl p-4">
+                                            <div class="text-emerald-400 text-3xl font-black">142</div>
+                                            <div class="text-emerald-300 text-xs font-semibold mt-1">Reclamos Activos</div>
+                                        </div>
+                                        <div class="bg-blue-500/20 border border-blue-500/30 rounded-xl p-4">
+                                            <div class="text-blue-400 text-3xl font-black">28</div>
+                                            <div class="text-blue-300 text-xs font-semibold mt-1">En Progreso</div>
+                                        </div>
+                                        <div class="bg-purple-500/20 border border-purple-500/30 rounded-xl p-4">
+                                            <div class="text-purple-400 text-3xl font-black">95%</div>
+                                            <div class="text-purple-300 text-xs font-semibold mt-1">Satisfacción</div>
+                                        </div>
+                                        <div class="bg-amber-500/20 border border-amber-500/30 rounded-xl p-4">
+                                            <div class="text-amber-400 text-3xl font-black">2.8h</div>
+                                            <div class="text-amber-300 text-xs font-semibold mt-1">Tiempo Promedio</div>
+                                        </div>
+                                    </div>
+                                    <!-- Map and list preview -->
+                                    <div class="flex-1 grid grid-cols-2 gap-4">
+                                        <div class="bg-slate-700/50 rounded-xl border border-slate-600/50 p-4 flex items-center justify-center">
+                                            <div class="text-center">
+                                                <div class="text-6xl mb-2">🗺️</div>
+                                                <div class="text-slate-400 text-sm font-semibold">Mapa en Tiempo Real</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-slate-700/50 rounded-xl border border-slate-600/50 p-4 space-y-2">
+                                            <div class="flex items-center gap-3 bg-slate-600/50 rounded p-2">
+                                                <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                                <div class="text-slate-300 text-xs font-medium flex-1">Bache en Av. Principal</div>
+                                            </div>
+                                            <div class="flex items-center gap-3 bg-slate-600/50 rounded p-2">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                                <div class="text-slate-300 text-xs font-medium flex-1">Alumbrado calle 54</div>
+                                            </div>
+                                            <div class="flex items-center gap-3 bg-slate-600/50 rounded p-2">
+                                                <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                                                <div class="text-slate-300 text-xs font-medium flex-1">Recolección plaza</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Glow effect -->
+                        <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-3xl -z-10"></div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-24 max-w-4xl mx-auto">
+                        <div class="glass bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover-lift">
+                            <div class="text-6xl font-black bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-3">60%</div>
+                            <div class="text-lg text-slate-300 font-bold">Más Rápido</div>
+                            <div class="text-sm text-slate-400 mt-1">Resolución de reclamos</div>
+                        </div>
+                        <div class="glass bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover-lift">
+                            <div class="text-6xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-3">0%</div>
+                            <div class="text-lg text-slate-300 font-bold">Reclamos Perdidos</div>
+                            <div class="text-sm text-slate-400 mt-1">Trazabilidad total</div>
+                        </div>
+                        <div class="glass bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover-lift">
+                            <div class="text-6xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">90%</div>
+                            <div class="text-lg text-slate-300 font-bold">Satisfacción</div>
+                            <div class="text-sm text-slate-400 mt-1">Ciudadanos felices</div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Content Container -->
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="content-container max-w-6xl mx-auto backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12">
+
+                <!-- Decorative Section Divider -->
+                <div class="section-divider"></div>
+
+                <!-- El Problema -->
+                <section id="problema" class="mb-32 fade-in">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                        ❌
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black text-slate-900">El Problema Actual</h2>
+                        <p class="text-slate-600 mt-2">La realidad de los municipios tradicionales</p>
+                    </div>
+                </div>
+
+                <!-- Hero image: Old system chaos -->
+                <div class="image-container mb-12 h-96 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80"
+                         alt="Trabajo de oficina caótico"
+                         class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-r from-red-600/80 to-orange-600/80 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-7xl mb-6">📞 📋 📄</div>
+                            <h3 class="text-4xl font-black mb-4">Sistema Desorganizado</h3>
+                            <p class="text-xl max-w-2xl mx-auto">Llamadas perdidas, papeles extraviados, ciudadanos frustrados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-10 shadow-2xl border border-slate-100">
+                    <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border-l-4 border-red-500 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="text-4xl">😰</div>
+                            <div>
+                                <p class="text-lg text-slate-800 leading-relaxed">
+                                    <strong class="text-red-700">Escenario Típico HOY:</strong> María tiene un pozo de agua en su calle hace 3 semanas.
+                                    Ha llamado 5 veces, cada vez habla con una persona diferente que anota en un cuaderno,
+                                    nadie sabe quién tiene que arreglarlo, no hay fotos del problema, y María no tiene forma de saber
+                                    si su reclamo existe realmente.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                        <span class="text-4xl">📊</span>
+                        Consecuencias Medibles
+                    </h3>
+
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+                                    <th class="px-6 py-5 text-left font-bold">Aspecto</th>
+                                    <th class="px-6 py-5 text-left font-bold">❌ Sin Sistema</th>
+                                    <th class="px-6 py-5 text-left font-bold">✅ Con Nuestro Sistema</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-indigo-50 transition-colors">
+                                    <td class="px-6 py-5 font-bold text-slate-900">⏱️ Tiempo de Respuesta</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">2-4 semanas promedio</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">2-3 días (60% más rápido)</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50 transition-colors bg-slate-50">
+                                    <td class="px-6 py-5 font-bold text-slate-900">📉 Reclamos Perdidos</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">30-40% se pierden</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">0% - Todo registrado</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50 transition-colors">
+                                    <td class="px-6 py-5 font-bold text-slate-900">💬 Comunicación</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">Llamadas repetidas</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">Notificaciones automáticas</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50 transition-colors bg-slate-50">
+                                    <td class="px-6 py-5 font-bold text-slate-900">🎯 Asignación</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">Manual, demoras de días</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">Automática en segundos</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50 transition-colors">
+                                    <td class="px-6 py-5 font-bold text-slate-900">📸 Evidencia</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">Sin registro fotográfico</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">Fotos antes/después + GPS</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50 transition-colors bg-slate-50">
+                                    <td class="px-6 py-5 font-bold text-slate-900">😊 Satisfacción</td>
+                                    <td class="px-6 py-5 text-red-600 font-semibold">40-50%</td>
+                                    <td class="px-6 py-5 text-green-600 font-bold">85-90%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- La Solución -->
+            <section id="solucion" class="mb-32 fade-in">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                        ✅
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black text-slate-900">La Solución</h2>
+                        <p class="text-slate-600 mt-2">Sistema inteligente y automático</p>
+                    </div>
+                </div>
+
+                <!-- Hero image: Modern system -->
+                <div class="image-container mb-12 h-96 bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80"
+                         alt="Equipo trabajando con tecnología moderna"
+                         class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-600/80 via-blue-600/80 to-indigo-600/80 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="text-7xl mb-6">📱 ⚡ 🤖</div>
+                            <h3 class="text-4xl font-black mb-4">Plataforma Inteligente</h3>
+                            <p class="text-xl max-w-2xl mx-auto">Automatización, eficiencia y satisfacción ciudadana</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-10 shadow-2xl border border-slate-100">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-l-4 border-blue-500 mb-10">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                            <span class="text-4xl">🎬</span>
+                            Ejemplo Real: El Día de María (CON nuestro sistema)
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">8:00 AM</div>
+                                <p class="text-slate-700">Ve el pozo de agua en su calle mientras lleva a sus hijos al colegio.</p>
+                            </div>
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">8:02 AM</div>
+                                <p class="text-slate-700">Abre la app del municipio en su celular (PWA instalada).</p>
+                            </div>
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">8:03 AM</div>
+                                <p class="text-slate-700">Toma foto del pozo, GPS detecta ubicación automáticamente, selecciona "Bache/Pozo".</p>
+                            </div>
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">8:04 AM</div>
+                                <p class="text-slate-700">Envía el reclamo. Recibe número de seguimiento: <strong class="text-indigo-600">#12847</strong></p>
+                            </div>
+                            <div class="flex gap-4 items-start bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border-2 border-purple-200">
+                                <div class="flex-shrink-0 w-24 font-bold text-purple-600 text-lg">8:05 AM</div>
+                                <div class="text-slate-700">
+                                    <p class="font-bold mb-3 text-purple-900">🤖 El sistema automáticamente:</p>
+                                    <ul class="space-y-2 ml-4">
+                                        <li class="flex items-center gap-2">
+                                            <span class="text-purple-600">✓</span>
+                                            Detecta que es zona "Centro" de alta prioridad
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="text-purple-600">✓</span>
+                                            Busca empleados de "Vía Pública" disponibles en radio de 5km
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="text-purple-600">✓</span>
+                                            Encuentra a Juan Pérez con capacidad disponible
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="text-purple-600">✓</span>
+                                            Le envía notificación push con dirección y foto
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">11:45 AM</div>
+                                <p class="text-slate-700">Juan termina, toma foto del "después", marca "Completado".</p>
+                            </div>
+                            <div class="flex gap-4 items-start bg-white rounded-xl p-4 hover-lift">
+                                <div class="flex-shrink-0 w-24 font-bold text-indigo-600 text-lg">12:00 PM</div>
+                                <p class="text-slate-700">María ve fotos antes/después, califica con 5 estrellas ⭐⭐⭐⭐⭐</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-6 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl border-2 border-green-300">
+                            <p class="text-green-900 font-black text-xl text-center">
+                                ⏱️ Tiempo total: <span class="text-2xl text-green-600">3 horas 46 minutos</span>
+                                <span class="text-red-600 line-through ml-2">vs. 2-4 semanas antes</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">🎯</span>
+                        Lo Que Hace Diferente a Nuestro Sistema
+                    </h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-100 hover-lift">
+                            <div class="text-4xl mb-4">🏢</div>
+                            <h4 class="text-2xl font-bold text-purple-900 mb-3">Multi-Tenant</h4>
+                            <p class="text-slate-700 leading-relaxed">Un solo sistema sirve a MÚLTIPLES municipios. Cada municipio tiene sus datos totalmente separados, sus colores, su logo. Merlo no ve los datos de Tigre.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-100 hover-lift">
+                            <div class="text-4xl mb-4">📱</div>
+                            <h4 class="text-2xl font-bold text-blue-900 mb-3">Multiplataforma REAL</h4>
+                            <p class="text-slate-700 leading-relaxed">Web, PWA instalable, Bot WhatsApp, 100% responsive. Sin pasar por Google Play.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-100 hover-lift">
+                            <div class="text-4xl mb-4">🤖</div>
+                            <h4 class="text-2xl font-bold text-green-900 mb-3">Inteligencia Artificial</h4>
+                            <p class="text-slate-700 leading-relaxed">Asignación automática por zona y especialidad. Predicción de zonas conflictivas. Chatbot 24/7.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 border-2 border-orange-100 hover-lift">
+                            <div class="text-4xl mb-4">⚡</div>
+                            <h4 class="text-2xl font-bold text-orange-900 mb-3">Tiempo Real</h4>
+                            <p class="text-slate-700 leading-relaxed">Notificaciones instantáneas, tracking GPS, dashboards en vivo, sin demoras.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Actores -->
+            <section id="actores" class="mb-32 fade-in">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                        👥
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black text-slate-900">Los 4 Actores del Sistema</h2>
+                        <p class="text-slate-600 mt-2">Cada rol con su panel optimizado</p>
+                    </div>
+                </div>
+
+                <!-- Image: Team collaboration -->
+                <div class="image-container mb-12 h-80 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
+                         alt="Equipo colaborando"
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/70 to-purple-900/70 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-4xl font-black mb-2">Trabajo en Equipo</h3>
+                            <p class="text-xl">Ciudadanos, Operarios, Supervisores y Administradores</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ciudadano -->
+                <div class="bg-white rounded-3xl p-10 shadow-2xl border-2 border-blue-100 mb-8 hover-lift">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-5xl shadow-xl">
+                            👤
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-black text-slate-900">María González</h3>
+                            <p class="text-xl text-blue-600 font-semibold">Ciudadana</p>
+                            <p class="text-slate-600">Vecina de 42 años, madre de 2 hijos</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border-2 border-blue-100">
+                            <div class="text-3xl">📱</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Crear Reclamos</div>
+                                <div class="text-sm text-slate-600">Foto + GPS automático en 30 seg</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border-2 border-blue-100">
+                            <div class="text-3xl">📍</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Tracking en Tiempo Real</div>
+                                <div class="text-sm text-slate-600">Ve el estado actualizado siempre</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border-2 border-blue-100">
+                            <div class="text-3xl">🗺️</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Mapa Público</div>
+                                <div class="text-sm text-slate-600">Todos los reclamos del municipio</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border-2 border-blue-100">
+                            <div class="text-3xl">🏆</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Gamificación</div>
+                                <div class="text-sm text-slate-600">Puntos, logros, rankings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empleado -->
+                <div class="bg-white rounded-3xl p-10 shadow-2xl border-2 border-orange-100 mb-8 hover-lift">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-5xl shadow-xl">
+                            🔧
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-black text-slate-900">Juan Pérez</h3>
+                            <p class="text-xl text-orange-600 font-semibold">Operario Municipal</p>
+                            <p class="text-slate-600">Empleado de Vía Pública, 35 años</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-xl border-2 border-orange-100">
+                            <div class="text-3xl">📋</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Tablero de Trabajos</div>
+                                <div class="text-sm text-slate-600">Todos sus trabajos priorizados</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-xl border-2 border-orange-100">
+                            <div class="text-3xl">🗺️</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Rutas Optimizadas</div>
+                                <div class="text-sm text-slate-600">Orden óptimo, menos distancia</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-xl border-2 border-orange-100">
+                            <div class="text-3xl">📸</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Registro Fotográfico</div>
+                                <div class="text-sm text-slate-600">Antes/después desde la app</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-xl border-2 border-orange-100">
+                            <div class="text-3xl">📊</div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-lg">Dashboard Personal</div>
+                                <div class="text-sm text-slate-600">Rendimiento y calificaciones</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supervisor y Admin en grid -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl border-2 border-green-100 hover-lift">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-4xl shadow-lg">
+                                📋
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black text-slate-900">Supervisor</h3>
+                                <p class="text-green-600 font-semibold">Coordina equipos</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <span class="text-slate-700">Dashboard ejecutivo con KPIs</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <span class="text-slate-700">Asignación manual o automática</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <span class="text-slate-700">Gestión de cuadrillas</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <span class="text-slate-700">Alertas SLA en tiempo real</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <span class="text-slate-700">Reportes automáticos Excel/PDF</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl border-2 border-purple-100 hover-lift">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-4xl shadow-lg">
+                                ⚙️
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black text-slate-900">Administrador</h3>
+                                <p class="text-purple-600 font-semibold">Control total</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                                <span class="text-purple-600 text-xl">✓</span>
+                                <span class="text-slate-700">ABM completo de todo</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                                <span class="text-purple-600 text-xl">✓</span>
+                                <span class="text-slate-700">Personalización total (colores, logo)</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                                <span class="text-purple-600 text-xl">✓</span>
+                                <span class="text-slate-700">Configuración WhatsApp Business</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                                <span class="text-purple-600 text-xl">✓</span>
+                                <span class="text-slate-700">Gestión de permisos por rol</span>
+                            </li>
+                            <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                                <span class="text-purple-600 text-xl">✓</span>
+                                <span class="text-slate-700">Exportar datos para auditorías</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Flujos Completos de Interacción -->
+            <section id="pantallas" class="mb-32 fade-in visible">
+                <div class="flex items-center gap-4 mb-16">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                        🔄
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black gradient-text">Flujos Completos de Uso</h2>
+                        <p class="text-slate-600 mt-2">Casos reales de principio a fin</p>
+                    </div>
+                </div>
+
+                <!-- ============ CASO 1: RECLAMO COMPLETO ============ -->
+                <div class="mb-24">
+                    <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-10 shadow-2xl border-2 border-red-200 mb-12">
+                        <h3 class="text-4xl font-black text-red-900 mb-3 flex items-center gap-3">
+                            <span class="text-5xl">🚧</span>
+                            Caso 1: Reclamo por Bache
+                        </h3>
+                        <p class="text-xl text-red-800">Seguí el recorrido completo desde que María detecta un problema hasta su resolución</p>
+                    </div>
+
+                    <!-- Timeline de pasos -->
+                    <div class="space-y-8">
+
+                        <!-- PASO 1: Ciudadano detecta el problema -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-indigo-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-black">1</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">María detecta un bache</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">María circula por Av. San Martín y encuentra un bache peligroso. Saca su celular y abre la app del municipio.</p>
+                                    <div class="bg-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600">
+                                        <p class="text-sm font-semibold text-indigo-900">👤 Actor: Ciudadano</p>
+                                        <p class="text-sm text-indigo-800">📱 Dispositivo: Smartphone</p>
+                                        <p class="text-sm text-indigo-800">⏱️ Tiempo: 0 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="phone-mockup relative w-full max-w-sm mx-auto">
+                                    <div class="relative rounded-3xl overflow-hidden border-8 border-slate-900 shadow-2xl bg-white" style="aspect-ratio: 9/19.5;">
+                                        <!-- Notch -->
+                                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-3xl z-10"></div>
+                                        <!-- Screen -->
+                                        <div class="h-full bg-gradient-to-br from-indigo-50 to-purple-50 p-6 pt-10">
+                                            <div class="text-center mb-8">
+                                                <div class="inline-block p-4 bg-white rounded-full shadow-xl mb-3">
+                                                    <div class="text-5xl">🏛️</div>
+                                                </div>
+                                                <h3 class="text-xl font-black text-slate-900">Municipio de Merlo</h3>
+                                                <p class="text-slate-600 text-sm mt-1">Bienvenida, María 👋</p>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 px-4 rounded-xl shadow-lg text-center text-sm">
+                                                    🚨 Crear Reclamo
+                                                </div>
+                                                <div class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-4 px-4 rounded-xl shadow-lg text-center text-sm">
+                                                    📝 Iniciar Trámite
+                                                </div>
+                                                <div class="bg-white text-slate-700 font-semibold py-3 px-4 rounded-xl shadow-md text-center text-sm">
+                                                    📋 Mis Reclamos
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Home indicator -->
+                                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-slate-400 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 2: Crear reclamo -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="phone-mockup relative w-full max-w-sm mx-auto">
+                                    <div class="relative rounded-3xl overflow-hidden border-8 border-slate-900 shadow-2xl bg-white" style="aspect-ratio: 9/19.5;">
+                                        <!-- Header -->
+                                        <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 py-3 flex items-center text-sm">
+                                            <span class="text-lg mr-2">←</span>
+                                            <span class="font-bold flex-1 text-center">Nuevo Reclamo</span>
+                                        </div>
+                                        <!-- Form Content -->
+                                        <div class="h-full bg-white p-4 space-y-3 overflow-auto">
+                                            <div>
+                                                <div class="text-xs font-bold text-slate-600 mb-1">CATEGORÍA *</div>
+                                                <div class="bg-red-50 border-2 border-red-400 rounded-lg p-3 font-bold text-red-900 flex items-center gap-2 text-sm">
+                                                    <span>🚧</span> Baches y Pavimento
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-bold text-slate-600 mb-1">UBICACIÓN</div>
+                                                <div class="bg-green-50 border-2 border-green-400 rounded-lg p-3">
+                                                    <div class="flex items-start gap-2">
+                                                        <span class="text-xl">📍</span>
+                                                        <div class="flex-1 text-xs">
+                                                            <div class="font-bold text-green-900">Av. San Martín 1250</div>
+                                                            <div class="text-green-700">GPS detectado ✓</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-bold text-slate-600 mb-1">DESCRIPCIÓN</div>
+                                                <div class="bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs text-slate-700 italic">
+                                                    "Bache muy profundo, peligroso para motos"
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-bold text-slate-600 mb-1">FOTOS (2)</div>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <div class="bg-slate-200 rounded-lg aspect-square flex items-center justify-center text-2xl">📷</div>
+                                                    <div class="bg-slate-200 rounded-lg aspect-square flex items-center justify-center text-2xl">📷</div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-xl text-center text-sm">
+                                                ✅ Enviar Reclamo
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-red-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-black">2</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">María completa el formulario</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">El GPS detecta automáticamente su ubicación. María selecciona categoría "Baches", escribe una breve descripción y saca 2 fotos del problema.</p>
+                                    <div class="bg-red-50 rounded-xl p-4 border-l-4 border-red-600 space-y-2">
+                                        <p class="text-sm font-semibold text-red-900">✨ Magia del Sistema:</p>
+                                        <p class="text-sm text-red-800">🌍 GPS automático (sin escribir dirección)</p>
+                                        <p class="text-sm text-red-800">📸 Compresión automática de fotos</p>
+                                        <p class="text-sm text-red-800">⏱️ Tiempo total: 45 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 3: Sistema asigna automáticamente -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-black">3</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">El sistema asigna automáticamente</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">En menos de 1 segundo, el sistema analiza la ubicación, la categoría y encuentra al empleado más cercano con la especialidad correcta.</p>
+                                    <div class="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-600 space-y-2">
+                                        <p class="text-sm font-semibold text-purple-900">🤖 Algoritmo Inteligente:</p>
+                                        <p class="text-sm text-purple-800">📍 Busca empleados en radio de 5km</p>
+                                        <p class="text-sm text-purple-800">🔧 Filtra por especialidad "Pavimento"</p>
+                                        <p class="text-sm text-purple-800">📊 Considera carga de trabajo actual</p>
+                                        <p class="text-sm text-purple-800">⚡ Resultado: Juan Pérez (2.3km, 4 trabajos pendientes)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="terminal-mockup desktop-mockup relative overflow-hidden bg-slate-900">
+                                    <!-- Terminal window header -->
+                                    <div class="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
+                                        <div class="flex gap-2">
+                                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                        </div>
+                                        <span class="text-slate-400 text-xs ml-3">sistema@municipio ~ auto-assignment</span>
+                                    </div>
+                                    <div class="p-6 bg-slate-950 text-white font-mono text-sm space-y-2 min-h-[400px]">
+                                        <p class="text-cyan-300">$ ./assign-complaint --id=8472 --auto</p>
+                                        <p class="text-slate-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                                        <p class="text-purple-400">[INFO] Analizando reclamo #8472...</p>
+                                        <p class="text-green-400">  ✓ Ubicación: -34.6642, -58.5689</p>
+                                        <p class="text-green-400">  ✓ Categoría: Baches (prioridad: ALTA)</p>
+                                        <p class="text-green-400">  ✓ Fotos: 2 adjuntas</p>
+                                        <p class="mt-3 text-yellow-300">[SEARCH] Buscando empleados cercanos...</p>
+                                        <p class="text-slate-400">  Consultando base de datos...</p>
+                                        <p class="text-slate-400">  Radio de búsqueda: 5km</p>
+                                        <p class="text-slate-400">  Filtro: especialidad="Pavimento"</p>
+                                        <p class="mt-2 text-cyan-400">  → Juan Pérez</p>
+                                        <p class="text-slate-400">    Distancia: 2.3km | Pendientes: 4 | Score: 92</p>
+                                        <p class="text-cyan-400">  → Carlos López</p>
+                                        <p class="text-slate-400">    Distancia: 4.1km | Pendientes: 8 | Score: 68</p>
+                                        <p class="text-cyan-400">  → Ana Martínez</p>
+                                        <p class="text-slate-400">    Distancia: 6.2km | Pendientes: 2 | Score: 74</p>
+                                        <p class="mt-3 text-green-400 font-bold">[SUCCESS] ✓ ASIGNADO a Juan Pérez</p>
+                                        <p class="text-green-400">  ✓ Notificación enviada vía WhatsApp</p>
+                                        <p class="text-green-400">  ✓ Email despachado</p>
+                                        <p class="text-green-400">  ✓ Push notification sent</p>
+                                        <p class="text-slate-400 mt-3">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                                        <p class="text-purple-400">[STATS] Tiempo total: <span class="text-green-400 font-bold">0.8 segundos</span></p>
+                                        <p class="text-slate-500">$<span class="animate-pulse">_</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 4: Empleado recibe notificación -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 WhatsApp - Notificación Push
+                                    </div>
+                                    <div class="p-6 bg-green-50 space-y-4">
+                                        <div class="bg-white rounded-2xl p-4 shadow-md">
+                                            <div class="flex items-center gap-3 mb-3">
+                                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                                    M
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-slate-900">Municipio de Merlo</p>
+                                                    <p class="text-xs text-slate-600">Ahora</p>
+                                                </div>
+                                            </div>
+                                            <div class="bg-green-100 rounded-lg p-3 space-y-2">
+                                                <p class="font-semibold text-green-900">🚨 Nuevo trabajo asignado</p>
+                                                <p class="text-sm text-green-800"><strong>Tipo:</strong> Bache</p>
+                                                <p class="text-sm text-green-800"><strong>Ubicación:</strong> Av. San Martín 1250</p>
+                                                <p class="text-sm text-green-800"><strong>Distancia:</strong> 2.3km de tu ubicación</p>
+                                                <p class="text-sm text-green-800"><strong>Prioridad:</strong> ALTA</p>
+                                                <button class="mt-2 w-full bg-green-600 text-white font-bold py-2 rounded-lg">
+                                                    Ver en la App
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-black">4</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Juan recibe el trabajo</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Juan Pérez (empleado municipal) recibe una notificación push en WhatsApp con todos los detalles. Abre la app para ver el mapa y las fotos.</p>
+                                    <div class="bg-green-50 rounded-xl p-4 border-l-4 border-green-600 space-y-2">
+                                        <p class="text-sm font-semibold text-green-900">👤 Actor: Empleado</p>
+                                        <p class="text-sm text-green-800">📱 Canales: WhatsApp + App + Email</p>
+                                        <p class="text-sm text-green-800">⏱️ Desde envío del reclamo: 2 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 5: Empleado acepta y va al lugar -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-black">5</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Juan acepta y se dirige</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Juan marca "Iniciando trabajo" en la app. El sistema actualiza el estado y notifica a María que su reclamo está siendo atendido.</p>
+                                    <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-600 space-y-2">
+                                        <p class="text-sm font-semibold text-blue-900">⚙️ Cambio de Estado:</p>
+                                        <p class="text-sm text-blue-800">📝 Pendiente → 🔨 En Proceso</p>
+                                        <p class="text-sm text-blue-800">📧 María recibe notificación automática</p>
+                                        <p class="text-sm text-blue-800">🗺️ Waze se abre con la ubicación exacta</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 App Empleado - Trabajo Asignado
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="bg-blue-50 border-2 border-blue-500 rounded-xl p-4">
+                                            <p class="text-xs font-semibold text-blue-600 mb-1">RECLAMO #8472</p>
+                                            <p class="text-xl font-bold text-slate-900 mb-2">🚧 Bache en Av. San Martín</p>
+                                            <div class="flex items-center gap-2 text-sm text-slate-600 mb-2">
+                                                <span>📍 2.3km de distancia</span>
+                                                <span>•</span>
+                                                <span>⏱️ Hace 5 min</span>
+                                            </div>
+                                            <p class="text-sm text-slate-700 mb-3">"Bache muy profundo, peligroso para motos"</p>
+                                            <div class="grid grid-cols-2 gap-2 mb-3">
+                                                <div class="bg-slate-200 rounded aspect-video flex items-center justify-center text-2xl">📷</div>
+                                                <div class="bg-slate-200 rounded aspect-video flex items-center justify-center text-2xl">📷</div>
+                                            </div>
+                                        </div>
+                                        <button class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-3 rounded-xl">
+                                            ▶️ Iniciar Trabajo
+                                        </button>
+                                        <button class="w-full bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl">
+                                            🗺️ Abrir en Waze
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 6: Empleado completa el trabajo -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-emerald-600 to-green-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 App Empleado - Completar Trabajo
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="bg-green-50 border-2 border-green-500 rounded-xl p-4">
+                                            <p class="text-xs font-semibold text-green-600 mb-1">RECLAMO #8472 - EN PROCESO</p>
+                                            <p class="text-xl font-bold text-slate-900 mb-2">🚧 Bache en Av. San Martín</p>
+                                            <div class="text-sm text-slate-600 mb-3">
+                                                ⏱️ Tiempo trabajado: 1h 15min
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700 mb-2 block">Fotos del trabajo realizado</label>
+                                            <div class="grid grid-cols-3 gap-2">
+                                                <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-2xl">✅</div>
+                                                <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-2xl">✅</div>
+                                                <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-2xl">✅</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700 mb-2 block">Observaciones</label>
+                                            <div class="bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm text-slate-700">
+                                                "Bache reparado con mezcla asfáltica. Área delimitada."
+                                            </div>
+                                        </div>
+                                        <button class="w-full bg-gradient-to-r from-emerald-600 to-green-600 text-white font-bold py-4 rounded-xl shadow-lg">
+                                            ✅ Marcar como Completado
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-emerald-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-black">6</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Juan completa el trabajo</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Después de reparar el bache, Juan saca 3 fotos del resultado, escribe observaciones y marca el trabajo como completado.</p>
+                                    <div class="bg-emerald-50 rounded-xl p-4 border-l-4 border-emerald-600 space-y-2">
+                                        <p class="text-sm font-semibold text-emerald-900">📊 Registro Automático:</p>
+                                        <p class="text-sm text-emerald-800">⏱️ Tiempo de trabajo: 1h 15min</p>
+                                        <p class="text-sm text-emerald-800">📸 Fotos antes/después adjuntadas</p>
+                                        <p class="text-sm text-emerald-800">🏆 +10 puntos de gamificación</p>
+                                        <p class="text-sm text-emerald-800">📧 Notificación automática a María</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 7: Ciudadano recibe notificación de resolución -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-indigo-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-black">7</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">María recibe la buena noticia</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">María recibe una notificación de WhatsApp informando que su reclamo fue resuelto. Puede ver las fotos del trabajo terminado y calificar el servicio.</p>
+                                    <div class="bg-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600 space-y-2">
+                                        <p class="text-sm font-semibold text-indigo-900">👤 Actor: Ciudadano</p>
+                                        <p class="text-sm text-indigo-800">📱 Notificación: WhatsApp + Email + App</p>
+                                        <p class="text-sm text-indigo-800">⏱️ Tiempo total resolución: 4 horas</p>
+                                        <p class="text-sm text-indigo-800">🔗 Link directo a calificación</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 WhatsApp - Reclamo Resuelto
+                                    </div>
+                                    <div class="p-6 bg-green-50 space-y-4">
+                                        <div class="bg-white rounded-2xl p-4 shadow-md">
+                                            <div class="flex items-center gap-3 mb-3">
+                                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                                    M
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-slate-900">Municipio de Merlo</p>
+                                                    <p class="text-xs text-slate-600">Hace 1 min</p>
+                                                </div>
+                                            </div>
+                                            <div class="bg-green-100 rounded-lg p-3 space-y-2">
+                                                <p class="font-semibold text-green-900">✅ ¡Tu reclamo fue resuelto!</p>
+                                                <p class="text-sm text-green-800"><strong>Reclamo:</strong> Bache en Av. San Martín 1250</p>
+                                                <p class="text-sm text-green-800"><strong>Resuelto por:</strong> Juan Pérez</p>
+                                                <p class="text-sm text-green-800"><strong>Tiempo:</strong> 4 horas</p>
+                                                <div class="grid grid-cols-3 gap-1 my-2">
+                                                    <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-xl">📷</div>
+                                                    <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-xl">📷</div>
+                                                    <div class="bg-green-200 rounded aspect-square flex items-center justify-center text-xl">📷</div>
+                                                </div>
+                                                <p class="text-sm text-green-800 italic">"Bache reparado con mezcla asfáltica. Área delimitada."</p>
+                                                <button class="mt-2 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-2 rounded-lg">
+                                                    ⭐ Calificar el Servicio
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 8: Ciudadano califica -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-2 text-sm font-semibold">
+                                        📱 Calificación del Servicio
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="text-center mb-4">
+                                            <p class="text-2xl font-bold text-slate-900 mb-2">¿Cómo fue el servicio?</p>
+                                            <p class="text-sm text-slate-600">Reclamo #8472 - Bache en Av. San Martín</p>
+                                        </div>
+                                        <div class="flex justify-center gap-2 text-6xl mb-4">
+                                            <span>⭐</span>
+                                            <span>⭐</span>
+                                            <span>⭐</span>
+                                            <span>⭐</span>
+                                            <span>⭐</span>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700 mb-2 block">Comentario (opcional)</label>
+                                            <div class="bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm text-slate-700">
+                                                "Excelente servicio, muy rápido. El bache quedó perfecto."
+                                            </div>
+                                        </div>
+                                        <button class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold py-4 rounded-xl shadow-lg">
+                                            ✅ Enviar Calificación
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-yellow-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-black">8</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">María califica el servicio</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">María está muy conforme con la rapidez. Le da 5 estrellas y escribe un comentario positivo. El sistema registra todo para estadísticas.</p>
+                                    <div class="bg-yellow-50 rounded-xl p-4 border-l-4 border-yellow-500 space-y-2">
+                                        <p class="text-sm font-semibold text-yellow-900">📊 Impacto del Feedback:</p>
+                                        <p class="text-sm text-yellow-800">⭐ Juan recibe +25 puntos</p>
+                                        <p class="text-sm text-yellow-800">📈 Stats del municipio actualizadas</p>
+                                        <p class="text-sm text-yellow-800">🏆 María gana logro "Primera Calificación"</p>
+                                        <p class="text-sm text-yellow-800">💾 Registro permanente para auditoría</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Resumen del flujo -->
+                    <div class="mt-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-10 text-white shadow-2xl">
+                        <h4 class="text-3xl font-black mb-6 text-center">📊 Resumen: Reclamo por Bache</h4>
+                        <div class="grid md:grid-cols-4 gap-6 text-center">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">45s</div>
+                                <div class="text-sm font-semibold opacity-90">Tiempo del ciudadano</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">0.8s</div>
+                                <div class="text-sm font-semibold opacity-90">Auto-asignación</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">4h</div>
+                                <div class="text-sm font-semibold opacity-90">Resolución total</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">100%</div>
+                                <div class="text-sm font-semibold opacity-90">Satisfacción</div>
+                            </div>
+                        </div>
+                        <div class="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <p class="text-lg text-center"><strong>Sin el sistema:</strong> María debería ir a la municipalidad, hacer una nota en papel, esperar días sin saber el estado, llamar varias veces para preguntar... 🚫</p>
+                            <p class="text-lg text-center mt-2"><strong>Con el sistema:</strong> Todo desde su celular en 45 segundos, seguimiento en tiempo real, resolución en horas. ✅</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ CASO 2: TRÁMITE COMPLETO ============ -->
+                <div class="mb-16">
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-10 shadow-2xl border-2 border-blue-200 mb-12">
+                        <h3 class="text-4xl font-black text-blue-900 mb-3 flex items-center gap-3">
+                            <span class="text-5xl">📄</span>
+                            Caso 2: Solicitud de Certificado de Libre Deuda
+                        </h3>
+                        <p class="text-xl text-blue-800">Seguí el proceso completo de un trámite administrativo desde el inicio hasta la entrega del certificado</p>
+                    </div>
+
+                    <!-- Timeline de pasos -->
+                    <div class="space-y-8">
+
+                        <!-- PASO 1: Ciudadano inicia trámite -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-black">1</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Roberto necesita un certificado</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Roberto necesita un Certificado de Libre Deuda para vender su propiedad. En lugar de ir a la municipalidad, abre la app y busca "Certificado".</p>
+                                    <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-600">
+                                        <p class="text-sm font-semibold text-blue-900">👤 Actor: Ciudadano</p>
+                                        <p class="text-sm text-blue-800">📱 Dispositivo: Smartphone</p>
+                                        <p class="text-sm text-blue-800">⏱️ Tiempo: 0 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 App Ciudadano - Catálogo de Trámites
+                                    </div>
+                                    <div class="p-6 bg-white space-y-3">
+                                        <div class="relative">
+                                            <input type="text" placeholder="🔍 Buscar trámite..." class="w-full border-2 border-blue-300 rounded-xl px-4 py-3 text-slate-700 font-semibold" value="certificado">
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl p-4 shadow-lg border-2 border-blue-600">
+                                                <p class="font-bold text-lg mb-1">📄 Certificado de Libre Deuda</p>
+                                                <p class="text-sm opacity-90 mb-2">Para ventas, créditos y trámites legales</p>
+                                                <div class="flex items-center gap-2 text-xs">
+                                                    <span class="bg-white/30 px-2 py-1 rounded">⏱️ 48-72hs</span>
+                                                    <span class="bg-white/30 px-2 py-1 rounded">💰 $2,500</span>
+                                                </div>
+                                            </div>
+                                            <div class="bg-slate-100 rounded-xl p-4">
+                                                <p class="font-semibold text-slate-900 mb-1">📋 Certificado Catastral</p>
+                                                <p class="text-xs text-slate-600">Datos oficiales del padrón</p>
+                                            </div>
+                                            <div class="bg-slate-100 rounded-xl p-4">
+                                                <p class="font-semibold text-slate-900 mb-1">🏠 Habilitación Comercial</p>
+                                                <p class="text-xs text-slate-600">Para abrir un negocio</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 2: Completa formulario y adjunta documentos -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 Nuevo Trámite - Libre Deuda
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="bg-blue-50 border-2 border-blue-500 rounded-xl p-3">
+                                            <p class="text-xs font-semibold text-blue-600">TIPO DE TRÁMITE</p>
+                                            <p class="text-lg font-bold text-slate-900">📄 Certificado de Libre Deuda</p>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700">Número de Partida</label>
+                                            <div class="mt-2 bg-slate-50 border-2 border-slate-300 rounded-xl p-3 font-mono text-slate-900">
+                                                12-345-678/9
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700">Domicilio de la Propiedad</label>
+                                            <div class="mt-2 bg-slate-50 border-2 border-slate-300 rounded-xl p-3 text-slate-900">
+                                                Av. Libertador 850
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-semibold text-slate-700">Documentos Adjuntos ✅</label>
+                                            <div class="mt-2 space-y-2">
+                                                <div class="flex items-center gap-2 bg-green-50 border border-green-500 rounded-lg p-2">
+                                                    <span class="text-xl">📎</span>
+                                                    <span class="text-sm text-green-900 font-semibold">DNI_frente.jpg</span>
+                                                    <span class="text-xs text-green-700 ml-auto">✅</span>
+                                                </div>
+                                                <div class="flex items-center gap-2 bg-green-50 border border-green-500 rounded-lg p-2">
+                                                    <span class="text-xl">📎</span>
+                                                    <span class="text-sm text-green-900 font-semibold">DNI_dorso.jpg</span>
+                                                    <span class="text-xs text-green-700 ml-auto">✅</span>
+                                                </div>
+                                                <div class="flex items-center gap-2 bg-green-50 border border-green-500 rounded-lg p-2">
+                                                    <span class="text-xl">📎</span>
+                                                    <span class="text-sm text-green-900 font-semibold">Escritura.pdf</span>
+                                                    <span class="text-xs text-green-700 ml-auto">✅</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 rounded-xl shadow-lg">
+                                            📤 Enviar Solicitud
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-indigo-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-black">2</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Roberto completa el formulario</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Roberto ingresa los datos de su propiedad y sube las fotos del DNI y la escritura desde su celular. El sistema valida que todo esté completo.</p>
+                                    <div class="bg-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600 space-y-2">
+                                        <p class="text-sm font-semibold text-indigo-900">✨ Validaciones Automáticas:</p>
+                                        <p class="text-sm text-indigo-800">✓ Formato de partida correcto</p>
+                                        <p class="text-sm text-indigo-800">✓ Documentos obligatorios adjuntados</p>
+                                        <p class="text-sm text-indigo-800">✓ Imágenes legibles (IA básica)</p>
+                                        <p class="text-sm text-indigo-800">⏱️ Tiempo total: 3 minutos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 3: Sistema asigna a área administrativa -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-black">3</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Sistema asigna automáticamente</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">El sistema detecta que es un trámite de "Rentas" y lo asigna automáticamente al área administrativa correspondiente. Genera un número de expediente único.</p>
+                                    <div class="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-600 space-y-2">
+                                        <p class="text-sm font-semibold text-purple-900">🤖 Workflow Automático:</p>
+                                        <p class="text-sm text-purple-800">📋 Expediente creado: #2026-0142</p>
+                                        <p class="text-sm text-purple-800">🏢 Área: Rentas y Catastro</p>
+                                        <p class="text-sm text-purple-800">👤 Asignado a: Laura Gómez (Admin)</p>
+                                        <p class="text-sm text-purple-800">📧 Notificaciones enviadas automáticamente</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-center py-2 text-sm font-semibold">
+                                        🖥️ Sistema - Workflow Engine
+                                    </div>
+                                    <div class="p-6 bg-slate-900 text-white font-mono text-sm space-y-2">
+                                        <p>$ Procesando solicitud de trámite...</p>
+                                        <p class="text-green-400">✓ Tipo: Certificado de Libre Deuda</p>
+                                        <p class="text-green-400">✓ Documentos: 3/3 validados</p>
+                                        <p class="text-yellow-400">⚙️ Creando expediente...</p>
+                                        <p class="text-cyan-400">→ Expediente #2026-0142 generado</p>
+                                        <p class="text-yellow-400">⚙️ Enrutando a área...</p>
+                                        <p class="text-cyan-400">→ Área: Rentas y Catastro</p>
+                                        <p class="text-cyan-400">→ Cola de trabajo: 7 trámites pendientes</p>
+                                        <p class="text-green-400">✓ ASIGNADO a Laura Gómez (Admin)</p>
+                                        <p class="text-green-400">✓ Email enviado a Laura</p>
+                                        <p class="text-green-400">✓ WhatsApp enviado a Roberto</p>
+                                        <p>$ Tiempo total: 1.2 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 4: Admin recibe y revisa -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-orange-600 to-red-600 text-white text-center py-2 text-sm font-semibold">
+                                        💻 Panel Admin - Trámites Pendientes
+                                    </div>
+                                    <div class="p-6 bg-white space-y-3">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h3 class="text-xl font-bold text-slate-900">📥 Cola de Trabajo</h3>
+                                            <span class="bg-red-100 text-red-900 px-3 py-1 rounded-full text-sm font-bold">7 pendientes</span>
+                                        </div>
+                                        <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl p-4 shadow-lg border-2 border-orange-600">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <p class="text-xs font-semibold opacity-90">EXPEDIENTE #2026-0142</p>
+                                                <span class="bg-white/30 px-2 py-1 rounded text-xs">🆕 NUEVO</span>
+                                            </div>
+                                            <p class="font-bold text-lg mb-1">📄 Certificado de Libre Deuda</p>
+                                            <p class="text-sm opacity-90 mb-2">Solicitante: Roberto Fernández</p>
+                                            <p class="text-sm opacity-90 mb-2">Partida: 12-345-678/9</p>
+                                            <div class="flex gap-2 mt-3">
+                                                <button class="flex-1 bg-white text-orange-600 font-bold py-2 rounded-lg text-sm">
+                                                    👁️ Revisar
+                                                </button>
+                                                <button class="flex-1 bg-white/20 text-white font-semibold py-2 rounded-lg text-sm">
+                                                    📎 Docs
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="bg-slate-100 rounded-xl p-3 opacity-60">
+                                            <p class="text-sm font-semibold text-slate-700">Habilitación Comercial - #2026-0141</p>
+                                        </div>
+                                        <div class="bg-slate-100 rounded-xl p-3 opacity-60">
+                                            <p class="text-sm font-semibold text-slate-700">Certificado Catastral - #2026-0140</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-orange-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center text-xl font-black">4</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Laura recibe el trámite</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Laura Gómez (administrativa) recibe una notificación. Abre el panel web y ve el nuevo trámite en su cola de trabajo. Hace click para revisar.</p>
+                                    <div class="bg-orange-50 rounded-xl p-4 border-l-4 border-orange-600 space-y-2">
+                                        <p class="text-sm font-semibold text-orange-900">👤 Actor: Admin/Supervisor</p>
+                                        <p class="text-sm text-orange-800">💻 Dispositivo: PC de escritorio</p>
+                                        <p class="text-sm text-orange-800">📧 Notificación: Email + Panel web</p>
+                                        <p class="text-sm text-orange-800">⏱️ Desde envío: 5 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 5: Admin verifica documentación -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-black">5</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Laura verifica documentación</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Laura revisa el DNI y la escritura adjuntos. Consulta el sistema de Rentas para verificar que no haya deudas. Todo está en orden.</p>
+                                    <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-600 space-y-2">
+                                        <p class="text-sm font-semibold text-blue-900">🔍 Verificaciones:</p>
+                                        <p class="text-sm text-blue-800">✓ DNI coincide con titularidad</p>
+                                        <p class="text-sm text-blue-800">✓ Partida existe en sistema catastral</p>
+                                        <p class="text-sm text-blue-800">✓ Sin deudas de tasas municipales</p>
+                                        <p class="text-sm text-blue-800">✓ Escritura legible y completa</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-center py-2 text-sm font-semibold">
+                                        💻 Panel Admin - Detalle del Trámite
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="bg-blue-50 border-2 border-blue-500 rounded-xl p-4">
+                                            <p class="text-xs font-semibold text-blue-600 mb-1">EXPEDIENTE #2026-0142</p>
+                                            <p class="text-xl font-bold text-slate-900 mb-2">📄 Certificado de Libre Deuda</p>
+                                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                                <div>
+                                                    <p class="text-slate-600">Solicitante</p>
+                                                    <p class="font-semibold text-slate-900">Roberto Fernández</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-slate-600">Estado</p>
+                                                    <p class="font-semibold text-orange-600">🔍 En Revisión</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center justify-between bg-green-50 border border-green-500 rounded-lg p-3">
+                                                <span class="text-sm font-semibold text-green-900">📎 DNI_frente.jpg</span>
+                                                <button class="text-xs bg-green-600 text-white px-3 py-1 rounded">Ver</button>
+                                            </div>
+                                            <div class="flex items-center justify-between bg-green-50 border border-green-500 rounded-lg p-3">
+                                                <span class="text-sm font-semibold text-green-900">📎 DNI_dorso.jpg</span>
+                                                <button class="text-xs bg-green-600 text-white px-3 py-1 rounded">Ver</button>
+                                            </div>
+                                            <div class="flex items-center justify-between bg-green-50 border border-green-500 rounded-lg p-3">
+                                                <span class="text-sm font-semibold text-green-900">📎 Escritura.pdf</span>
+                                                <button class="text-xs bg-green-600 text-white px-3 py-1 rounded">Ver</button>
+                                            </div>
+                                        </div>
+                                        <div class="bg-slate-100 rounded-xl p-3">
+                                            <p class="text-xs font-semibold text-slate-700 mb-2">🔗 Consulta Sistema Rentas:</p>
+                                            <p class="text-sm text-green-700">✅ Partida 12-345-678/9: SIN DEUDAS</p>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button class="bg-red-600 text-white font-bold py-3 rounded-xl">
+                                                ❌ Rechazar
+                                            </button>
+                                            <button class="bg-green-600 text-white font-bold py-3 rounded-xl">
+                                                ✅ Aprobar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 6: Admin aprueba y genera certificado -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-2 text-sm font-semibold">
+                                        💻 Sistema - Generación Automática
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="bg-green-50 border-2 border-green-500 rounded-xl p-4">
+                                            <p class="text-center text-6xl mb-3">⚙️</p>
+                                            <p class="text-center font-bold text-green-900 text-lg mb-2">Generando Certificado PDF...</p>
+                                            <div class="bg-white rounded-lg p-3 space-y-1 text-sm text-slate-700 mb-3">
+                                                <p>✓ Plantilla oficial cargada</p>
+                                                <p>✓ Datos del solicitante insertados</p>
+                                                <p>✓ Partida y domicilio incluidos</p>
+                                                <p>✓ Sello digital municipal aplicado</p>
+                                                <p>✓ Código QR de verificación generado</p>
+                                                <p>✓ Firma digital de Laura Gómez</p>
+                                            </div>
+                                            <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl p-4 text-center">
+                                                <p class="text-sm mb-2">Certificado generado:</p>
+                                                <p class="font-mono text-xs mb-2">certificado_2026-0142.pdf</p>
+                                                <p class="text-2xl">📄✅</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-black">6</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Laura aprueba el trámite</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Laura presiona "Aprobar". El sistema genera automáticamente un PDF oficial con sello digital, código QR de verificación y firma electrónica.</p>
+                                    <div class="bg-green-50 rounded-xl p-4 border-l-4 border-green-600 space-y-2">
+                                        <p class="text-sm font-semibold text-green-900">🤖 Generación Automática:</p>
+                                        <p class="text-sm text-green-800">📄 PDF con plantilla oficial</p>
+                                        <p class="text-sm text-green-800">🔐 Sello digital municipal</p>
+                                        <p class="text-sm text-green-800">📱 Código QR para validación online</p>
+                                        <p class="text-sm text-green-800">✍️ Firma electrónica de Laura</p>
+                                        <p class="text-sm text-green-800">⏱️ Tiempo de generación: 2 segundos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 7: Ciudadano recibe certificado -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="order-2 md:order-1">
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-indigo-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-black">7</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Roberto recibe su certificado</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Roberto recibe un WhatsApp con un link para descargar su certificado. También puede descargarlo desde la app. El PDF tiene validez legal.</p>
+                                    <div class="bg-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600 space-y-2">
+                                        <p class="text-sm font-semibold text-indigo-900">📱 Entrega Multi-canal:</p>
+                                        <p class="text-sm text-indigo-800">📧 Email con PDF adjunto</p>
+                                        <p class="text-sm text-indigo-800">💬 WhatsApp con link de descarga</p>
+                                        <p class="text-sm text-indigo-800">📱 Disponible en "Mis Trámites" en app</p>
+                                        <p class="text-sm text-indigo-800">⏱️ Tiempo total: 24 horas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-2 text-sm font-semibold">
+                                        📱 WhatsApp - Certificado Listo
+                                    </div>
+                                    <div class="p-6 bg-green-50 space-y-4">
+                                        <div class="bg-white rounded-2xl p-4 shadow-md">
+                                            <div class="flex items-center gap-3 mb-3">
+                                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                                    M
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-slate-900">Municipio de Merlo</p>
+                                                    <p class="text-xs text-slate-600">Hace 2 min</p>
+                                                </div>
+                                            </div>
+                                            <div class="bg-green-100 rounded-lg p-3 space-y-2">
+                                                <p class="font-semibold text-green-900">✅ ¡Tu certificado está listo!</p>
+                                                <p class="text-sm text-green-800"><strong>Trámite:</strong> Certificado de Libre Deuda</p>
+                                                <p class="text-sm text-green-800"><strong>Expediente:</strong> #2026-0142</p>
+                                                <p class="text-sm text-green-800"><strong>Partida:</strong> 12-345-678/9</p>
+                                                <div class="bg-white rounded-lg p-3 my-2 flex items-center gap-3">
+                                                    <span class="text-4xl">📄</span>
+                                                    <div class="flex-1">
+                                                        <p class="text-sm font-semibold text-slate-900">certificado_2026-0142.pdf</p>
+                                                        <p class="text-xs text-slate-600">Validez legal • 245 KB</p>
+                                                    </div>
+                                                </div>
+                                                <button class="mt-2 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-lg">
+                                                    📥 Descargar Certificado
+                                                </button>
+                                                <button class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg text-sm">
+                                                    🔗 Ver en la App
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASO 8: Validación del certificado -->
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-300 bg-slate-100">
+                                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-2 text-sm font-semibold">
+                                        🌐 Portal Público - Validación de Certificado
+                                    </div>
+                                    <div class="p-6 bg-white space-y-4">
+                                        <div class="text-center mb-4">
+                                            <p class="text-2xl font-bold text-slate-900 mb-2">Validar Certificado</p>
+                                            <p class="text-sm text-slate-600">Escanee el código QR o ingrese el número de expediente</p>
+                                        </div>
+                                        <div class="bg-purple-50 border-2 border-purple-500 rounded-xl p-6">
+                                            <div class="text-center mb-4">
+                                                <div class="inline-block bg-white p-4 rounded-xl">
+                                                    <div class="w-32 h-32 bg-slate-900 flex items-center justify-center text-white text-xs">
+                                                        QR CODE
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-4 space-y-2">
+                                                <p class="text-sm font-semibold text-green-900">✅ Certificado VÁLIDO</p>
+                                                <p class="text-xs text-slate-700"><strong>Expediente:</strong> #2026-0142</p>
+                                                <p class="text-xs text-slate-700"><strong>Tipo:</strong> Certificado de Libre Deuda</p>
+                                                <p class="text-xs text-slate-700"><strong>Titular:</strong> Roberto Fernández</p>
+                                                <p class="text-xs text-slate-700"><strong>Emitido:</strong> 14/01/2026</p>
+                                                <p class="text-xs text-slate-700"><strong>Firmado por:</strong> Laura Gómez</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-black">8</div>
+                                        <h4 class="text-2xl font-bold text-slate-900">Validación pública del certificado</h4>
+                                    </div>
+                                    <p class="text-slate-700 text-lg mb-4">Cualquier tercero (banco, escribano, etc.) puede escanear el código QR del PDF para verificar instantáneamente que el certificado es auténtico.</p>
+                                    <div class="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-600 space-y-2">
+                                        <p class="text-sm font-semibold text-purple-900">🔐 Seguridad y Trazabilidad:</p>
+                                        <p class="text-sm text-purple-800">📱 Validación por QR o número</p>
+                                        <p class="text-sm text-purple-800">🔗 Link público sin login requerido</p>
+                                        <p class="text-sm text-purple-800">✅ Imposible de falsificar</p>
+                                        <p class="text-sm text-purple-800">📊 Registro de quién validó y cuándo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Resumen del flujo -->
+                    <div class="mt-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-10 text-white shadow-2xl">
+                        <h4 class="text-3xl font-black mb-6 text-center">📊 Resumen: Certificado de Libre Deuda</h4>
+                        <div class="grid md:grid-cols-4 gap-6 text-center">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">3min</div>
+                                <div class="text-sm font-semibold opacity-90">Tiempo del ciudadano</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">24hs</div>
+                                <div class="text-sm font-semibold opacity-90">Entrega del certificado</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">$0</div>
+                                <div class="text-sm font-semibold opacity-90">Viajes a la muni</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
+                                <div class="text-5xl font-black mb-2">100%</div>
+                                <div class="text-sm font-semibold opacity-90">Digital y seguro</div>
+                            </div>
+                        </div>
+                        <div class="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <p class="text-lg text-center"><strong>Sin el sistema:</strong> Roberto debería: sacar turno → ir a la muni → entregar documentos en papel → esperar 5-7 días → volver a retirar → cola de 2 horas 🚫</p>
+                            <p class="text-lg text-center mt-2"><strong>Con el sistema:</strong> Todo desde su celular en 3 minutos, seguimiento en tiempo real, PDF con validez legal en 24hs, validación pública por QR. ✅</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Precios -->
+            <section id="precios" class="mb-32 fade-in">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                        💰
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black text-slate-900">Inversión y Retorno</h2>
+                        <p class="text-slate-600 mt-2">ROI positivo desde el primer mes</p>
+                    </div>
+                </div>
+
+                <!-- ROI Calculation -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-10 shadow-2xl border-2 border-green-200 mb-10">
+                    <h3 class="text-3xl font-bold text-green-900 mb-6 flex items-center gap-3">
+                        <span class="text-4xl">💵</span>
+                        Cálculo Real de Ahorro
+                    </h3>
+                    <p class="text-lg text-green-900 mb-6">Un municipio de 50,000 habitantes con 200 reclamos mensuales:</p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center bg-white rounded-xl p-5 shadow-md">
+                            <span class="text-slate-700 font-semibold">Ahorro en papel y archivo</span>
+                            <span class="font-black text-2xl text-green-600">$800/mes</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white rounded-xl p-5 shadow-md">
+                            <span class="text-slate-700 font-semibold">Reducción de llamadas telefónicas</span>
+                            <span class="font-black text-2xl text-green-600">$1,200/mes</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white rounded-xl p-5 shadow-md">
+                            <span class="text-slate-700 font-semibold">Optimización de rutas</span>
+                            <span class="font-black text-2xl text-green-600">$2,000/mes</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white rounded-xl p-5 shadow-md">
+                            <span class="text-slate-700 font-semibold">Reducción de duplicados</span>
+                            <span class="font-black text-2xl text-green-600">$1,500/mes</span>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-2xl p-8 shadow-xl">
+                            <div class="text-5xl font-black mb-2">$5,500</div>
+                            <div class="text-lg font-semibold opacity-90">Ahorro mensual</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-slate-700 to-slate-900 text-white rounded-2xl p-8 shadow-xl">
+                            <div class="text-5xl font-black mb-2">$3,500</div>
+                            <div class="text-lg font-semibold opacity-90">Costo del sistema</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl p-8 shadow-xl ring-4 ring-green-200">
+                            <div class="text-5xl font-black mb-2">$24,000</div>
+                            <div class="text-lg font-semibold opacity-90">Ahorro neto/año</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Table -->
+                <h3 class="text-3xl font-bold text-slate-900 mb-8 text-center">📦 Planes de Contratación</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Plan Básico -->
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200 hover:border-indigo-400 transition-all hover-lift">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-3">🥉</div>
+                            <h4 class="text-3xl font-black text-slate-900">Básico</h4>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-6xl font-black gradient-text">$1,500</div>
+                            <div class="text-slate-600 font-semibold">USD/mes</div>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Hasta 10,000 habitantes
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Hasta 5 empleados
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Hasta 500 reclamos/mes
+                            </li>
+                        </ul>
+                        <button class="w-full py-4 bg-slate-200 text-slate-900 font-bold rounded-xl hover:bg-slate-300 transition-all text-lg">
+                            Consultar
+                        </button>
+                    </div>
+
+                    <!-- Plan Profesional (destacado) -->
+                    <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 shadow-2xl transform scale-105 relative">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 px-6 py-2 rounded-full text-sm font-black shadow-lg">
+                            ⭐ MÁS POPULAR
+                        </div>
+                        <div class="text-center mb-6 text-white">
+                            <div class="text-5xl mb-3">🥈</div>
+                            <h4 class="text-3xl font-black">Profesional</h4>
+                        </div>
+                        <div class="text-center mb-6 text-white">
+                            <div class="text-6xl font-black">$3,500</div>
+                            <div class="text-indigo-200 font-semibold">USD/mes</div>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-white">
+                            <li class="flex items-center gap-3">
+                                <span class="text-yellow-300 text-xl">✓</span>
+                                Hasta 50,000 habitantes
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-yellow-300 text-xl">✓</span>
+                                Hasta 20 empleados
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-yellow-300 text-xl">✓</span>
+                                Hasta 2,000 reclamos/mes
+                            </li>
+                        </ul>
+                        <button class="w-full py-4 bg-white text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition-all text-lg shadow-lg">
+                            Solicitar Demo
+                        </button>
+                    </div>
+
+                    <!-- Plan Enterprise -->
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200 hover:border-indigo-400 transition-all hover-lift">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-3">🥇</div>
+                            <h4 class="text-3xl font-black text-slate-900">Enterprise</h4>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-6xl font-black gradient-text">$7,500+</div>
+                            <div class="text-slate-600 font-semibold">USD/mes</div>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                50,000+ habitantes
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Empleados ilimitados
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Reclamos ilimitados
+                            </li>
+                        </ul>
+                        <button class="w-full py-4 bg-slate-200 text-slate-900 font-bold rounded-xl hover:bg-slate-300 transition-all text-lg">
+                            Contactar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Incluido en todos -->
+                <div class="mt-12 bg-white rounded-3xl p-10 shadow-xl border-2 border-indigo-100">
+                    <h4 class="text-3xl font-bold text-slate-900 mb-8 text-center flex items-center justify-center gap-3">
+                        <span class="text-4xl">✅</span>
+                        Incluido en TODOS los planes
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">Instalación y configuración (1-2 semanas)</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">Capacitación completa</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">Soporte 24/7</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">Actualizaciones mensuales</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">Backups automáticos diarios</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">99.9% uptime garantizado</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">SSL/HTTPS incluido</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 bg-indigo-50 p-4 rounded-xl">
+                            <span class="text-indigo-600 text-2xl">✓</span>
+                            <span class="font-semibold">App PWA sin costos de store</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contacto -->
+            <section id="contacto" class="fade-in">
+                <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-16 text-center shadow-2xl relative overflow-hidden">
+                    <!-- Decorative blobs -->
+                    <div class="blob absolute top-10 right-10 w-64 h-64 bg-white/10 blur-3xl"></div>
+                    <div class="blob absolute -bottom-10 -left-10 w-64 h-64 bg-white/10 blur-3xl" style="animation-delay: -5s;"></div>
+
+                    <div class="relative z-10">
+                        <div class="text-7xl mb-6">🚀</div>
+                        <h2 class="text-5xl md:text-6xl font-black text-white mb-6">
+                            Demos el Primer Paso Juntos
+                        </h2>
+                        <p class="text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-relaxed">
+                            Agenda una videollamada de 30 minutos donde te mostraremos la plataforma funcionando
+                            en tiempo real con datos de prueba de tu municipio. Sin compromiso, sin costos ocultos.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                            <a href="https://reclamos-mun.netlify.app" target="_blank"
+                               class="inline-block px-10 py-5 bg-white text-indigo-600 rounded-full font-black text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110">
+                                🚀 Probar Demo en Vivo
+                            </a>
+                            <a href="mailto:contacto@gestionmunicipal.com?subject=Solicito Demo Personalizada"
+                               class="inline-block px-10 py-5 bg-white/10 backdrop-blur-lg border-2 border-white text-white rounded-full font-black text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110">
+                                📧 Solicitar Reunión (30 min)
+                            </a>
+                        </div>
+
+                        <div class="space-y-3 text-white text-lg">
+                            <p class="flex items-center justify-center gap-3">
+                                <span class="text-2xl">📞</span>
+                                WhatsApp: <strong>+54 9 11 XXXX-XXXX</strong>
+                            </p>
+                            <p class="flex items-center justify-center gap-3">
+                                <span class="text-2xl">✉️</span>
+                                Email: <strong>contacto@gestionmunicipal.com</strong>
+                            </p>
+                            <p class="flex items-center justify-center gap-3">
+                                <span class="text-2xl">🌐</span>
+                                Demo: <strong><a href="https://reclamos-mun.netlify.app" target="_blank" class="hover:underline">reclamos-mun.netlify.app</a></strong>
+                            </p>
+                        </div>
+
+                        <div class="mt-10 inline-block bg-yellow-400 text-yellow-900 px-8 py-4 rounded-2xl font-bold text-lg shadow-xl">
+                            🎁 Los primeros 3 municipios que contraten en 2026 reciben 2 meses gratis
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // Top bar scroll effect
+        const topBar = document.getElementById('topBar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                topBar.classList.add('scrolled');
+            } else {
+                topBar.classList.remove('scrolled');
+            }
+        });
+
+        // Sidebar active link and progress line
+        const sections = document.querySelectorAll('section[id]');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const progressLine = document.getElementById('progress-line');
+
+        function updateActiveLink() {
+            let currentSection = '';
+            const scrollY = window.scrollY;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            // Calculate progress
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+            if (progressLine) {
+                progressLine.style.height = `${scrollPercent}%`;
+            }
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+
+        // Fade in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Theme switcher
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            // Update active button
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                if (btn.getAttribute('data-theme') === theme) {
+                    btn.classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                }
+            });
+        }
+
+        // Make setTheme available globally
+        window.setTheme = setTheme;
+
+        // Load saved theme on page load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+    </script>
+</body>
+</html>

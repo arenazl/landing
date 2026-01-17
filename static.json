@@ -1,0 +1,13 @@
+{
+  "root": "./",
+  "clean_urls": true,
+  "https_only": true,
+  "headers": {
+    "/**": {
+      "Cache-Control": "no-cache, no-store, must-revalidate"
+    },
+    "/images/**": {
+      "Cache-Control": "public, max-age=31536000"
+    }
+  }
+}

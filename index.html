@@ -2907,10 +2907,12 @@
         */
 
         // ========== CHAT WIDGET ==========
-        // Detectar si estamos en Heroku (mismo dominio) o local
+        // Detectar entorno: local, Heroku o Netlify
         const API_URL = window.location.origin.includes('localhost')
             ? 'http://localhost:8000'
-            : '';
+            : window.location.origin.includes('netlify')
+                ? 'https://munify-6f39ffd60219.herokuapp.com'
+                : '';
 
         let chatHistory = [];
         let detectedMunicipioId = null;

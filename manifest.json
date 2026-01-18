@@ -1,0 +1,23 @@
+{
+  "name": "Munify - Gestión Municipal",
+  "short_name": "Munify",
+  "description": "Sistema de Gestión Municipal Inteligente",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0088cc",
+  "icons": [
+    {
+      "src": "images/munify_logo_no_text (1).png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/munify_logo_1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

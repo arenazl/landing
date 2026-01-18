@@ -3048,17 +3048,35 @@
         function addMessage(content, isUser = false) {
             const messagesContainer = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+            messageDiv.className = `flex gap-2 ${isUser ? 'justify-end' : 'justify-start'} animate-fade-in`;
 
-            const bubble = document.createElement('div');
-            bubble.className = `max-w-[80%] p-3 rounded-2xl text-sm ${
-                isUser
-                    ? 'bg-blue-600 text-white rounded-br-md'
-                    : 'bg-white text-slate-700 shadow-sm border border-slate-100 rounded-bl-md'
-            }`;
-            bubble.innerHTML = content.replace(/\n/g, '<br>');
+            const time = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 
-            messageDiv.appendChild(bubble);
+            if (isUser) {
+                // Mensaje del usuario
+                messageDiv.innerHTML = `
+                    <div class="flex flex-col items-end max-w-[85%]">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white px-4 py-2.5 rounded-2xl rounded-br-sm shadow-md">
+                            <p class="text-sm leading-relaxed">${content.replace(/\n/g, '<br>')}</p>
+                        </div>
+                        <span class="text-[10px] text-slate-400 mt-1 mr-1">${time}</span>
+                    </div>
+                `;
+            } else {
+                // Mensaje del bot
+                messageDiv.innerHTML = `
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-robot text-white text-xs"></i>
+                    </div>
+                    <div class="flex flex-col max-w-[85%]">
+                        <div class="bg-white px-4 py-2.5 rounded-2xl rounded-bl-sm shadow-sm border border-slate-100">
+                            <p class="text-sm text-slate-700 leading-relaxed">${content.replace(/\n/g, '<br>')}</p>
+                        </div>
+                        <span class="text-[10px] text-slate-400 mt-1 ml-1">${time}</span>
+                    </div>
+                `;
+            }
+
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
@@ -3067,13 +3085,16 @@
             const messagesContainer = document.getElementById('chat-messages');
             const typingDiv = document.createElement('div');
             typingDiv.id = 'typing-indicator';
-            typingDiv.className = 'flex justify-start';
+            typingDiv.className = 'flex gap-2 justify-start animate-fade-in';
             typingDiv.innerHTML = `
-                <div class="bg-white text-slate-500 p-3 rounded-2xl rounded-bl-md shadow-sm border border-slate-100">
-                    <div class="flex gap-1">
-                        <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-                        <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-                        <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center shadow-sm">
+                    <i class="fas fa-robot text-white text-xs"></i>
+                </div>
+                <div class="bg-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm border border-slate-100">
+                    <div class="flex gap-1.5 items-center">
+                        <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+                        <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+                        <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
                     </div>
                 </div>
             `;

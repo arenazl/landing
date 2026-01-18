@@ -20,7 +20,12 @@
 
         /* Compensar header fijo en scroll */
         section[id] {
-            scroll-margin-top: 70px;
+            scroll-margin-top: 80px;
+        }
+        @media (max-width: 767px) {
+            section[id] {
+                scroll-margin-top: 100px;
+            }
         }
 
         .to-blue-800 {
@@ -2963,7 +2968,7 @@
             // Botón flotante
             const chatButton = document.createElement('button');
             chatButton.id = 'chat-button';
-            chatButton.className = 'fixed bottom-24 md:bottom-6 right-4 md:right-6 z-50 w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-110';
+            chatButton.className = 'fixed bottom-20 md:bottom-6 right-3 md:right-6 z-40 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-110';
             chatButton.innerHTML = '<i class="fas fa-comments text-xl"></i>';
             chatButton.onclick = toggleChat;
             document.body.appendChild(chatButton);
@@ -2971,7 +2976,7 @@
             // Contenedor del chat
             const chatContainer = document.createElement('div');
             chatContainer.id = 'chat-container';
-            chatContainer.className = 'fixed bottom-40 md:bottom-24 right-4 md:right-6 z-50 w-80 md:w-96 h-[450px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex-col hidden';
+            chatContainer.className = 'fixed bottom-[5.5rem] md:bottom-24 right-2 md:right-6 z-40 w-[calc(100vw-1rem)] max-w-80 md:max-w-96 md:w-96 h-[min(400px,calc(100vh-8rem))] md:h-[450px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex-col hidden';
             chatContainer.innerHTML = `
                 <!-- Header -->
                 <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-t-2xl flex items-center justify-between">

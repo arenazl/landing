@@ -48,6 +48,7 @@
             --munify-teal: #2aa198;
             --munify-teal-light: #56cecb;
             --munify-cyan: #00b4d8;
+            --munify-dark: #0f172a;
             --primary: #0088cc;
             --primary-dark: #006699;
             --color-primary: #0088cc; /* Para cards del chat */
@@ -489,6 +490,105 @@
             }
         }
 
+        /* ============================================
+           BOTONES UNIFICADOS MUNIFY
+           Paleta: munify-blue #0088cc, munify-cyan #00b4d8
+           ============================================ */
+        .btn-munify {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Primary - Fondo azul Munify */
+        .btn-munify-primary {
+            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35);
+        }
+        .btn-munify-primary:hover {
+            background: linear-gradient(135deg, #00a3e0 0%, #0088cc 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.45);
+        }
+        .btn-munify-primary:active {
+            transform: translateY(-1px);
+        }
+
+        /* Secondary - Borde azul, fondo transparente */
+        .btn-munify-secondary {
+            background: white;
+            color: #0088cc;
+            border: 2px solid #0088cc;
+            box-shadow: 0 2px 8px rgba(0, 136, 204, 0.15);
+        }
+        .btn-munify-secondary:hover {
+            background: #0088cc;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.35);
+        }
+
+        /* Cyan variant */
+        .btn-munify-cyan {
+            background: linear-gradient(135deg, #00b4d8 0%, #0088cc 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
+        }
+        .btn-munify-cyan:hover {
+            background: linear-gradient(135deg, #00c9f2 0%, #00b4d8 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.45);
+        }
+
+        /* White variant (para fondos oscuros) */
+        .btn-munify-white {
+            background: white;
+            color: #0088cc;
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+        }
+        .btn-munify-white:hover {
+            background: #f0f9ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
+        }
+
+        /* Dark variant */
+        .btn-munify-dark {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.35);
+        }
+        .btn-munify-dark:hover {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.45);
+        }
+
+        /* Shimmer effect on hover */
+        .btn-munify::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-munify:hover::after {
+            left: 100%;
+        }
+
         /* Carousel Styles */
         .carousel-container {
             position: relative;
@@ -578,7 +678,7 @@
                 <a href="#precios" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Inversión</a>
             </nav>
             <div class="flex items-center gap-2 md:gap-4">
-                <a href="#contacto" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-white rounded-lg font-semibold text-sm hover:bg-slate-700 transition-all duration-300 shadow-md">
+                <a href="#contacto" class="btn-munify btn-munify-primary hidden md:flex text-sm py-2.5 px-5">
                     <i class="fas fa-calendar-check"></i>
                     <span>Solicitar Demo</span>
                 </a>
@@ -635,8 +735,8 @@
                     </a>
                 </nav>
                 <div class="mt-8 pt-6 border-t border-slate-200">
-                    <a href="#contacto" onclick="closeMobileMenu()" class="block w-full py-3 text-center bg-slate-800 text-white rounded-xl font-bold shadow-md hover:bg-slate-700 transition-colors">
-                        <i class="fas fa-calendar-check mr-2"></i> Solicitar Demo
+                    <a href="#contacto" onclick="closeMobileMenu()" class="btn-munify btn-munify-primary w-full">
+                        <i class="fas fa-calendar-check"></i> Solicitar Demo
                     </a>
                 </div>
             </div>
@@ -682,7 +782,7 @@
                         <!-- Card 2: La Solución -->
                         <div class="group bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
                             <h3 class="flex items-center gap-2 text-sm md:text-lg font-semibold text-gray-800 mb-1 md:mb-2">
-                                <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                                 </svg>
                                 IA + Trazabilidad total
@@ -831,7 +931,7 @@
                     <!-- Las 3 Aristas del Sistema -->
                     <div class="mb-8 md:mb-12">
                         <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-6 text-center">
-                            <i class="fas fa-layer-group text-teal-500 mr-2"></i>
+                            <i class="fas fa-layer-group text-sky-500 mr-2"></i>
                             Un sistema integral con 3 pilares
                         </h3>
 
@@ -845,15 +945,15 @@
                                 <p class="text-slate-600 leading-relaxed mb-4">Comunicación ágil e instantánea con las necesidades de los vecinos. Sin esperas, sin intermediarios.</p>
                                 <ul class="space-y-2 text-sm text-slate-500">
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         Notificaciones push instantáneas
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         Chat integrado con WhatsApp
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         Actualizaciones en vivo del estado
                                     </li>
                                 </ul>
@@ -891,15 +991,15 @@
                                 <p class="text-slate-600 leading-relaxed mb-4">Comenzá cualquier gestión desde tu casa. Sin filas, sin papeles, sin burocracia complicada.</p>
                                 <ul class="space-y-2 text-sm text-slate-500">
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         Inicio inmediato de trámites
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         Formularios simples y claros
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <i class="fas fa-check-circle text-teal-500"></i>
+                                        <i class="fas fa-check-circle text-sky-500"></i>
                                         100% digital, 0% presencial
                                     </li>
                                 </ul>
@@ -1310,7 +1410,7 @@
                             <ul class="space-y-3">
                                 <li class="flex items-start gap-3">
                                     <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <i class="fas fa-check text-teal-500 text-xs"></i>
+                                        <i class="fas fa-check text-sky-500 text-xs"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold text-slate-800">Reclamos digitales</p>
@@ -1319,7 +1419,7 @@
                                 </li>
                                 <li class="flex items-start gap-3">
                                     <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <i class="fas fa-check text-teal-500 text-xs"></i>
+                                        <i class="fas fa-check text-sky-500 text-xs"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold text-slate-800">Dashboard en vivo</p>
@@ -1328,7 +1428,7 @@
                                 </li>
                                 <li class="flex items-start gap-3">
                                     <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <i class="fas fa-check text-teal-500 text-xs"></i>
+                                        <i class="fas fa-check text-sky-500 text-xs"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold text-slate-800">Vecino informado</p>
@@ -1337,7 +1437,7 @@
                                 </li>
                                 <li class="flex items-start gap-3">
                                     <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <i class="fas fa-check text-teal-500 text-xs"></i>
+                                        <i class="fas fa-check text-sky-500 text-xs"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold text-slate-800">Resolución rápida</p>
@@ -2503,25 +2603,25 @@
                         </div>
                         <ul class="space-y-3 mb-8 flex-1">
                             <li class="flex items-start gap-3 text-slate-700">
-                                <span class="text-teal-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-sky-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
                                 <span><strong>App Ciudadana</strong><br><span class="text-sm text-slate-600">Portal web y móvil para vecinos</span></span>
                             </li>
                             <li class="flex items-start gap-3 text-slate-700">
-                                <span class="text-teal-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-sky-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
                                 <span><strong>Notificaciones en tiempo real</strong><br><span class="text-sm text-slate-600">Para vecinos sobre sus consultas</span></span>
                             </li>
                             <li class="flex items-start gap-3 text-slate-700">
-                                <span class="text-teal-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-sky-500 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
                                 <span><strong>Seguimiento básico</strong><br><span class="text-sm text-slate-600">Estado de reclamos y trámites</span></span>
                             </li>
                         </ul>
-                        <button class="w-full py-4 bg-slate-700 text-white font-bold rounded-xl hover:bg-slate-800 transition-all text-lg shadow-md mt-auto">
+                        <button class="btn-munify btn-munify-primary w-full text-lg mt-auto">
                             Solicitar Demo
                         </button>
                     </div>
 
-                    <!-- Plan Gestión Reclamos y Trámites (destacado) - Teal -->
-                    <div class="pricing-card featured pricing-stagger shine-effect bg-gradient-to-br from-teal-600 to-teal-800 rounded-xl md:rounded-3xl p-4 md:p-8 shadow-2xl relative border border-teal-500 flex flex-col">
+                    <!-- Plan Gestión Reclamos y Trámites (destacado) - Blue -->
+                    <div class="pricing-card featured pricing-stagger shine-effect rounded-xl md:rounded-3xl p-4 md:p-8 shadow-2xl relative flex flex-col" style="background: linear-gradient(135deg, #0088cc 0%, #006699 100%); border: 1px solid #00a3e0;">
                         <div class="text-center mb-6 text-white">
                             <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
                                 <i class="fas fa-cogs text-3xl text-white"></i>
@@ -2530,27 +2630,27 @@
                         </div>
                         <div class="text-center mb-6 text-white">
                             <div class="text-4xl font-bold">$300.000</div>
-                            <div class="text-sm text-teal-200">por mes después del período de prueba</div>
+                            <div class="text-sm text-sky-200">por mes después del período de prueba</div>
                         </div>
                         <ul class="space-y-3 mb-8 text-white flex-1">
                             <li class="flex items-start gap-3">
-                                <span class="text-teal-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span><strong>Gestión de Reclamos</strong><br><span class="text-sm text-teal-200">Recepción, asignación y seguimiento</span></span>
+                                <span class="text-sky-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span><strong>Gestión de Reclamos</strong><br><span class="text-sm text-sky-200">Recepción, asignación y seguimiento</span></span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-teal-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span><strong>Gestión de Trámites</strong><br><span class="text-sm text-teal-200">Workflows personalizables</span></span>
+                                <span class="text-sky-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span><strong>Gestión de Trámites</strong><br><span class="text-sm text-sky-200">Workflows personalizables</span></span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-teal-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span><strong>Asignación de Personal</strong><br><span class="text-sm text-teal-200">Rutas optimizadas y cuadrillas</span></span>
+                                <span class="text-sky-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span><strong>Asignación de Personal</strong><br><span class="text-sm text-sky-200">Rutas optimizadas y cuadrillas</span></span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-teal-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
-                                <span><strong>Notificaciones Empleados</strong><br><span class="text-sm text-teal-200">Tiempo real para supervisores</span></span>
+                                <span class="text-sky-200 text-xl mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span><strong>Notificaciones Empleados</strong><br><span class="text-sm text-sky-200">Tiempo real para supervisores</span></span>
                             </li>
                         </ul>
-                        <button class="w-full py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-all text-lg shadow-lg mt-auto">
+                        <button class="btn-munify btn-munify-white w-full text-lg mt-auto">
                             Solicitar Demo
                         </button>
                     </div>
@@ -2590,7 +2690,7 @@
                                 <span><strong>Soporte prioritario 24/7</strong><br><span class="text-sm text-slate-600">Gerente de cuenta dedicado</span></span>
                             </li>
                         </ul>
-                        <button class="w-full py-4 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition-all text-lg shadow-md mt-auto">
+                        <button class="btn-munify btn-munify-dark w-full text-lg mt-auto">
                             Solicitar Demo
                         </button>
                     </div>
@@ -2718,7 +2818,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="hidden md:block text-white py-3" style="background: linear-gradient(135deg, #2aa198 0%, #1a7a72 100%); opacity: 0.9;">
+    <footer class="hidden md:block text-white py-4" style="background: linear-gradient(276deg, var(--munify-dark) 0%, var(--primary-dark) 100%);">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center justify-between gap-2">
                 <!-- Logo con texto -->
@@ -2726,19 +2826,19 @@
                     <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-8 w-8">
                     <div>
                         <div class="text-lg font-bold">Munify</div>
-                        <div class="text-xs text-teal-100">Gestión Municipal Inteligente</div>
+                        <div class="text-xs text-sky-200">Gestión Municipal Inteligente</div>
                     </div>
                 </div>
 
                 <!-- Links -->
-                <div class="hidden md:flex gap-8 text-sm text-teal-100">
+                <div class="hidden md:flex gap-8 text-sm text-sky-200">
                     <a href="#solucion" class="hover:text-white transition-colors">Solución</a>
                     <a href="#precios" class="hover:text-white transition-colors">Precios</a>
                     <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
                 </div>
 
                 <!-- Copyright -->
-                <div class="text-sm text-teal-100">
+                <div class="text-sm text-sky-200">
                     © 2026 Munify. Todos los derechos reservados.
                 </div>
             </div>
@@ -2753,32 +2853,32 @@
     border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 ">
             <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex flex-col items-center mobile-nav-link">
-                <div class="w-10 h-10 rounded-full bg-teal-100/50 flex items-center justify-center">
-                    <i class="fas fa-home text-lg text-teal-600"></i>
+                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
+                    <i class="fas fa-home text-lg text-sky-600"></i>
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">Inicio</span>
             </a>
             <a href="#solucion" class="flex flex-col items-center mobile-nav-link" data-section="solucion">
-                <div class="w-10 h-10 rounded-full bg-teal-100/50 flex items-center justify-center">
-                    <i class="fas fa-lightbulb text-lg text-teal-600"></i>
+                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
+                    <i class="fas fa-lightbulb text-lg text-sky-600"></i>
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">Solución</span>
             </a>
             <a href="https://wa.me/5491160223474" target="_blank" class="flex flex-col items-center mobile-nav-link">
-                <div class="w-10 h-10 rounded-full bg-teal-100/50 flex items-center justify-center">
-                    <i class="fab fa-whatsapp text-xl text-teal-600"></i>
+                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-xl text-sky-600"></i>
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">WhatsApp</span>
             </a>
             <a href="#reporta-reclamo" class="flex flex-col items-center mobile-nav-link" data-section="reporta-reclamo">
-                <div class="w-10 h-10 rounded-full bg-teal-100/50 flex items-center justify-center">
-                    <i class="fas fa-play text-lg text-teal-600"></i>
+                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
+                    <i class="fas fa-play text-lg text-sky-600"></i>
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">Demos</span>
             </a>
             <a href="#precios" class="flex flex-col items-center mobile-nav-link" data-section="precios">
-                <div class="w-10 h-10 rounded-full bg-teal-100/50 flex items-center justify-center">
-                    <i class="fas fa-tags text-lg text-teal-600"></i>
+                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
+                    <i class="fas fa-tags text-lg text-sky-600"></i>
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">Precios</span>
             </a>

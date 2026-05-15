@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software de Gestión Municipal Argentina | Munify - Reclamos y Trámites</title>
+    <title>Software de Gestión Municipal | Sistema de Reclamos y Trámites Municipales - Munify</title>
 
     <!-- Favicon y iconos -->
     <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
     <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0088cc">
-    <meta name="description" content="Software de gestión municipal para Argentina. Sistema completo para administrar reclamos vecinales, trámites online, obras públicas y comunicación ciudadana. App gratis para vecinos + Panel de gestión para municipios. Probalo 3 meses gratis.">
-    <meta name="keywords" content="software gestion municipal, sistema reclamos municipales argentina, app reclamos municipio, tramites municipales online, software para municipios argentina, gestion de reclamos vecinales, plataforma municipal digital, sistema atencion vecinos, software gobierno local, app municipal ciudadanos, gestion obras publicas municipal, sistema turnos municipalidad, software intendencia, plataforma smart city argentina">
+    <meta name="description" content="Software de gestión municipal para Argentina. Reclamos vecinales, trámites online, tesorería municipal (control de gastos, cajas, proyectos y agenda de pagos), atención al ciudadano. NUEVO módulo de Tesorería para reemplazar el Excel. Probalo 3 meses gratis.">
     <meta name="author" content="Munify Argentina">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="geo.region" content="AR">
     <meta name="geo.country" content="Argentina">
     <link rel="canonical" href="https://munify.com.ar/">
+    <link rel="alternate" hreflang="es-ar" href="https://munify.com.ar/">
+    <link rel="alternate" hreflang="es" href="https://munify.com.ar/">
+    <link rel="alternate" hreflang="x-default" href="https://munify.com.ar/">
+
+    <!-- Preconnect para acelerar carga de recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://munify.com.ar/">
     <meta property="og:title" content="Software de Gestión Municipal Argentina | Munify">
-    <meta property="og:description" content="Sistema completo para municipios: reclamos vecinales, trámites online, obras públicas. App gratis para ciudadanos. Probalo 3 meses sin costo.">
-    <meta property="og:image" content="https://munify.com.ar/images/munify_logo_no_text (1).png">
+    <meta property="og:description" content="Sistema completo para municipios: reclamos vecinales, trámites online, obras públicas y NUEVO módulo de Tesorería (gastos, cajas, agenda de pagos, proyectos). App gratis para ciudadanos. Probalo 3 meses sin costo.">
+    <meta property="og:image" content="https://munify.com.ar/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Munify - Software de Gestión Municipal para Argentina">
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Munify">
 
@@ -31,7 +42,169 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://munify.com.ar/">
     <meta name="twitter:title" content="Software de Gestión Municipal Argentina | Munify">
-    <meta name="twitter:description" content="Sistema completo para municipios: reclamos, trámites, obras públicas. App gratis para vecinos.">
+    <meta name="twitter:description" content="Sistema completo para municipios: reclamos, trámites, tesorería municipal y obras públicas. App gratis para vecinos. NUEVO: módulo Tesorería.">
+    <meta name="twitter:image" content="https://munify.com.ar/images/og-image.png">
+    <meta name="twitter:image:alt" content="Munify - Software de Gestión Municipal">
+
+    <!-- Structured Data / JSON-LD para Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Munify",
+      "alternateName": "Munify - Software de Gestión Municipal",
+      "description": "Software y sistema integral de gestión municipal para Argentina. Plataforma de reclamos vecinales, trámites municipales online, obras públicas y atención al ciudadano.",
+      "url": "https://munify.com.ar/",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Government Software",
+      "operatingSystem": "Web, iOS, Android",
+      "inLanguage": "es-AR",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Municipios y Gobiernos Locales"
+      },
+      "featureList": [
+        "Sistema de reclamos vecinales online",
+        "Trámites municipales digitales",
+        "Tesorería municipal: control de gastos, cajas y fondos",
+        "Agenda de pagos recurrentes (sueldos, honorarios)",
+        "Proyectos y obras con imputación de gastos",
+        "Importación de Excel de tesorería del intendente",
+        "Resumen de gastos mes a mes y por año",
+        "Cajas / fondos: FOFINDE, FODEMEP, FOMEP, Coparticipación",
+        "Gestión de obras públicas",
+        "Atención al ciudadano",
+        "Panel de gestión para municipios",
+        "App gratis para vecinos",
+        "Notificaciones en tiempo real",
+        "Estadísticas y reportes"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "ARS",
+        "description": "Prueba gratis por 3 meses"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Munify",
+      "url": "https://munify.com.ar/",
+      "logo": "https://munify.com.ar/images/munify_logo_no_text (1).png",
+      "image": "https://munify.com.ar/images/og-image.png",
+      "description": "Proveedor de software de gestión municipal para Argentina. Sistema integral de reclamos vecinales y trámites municipales online.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+54-9-11-6022-3474",
+        "contactType": "ventas",
+        "email": "ventas@gestionmunicipal.com",
+        "availableLanguage": "Spanish",
+        "areaServed": "AR"
+      }
+    }
+    </script>
+
+    <!-- LocalBusiness Schema para SEO local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://munify.com.ar/#localbusiness",
+      "name": "Munify - Software de Gestión Municipal",
+      "image": "https://munify.com.ar/images/og-image.png",
+      "url": "https://munify.com.ar/",
+      "telephone": "+54-9-11-6022-3474",
+      "priceRange": "$$",
+      "description": "Proveedor de software y sistema de gestión municipal para municipios e intendencias de Argentina. Plataforma integral de reclamos vecinales, trámites online y atención al ciudadano.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AR",
+        "addressRegion": "Buenos Aires"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+
+    <!-- Breadcrumb para el home -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://munify.com.ar/"}
+      ]
+    }
+    </script>
+
+    <!-- FAQ Schema para el home -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es Munify?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Munify es un software integral de gestión municipal para Argentina que unifica reclamos vecinales, trámites municipales online, obras públicas y atención al ciudadano en una sola plataforma."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Para qué tipo de municipios sirve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Munify funciona para municipios de todos los tamaños en Argentina, desde comunas chicas hasta ciudades grandes con múltiples dependencias. Tenemos planes adaptados según la cantidad de habitantes y la complejidad de la gestión."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los vecinos tienen que pagar por usar la app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La aplicación de Munify es 100% gratuita para los vecinos del municipio. Pueden descargarla desde Google Play o App Store y reportar reclamos, iniciar trámites y seguir obras sin pagar nada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo lleva implementar el sistema?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La implementación básica del software de gestión municipal Munify lleva entre 1 y 2 semanas. Incluye configuración del sistema, carga de categorías de reclamos y trámites, capacitación a empleados y personalización con el logo del municipio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay prueba gratuita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Munify ofrece una prueba gratuita de 3 meses sin compromiso ni tarjeta de crédito para que el municipio pueda evaluar el sistema antes de tomar una decisión."
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Usar v3.3.7 porque v3.4.x tiene bug con clases dinámicas (issue #14486) -->
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
@@ -688,15 +861,19 @@
     <header id="topBar" class="top-bar fixed top-0 left-0 right-0 z-50 px-3 md:px-4 py-2">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center">
-                <img src="images/munify_logo_1.png" alt="Munify Logo" class="header-logo h-8 md:h-10 w-auto object-contain">
+                <img src="images/Munify.svg" alt="Munify Logo" class="header-logo h-8 md:h-10 w-auto object-contain">
             </div>
             <!-- Desktop Navigation -->
             <nav class="hidden lg:flex items-center gap-1">
-                <a href="#problema" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">El Problema</a>
-                <a href="#solucion" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">La Solución</a>
-                <a href="#actores" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Actores</a>
-                <a href="#reporta-reclamo" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Demos</a>
-                <a href="#precios" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Inversión</a>
+                <a href="/software-gestion-municipal" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Software</a>
+                <a href="/reclamos-vecinales" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Reclamos</a>
+                <a href="/tramites-municipales" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Trámites</a>
+                <a href="/#tesoreria" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all inline-flex items-center gap-1.5">
+                    Tesorería
+                    <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold text-white" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">NUEVO</span>
+                </a>
+                <a href="/precios" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Precios</a>
+                <a href="/contacto" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Contacto</a>
             </nav>
             <div class="flex items-center gap-2 md:gap-4">
                 <a href="https://app.munify.com.ar/demo" target="_blank" class="btn-munify btn-munify-primary hidden md:flex text-sm py-2.5 px-5">
@@ -718,7 +895,7 @@
             <div class="p-6">
                 <div class="flex items-center justify-between mb-8">
                     <div class="flex items-center gap-3">
-                        <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-10 w-10">
+                        <img src="images/Munify.svg" alt="Munify" class="h-10 w-10">
                         <span class="font-bold text-xl text-slate-900">Munify</span>
                     </div>
                     <button onclick="closeMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100">
@@ -726,31 +903,27 @@
                     </button>
                 </div>
                 <nav class="space-y-2">
-                    <a href="#hero" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                    <a href="/" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
                         <i class="fas fa-home w-6 text-slate-500"></i>
                         <span class="font-medium text-slate-700">Inicio</span>
                     </a>
-                    <a href="#problema" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
-                        <i class="fas fa-exclamation-triangle w-6 text-red-500"></i>
-                        <span class="font-medium text-slate-700">El Problema</span>
+                    <a href="/software-gestion-municipal" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                        <i class="fas fa-desktop w-6 text-blue-500"></i>
+                        <span class="font-medium text-slate-700">Software Municipal</span>
                     </a>
-                    <a href="#solucion" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
-                        <i class="fas fa-lightbulb w-6 text-green-500"></i>
-                        <span class="font-medium text-slate-700">La Solución</span>
+                    <a href="/reclamos-vecinales" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                        <i class="fas fa-exclamation-circle w-6 text-amber-500"></i>
+                        <span class="font-medium text-slate-700">Reclamos Vecinales</span>
                     </a>
-                    <a href="#actores" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
-                        <i class="fas fa-users w-6 text-blue-500"></i>
-                        <span class="font-medium text-slate-700">Actores</span>
+                    <a href="/tramites-municipales" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                        <i class="fas fa-file-alt w-6 text-purple-500"></i>
+                        <span class="font-medium text-slate-700">Trámites Municipales</span>
                     </a>
-                    <a href="#reporta-reclamo" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
-                        <i class="fas fa-mobile-alt w-6 text-purple-500"></i>
-                        <span class="font-medium text-slate-700">Demos</span>
+                    <a href="/precios" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                        <i class="fas fa-tags w-6 text-green-500"></i>
+                        <span class="font-medium text-slate-700">Precios</span>
                     </a>
-                    <a href="#precios" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
-                        <i class="fas fa-tags w-6 text-amber-500"></i>
-                        <span class="font-medium text-slate-700">Inversión</span>
-                    </a>
-                    <a href="#contacto" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                    <a href="/contacto" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 transition-colors">
                         <i class="fas fa-envelope w-6 text-cyan-500"></i>
                         <span class="font-medium text-slate-700">Contacto</span>
                     </a>
@@ -776,15 +949,16 @@
                 <div class="text-center px-4 md:px-6 pt-16 pb-6 md:pt-24 md:pb-12 relative z-10">
                     <!-- Logo + Título Principal -->
                     <div class="flex items-center justify-center gap-2 md:gap-6 mb-2 md:mb-8">
-                        <img src="images/munify_logo_no_text (1).png" alt="Munify Icon" class="h-9 sm:h-14 md:h-32 w-auto">
+                        <img src="images/Munify.svg" alt="Munify - Software de Gestión Municipal" class="h-9 sm:h-14 md:h-32 w-auto">
                         <h1 class="text-3xl sm:text-5xl md:text-9xl font-semibold text-black leading-none tracking-tight">
                             Munify
+                            <span class="block text-xs sm:text-sm md:text-2xl font-light text-gray-600 mt-1 md:mt-4 tracking-normal">Software de Gestión Municipal</span>
                         </h1>
                     </div>
 
                     <!-- Subtítulo -->
                     <p class="text-sm sm:text-lg md:text-4xl text-gray-600 max-w-md md:max-w-4xl mx-auto leading-snug font-light">
-                        Conectando al gobierno con las necesidades del vecino
+                        Sistema integral de reclamos vecinales y trámites municipales online para municipios de Argentina
                     </p>
 
                     <!-- Value Proposition Cards -->
@@ -838,7 +1012,7 @@
                 <div class="mb-6 md:mb-12">
                     <div class="flex items-center gap-2 md:gap-3 mb-2">
                         <div class="w-1 md:w-1.5 h-8 md:h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-2xl sm:text-3xl md:text-5xl font-semibold text-slate-900">El Problema Actual</h2>
+                        <h2 class="text-2xl sm:text-3xl md:text-5xl font-semibold text-slate-900">Los Problemas de la Gestión Municipal Tradicional</h2>
                     </div>
                     <p class="text-sm md:text-base text-slate-600 mt-2 ml-3 md:ml-5">La realidad de los municipios tradicionales</p>
                 </div>
@@ -936,7 +1110,7 @@
                 <div class="mb-6 md:mb-12">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-5xl font-semibold text-slate-900">La Solución</h2>
+                        <h2 class="text-5xl font-semibold text-slate-900">Sistema Integral de Reclamos y Trámites Municipales</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">Sistema inteligente y automático</p>
                 </div>
@@ -1065,7 +1239,7 @@
                 <div class="mb-6 md:mb-12">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-5xl font-semibold text-slate-900">Cómo Funciona</h2>
+                        <h2 class="text-5xl font-semibold text-slate-900">Cómo Funciona el Software de Gestión Municipal</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">3 roles, 1 sistema integrado con notificaciones en tiempo real</p>
                 </div>
@@ -1327,7 +1501,7 @@
                 <div class="mb-6 md:mb-12">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">¿Por qué cambiar?</h2>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">¿Por qué Digitalizar tu Municipio?</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">La diferencia entre gestionar con papeles y gestionar con Munify</p>
                 </div>
@@ -1550,7 +1724,7 @@
                 <div class="mb-6 md:mb-10">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">Reportá un Reclamo</h2>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">Reclamos Vecinales Online</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">Seguí el proceso paso a paso de un reclamo ciudadano</p>
                 </div>
@@ -1811,7 +1985,7 @@
                 <div class="mb-6 md:mb-10">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">Iniciá un Trámite</h2>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">Trámites Municipales Online</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">Seguí el proceso paso a paso de un trámite administrativo</p>
                 </div>
@@ -2016,12 +2190,141 @@
 
             <div class="section-divider"></div>
 
+            <!-- NUEVO MÓDULO: Tesorería -->
+            <section id="tesoreria" class="mb-16 fade-in">
+                <div class="mb-6 md:mb-12">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-teal) 0%, var(--munify-blue) 100%);"></div>
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold text-white" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">NUEVO</span>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">Tesorería Municipal</h2>
+                    </div>
+                    <p class="text-slate-600 mt-2 ml-5">Control de gastos, ingresos y proyectos del municipio en un solo lugar. Olvidate del Excel.</p>
+                </div>
+
+                <!-- Hero del módulo: 2 columnas -->
+                <div class="grid md:grid-cols-2 gap-6 mb-10">
+                    <!-- Texto -->
+                    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--munify-blue) 0%, var(--munify-teal) 100%);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-slate-900">Adiós al Excel</h3>
+                        </div>
+                        <p class="text-slate-700 mb-4">Cargá gastos, sueldos, honorarios y subsidios desde una pantalla simple. Importá el Excel histórico del intendente y arrancá con todos los movimientos del año cargados.</p>
+                        <ul class="space-y-2 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Wizard guiado paso a paso para cargar gastos</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Imputación a varios proyectos (cemento 50% obra A / 50% obra B)</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cuotas y préstamos automáticos</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Forma de pago (efectivo / transfer / cheque / VEP)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Resumen + Reporte -->
+                    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-slate-900">Resumen Mes a Mes</h3>
+                        </div>
+                        <p class="text-slate-700 mb-4">Mirá tus gastos por <b>mes</b> o <b>año</b> con un click. Filtrá por dependencia, tipo de concepto, contacto o caja. Total visible siempre. El intendente sabe cuánto gastó en cada cosa, en segundos.</p>
+                        <ul class="space-y-2 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Navegación mes a mes con flechas ← →</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Vista anual con drill-down a cada mes</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Total filtrado en tiempo real</li>
+                            <li class="flex items-start gap-2"><svg class="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Exportá a Excel para el concejo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sub-features grid 6 -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Cajas / Fondos -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #f59e0b15 0%, #f59e0b25 100%);">
+                                <svg class="w-5 h-5" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Cajas / Fondos</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">FOFINDE, FODEMEP, FOMEP, Coparticipación, Tesoro propio. Cada gasto sale de una caja específica con saldo, ingresos y egresos en tiempo real.</p>
+                    </div>
+
+                    <!-- Agenda de pagos -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #ec489915 0%, #ec489925 100%);">
+                                <svg class="w-5 h-5" style="color: #ec4899;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Agenda de Pagos</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">Programá sueldos y pagos recurrentes una vez. El sistema te avisa los próximos vencimientos y con un click se generan los gastos del mes.</p>
+                    </div>
+
+                    <!-- Proyectos -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #10b98115 0%, #10b98125 100%);">
+                                <svg class="w-5 h-5" style="color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Proyectos / Obras</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">Agrupá gastos por obra ("Pavimentación Av. San Martín"). Visualizá el % de presupuesto consumido. Un mismo gasto puede imputarse a varios proyectos.</p>
+                    </div>
+
+                    <!-- Catálogo -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #8b5cf615 0%, #8b5cf625 100%);">
+                                <svg class="w-5 h-5" style="color: #8b5cf6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Catálogo Editable</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">15 tipos de concepto y 300 conceptos pre-cargados (Sueldos, Honorarios, Materiales, etc). Cada muni personaliza el suyo desde Configuración.</p>
+                    </div>
+
+                    <!-- Contactos -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #3b82f615 0%, #3b82f625 100%);">
+                                <svg class="w-5 h-5" style="color: #3b82f6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Contactos + Mapa</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">Empleados, proveedores, contratistas, profesionales. Geolocalizá la casa de cada vecino o asigná un paraje (Santa Rita, Los Álamos) con polígono dibujado en el mapa.</p>
+                    </div>
+
+                    <!-- Importación Excel -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all group border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #06b6d415 0%, #06b6d425 100%);">
+                                <svg class="w-5 h-5" style="color: #06b6d4;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-slate-900">Importación Excel</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm">Subí el Excel histórico del intendente (concejales, sueldos, profesionales) y el sistema los carga automáticamente con su clasificación correcta.</p>
+                    </div>
+                </div>
+
+                <!-- CTA del módulo -->
+                <div class="mt-8 rounded-2xl p-6 md:p-8 text-center" style="background: linear-gradient(135deg, var(--munify-blue) 0%, var(--munify-teal) 100%);">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-white mb-2">Sumá Tesorería al plan de tu municipio</h3>
+                    <p class="text-white/90 mb-5">Módulo opcional. Activación inmediata. Migración del Excel sin costo extra.</p>
+                    <a href="#contacto" class="inline-block px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95" style="background: #f97316; color: white; box-shadow: 0 6px 18px rgba(249,115,22,0.4);">
+                        Quiero ver una demo
+                    </a>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
             <!-- Beneficios -->
             <section id="precios" class="mb-16 fade-in">
                 <div class="mb-6 md:mb-12">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-1.5 h-10 rounded-full" style="background: linear-gradient(180deg, var(--munify-blue) 0%, var(--munify-teal) 100%);"></div>
-                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">¿Por qué Munify?</h2>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-slate-900">¿Por qué Elegir Munify como Software Municipal?</h2>
                     </div>
                     <p class="text-slate-600 mt-2 ml-5">Lo que el mundo moderno demanda de la gestión pública</p>
                 </div>
@@ -2602,9 +2905,9 @@
 
                 <!-- Pricing Table -->
                 <div class="flex items-center justify-center gap-4 mb-8">
-                    <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-10 w-10 opacity-80">
+                    <img src="images/Munify.svg" alt="Munify" class="h-10 w-10 opacity-80">
                     <h3 class="text-3xl font-semibold text-slate-900">Planes de Contratación</h3>
-                    <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-10 w-10 opacity-80">
+                    <img src="images/Munify.svg" alt="Munify" class="h-10 w-10 opacity-80">
                 </div>
                 <div class="rounded-xl p-4 mb-8 text-center border border-slate-200 bg-slate-50/50">
                     <p class="text-base text-slate-600"><i class="fas fa-gift text-slate-400 mr-2"></i>Período de prueba de 3 meses incluido en todos los planes</p>
@@ -2797,7 +3100,7 @@
                     <div class="relative z-10">
                         <!-- Logo en sección contacto -->
                         <div class="mb-4 md:mb-6">
-                            <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-14 w-14 md:h-20 md:w-20 mx-auto mb-3 md:mb-4 drop-shadow-lg">
+                            <img src="images/Munify.svg" alt="Munify" class="h-14 w-14 md:h-20 md:w-20 mx-auto mb-3 md:mb-4 drop-shadow-lg">
                         </div>
                         <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 px-2">
                             Demos el Primer Paso Juntos
@@ -2862,7 +3165,7 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-2">
                 <!-- Logo con texto -->
                 <div class="flex items-center gap-3">
-                    <img src="images/munify_logo_no_text (1).png" alt="Munify" class="h-8 w-8">
+                    <img src="images/Munify.svg" alt="Munify" class="h-8 w-8">
                     <div>
                         <div class="text-lg font-bold">Munify</div>
                         <div class="text-xs text-sky-200">Gestión Municipal Inteligente</div>
@@ -2871,9 +3174,11 @@
 
                 <!-- Links -->
                 <div class="hidden md:flex gap-8 text-sm text-sky-200">
-                    <a href="#solucion" class="hover:text-white transition-colors">Solución</a>
-                    <a href="#precios" class="hover:text-white transition-colors">Precios</a>
-                    <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+                    <a href="/software-gestion-municipal" class="hover:text-white transition-colors">Software</a>
+                    <a href="/reclamos-vecinales" class="hover:text-white transition-colors">Reclamos</a>
+                    <a href="/tramites-municipales" class="hover:text-white transition-colors">Trámites</a>
+                    <a href="/precios" class="hover:text-white transition-colors">Precios</a>
+                    <a href="/contacto" class="hover:text-white transition-colors">Contacto</a>
                 </div>
 
                 <!-- Copyright -->
@@ -2891,17 +3196,18 @@
     box-shadow: -3px -5px 20px rgb(145 145 145 / 36%);
     border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 ">
-            <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex flex-col items-center mobile-nav-link">
-                <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
-                    <i class="fas fa-home text-lg text-sky-600"></i>
+            <a href="#tesoreria" onclick="document.getElementById('tesoreria').scrollIntoView({behavior: 'smooth'}); return false;" class="flex flex-col items-center mobile-nav-link relative">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #f9731620 0%, #ea580c25 100%);">
+                    <i class="fas fa-wallet text-lg" style="color: #f97316;"></i>
                 </div>
-                <span class="text-xs mt-1 text-slate-500 font-medium">Inicio</span>
+                <span class="text-xs mt-1 text-slate-500 font-medium">Tesorería</span>
+                <span class="absolute -top-1 -right-1 px-1 py-0.5 rounded-full text-[8px] font-bold text-white" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">NEW</span>
             </a>
-            <a href="#solucion" class="flex flex-col items-center mobile-nav-link" data-section="solucion">
+            <a href="/reclamos-vecinales" class="flex flex-col items-center mobile-nav-link">
                 <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
-                    <i class="fas fa-lightbulb text-lg text-sky-600"></i>
+                    <i class="fas fa-exclamation-circle text-lg text-sky-600"></i>
                 </div>
-                <span class="text-xs mt-1 text-slate-500 font-medium">Solución</span>
+                <span class="text-xs mt-1 text-slate-500 font-medium">Reclamos</span>
             </a>
             <a href="https://wa.me/5491160223474" target="_blank" class="flex flex-col items-center mobile-nav-link">
                 <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
@@ -2909,13 +3215,13 @@
                 </div>
                 <span class="text-xs mt-1 text-slate-500 font-medium">WhatsApp</span>
             </a>
-            <a href="#reporta-reclamo" class="flex flex-col items-center mobile-nav-link" data-section="reporta-reclamo">
+            <a href="/tramites-municipales" class="flex flex-col items-center mobile-nav-link">
                 <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
-                    <i class="fas fa-play text-lg text-sky-600"></i>
+                    <i class="fas fa-file-alt text-lg text-sky-600"></i>
                 </div>
-                <span class="text-xs mt-1 text-slate-500 font-medium">Demos</span>
+                <span class="text-xs mt-1 text-slate-500 font-medium">Trámites</span>
             </a>
-            <a href="#precios" class="flex flex-col items-center mobile-nav-link" data-section="precios">
+            <a href="/precios" class="flex flex-col items-center mobile-nav-link">
                 <div class="w-10 h-10 rounded-full bg-sky-100/50 flex items-center justify-center">
                     <i class="fas fa-tags text-lg text-sky-600"></i>
                 </div>

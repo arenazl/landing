@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="120" r="180" fill="#ffffff" opacity="0.08"/>
+  <circle cx="150" cy="520" r="160" fill="#ffffff" opacity="0.08"/>
+  <circle cx="900" cy="550" r="100" fill="#ffffff" opacity="0.06"/>
+
+  <!-- Top label -->
+  <rect x="80" y="80" width="280" height="50" rx="25" fill="#ffffff" opacity="0.15"/>
+  <text x="220" y="113" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#ffffff" text-anchor="middle">SOFTWARE MUNICIPAL</text>
+
+  <!-- Main title -->
+  <text x="80" y="240" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="900" fill="#ffffff">Munify</text>
+  <text x="80" y="310" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" fill="#ffffff" opacity="0.95">Software de Gestión Municipal</text>
+  <text x="80" y="360" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="400" fill="#ffffff" opacity="0.85">Sistema integral para Argentina</text>
+
+  <!-- Features -->
+  <g transform="translate(80, 430)">
+    <circle cx="16" cy="16" r="16" fill="#22c55e"/>
+    <path d="M 9 16 L 14 21 L 23 11" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="48" y="24" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#ffffff">Reclamos Vecinales</text>
+  </g>
+  <g transform="translate(470, 430)">
+    <circle cx="16" cy="16" r="16" fill="#22c55e"/>
+    <path d="M 9 16 L 14 21 L 23 11" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="48" y="24" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#ffffff">Trámites Online</text>
+  </g>
+  <g transform="translate(800, 430)">
+    <circle cx="16" cy="16" r="16" fill="#22c55e"/>
+    <path d="M 9 16 L 14 21 L 23 11" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="48" y="24" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#ffffff">Atención al Vecino</text>
+  </g>
+
+  <!-- Bottom CTA -->
+  <rect x="80" y="510" width="320" height="60" rx="30" fill="#ffffff"/>
+  <text x="240" y="550" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#0284c7" text-anchor="middle">3 meses gratis</text>
+
+  <!-- URL -->
+  <text x="1120" y="600" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500" fill="#ffffff" text-anchor="end" opacity="0.9">munify.com.ar</text>
+</svg>

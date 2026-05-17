@@ -44,8 +44,6 @@
       ]
     }
     </script>
-
-    <!-- Service Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,234 +51,235 @@
       "serviceType": "Sistema de Trámites Municipales Online",
       "name": "Trámites Municipales Online para Argentina",
       "description": "Sistema digital de gestión de trámites municipales online para municipios de Argentina. Habilitaciones, licencias, permisos y constancias totalmente digitalizadas.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Munify",
-        "url": "https://munify.com.ar/"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Argentina"
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Municipios e Intendencias"
-      },
+      "provider": {"@type": "Organization", "name": "Munify", "url": "https://munify.com.ar/"},
+      "areaServed": {"@type": "Country", "name": "Argentina"},
+      "audience": {"@type": "Audience", "audienceType": "Municipios e Intendencias"},
       "category": "Government Software"
     }
     </script>
 
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        html { scroll-behavior: smooth; }
-        .gradient-bg { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/munify-v2.css">
 </head>
-<body class="bg-white text-slate-900">
+<body>
 
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
-                <img src="images/Munify.svg" alt="Munify - Software de Gestión Municipal" class="h-8 w-auto">
-                <span class="font-bold text-lg text-slate-900">Munify</span>
-            </a>
-            <nav class="hidden lg:flex items-center gap-1">
-                <a href="/software-gestion-municipal" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Software</a>
-                <a href="/reclamos-vecinales" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Reclamos</a>
-                <a href="/tramites-municipales" class="px-3 py-2 text-sm font-semibold text-purple-700 bg-purple-50 rounded-lg">Trámites</a>
-                <a href="/precios" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Precios</a>
-                <a href="/contacto" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Contacto</a>
-            </nav>
-            <a href="https://wa.me/5491160223474" class="hidden md:inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">
-                <i class="fab fa-whatsapp"></i> Consultar
-            </a>
+<header id="topbar" class="topbar">
+    <div class="container flex items-center justify-between py-3.5">
+        <a href="/" class="flex items-center gap-2.5">
+            <img src="images/Munify.svg" alt="Munify" class="h-7 w-auto">
+            <span class="font-semibold tracking-tight text-[1.05rem]" style="color:var(--ink)">Munify</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-1">
+            <a href="/software-gestion-municipal" class="nav-link">Software</a>
+            <a href="/reclamos-vecinales" class="nav-link">Reclamos</a>
+            <a href="/tramites-municipales" class="nav-link active">Trámites</a>
+            <a href="/precios" class="nav-link">Precios</a>
+            <a href="/contacto" class="nav-link">Contacto</a>
+        </nav>
+        <a href="https://app.munify.com.ar/demo" class="btn btn-primary hidden md:inline-flex">Demo</a>
+    </div>
+</header>
+
+<main class="pt-24">
+
+<section class="container pt-12 pb-16 md:pt-16 md:pb-20">
+    <nav class="text-sm mb-6" style="color:var(--muted-soft)">
+        <a href="/" style="color:var(--muted)">Inicio</a>
+        <span class="mx-2">/</span>
+        <span style="color:var(--ink)">Trámites municipales</span>
+    </nav>
+    <div class="max-w-4xl">
+        <div class="tag mb-6"><span class="dot"></span> Módulo · Trámites online</div>
+        <h1 class="display-1 font-display" style="color:var(--ink)">
+            Trámites 100% online,<br>
+            <span style="color:var(--muted)">sin colas ni papeles.</span>
+        </h1>
+        <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
+            Habilitaciones, permisos y certificados gestionados desde el celular. El vecino
+            inicia, sube documentación, recibe notificaciones y descarga el resultado final.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+            <a href="https://wa.me/5491160223474" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main>
-        <section class="gradient-bg py-16 md:py-24">
-            <div class="max-w-5xl mx-auto px-4 md:px-6 text-center">
-                <nav class="text-sm text-slate-500 mb-6">
-                    <a href="/" class="hover:text-purple-700">Inicio</a> / <span class="text-slate-700">Trámites Municipales</span>
-                </nav>
-                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                    Trámites Municipales Online para tu Intendencia
-                </h1>
-                <p class="text-lg md:text-2xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
-                    Digitalizá las habilitaciones, licencias y permisos de tu municipio. Los vecinos inician trámites desde su celular sin tener que ir al edificio municipal, y tus empleados los gestionan en una interfaz moderna y eficiente.
-                </p>
-                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://app.munify.com.ar/demo" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all">
-                        <i class="fas fa-play-circle"></i> Ver demo
-                    </a>
-                    <a href="/precios" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg transition-all">
-                        <i class="fas fa-tag"></i> Ver precios
-                    </a>
-                </div>
-            </div>
-        </section>
+<div class="divider"></div>
 
-        <section class="py-16 md:py-24 bg-white">
-            <div class="max-w-5xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">¿Qué son los Trámites Municipales Online?</h2>
-                <p class="text-lg text-slate-600 mb-4 leading-relaxed">
-                    Los trámites municipales online son el equivalente digital de los trámites que tradicionalmente requerían ir a una oficina del municipio, hacer cola, completar formularios en papel y esperar días o semanas por una respuesta. Con un sistema de trámites municipales como Munify, todo ese proceso se digitaliza: el vecino llena el formulario desde su celular, adjunta los documentos necesarios, paga si corresponde y recibe el resultado por la misma app.
-                </p>
-                <p class="text-lg text-slate-600 mb-4 leading-relaxed">
-                    Para el municipio, esto significa menos carga en las mesas de entrada, menos errores de transcripción, menos papeles que archivar y una trazabilidad completa de cada trámite. Cada expediente queda registrado digitalmente, con su historial completo de movimientos, responsables y documentos asociados.
-                </p>
-                <p class="text-lg text-slate-600 leading-relaxed">
-                    Munify incluye gestión integral de trámites municipales para Argentina: habilitaciones comerciales, licencias de conducir, permisos de obra, certificados de libre deuda, constancias de domicilio, bromatología, y cualquier otro trámite que tu municipio gestione. Podés configurar el flujo de cada trámite según tus propias normativas.
-                </p>
-            </div>
-        </section>
+<!-- ¿Qué son los trámites municipales online? -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-10">
+        <div class="eyebrow mb-4">Definición</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">¿Qué son los trámites municipales online?</h2>
+    </div>
 
-        <section class="py-16 md:py-24 bg-slate-50">
-            <div class="max-w-6xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 text-center mb-12">Trámites Municipales que Podés Digitalizar con Munify</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-store text-purple-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Habilitaciones Comerciales</h3>
-                        <p class="text-slate-600">Habilitación de comercios, industrias y servicios. El vecino inicia el trámite online, adjunta documentación y recibe la habilitación digital.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-id-card text-blue-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Licencias de Conducir</h3>
-                        <p class="text-slate-600">Solicitud de turno, pago, examen y emisión de licencia. Gestión completa desde la plataforma.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-hard-hat text-orange-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Permisos de Obra</h3>
-                        <p class="text-slate-600">Trámite de permisos de construcción, ampliación y demolición con adjunto de planos y memoria técnica.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-file-signature text-green-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Certificados y Constancias</h3>
-                        <p class="text-slate-600">Certificados de libre deuda, constancias de domicilio, certificados de convivencia, entre otros.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-apple-alt text-red-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Bromatología</h3>
-                        <p class="text-slate-600">Habilitaciones sanitarias, libretas sanitarias, inspecciones y control de alimentos.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-plus-circle text-teal-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Trámites Personalizados</h3>
-                        <p class="text-slate-600">Creá cualquier trámite específico de tu municipio con campos personalizados y flujos a medida.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bento md:col-span-2">
+            <p class="text-[1.05rem]" style="color:var(--ink); line-height:1.7">
+                Los <strong>trámites municipales online</strong> son procesos administrativos
+                del municipio —habilitaciones comerciales, licencias de conducir, permisos de
+                obra, libre deuda, certificados, inscripciones de monotributo municipal,
+                bromatología— que se inician, procesan y finalizan de forma 100% digital, sin
+                que el vecino tenga que ir presencialmente a la intendencia. El vecino sube
+                la documentación desde el celular, paga online cuando corresponde, firma
+                digitalmente y recibe el certificado en su email o lo descarga desde la app.
+            </p>
+            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
+                Para el municipio, digitalizar los trámites significa eliminar las colas en
+                la mesa de entradas, reducir errores administrativos por formularios mal
+                completados, tener trazabilidad total del estado de cada expediente y liberar
+                al personal para tareas de mayor valor. Un municipio que digitaliza sus cinco
+                trámites más demandados reduce hasta un 70% el tiempo de atención al público
+                presencial en los primeros tres meses.
+            </p>
+            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
+                Munify implementa los trámites municipales online como un módulo
+                configurable: cada intendencia define qué trámites ofrece, qué documentación
+                pide en cada paso, qué validaciones aplica y qué área los aprueba. Sin
+                programación, sin desarrollo a medida, con un editor visual que el
+                administrador del municipio puede usar directamente.
+            </p>
+        </div>
 
-        <section class="py-16 md:py-24 bg-white">
-            <div class="max-w-5xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-12 text-center">Beneficios de Digitalizar los Trámites Municipales</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-clock text-purple-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Ahorro de tiempo</h3>
-                            <p class="text-slate-600">El vecino no tiene que ir al edificio municipal. Los empleados no tienen que transcribir formularios en papel. Todos ahorran horas por semana.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check-circle text-purple-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Menos errores</h3>
-                            <p class="text-slate-600">Los formularios digitales validan los campos automáticamente, evitando errores de transcripción y datos incompletos.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-search text-purple-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Trazabilidad total</h3>
-                            <p class="text-slate-600">Cada trámite queda registrado con su historial completo. Sabés quién hizo qué, cuándo, y podés auditarlo en cualquier momento.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-seedling text-purple-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Municipio sin papeles</h3>
-                            <p class="text-slate-600">Reducís el uso de papel y las necesidades de archivo físico. Un paso concreto hacia un municipio sustentable.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="bento bento--warm">
+            <div class="eyebrow mb-3">Trámites más comunes</div>
+            <ul class="space-y-3 text-[0.95rem]" style="color:var(--muted); line-height:1.55">
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Habilitaciones comerciales</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Licencias de conducir municipal</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Permisos de obra y construcción</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Libre deuda municipal</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Certificados de domicilio y residencia</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Inscripciones de monotributo municipal</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Habilitaciones bromatológicas</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Pago de tasas e impuestos</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Reservas de salones municipales</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-        <section class="py-16 md:py-24 bg-gradient-to-br from-purple-600 to-indigo-700 text-white">
-            <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">Digitalizá los Trámites de tu Municipio</h2>
-                <p class="text-xl text-purple-100 mb-10">Probá el sistema de trámites municipales Munify gratis por 3 meses.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://wa.me/5491160223474" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg">
-                        <i class="fab fa-whatsapp text-2xl"></i> WhatsApp
-                    </a>
-                    <a href="/contacto" class="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-purple-700 px-8 py-4 rounded-full font-semibold text-lg">
-                        <i class="fas fa-envelope"></i> Contacto
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+<div class="divider"></div>
 
-    <footer class="bg-slate-900 text-slate-300 py-12">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="images/Munify.svg" alt="Munify" class="h-8 w-auto">
-                        <span class="font-bold text-lg text-white">Munify</span>
-                    </div>
-                    <p class="text-sm text-slate-400 max-w-xs">Software y sistema integral de gestión municipal para Argentina.</p>
+<!-- Cómo funciona -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Cómo funciona</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">El flujo de un trámite digital</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bento">
+            <div class="eyebrow mb-3">01</div>
+            <h3 class="text-lg font-semibold mb-3">Inicio desde la app</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.5">El vecino elige el trámite, completa los datos y sube la documentación desde su celular.</p>
+        </div>
+        <div class="bento bento--warm">
+            <div class="eyebrow mb-3">02</div>
+            <h3 class="text-lg font-semibold mb-3">Validación digital</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.5">El empleado revisa todo desde el panel. Si falta algo, lo pide por la misma plataforma.</p>
+        </div>
+        <div class="bento bento--warm">
+            <div class="eyebrow mb-3">03</div>
+            <h3 class="text-lg font-semibold mb-3">Aprobación y firma</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.5">El responsable firma digitalmente y se genera el certificado o constancia oficial.</p>
+        </div>
+        <div class="bento bento--ink">
+            <div class="eyebrow mb-3" style="color:#a3a3a3">04</div>
+            <h3 class="text-lg font-semibold mb-3" style="color:#fafafa">Entrega online</h3>
+            <p class="text-sm" style="color:#a3a3a3; line-height:1.5">El vecino descarga el resultado desde la app. Cero presencialidad, cero papel.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Tipos de trámites -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Tipos de trámites</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Qué se puede tramitar online</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div class="bento md:col-span-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-store"></i></div>
+            <h3 class="display-3 mb-3">Habilitaciones comerciales</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Apertura y renovación de habilitaciones comerciales sin pasar por la mesa de entradas.</p>
+        </div>
+        <div class="bento md:col-span-3 bento--warm">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--ink)"><i class="fas fa-hammer"></i></div>
+            <h3 class="display-3 mb-3">Permisos de obra</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Solicitud, seguimiento y aprobación de permisos de obra y construcción.</p>
+        </div>
+        <div class="bento md:col-span-2">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--good-soft); color:var(--good)"><i class="fas fa-file-invoice"></i></div>
+            <h3 class="text-lg font-semibold mb-2">Certificados</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.55">Libre deuda, domicilio, supervivencia y otros oficiales.</p>
+        </div>
+        <div class="bento md:col-span-2 bento--warm">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--ink)"><i class="fas fa-id-card"></i></div>
+            <h3 class="text-lg font-semibold mb-2">Inscripciones</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.55">Padrones, registros municipales y programas sociales.</p>
+        </div>
+        <div class="bento md:col-span-2 bento--ink">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:#262626; color:#4ade80"><i class="fas fa-cog"></i></div>
+            <h3 class="text-lg font-semibold mb-2" style="color:#fafafa">A medida</h3>
+            <p class="text-sm" style="color:#a3a3a3; line-height:1.55">Configurá nuevos trámites según las necesidades del municipio.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container py-16 md:py-24">
+    <div class="bento bento--ink text-center">
+        <h2 class="display-2 font-display mb-4" style="color:#fafafa">Digitalizá los trámites de tu municipio</h2>
+        <p class="text-lg max-w-2xl mx-auto mb-10" style="color:#a3a3a3; line-height:1.55">Probá Munify gratis por 3 meses sin compromiso.</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+            <a href="https://wa.me/5491160223474" class="btn" style="background:#fafafa; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="/contacto" class="btn" style="background:transparent; color:#fafafa; border:1px solid #404040">Contacto</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer style="background:var(--ink); color:#a3a3a3">
+    <div class="container py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-5">
+                    <img src="images/Munify.svg" alt="" class="h-7 w-auto" style="filter:invert(1) brightness(2)">
+                    <span class="font-semibold text-white">Munify</span>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Producto</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/software-gestion-municipal" class="hover:text-white">Software Municipal</a></li>
-                        <li><a href="/reclamos-vecinales" class="hover:text-white">Reclamos Vecinales</a></li>
-                        <li><a href="/tramites-municipales" class="hover:text-white">Trámites Municipales</a></li>
-                        <li><a href="/precios" class="hover:text-white">Precios</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Empresa</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white">Inicio</a></li>
-                        <li><a href="/contacto" class="hover:text-white">Contacto</a></li>
-                        <li><a href="https://wa.me/5491160223474" class="hover:text-white">WhatsApp</a></li>
-                    </ul>
-                </div>
+                <p class="text-sm max-w-xs" style="color:#a3a3a3; line-height:1.55">Software integral de gestión municipal para Argentina.</p>
             </div>
-            <div class="border-t border-slate-800 pt-8 text-sm text-slate-500 text-center">
-                © 2026 Munify - Software de Gestión Municipal. Argentina.
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Producto</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/software-gestion-municipal" class="foot-link">Software municipal</a></li>
+                    <li><a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a></li>
+                    <li><a href="/tramites-municipales" class="foot-link">Trámites municipales</a></li>
+                    <li><a href="/precios" class="foot-link">Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Empresa</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/" class="foot-link">Inicio</a></li>
+                    <li><a href="/contacto" class="foot-link">Contacto</a></li>
+                    <li><a href="https://wa.me/5491160223474" class="foot-link">WhatsApp</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="mt-12 pt-8 border-t text-xs" style="border-color:#262626; color:#737373">© 2026 Munify · Argentina</div>
+    </div>
+</footer>
+
+<script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
 
 </body>
 </html>

@@ -44,8 +44,6 @@
       ]
     }
     </script>
-
-    <!-- Service Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,229 +51,238 @@
       "serviceType": "Software de Gestión Municipal",
       "name": "Munify - Software de Gestión Municipal Integral",
       "description": "Plataforma integral de software municipal que unifica reclamos vecinales, trámites online, obras públicas y atención al ciudadano para municipios de Argentina.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Munify",
-        "url": "https://munify.com.ar/"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Argentina"
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Municipios e Intendencias"
-      },
+      "provider": {"@type": "Organization", "name": "Munify", "url": "https://munify.com.ar/"},
+      "areaServed": {"@type": "Country", "name": "Argentina"},
+      "audience": {"@type": "Audience", "audienceType": "Municipios e Intendencias"},
       "category": "Government Software"
     }
     </script>
 
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        html { scroll-behavior: smooth; }
-        .gradient-bg { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/munify-v2.css">
 </head>
-<body class="bg-white text-slate-900">
+<body>
 
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
-                <img src="images/Munify.svg" alt="Munify - Software de Gestión Municipal" class="h-8 w-auto">
-                <span class="font-bold text-lg text-slate-900">Munify</span>
-            </a>
-            <nav class="hidden lg:flex items-center gap-1">
-                <a href="/software-gestion-municipal" class="px-3 py-2 text-sm font-semibold text-blue-600 bg-blue-50 rounded-lg">Software</a>
-                <a href="/reclamos-vecinales" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Reclamos</a>
-                <a href="/tramites-municipales" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Trámites</a>
-                <a href="/precios" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Precios</a>
-                <a href="/contacto" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all">Contacto</a>
-            </nav>
-            <a href="https://wa.me/5491160223474" class="hidden md:inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">
-                <i class="fab fa-whatsapp"></i> Consultar
-            </a>
+<header id="topbar" class="topbar">
+    <div class="container flex items-center justify-between py-3.5">
+        <a href="/" class="flex items-center gap-2.5">
+            <img src="images/Munify.svg" alt="Munify" class="h-7 w-auto">
+            <span class="font-semibold tracking-tight text-[1.05rem]" style="color:var(--ink)">Munify</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-1">
+            <a href="/software-gestion-municipal" class="nav-link active">Software</a>
+            <a href="/reclamos-vecinales" class="nav-link">Reclamos</a>
+            <a href="/tramites-municipales" class="nav-link">Trámites</a>
+            <a href="/precios" class="nav-link">Precios</a>
+            <a href="/contacto" class="nav-link">Contacto</a>
+        </nav>
+        <a href="https://app.munify.com.ar/demo" class="btn btn-primary hidden md:inline-flex">Demo</a>
+    </div>
+</header>
+
+<main class="pt-24">
+
+<section class="container pt-12 pb-16 md:pt-16 md:pb-20">
+    <nav class="text-sm mb-6" style="color:var(--muted-soft)">
+        <a href="/" style="color:var(--muted)">Inicio</a>
+        <span class="mx-2">/</span>
+        <span style="color:var(--ink)">Software municipal</span>
+    </nav>
+    <div class="max-w-4xl">
+        <div class="tag mb-6"><span class="dot"></span> Plataforma integral</div>
+        <h1 class="display-1 font-display" style="color:var(--ink)">
+            Una plataforma,<br>
+            <span style="color:var(--muted)">toda la gestión del municipio.</span>
+        </h1>
+        <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
+            Reclamos vecinales, trámites online, tesorería con IA y atención al ciudadano.
+            Diseñado para municipios e intendencias de Argentina.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+            <a href="/precios" class="btn btn-ghost">Ver precios</a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main>
-        <section class="gradient-bg py-16 md:py-24">
-            <div class="max-w-5xl mx-auto px-4 md:px-6 text-center">
-                <nav class="text-sm text-slate-500 mb-6">
-                    <a href="/" class="hover:text-blue-600">Inicio</a> / <span class="text-slate-700">Software de Gestión Municipal</span>
-                </nav>
-                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                    Software de Gestión Municipal Integral para Argentina
-                </h1>
-                <p class="text-lg md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                    Munify es el software de gestión municipal que unifica reclamos vecinales, trámites online, obras públicas y comunicación ciudadana en una sola plataforma. Diseñado específicamente para municipios e intendencias de Argentina.
-                </p>
-                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://app.munify.com.ar/demo" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all">
-                        <i class="fas fa-play-circle"></i> Ver demo en vivo
-                    </a>
-                    <a href="/precios" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg transition-all">
-                        <i class="fas fa-tag"></i> Ver precios
-                    </a>
-                </div>
-            </div>
-        </section>
+<div class="divider"></div>
 
-        <!-- ¿Qué es? -->
-        <section class="py-16 md:py-24 bg-white">
-            <div class="max-w-5xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">¿Qué es un Software de Gestión Municipal?</h2>
-                <p class="text-lg text-slate-600 mb-4 leading-relaxed">
-                    Un software de gestión municipal es una plataforma digital integral que permite a un municipio administrar sus procesos internos y la relación con los vecinos de manera digital. A diferencia de los sistemas tradicionales basados en papeles, planillas y llamadas telefónicas, un software municipal moderno como Munify centraliza todo en un solo lugar accesible desde cualquier dispositivo.
-                </p>
-                <p class="text-lg text-slate-600 mb-4 leading-relaxed">
-                    En Argentina, cada vez más municipios e intendencias están incorporando software de gestión municipal para mejorar la atención al ciudadano, reducir los tiempos de respuesta y transparentar los procesos. Munify fue pensado específicamente para la realidad de los municipios argentinos: desde comunas chicas del interior hasta ciudades grandes con múltiples dependencias.
-                </p>
-                <p class="text-lg text-slate-600 leading-relaxed">
-                    El sistema unifica las áreas críticas de la gestión municipal: reclamos vecinales, trámites online, obras públicas, atención al ciudadano, notificaciones y estadísticas. Todo con una interfaz moderna pensada para ser usada sin capacitación técnica por empleados municipales y vecinos por igual.
-                </p>
-            </div>
-        </section>
+<!-- ¿Qué es un software de gestión municipal? -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-10">
+        <div class="eyebrow mb-4">Definición</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">¿Qué es un software de gestión municipal?</h2>
+    </div>
 
-        <!-- Funciones -->
-        <section class="py-16 md:py-24 bg-slate-50">
-            <div class="max-w-6xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 text-center mb-12">Funciones del Software Municipal Munify</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-exclamation-circle text-blue-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Sistema de Reclamos Vecinales</h3>
-                        <p class="text-slate-600">Los vecinos reportan problemas desde la app o la web. El municipio recibe, asigna y resuelve con seguimiento en tiempo real.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-file-alt text-purple-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Trámites Municipales Online</h3>
-                        <p class="text-slate-600">Habilitaciones, licencias, permisos y constancias digitales. Los vecinos inician y hacen seguimiento desde su celular.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-hard-hat text-orange-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Gestión de Obras Públicas</h3>
-                        <p class="text-slate-600">Registro de obras activas, avance de ejecución, información visible para el vecino y transparencia total.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-comments text-green-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Atención al Ciudadano</h3>
-                        <p class="text-slate-600">Canal directo de comunicación entre el municipio y los vecinos con notificaciones push y mensajería integrada.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-chart-line text-pink-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Estadísticas y Reportes</h3>
-                        <p class="text-slate-600">Dashboard con métricas de gestión, tiempos de respuesta, reclamos por categoría y rendimiento por dependencia.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-mobile-alt text-cyan-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">App Móvil Gratis para Vecinos</h3>
-                        <p class="text-slate-600">Aplicación disponible en Google Play y App Store, sin costo para los ciudadanos del municipio.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bento md:col-span-2">
+            <p class="text-[1.05rem]" style="color:var(--ink); line-height:1.7">
+                Un <strong>software de gestión municipal</strong> es una plataforma digital
+                diseñada para que un municipio, comuna o intendencia administre de manera
+                integral todos sus procesos internos y su relación con los vecinos. Reemplaza
+                los cuadernos de guardia, las planillas de Excel, los formularios de papel y
+                los grupos sueltos de WhatsApp por un único sistema con trazabilidad,
+                evidencia y métricas en tiempo real.
+            </p>
+            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
+                Las funciones centrales que debe cubrir cualquier sistema municipal moderno son
+                cuatro: <strong>gestión de reclamos vecinales</strong> (recepción,
+                clasificación, asignación a una cuadrilla, seguimiento y cierre con
+                evidencia), <strong>trámites municipales online</strong> (habilitaciones,
+                inscripciones, libre deuda, certificados, monotributo municipal),
+                <strong>atención al ciudadano</strong> (canales digitales como app móvil, web,
+                bot de WhatsApp) y <strong>estadísticas y reportes</strong> para que la
+                gestión municipal decida con datos reales en vez de hacerlo por intuición.
+            </p>
+            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
+                Munify cumple las cuatro funciones y suma una quinta que en general queda
+                afuera de los sistemas tradicionales: <strong>tesorería municipal</strong>,
+                con control de gastos, cajas, fondos como FOFINDE o coparticipación, proyectos
+                de obra con imputación contable y agenda de pagos. Y todo desde una única
+                plataforma multi-tenant, con prueba gratis de 3 meses.
+            </p>
+        </div>
 
-        <!-- Por qué Munify -->
-        <section class="py-16 md:py-24 bg-white">
-            <div class="max-w-5xl mx-auto px-4 md:px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-12 text-center">¿Por Qué Elegir Munify como Software para tu Municipio?</h2>
-                <div class="space-y-8">
-                    <div class="flex gap-4 items-start">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Pensado para Argentina</h3>
-                            <p class="text-slate-600">Munify no es un software traducido. Fue desarrollado desde cero para la realidad de los municipios argentinos, entendiendo cómo funcionan las dependencias, los empleados y los vecinos acá.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Sin capacitación técnica</h3>
-                            <p class="text-slate-600">La interfaz del sistema de gestión municipal Munify está diseñada para ser usada por cualquier empleado del municipio sin conocimientos técnicos previos. Si saben usar WhatsApp, saben usar Munify.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">3</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Prueba gratis por 3 meses</h3>
-                            <p class="text-slate-600">Instalá el software en tu municipio sin riesgo. Si en 3 meses no ves mejoras concretas en la gestión de reclamos y trámites, no pagás nada.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">4</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">App gratis para los vecinos</h3>
-                            <p class="text-slate-600">Los vecinos de tu municipio no pagan nada por usar Munify. La app es gratuita y ellos reportan reclamos, inician trámites y ven el avance de obras sin costo alguno.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="bento bento--warm">
+            <div class="eyebrow mb-3">Funciones del software municipal</div>
+            <ul class="space-y-3 text-[0.95rem]" style="color:var(--muted); line-height:1.55">
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Sistema de reclamos vecinales con foto y GPS</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Trámites municipales 100% online</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Gestión de obras públicas</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Atención al ciudadano multicanal</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Estadísticas y reportes en vivo</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> App gratis para vecinos (iOS + Android)</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Tesorería municipal integrada</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Bot de WhatsApp para vecinos</li>
+                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> IA para clasificar y asignar</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-        <section class="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-            <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">Probá el Software de Gestión Municipal Munify</h2>
-                <p class="text-xl text-blue-100 mb-10">Pedí una demo personalizada para tu intendencia. Sin compromiso.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://wa.me/5491160223474" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg">
-                        <i class="fab fa-whatsapp text-2xl"></i> WhatsApp
-                    </a>
-                    <a href="/precios" class="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-blue-700 px-8 py-4 rounded-full font-semibold text-lg">
-                        <i class="fas fa-tag"></i> Ver precios
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+<div class="divider"></div>
 
-    <footer class="bg-slate-900 text-slate-300 py-12">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="images/Munify.svg" alt="Munify" class="h-8 w-auto">
-                        <span class="font-bold text-lg text-white">Munify</span>
-                    </div>
-                    <p class="text-sm text-slate-400 max-w-xs">Software y sistema integral de gestión municipal para Argentina.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Producto</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/software-gestion-municipal" class="hover:text-white">Software Municipal</a></li>
-                        <li><a href="/reclamos-vecinales" class="hover:text-white">Reclamos Vecinales</a></li>
-                        <li><a href="/tramites-municipales" class="hover:text-white">Trámites Municipales</a></li>
-                        <li><a href="/precios" class="hover:text-white">Precios</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Empresa</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white">Inicio</a></li>
-                        <li><a href="/contacto" class="hover:text-white">Contacto</a></li>
-                        <li><a href="https://wa.me/5491160223474" class="hover:text-white">WhatsApp</a></li>
-                    </ul>
-                </div>
+<!-- Módulos -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Módulos</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Lo que incluye Munify</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <a href="/reclamos-vecinales" class="bento md:col-span-3" style="display:block">
+            <div class="flex items-start justify-between mb-6">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-bullhorn"></i></div>
+                <i class="fas fa-arrow-right text-sm" style="color:var(--muted)"></i>
             </div>
-            <div class="border-t border-slate-800 pt-8 text-sm text-slate-500 text-center">
-                © 2026 Munify - Software de Gestión Municipal. Argentina.
+            <h3 class="display-3 mb-3">Reclamos vecinales</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Reporte con foto y GPS, clasificación IA, asignación automática y trazabilidad total.</p>
+        </a>
+
+        <a href="/tramites-municipales" class="bento bento--warm md:col-span-3" style="display:block">
+            <div class="flex items-start justify-between mb-6">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--paper); color:var(--ink)"><i class="fas fa-file-signature"></i></div>
+                <i class="fas fa-arrow-right text-sm" style="color:var(--muted)"></i>
+            </div>
+            <h3 class="display-3 mb-3">Trámites online</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Habilitaciones, permisos y certificados digitales. Sin colas, con firma digital.</p>
+        </a>
+
+        <div class="bento bento--ink md:col-span-3">
+            <div class="flex items-center gap-2 mb-6">
+                <span class="tag" style="background:#262626; color:#fafafa; border-color:#404040">Nuevo</span>
+            </div>
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background:#262626; color:#4ade80"><i class="fas fa-coins"></i></div>
+            <h3 class="display-3 mb-3" style="color:#fafafa">Tesorería con IA</h3>
+            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">Importá, curá con IA, clasificá y reportá gastos. Pensado para uso directo del intendente.</p>
+        </div>
+
+        <div class="bento md:col-span-3">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-comment-dots"></i></div>
+            <h3 class="display-3 mb-3">Chat IA</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Asistente conversacional 24/7 para vecinos. Entrenado con la información del municipio.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Diferenciadores -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Por qué Munify</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Lo que nos diferencia</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bento">
+            <div class="metric-num">100<span style="font-size:0.4em">%</span></div>
+            <h3 class="text-lg font-semibold mt-3 mb-2">Argentino</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.55">Diseñado para la realidad de los municipios de Argentina. Soporte en castellano.</p>
+        </div>
+        <div class="bento bento--warm">
+            <div class="metric-num">0</div>
+            <h3 class="text-lg font-semibold mt-3 mb-2">Costos ocultos</h3>
+            <p class="text-sm" style="color:var(--muted); line-height:1.55">Sin cargos por vecino, ni por reclamo, ni por trámite. Un abono mensual fijo.</p>
+        </div>
+        <div class="bento bento--ink">
+            <div class="metric-num" style="color:#fafafa">3 <span style="font-size:0.4em; color:#a3a3a3">meses</span></div>
+            <h3 class="text-lg font-semibold mt-3 mb-2" style="color:#fafafa">Gratis para probar</h3>
+            <p class="text-sm" style="color:#a3a3a3; line-height:1.55">Si no te convence, no pagás. Sin tarjeta, sin compromiso.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container py-16 md:py-24">
+    <div class="bento bento--ink text-center">
+        <h2 class="display-2 font-display mb-4" style="color:#fafafa">¿Listo para modernizar tu municipio?</h2>
+        <p class="text-lg max-w-2xl mx-auto mb-10" style="color:#a3a3a3; line-height:1.55">Demo gratuita sin compromiso. Te mostramos el sistema con datos reales.</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+            <a href="https://wa.me/5491160223474" class="btn" style="background:#fafafa; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="/contacto" class="btn" style="background:transparent; color:#fafafa; border:1px solid #404040">Contacto</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer style="background:var(--ink); color:#a3a3a3">
+    <div class="container py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-5">
+                    <img src="images/Munify.svg" alt="" class="h-7 w-auto" style="filter:invert(1) brightness(2)">
+                    <span class="font-semibold text-white">Munify</span>
+                </div>
+                <p class="text-sm max-w-xs" style="color:#a3a3a3; line-height:1.55">Software integral de gestión municipal para Argentina.</p>
+            </div>
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Producto</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/software-gestion-municipal" class="foot-link">Software municipal</a></li>
+                    <li><a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a></li>
+                    <li><a href="/tramites-municipales" class="foot-link">Trámites municipales</a></li>
+                    <li><a href="/precios" class="foot-link">Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Empresa</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/" class="foot-link">Inicio</a></li>
+                    <li><a href="/contacto" class="foot-link">Contacto</a></li>
+                    <li><a href="https://wa.me/5491160223474" class="foot-link">WhatsApp</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="mt-12 pt-8 border-t text-xs" style="border-color:#262626; color:#737373">© 2026 Munify · Argentina</div>
+    </div>
+</footer>
+
+<script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
 
 </body>
 </html>

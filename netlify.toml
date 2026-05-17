@@ -30,6 +30,11 @@
   status = 200
 
 [[redirects]]
+  from = "/tesoreria"
+  to = "/tesoreria.html"
+  status = 200
+
+[[redirects]]
   from = "/precios"
   to = "/precios.html"
   status = 200

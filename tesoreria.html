@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesorería Municipal: Control de Gastos, Cajas y Proyectos | Munify</title>
+
+    <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
+    <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
+    <meta name="theme-color" content="#0088cc">
+    <meta name="description" content="Módulo de Tesorería Municipal para Argentina. Control de gastos, cajas y fondos (FOFINDE, FODEMEP, Coparticipación), agenda de pagos, proyectos y obras, imputación múltiple. Importá el Excel del intendente y olvidate de las planillas.">
+    <meta name="author" content="Munify Argentina">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="geo.region" content="AR">
+    <link rel="canonical" href="https://munify.com.ar/tesoreria">
+    <link rel="alternate" hreflang="es-ar" href="https://munify.com.ar/tesoreria">
+    <link rel="alternate" hreflang="es" href="https://munify.com.ar/tesoreria">
+    <link rel="alternate" hreflang="x-default" href="https://munify.com.ar/tesoreria">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://munify.com.ar/tesoreria">
+    <meta property="og:title" content="Tesorería Municipal: adiós al Excel | Munify">
+    <meta property="og:description" content="Control de gastos, cajas, proyectos y agenda de pagos del municipio en un solo lugar. Importá el Excel histórico y arrancá con todo cargado.">
+    <meta property="og:image" content="https://munify.com.ar/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://munify.com.ar/images/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://munify.com.ar/"},
+        {"@type": "ListItem", "position": 2, "name": "Tesorería Municipal", "item": "https://munify.com.ar/tesoreria"}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Tesorería Municipal Digital",
+      "name": "Módulo de Tesorería Municipal",
+      "description": "Sistema digital de control de gastos, cajas, proyectos y agenda de pagos para municipios de Argentina. Reemplaza el Excel del intendente con una plataforma multi-tenant.",
+      "provider": {"@type": "Organization", "name": "Munify", "url": "https://munify.com.ar/"},
+      "areaServed": {"@type": "Country", "name": "Argentina"},
+      "audience": {"@type": "Audience", "audienceType": "Municipios e Intendencias"},
+      "category": "Government Software"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com/3.3.7"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/munify-v2.css">
+</head>
+<body>
+
+<header id="topbar" class="topbar">
+    <div class="container flex items-center justify-between py-3.5">
+        <a href="/" class="flex items-center gap-2.5">
+            <img src="images/Munify.svg" alt="Munify" class="h-7 w-auto">
+            <span class="font-semibold tracking-tight text-[1.05rem]" style="color:var(--ink)">Munify</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-1">
+            <a href="/software-gestion-municipal" class="nav-link">Software</a>
+            <a href="/reclamos-vecinales" class="nav-link">Reclamos</a>
+            <a href="/tramites-municipales" class="nav-link">Trámites</a>
+            <a href="/tesoreria" class="nav-link active inline-flex items-center gap-1.5">
+                Tesorería
+                <span class="tag tag--new" style="font-size:0.6rem; padding:2px 6px">NUEVO</span>
+            </a>
+            <a href="/precios" class="nav-link">Precios</a>
+            <a href="/contacto" class="nav-link">Contacto</a>
+        </nav>
+        <a href="https://app.munify.com.ar/demo" class="btn btn-primary hidden md:inline-flex">Demo</a>
+    </div>
+</header>
+
+<main class="pt-24">
+
+<section class="container pt-12 pb-16 md:pt-16 md:pb-20">
+    <nav class="text-sm mb-6" style="color:var(--muted-soft)">
+        <a href="/" style="color:var(--muted)">Inicio</a>
+        <span class="mx-2">/</span>
+        <span style="color:var(--ink)">Tesorería municipal</span>
+    </nav>
+    <div class="max-w-4xl">
+        <div class="flex items-center gap-3 mb-6 flex-wrap">
+            <div class="tag"><span class="dot"></span> Módulo · Tesorería Municipal</div>
+            <span class="tag tag--new">NUEVO</span>
+        </div>
+        <h1 class="display-1 font-display" style="color:var(--ink)">
+            Tesorería Municipal,<br>
+            <span style="color:var(--muted)">adiós al Excel del intendente.</span>
+        </h1>
+        <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
+            Control de gastos, ingresos, cajas y proyectos del municipio en un solo lugar.
+            Importá el Excel histórico y arrancá con todos los movimientos del año ya cargados.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+            <a href="https://wa.me/5491160223474" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ¿Cómo funciona? -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-10">
+        <div class="eyebrow mb-4">Cómo funciona</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">¿Cómo funciona el módulo de Tesorería?</h2>
+        <p class="mt-6 text-lg" style="color:var(--muted)">
+            Tres etapas claras desde que cargás un gasto hasta que el intendente ve el resumen
+            del mes. Pensado para que lo use cualquier persona del equipo, sin formación contable.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bento">
+            <div class="eyebrow mb-3" style="color:var(--accent)">Paso 01</div>
+            <h3 class="display-3 mb-3">Cargás el gasto</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Wizard guiado paso a paso: elegís el tipo (sueldo, honorario, material, subsidio),
+                el contacto al que le pagás, la dependencia, la caja desde la que sale el dinero
+                y la forma de pago (efectivo / transferencia / cheque / VEP). Si el gasto se
+                imputa a varios proyectos (cemento 50% obra A / 50% obra B), repartís en la
+                misma pantalla. Si es en cuotas, el sistema genera el cronograma automático.
+            </p>
+        </div>
+
+        <div class="bento bento--warm">
+            <div class="eyebrow mb-3" style="color:var(--accent)">Paso 02</div>
+            <h3 class="display-3 mb-3">El sistema clasifica</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Cada movimiento queda imputado a su caja (FOFINDE, FODEMEP, FOMEP,
+                Coparticipación, Tesoro propio), a su tipo de concepto y a sus proyectos.
+                La agenda de pagos te avisa los próximos vencimientos. El catálogo editable
+                trae 15 tipos y 300 conceptos pre-cargados que cada municipio personaliza
+                desde Configuración sin tocar código.
+            </p>
+        </div>
+
+        <div class="bento bento--ink">
+            <div class="eyebrow mb-3" style="color:#a39a85">Paso 03</div>
+            <h3 class="display-3 mb-3" style="color:#fafafa">El intendente ve todo</h3>
+            <p class="text-[0.95rem]" style="color:#a39a85; line-height:1.6">
+                Resumen mes a mes con flechas ← →, vista anual con drill-down, filtros por
+                dependencia / tipo / contacto / caja. Total filtrado en tiempo real. Exportá
+                a Excel cuando lo necesites para el concejo. El intendente sabe cuánto gastó
+                en cada cosa, en segundos, desde el celular.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Features bento -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Qué incluye</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Todo lo que necesita un municipio chico o mediano</h2>
+        <p class="mt-6 text-lg" style="color:var(--muted)">
+            Pensado para municipios que vienen del Excel y necesitan profesionalizar la gestión
+            financiera sin volverse un ERP corporativo.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bento">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-coins"></i></div>
+            <h3 class="display-3 mb-3">Cajas / Fondos</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                FOFINDE, FODEMEP, FOMEP, Coparticipación, Tesoro propio. Cada gasto sale de
+                una caja específica con saldo, ingresos y egresos en tiempo real.
+            </p>
+        </div>
+        <div class="bento bento--warm">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--accent)"><i class="fas fa-calendar-alt"></i></div>
+            <h3 class="display-3 mb-3">Agenda de Pagos</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Programá sueldos y pagos recurrentes una sola vez. El sistema te avisa los
+                vencimientos y genera los gastos del mes con un click.
+            </p>
+        </div>
+        <div class="bento">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-cube"></i></div>
+            <h3 class="display-3 mb-3">Proyectos / Obras</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Agrupá gastos por obra ("Pavimentación Av. San Martín"). Visualizá el % de
+                presupuesto consumido. Un mismo gasto puede imputarse a varios proyectos.
+            </p>
+        </div>
+        <div class="bento bento--warm">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--accent)"><i class="fas fa-tag"></i></div>
+            <h3 class="display-3 mb-3">Catálogo Editable</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                15 tipos de concepto y 300 conceptos pre-cargados (Sueldos, Honorarios,
+                Materiales, etc.). Cada municipio personaliza el suyo desde Configuración.
+            </p>
+        </div>
+        <div class="bento">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-users"></i></div>
+            <h3 class="display-3 mb-3">Contactos + Mapa</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Empleados, proveedores, contratistas, profesionales. Geolocalizá la casa de
+                cada vecino o asigná un paraje con polígono dibujado en el mapa.
+            </p>
+        </div>
+        <div class="bento bento--ink">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:#262626; color:#4ade80"><i class="fas fa-file-import"></i></div>
+            <h3 class="display-3 mb-3" style="color:#fafafa">Importación Excel</h3>
+            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">
+                Subí el Excel histórico del intendente (concejales, sueldos, profesionales) y
+                el sistema los carga automáticamente con la clasificación correcta.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Beneficios -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Beneficios</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Por qué reemplazar el Excel</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div class="bento md:col-span-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--good-soft); color:var(--good)"><i class="fas fa-shield-halved"></i></div>
+            <h3 class="display-3 mb-3">Trazabilidad real</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                Cada gasto tiene autor, fecha, comprobante y log de cambios. No hay más
+                "¿quién modificó esta celda?". Auditoría lista para el Tribunal de Cuentas.
+            </p>
+        </div>
+        <div class="bento bento--warm md:col-span-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--accent)"><i class="fas fa-stopwatch"></i></div>
+            <h3 class="display-3 mb-3">Reportes en segundos</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                "Cuánto gastamos en sueldos en marzo", "qué porcentaje del FOFINDE consumimos",
+                "qué se debe al proveedor X". Todo en filtros, no en fórmulas pegadas con cinta.
+            </p>
+        </div>
+        <div class="bento bento--ink md:col-span-2">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:#262626; color:#4ade80"><i class="fas fa-mobile-alt"></i></div>
+            <h3 class="display-3 mb-3" style="color:#fafafa">Desde el celular</h3>
+            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">El intendente consulta saldos, gastos del mes y agenda de pagos desde la cancha.</p>
+        </div>
+        <div class="bento md:col-span-2">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-lock"></i></div>
+            <h3 class="display-3 mb-3">Multi-usuario seguro</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Roles por dependencia. Tesorería ve todo, cada secretaría ve lo suyo, el intendente ve agregados.</p>
+        </div>
+        <div class="bento bento--warm md:col-span-2">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--paper); color:var(--ink)"><i class="fas fa-cloud"></i></div>
+            <h3 class="display-3 mb-3">Sin perder data</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Backup automático en la nube. Olvidate del Excel corrupto o el pendrive que se rompió.</p>
+        </div>
+        <div class="bento md:col-span-6">
+            <div class="flex items-start justify-between flex-wrap gap-6">
+                <div class="max-w-xl">
+                    <div class="eyebrow mb-2">Migración sin costo</div>
+                    <h3 class="display-3 mb-3">Importamos tu Excel y arrancás funcionando</h3>
+                    <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
+                        Mandanos tu planilla del año en curso. Te la cargamos al sistema con
+                        toda la clasificación y arrancás con el histórico cargado, sin
+                        re-tipear nada.
+                    </p>
+                </div>
+                <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Tipos de movimientos -->
+<section class="container py-16 md:py-20">
+    <div class="max-w-3xl mb-12">
+        <div class="eyebrow mb-4">Tipos de gasto</div>
+        <h2 class="display-2 font-display" style="color:var(--ink)">Qué clase de movimientos gestiona</h2>
+        <p class="mt-6 text-lg" style="color:var(--muted)">Catálogo pre-cargado pensado para municipios argentinos. Editable desde Configuración.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-user-tie text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Sueldos</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-briefcase text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Honorarios</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-boxes-stacked text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Materiales</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-hand-holding-heart text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Subsidios</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-truck text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Servicios</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-gas-pump text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Combustible</div>
+        </div>
+        <div class="bento" style="padding:1.5rem">
+            <i class="fas fa-file-invoice-dollar text-xl mb-3" style="color:var(--ink)"></i>
+            <div class="font-medium text-sm">Impuestos / VEP</div>
+        </div>
+        <div class="bento bento--ink" style="padding:1.5rem">
+            <i class="fas fa-plus text-xl mb-3" style="color:#4ade80"></i>
+            <div class="font-medium text-sm" style="color:#fafafa">Y los que sumes</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="container py-16 md:py-24">
+    <div class="bento bento--ink text-center">
+        <h2 class="display-2 font-display mb-4" style="color:#fafafa">Sumá Tesorería al plan de tu municipio</h2>
+        <p class="text-lg max-w-2xl mx-auto mb-10" style="color:#a3a3a3; line-height:1.55">Módulo opcional. Activación inmediata. Migración del Excel sin costo extra.</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+            <a href="https://wa.me/5491160223474" class="btn" style="background:#fafafa; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="/contacto" class="btn" style="background:transparent; color:#fafafa; border:1px solid #404040">Contacto</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer style="background:var(--ink); color:#a3a3a3">
+    <div class="container py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-5">
+                    <img src="images/Munify.svg" alt="" class="h-7 w-auto" style="filter:invert(1) brightness(2)">
+                    <span class="font-semibold text-white">Munify</span>
+                </div>
+                <p class="text-sm max-w-xs" style="color:#a3a3a3; line-height:1.55">Software integral de gestión municipal para Argentina.</p>
+            </div>
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Producto</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/software-gestion-municipal" class="foot-link">Software municipal</a></li>
+                    <li><a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a></li>
+                    <li><a href="/tramites-municipales" class="foot-link">Trámites municipales</a></li>
+                    <li><a href="/tesoreria" class="foot-link">Tesorería</a></li>
+                    <li><a href="/precios" class="foot-link">Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="eyebrow mb-4" style="color:#737373">Empresa</div>
+                <ul class="space-y-2.5">
+                    <li><a href="/" class="foot-link">Inicio</a></li>
+                    <li><a href="/contacto" class="foot-link">Contacto</a></li>
+                    <li><a href="https://wa.me/5491160223474" class="foot-link">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-12 pt-8 border-t text-xs" style="border-color:#262626; color:#737373">© 2026 Munify · Argentina</div>
+    </div>
+</footer>
+
+<script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
+
+</body>
+</html>

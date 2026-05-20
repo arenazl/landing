@@ -628,3 +628,68 @@ main > section.section-band {
 }
 
 body.menu-open { overflow: hidden; }
+
+/* ================= WhatsApp contact (topbar pill + floating FAB) ================= */
+/* Both use the brand accent (navy) instead of the typical WhatsApp green, to stay
+   coherent with the rest of the landing. */
+
+.wa-topbar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.wa-topbar:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.wa-topbar:active { transform: translateY(0); }
+
+.wa-fab {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(19, 40, 94, 0.32), 0 4px 12px rgba(0, 0, 0, 0.14);
+  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+.wa-fab:hover {
+  background: var(--accent-strong);
+  color: #fff;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 36px rgba(19, 40, 94, 0.42), 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+.wa-fab:active { transform: translateY(-1px) scale(1.01); }
+
+@media (min-width: 768px) {
+  .wa-fab {
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-topbar, .wa-fab { transition: none; }
+  .wa-topbar:hover, .wa-fab:hover { transform: none; }
+}

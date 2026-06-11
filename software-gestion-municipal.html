@@ -248,44 +248,35 @@
         <a href="/reclamos-vecinales" class="bento card-img md:col-span-3" style="display:block">
             <div class="card-img__media"><img src="images/cards/card-reclamos.jpg" alt="Cuadrilla municipal trabajando en la vía pública"></div>
             <div class="card-img__body">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-bullhorn"></i></div>
-                    <i class="fas fa-arrow-right text-sm" style="color:var(--muted)"></i>
-                </div>
-                <h3 class="display-3 mb-3">Reclamos vecinales</h3>
+                <span class="card-img__icon"><i class="fas fa-bullhorn"></i></span>
+                <h3 class="display-3 mb-2">Reclamos vecinales</h3>
                 <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Reporte con foto y GPS, clasificación IA, asignación automática y trazabilidad total.</p>
             </div>
         </a>
 
-        <a href="/tramites-municipales" class="bento bento--warm card-img md:col-span-3" style="display:block">
+        <a href="/tramites-municipales" class="bento card-img md:col-span-3" style="display:block">
             <div class="card-img__media"><img src="images/cards/card-tramites.jpg" alt="Vecino haciendo un trámite desde el celular"></div>
             <div class="card-img__body">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--paper); color:var(--ink)"><i class="fas fa-file-signature"></i></div>
-                    <i class="fas fa-arrow-right text-sm" style="color:var(--muted)"></i>
-                </div>
-                <h3 class="display-3 mb-3">Trámites online</h3>
+                <span class="card-img__icon"><i class="fas fa-file-signature"></i></span>
+                <h3 class="display-3 mb-2">Trámites online</h3>
                 <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Habilitaciones, permisos y certificados digitales. Sin colas, con firma digital.</p>
             </div>
         </a>
 
-        <div class="bento bento--ink card-img md:col-span-3">
+        <div class="bento card-img md:col-span-3">
             <div class="card-img__media"><img src="images/cards/card-tesoreria.jpg" alt="Escritorio con planillas de contabilidad y calculadora"></div>
             <div class="card-img__body">
-                <div class="flex items-center gap-2 mb-6">
-                    <span class="tag" style="background:#262626; color:#fafafa; border-color:#404040">Nuevo</span>
-                </div>
-                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background:#262626; color:#4ade80"><i class="fas fa-coins"></i></div>
-                <h3 class="display-3 mb-3" style="color:#fafafa">Tesorería con IA</h3>
-                <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">Importá, curá con IA, clasificá y reportá gastos. Pensado para uso directo del intendente.</p>
+                <span class="card-img__icon"><i class="fas fa-coins"></i></span>
+                <h3 class="display-3 mb-2">Tesorería con IA <span class="tag tag--new" style="vertical-align:middle; font-size:0.6rem">Nuevo</span></h3>
+                <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Importá, curá con IA, clasificá y reportá gastos. Pensado para uso directo del intendente.</p>
             </div>
         </div>
 
         <div class="bento card-img md:col-span-3">
             <div class="card-img__media"><img src="images/cards/card-chat.jpg" alt="Vecino usando el chat de Munify en el celular"></div>
             <div class="card-img__body">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-comment-dots"></i></div>
-                <h3 class="display-3 mb-3">Chat IA</h3>
+                <span class="card-img__icon"><i class="fas fa-comment-dots"></i></span>
+                <h3 class="display-3 mb-2">Chat IA</h3>
                 <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Asistente conversacional 24/7 para vecinos. Entrenado con la información del municipio.</p>
             </div>
         </div>
@@ -302,20 +293,29 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bento">
-            <div class="metric-num">100<span style="font-size:0.4em">%</span></div>
-            <h3 class="text-lg font-semibold mt-3 mb-2">Argentino</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">Diseñado para la realidad de los municipios de Argentina. Soporte en castellano.</p>
+        <div class="bento card-img">
+            <div class="card-img__media"><img src="images/cards/card-argentino.jpg" alt="Puente de la Mujer, Puerto Madero, Buenos Aires"></div>
+            <div class="card-img__body">
+                <div class="metric-num">100<span style="font-size:0.4em">%</span></div>
+                <h3 class="text-lg font-semibold mt-3 mb-2">Argentino</h3>
+                <p class="text-sm" style="color:var(--muted); line-height:1.55">Diseñado para la realidad de los municipios de Argentina. Soporte en castellano.</p>
+            </div>
         </div>
-        <div class="bento bento--warm">
-            <div class="metric-num">0</div>
-            <h3 class="text-lg font-semibold mt-3 mb-2">Costos ocultos</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">Sin cargos por vecino, ni por reclamo, ni por trámite. Un abono mensual fijo.</p>
+        <div class="bento card-img">
+            <div class="card-img__media"><img src="images/cards/card-costos.jpg" alt="Acuerdo transparente entre dos partes"></div>
+            <div class="card-img__body">
+                <div class="metric-num">0</div>
+                <h3 class="text-lg font-semibold mt-3 mb-2">Costos ocultos</h3>
+                <p class="text-sm" style="color:var(--muted); line-height:1.55">Sin cargos por vecino, ni por reclamo, ni por trámite. Un abono mensual fijo.</p>
+            </div>
         </div>
-        <div class="bento bento--ink">
-            <div class="metric-num" style="color:#fafafa">3 <span style="font-size:0.4em; color:#a3a3a3">meses</span></div>
-            <h3 class="text-lg font-semibold mt-3 mb-2" style="color:#fafafa">Gratis para probar</h3>
-            <p class="text-sm" style="color:#a3a3a3; line-height:1.55">Si no te convence, no pagás. Sin tarjeta, sin compromiso.</p>
+        <div class="bento card-img">
+            <div class="card-img__media"><img src="images/cards/card-gratis.jpg" alt="Planificación en un calendario mensual"></div>
+            <div class="card-img__body">
+                <div class="metric-num">3 <span style="font-size:0.4em; color:var(--muted)">meses</span></div>
+                <h3 class="text-lg font-semibold mt-3 mb-2">Gratis para probar</h3>
+                <p class="text-sm" style="color:var(--muted); line-height:1.55">Si no te convence, no pagás. Sin tarjeta, sin compromiso.</p>
+            </div>
         </div>
     </div>
 </section>

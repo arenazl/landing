@@ -485,7 +485,7 @@
             <p class="mt-2 text-sm" style="color:var(--muted)">Antes y después de digitalizar la gestión municipal.</p>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full text-sm md:text-[0.95rem]">
+            <table class="table-stack w-full text-sm md:text-[0.95rem]">
                 <thead style="background:var(--paper-warm)">
                     <tr style="color:var(--muted)">
                         <th class="text-left px-5 md:px-8 py-4 font-medium">Aspecto</th>
@@ -925,7 +925,7 @@
 
     <div class="bento p-0 overflow-hidden reveal">
         <div class="overflow-x-auto">
-            <table class="w-full text-sm md:text-[0.95rem]">
+            <table class="table-stack w-full text-sm md:text-[0.95rem]">
                 <thead style="background:var(--paper-warm)">
                     <tr style="color:var(--muted)">
                         <th class="text-left px-5 md:px-8 py-4 font-medium">Característica</th>
@@ -1563,6 +1563,16 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Tablas apiladas en mobile: copia cada encabezado al data-label de su celda
+    document.querySelectorAll('table.table-stack').forEach(table => {
+        const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+        table.querySelectorAll('tbody tr').forEach(tr => {
+            [...tr.children].forEach((td, i) => {
+                if (i > 0 && heads[i]) td.setAttribute('data-label', heads[i]);
+            });
+        });
+    });
 </script>
 
 <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">

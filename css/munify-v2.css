@@ -378,6 +378,37 @@ main > section.section-band {
   margin: 0;
 }
 
+/* ===== Tablas comparativas: apiladas en mobile ===== */
+@media (max-width: 767px) {
+  .table-stack thead { display: none; }
+  .table-stack,
+  .table-stack tbody,
+  .table-stack tr,
+  .table-stack td { display: block; width: 100%; }
+  .table-stack tr { padding: 0.5rem 1.25rem 1rem; }
+  .table-stack td { padding: 0 !important; border: 0 !important; }
+  .table-stack td:first-child {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1rem;
+    padding-top: 0.75rem !important;
+    margin-bottom: 0.35rem;
+  }
+  .table-stack td:not(:first-child) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0 !important;
+    color: var(--ink);
+  }
+  .table-stack td:not(:first-child)::before {
+    content: attr(data-label);
+    color: var(--muted-soft);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+}
+
 /* ---------- Hover en links del footer ---------- */
 .foot-link {
   color: var(--muted-soft);

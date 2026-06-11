@@ -43,12 +43,13 @@
   --paper-cool: #f6f2e8;
   --paper-deep: #ece6d6;
 
-  /* Acento azul marino — usado en detalles, no en fondos amplios */
-  --accent: #13285e;
-  --accent-strong: #0c1c47;
-  --accent-soft: #e9ecf4;
+  /* Azul de marca — tomado del logo Munify (#112a6c marino + #3f6ac8 vivo) */
+  --accent: #112a6c;          /* marino del logo */
+  --accent-strong: #0a1f52;
+  --accent-bright: #3f6ac8;   /* azul vivo del logo — highlights, glow, hover */
+  --accent-soft: #e9edf6;
   --accent-line: #c2cadc;
-  --accent-ink: #07102e;
+  --accent-ink: #0a1b48;      /* base mas oscura para degrades */
 
   /* Estados sutiles */
   --good: #15803d;
@@ -133,13 +134,21 @@ body {
   /* degrade del marron calido al azul-noche de la app + glow azul sutil:
      deja de ser un fondo plano "basico" y suma el acento de marca */
   background:
-    radial-gradient(115% 95% at 88% 0%, rgba(19,40,94,0.50) 0%, transparent 56%),
-    linear-gradient(158deg, var(--ink) 0%, #221f2c 52%, var(--accent-ink) 100%);
+    radial-gradient(115% 95% at 88% 0%, rgba(63,106,200,0.26) 0%, transparent 56%),
+    linear-gradient(158deg, var(--ink) 0%, #1a2347 55%, var(--accent-ink) 100%);
   color: #f5f0e6;
   border-color: var(--ink-soft);
 }
 .bento--ink:hover { border-color: var(--accent-line); }
 .bento--accent  { background: var(--accent-soft); border-color: var(--accent-line); }
+
+/* Cards de lectura: acento fino del azul del logo arriba (vida sin foto) */
+.bento--lead::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-bright) 60%, transparent 100%);
+}
+.bento--lead .eyebrow { color: var(--accent); }
 
 /* Bento que contiene una imagen — sin padding, imagen full-bleed */
 .bento--image {
@@ -425,22 +434,25 @@ main > section.section-band {
   justify-content: flex-end;
   padding: 0 !important;
 }
-.card-img .card-img__media { position: absolute; inset: 0; z-index: -2; }
+/* foto translucida sobre el crema del bento -> arriba se integra con la pagina */
+.card-img .card-img__media { position: absolute; inset: 0; opacity: 0.6; z-index: -2; }
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.05) brightness(0.92);
+  filter: grayscale(1) contrast(1.05);
   transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-/* degrade azul-noche (no negro plano): transparente arriba -> azulado abajo, donde va el texto */
+/* marino del logo concentrado ABAJO (donde va el texto) + glow del azul vivo arriba-der */
 .card-img::after {
   content: "";
   position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(7,16,46,0) 0%,
-    rgba(7,16,46,0.18) 36%,
-    rgba(7,16,46,0.74) 72%,
-    rgba(7,16,46,0.96) 100%);
+  background:
+    radial-gradient(80% 60% at 88% 8%, rgba(63,106,200,0.20) 0%, transparent 58%),
+    linear-gradient(180deg,
+      rgba(17,42,108,0) 0%,
+      rgba(17,42,108,0.05) 46%,
+      rgba(12,31,82,0.70) 76%,
+      rgba(10,27,72,0.94) 100%);
 }
 .card-img:hover .card-img__media img { transform: scale(1.05); }
 .card-img .card-img__body { position: relative; padding: clamp(1.5rem, 3vw, 2rem); }

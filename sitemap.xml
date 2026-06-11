@@ -7,30 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://munify.com.ar/#que-es-munify</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://munify.com.ar/#tesoreria</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://munify.com.ar/#comparativa</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://munify.com.ar/#faq</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://munify.com.ar/software-gestion-municipal</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>

@@ -6,6 +6,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif&display=swap');
 
+/* ===== Transiciones entre paginas (View Transitions API — MPA) =====
+   Cross-fade suave al navegar entre las paginas estaticas, en vez del
+   parpadeo blanco del full reload. Progressive enhancement: los browsers
+   sin soporte navegan normal. No cambia URLs ni afecta SEO. */
+@view-transition {
+  navigation: auto;
+}
+/* El header se mantiene estable (no parpadea) mientras el resto transiciona */
+.topbar {
+  view-transition-name: site-header;
+}
+/* Respeta la preferencia de menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
 :root {
   /* Paleta minimal — todo con tibieza arena, evita negro puro */
   --ink: #2a2620;       /* grafito cálido (NO negro) */

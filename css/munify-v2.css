@@ -130,11 +130,15 @@ body {
 .bento--cool    { background: var(--paper); }
 .bento--deep    { background: var(--paper-deep); }
 .bento--ink     {
-  background: var(--ink);
+  /* degrade del marron calido al azul-noche de la app + glow azul sutil:
+     deja de ser un fondo plano "basico" y suma el acento de marca */
+  background:
+    radial-gradient(115% 95% at 88% 0%, rgba(19,40,94,0.50) 0%, transparent 56%),
+    linear-gradient(158deg, var(--ink) 0%, #221f2c 52%, var(--accent-ink) 100%);
   color: #f5f0e6;
   border-color: var(--ink-soft);
 }
-.bento--ink:hover { border-color: #4a4238; }
+.bento--ink:hover { border-color: var(--accent-line); }
 .bento--accent  { background: var(--accent-soft); border-color: var(--accent-line); }
 
 /* Bento que contiene una imagen — sin padding, imagen full-bleed */

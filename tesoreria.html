@@ -96,9 +96,58 @@
                 Generá tu municipio
                 <i class="fas fa-arrow-right text-xs"></i>
             </a>
+            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Menú">
+                <i class="fas fa-bars" style="color:var(--ink)"></i>
+            </button>
         </div>
     </div>
 </header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu__overlay" onclick="closeMenu()"></div>
+    <aside class="mobile-menu__panel">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <img src="images/Munify.svg" alt="" class="h-7 w-auto">
+                <span class="font-semibold">Munify</span>
+            </div>
+            <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
+            <a href="/software-gestion-municipal" class="nav-link text-base"><i class="fas fa-cube nav-ico"></i><span>Software</span></a>
+            <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
+            <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
+            <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
+            <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
+        </nav>
+        <div class="mt-8 pt-6 border-t" style="border-color:var(--line)">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary w-full justify-center">Generá tu municipio</a>
+        </div>
+    </aside>
+</div>
+<script>
+    (function() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('mobileBtn');
+        if (!menu || !btn) return;
+        const openMenu = () => { menu.classList.add('open'); document.body.classList.add('menu-open'); };
+        const closeMenu = () => { menu.classList.remove('open'); document.body.classList.remove('menu-open'); };
+        btn.addEventListener('click', openMenu);
+        window.closeMenu = closeMenu;
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
+        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        menu.querySelectorAll('nav .nav-link').forEach(a => {
+            const href = a.getAttribute('href') || '';
+            const hrefPath = href.split('#')[0].replace(/\/$/, '') || '/';
+            if (hrefPath === path && !href.startsWith('/#')) a.classList.add('is-active');
+        });
+    })();
+</script>
 
 <main class="pt-24">
 

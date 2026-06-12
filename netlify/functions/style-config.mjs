@@ -4,7 +4,7 @@ import { getStore } from "@netlify/blobs";
 // GET  /api/style-config        -> devuelve la config guardada (o null)
 // POST /api/style-config        -> guarda la config (requiere header x-style-key correcto)
 export default async (req) => {
-  const store = getStore("munify-style");
+  const store = getStore({ name: "munify-style", consistency: "strong" });
   const cors = {
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "GET,POST,OPTIONS",

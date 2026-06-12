@@ -150,6 +150,16 @@ body {
 }
 .bento--lead .eyebrow { color: var(--accent); }
 
+/* Mini-icono de feature (grilla de funciones moderna, reemplaza la lista de checks) */
+.feat-ico {
+  width: 2.1rem; height: 2.1rem; border-radius: 999px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
+  font-size: 0.78rem;
+}
+
 /* Bento que contiene una imagen — sin padding, imagen full-bleed */
 .bento--image {
   padding: 0;

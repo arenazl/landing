@@ -169,6 +169,7 @@
     <div class="fx-row"><label class="fx-lbl" for="fxGray">Color &rarr; B&amp;N · <b id="fxGrayV">color</b></label><input type="range" id="fxGray" min="0" max="100" value="100"></div>
     <div class="fx-row"><span class="fx-lbl">Dirección del degradé</span><div class="fx-grid" id="fxDirs"></div></div>
     <div class="fx-row"><span class="fx-lbl">Posición del texto</span><div class="fx-grid" id="fxTxt"></div></div>
+    <div class="fx-row"><span class="fx-lbl">Fuente del texto chico</span><div class="fx-grid" id="fxFont"></div></div>
     <button id="fxApply" type="button"><i class="fas fa-check"></i> Aplicar / copiar config</button>
     <div id="fxOut"></div>
   </div>
@@ -202,7 +203,8 @@
 (function(){
   var root=document.documentElement;
   var COLORS={crema:[243,238,227],azul:[28,58,140],ink:[42,38,32],sepia:[120,86,50],frio:[90,130,200]};
-  var cur={color:'crema',int:34,gray:100,dir:180,txt:'debajo'};
+  var cur={color:'crema',int:34,gray:100,dir:180,txt:'debajo',font:'Inter'};
+  var FONTS=['Inter','Manrope','DM Sans','Work Sans','Plus Jakarta Sans','Outfit','Sora','Figtree','Space Grotesk','Nunito'];
   var PRESETS=[
     ['Crema suave',{color:'crema',int:34,gray:100,dir:180}],
     ['Crema fuerte',{color:'crema',int:60,gray:100,dir:180}],
@@ -222,11 +224,18 @@
     var c=COLORS[cur.color]||COLORS.crema; var rgb=c.join(',');
     var a1=(cur.int/100)*0.8, a2=a1*0.18;
     var gray=(100-cur.gray)/100, sat=(cur.gray/100)*1.1;
-    // afecta a TODAS las imágenes de card del sitio: card-img Y bento--image (las del home)
-    var imgSel='.card-img .card-img__media img,.bento--image .bento__media img';
-    var ovSel='.card-img .card-img__media::after,.bento--image .bento__media::after';
-    return imgSel+'{filter:saturate('+sat.toFixed(2)+') grayscale('+gray.toFixed(2)+')!important}'+
-           ovSel+'{background:linear-gradient('+cur.dir+'deg,rgba('+rgb+','+a1.toFixed(3)+') 0%,rgba('+rgb+','+a2.toFixed(3)+') 100%)!important}';
+    // 100% de las imágenes de contenido: card-img__media + bento__media (cubre
+    // bento--image y la sección comparación Antes/Después). El hero NO se toca.
+    var imgSel='.card-img__media img,.bento__media img';
+    var ovSel='.card-img__media::after,.bento__media::after';
+    var css=imgSel+'{filter:saturate('+sat.toFixed(2)+') grayscale('+gray.toFixed(2)+')!important}'+
+            ovSel+'{background:linear-gradient('+cur.dir+'deg,rgba('+rgb+','+a1.toFixed(3)+') 0%,rgba('+rgb+','+a2.toFixed(3)+') 100%)!important}';
+    if(cur.font && cur.font!=='Inter'){
+      var f="'"+cur.font+"',sans-serif";
+      css+="body,p,li,span,a,td,th,label,input,button,select,.nav-link,.foot-link,.eyebrow{font-family:"+f+"!important}"+
+           "h1,h2,h3,h4,h5,h6,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,.display-1,.display-2,.display-3,.font-display{font-family:'Instrument Serif',serif!important}";
+    }
+    return css;
   }
   function apply(){
     // INYECTA el estilo directo en la pagina (no depende del CSS file ni de cache)
@@ -253,6 +262,7 @@
     [...document.querySelectorAll('#fxColors button')].forEach(function(b){b.classList.toggle('on',b.dataset.k===cur.color);});
     [...document.querySelectorAll('#fxDirs button')].forEach(function(b){b.classList.toggle('on',+b.dataset.v===cur.dir);});
     [...document.querySelectorAll('#fxTxt button')].forEach(function(b){b.classList.toggle('on',b.dataset.v===cur.txt);});
+    [...document.querySelectorAll('#fxFont button')].forEach(function(b){b.classList.toggle('on',b.dataset.v===cur.font);});
   }
   function build(){
     var P=document.getElementById('fxPresets');
@@ -267,13 +277,20 @@
     var T=document.getElementById('fxTxt');
     TXT.forEach(function(t){var b=document.createElement('button');b.type='button';b.textContent=t[0];b.dataset.v=t[1];
       b.onclick=function(){cur.txt=t[1];apply();refreshOn();};T.appendChild(b);});
+    // cargar fuentes de Google (una sola vez) + chips de fuente
+    var fl=document.createElement('link');fl.rel='stylesheet';
+    fl.href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Nunito:wght@400;500;600;700&display=swap';
+    document.head.appendChild(fl);
+    var F=document.getElementById('fxFont');
+    FONTS.forEach(function(fn){var b=document.createElement('button');b.type='button';b.textContent=fn;b.dataset.v=fn;b.style.fontFamily="'"+fn+"',sans-serif";
+      b.onclick=function(){cur.font=fn;apply();refreshOn();};F.appendChild(b);});
     document.getElementById('fxInt').oninput=function(){cur.int=+this.value;apply();};
     document.getElementById('fxGray').oninput=function(){cur.gray=+this.value;apply();};
     document.getElementById('fxToggle').onclick=function(){document.getElementById('fxPanel').classList.toggle('open');};
     document.getElementById('fxApply').onclick=function(){
       apply();   // RE-RENDERIZA: re-inyecta el <style> con la config actual sobre toda la página
       var c=COLORS[cur.color],a1=(cur.int/100)*0.8,a2=a1*0.18,gray=(100-cur.gray)/100,sat=(cur.gray/100)*1.1;
-      var css='--ov-color: '+c.join(', ')+'; --ov-a1: '+a1.toFixed(3)+'; --ov-a2: '+a2.toFixed(3)+'; --ov-dir: '+cur.dir+'deg; --ov-gray: '+gray.toFixed(2)+'; --ov-sat: '+sat.toFixed(2)+'; /* texto: '+cur.txt+' */';
+      var css='--ov-color: '+c.join(', ')+'; --ov-a1: '+a1.toFixed(3)+'; --ov-a2: '+a2.toFixed(3)+'; --ov-dir: '+cur.dir+'deg; --ov-gray: '+gray.toFixed(2)+'; --ov-sat: '+sat.toFixed(2)+'; /* texto: '+cur.txt+' | fuente: '+cur.font+' */';
       document.getElementById('fxOut').textContent='aplicado ✓  '+css;
       try{navigator.clipboard.writeText(css);}catch(e){}
     };

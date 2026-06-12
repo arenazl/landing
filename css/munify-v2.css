@@ -491,16 +491,15 @@ main > section.section-band {
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(1.08);
+  filter: saturate(1.06);            /* foto VIVA, a color */
   transition: transform 800ms var(--ease);
 }
-/* velo azul de marca arriba: integra TODAS las fotos a la paleta (las de
-   color se ven a color con un tinte arriba; las B&N de origen quedan en
-   duotono azul de marca, no grises sueltos). Suave y degradado. */
+/* velo SOLO arriba (suave, degradado) — armoniza con el sitio sin
+   apagar la foto. Variante crema. */
 .card-img .card-img__media::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(17,42,108,0.30) 0%, rgba(17,42,108,0.07) 40%, transparent 72%);
+  background: linear-gradient(180deg, rgba(245,240,230,0.62) 0%, rgba(245,240,230,0.18) 40%, transparent 70%);
   pointer-events: none;
 }
 .card-img:hover .card-img__media img { transform: scale(1.05); }

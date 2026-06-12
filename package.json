@@ -1,0 +1,8 @@
+{
+  "name": "munify-landing",
+  "private": true,
+  "description": "Landing estática de Munify + function de config de estilo",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

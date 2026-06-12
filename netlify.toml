@@ -2,6 +2,10 @@
   publish = "."
   command = ""
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Permitir acceso directo a archivos SEO
 [[redirects]]
   from = "/sitemap.xml"

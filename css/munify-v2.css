@@ -74,12 +74,13 @@
   /* === Filtro de imágenes de card (tuneable desde el panel del home) ===
      Default: velo CREMA suave de la app sobre la foto a color. Afecta a TODAS
      las imágenes de card (NO al hero). */
-  --ov-color: 243, 238, 227;   /* crema de la app (paper-warm) */
-  --ov-a1: 0.34;               /* opacidad del velo, lado fuerte del degradé */
-  --ov-a2: 0.06;               /* opacidad del velo, lado suave */
-  --ov-dir: 180deg;            /* dirección del degradé */
-  --ov-sat: 1;                 /* saturación de la foto (1 = normal) */
-  --ov-gray: 0;                /* 0 = color, 1 = blanco y negro */
+  /* Config elegida por el user desde el panel de tuning (azul suave en degradé) */
+  --ov-color: 28, 58, 140;     /* azul de marca */
+  --ov-a1: 0.336;              /* opacidad del velo, lado fuerte del degradé */
+  --ov-a2: 0.060;              /* opacidad del velo, lado suave */
+  --ov-dir: 165deg;            /* dirección del degradé */
+  --ov-sat: 1.01;              /* saturación de la foto */
+  --ov-gray: 0.08;             /* casi color pleno (8% B&N) */
 }
 
 * {

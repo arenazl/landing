@@ -148,6 +148,8 @@
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/munify-v2.css">
+    <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
+    <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
 
     <script type="speculationrules">
     {
@@ -1557,27 +1559,13 @@
         const hrefPath = href.split('#')[0].replace(/\/$/, '') || '/';
         if (hrefPath === path && !href.startsWith('/#')) a.classList.add('is-active');
     });
-
-    // Reveal on scroll
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Tablas apiladas en mobile: copia cada encabezado al data-label de su celda
-    document.querySelectorAll('table.table-stack').forEach(table => {
-        const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            [...tr.children].forEach((td, i) => {
-                if (i > 0 && heads[i]) td.setAttribute('data-label', heads[i]);
-            });
-        });
-    });
+    // Reveal on scroll, count-up y tablas apiladas → centralizado en js/munify-anim.js
 </script>
 
 <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
+<script src="js/munify-anim.js" defer></script>
 </body>
 </html>

@@ -153,33 +153,72 @@
 
 <main class="pt-24">
 
-<section class="hero -mt-24 pt-36 pb-16 md:pt-40 md:pb-20 relative">
-    <div class="hero__media"><img src="images/assets-landing-sistema-moderno.webp" alt=""></div>
+<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
+    <div class="hero__media"><img src="images/cards/card-tesoreria.jpg" alt=""></div>
     <div class="hero__tint"></div>
     <div class="hero__grain"></div>
     <div class="container relative">
         <nav class="text-sm mb-6" style="color:var(--muted-soft)">
             <a href="/" style="color:var(--muted)">Inicio</a>
             <span class="mx-2">/</span>
-            <span style="color:var(--ink)">Tesorería municipal</span>
+            <span style="color:var(--ink)">Tesorería</span>
         </nav>
-        <div class="max-w-4xl">
-            <div class="flex items-center gap-3 mb-6 flex-wrap">
-                <div class="tag"><span class="dot"></span> Módulo · Tesorería Municipal</div>
-                <span class="tag tag--new">NUEVO</span>
+        <div class="hero-grid">
+            <div>
+                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Módulo · Tesorería · NUEVO</div>
+                <h1 class="display-1 font-display" style="color:var(--ink)">
+                    Tesorería,<br>
+                    <span style="color:var(--muted)">adiós al <em class="text-accent" style="font-style:normal">Excel</em>.</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
+                    Importá el Excel del intendente, curá con IA y reportá los gastos al instante.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="tag tag--accent"><i class="fas fa-file-import"></i> Importá el Excel</span>
+                    <span class="tag"><i class="fas fa-robot"></i> Curado con IA</span>
+                    <span class="tag"><i class="fas fa-chart-pie"></i> Reportes al instante</span>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+                    <a href="https://wa.me/5491160526449" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar</a>
+                </div>
             </div>
-            <h1 class="display-1 font-display" style="color:var(--ink)">
-                Tesorería Municipal,<br>
-                <span style="color:var(--muted)">adiós al Excel del intendente.</span>
-            </h1>
-            <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
-                Control de gastos, ingresos, cajas y proyectos del municipio en un solo lugar.
-                Importá el Excel histórico y arrancá con todos los movimientos del año ya cargados.
-            </p>
-            <div class="mt-10 flex flex-wrap gap-3">
-                <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
-                <a href="https://wa.me/5491160526449" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
+            <div class="reveal" data-anim="scale">
+                <div class="app-mock">
+                    <div class="app-mock__bar">
+                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
+                        <span class="app-mock__title">Munify · Tesorería</span>
+                    </div>
+                    <div class="app-mock__body">
+                        <div class="gauge" data-val="78">
+                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
+                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
+                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
+                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
+                            </svg>
+                            <div class="gauge__readout"><span class="gauge__num" data-count="78">78</span><span class="gauge__unit">%</span></div>
+                            <div class="gauge__cap">Ejecución del mes</div>
+                        </div>
+                        <div class="mock-grid">
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="6">6</span></div><div class="mock-stat__lbl">Cajas activas</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="24">24</span></div><div class="mock-stat__lbl">Conceptos</div></div>
+                        </div>
+                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">FOFINDE</span><div class="bar-track"><div class="bar-fill" style="--val:72%; --i:0"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">FODEMEP</span><div class="bar-track"><div class="bar-fill" style="--val:55%; --i:1"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">Copart.</span><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:2"></div></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="90">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:90%; --i:0"></div></div><div class="kpi__lbl">Menos tiempo de carga</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:1"></div></div><div class="kpi__lbl">Gastos trazables</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="95">0</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:95%; --i:2"></div></div><div class="kpi__lbl">Menos errores de carga</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-calendar kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Control mes a mes</div></div>
         </div>
     </div>
     <div class="hero__rule"></div>

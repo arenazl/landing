@@ -153,8 +153,8 @@
 
 <main class="pt-24">
 
-<section class="hero -mt-24 pt-36 pb-16 md:pt-40 md:pb-20 relative">
-    <div class="hero__media"><img src="images/assets-landing-coordinacion.jpeg" alt=""></div>
+<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
+    <div class="hero__media"><img src="images/cards/card-tramites.jpg" alt=""></div>
     <div class="hero__tint"></div>
     <div class="hero__grain"></div>
     <div class="container relative">
@@ -163,20 +163,62 @@
             <span class="mx-2">/</span>
             <span style="color:var(--ink)">Trámites municipales</span>
         </nav>
-        <div class="max-w-4xl">
-            <div class="tag mb-6"><span class="dot"></span> Módulo · Trámites online</div>
-            <h1 class="display-1 font-display" style="color:var(--ink)">
-                Trámites 100% online,<br>
-                <span style="color:var(--muted)">sin colas ni papeles.</span>
-            </h1>
-            <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
-                Habilitaciones, permisos y certificados gestionados desde el celular. El vecino
-                inicia, sube documentación, recibe notificaciones y descarga el resultado final.
-            </p>
-            <div class="mt-10 flex flex-wrap gap-3">
-                <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
-                <a href="https://wa.me/5491160526449" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <div class="hero-grid">
+            <div>
+                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Módulo · Trámites municipales</div>
+                <h1 class="display-1 font-display" style="color:var(--ink)">
+                    Trámites municipales,<br>
+                    <span style="color:var(--muted)">100% <em class="text-accent" style="font-style:normal">online</em>.</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
+                    Habilitaciones, permisos y certificados desde el celular. Sin colas, sin papeles.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="tag tag--accent"><i class="fas fa-clock"></i> Sin colas</span>
+                    <span class="tag"><i class="fas fa-signature"></i> Firma digital</span>
+                    <span class="tag"><i class="fas fa-list-check"></i> Seguimiento online</span>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+                    <a href="https://wa.me/5491160526449" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar</a>
+                </div>
             </div>
+            <div class="reveal" data-anim="scale">
+                <div class="app-mock">
+                    <div class="app-mock__bar">
+                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
+                        <span class="app-mock__title">Munify · Trámites</span>
+                    </div>
+                    <div class="app-mock__body">
+                        <div class="gauge" data-val="92">
+                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
+                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
+                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
+                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
+                            </svg>
+                            <div class="gauge__readout"><span class="gauge__num" data-count="92">92</span><span class="gauge__unit">%</span></div>
+                            <div class="gauge__cap">Resueltos online</div>
+                        </div>
+                        <div class="mock-grid">
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="58">58</span></div><div class="mock-stat__lbl">Iniciados este mes</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="3">3</span><span> días</span></div><div class="mock-stat__lbl">Tiempo promedio</div></div>
+                        </div>
+                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">Habilitación</span><div class="bar-track"><div class="bar-fill" style="--val:82%; --i:0"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">Licencia</span><div class="bar-track"><div class="bar-fill" style="--val:70%; --i:1"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">Certificado</span><div class="bar-track"><div class="bar-fill" style="--val:95%; --i:2"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-globe kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:0"></div></div><div class="kpi__lbl">Trámites online</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="70">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:70%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de espera</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">0</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-leaf kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Sin papeles</div></div>
         </div>
     </div>
     <div class="hero__rule"></div>

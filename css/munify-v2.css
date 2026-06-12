@@ -491,14 +491,16 @@ main > section.section-band {
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(1.02);
+  filter: saturate(1.08);
   transition: transform 800ms var(--ease);
 }
-/* tint azul de marca muy sutil sobre la foto, para integrarla a la paleta */
+/* velo azul de marca arriba: integra TODAS las fotos a la paleta (las de
+   color se ven a color con un tinte arriba; las B&N de origen quedan en
+   duotono azul de marca, no grises sueltos). Suave y degradado. */
 .card-img .card-img__media::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(17,42,108,0.10) 0%, transparent 32%, rgba(17,42,108,0.04) 100%);
+  background: linear-gradient(180deg, rgba(17,42,108,0.30) 0%, rgba(17,42,108,0.07) 40%, transparent 72%);
   pointer-events: none;
 }
 .card-img:hover .card-img__media img { transform: scale(1.05); }

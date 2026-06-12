@@ -226,67 +226,70 @@
 <main class="pt-24">
 
 <!-- ============================================ HERO ============================================ -->
-<section class="hero pt-16 pb-24 md:pt-24 md:pb-32 relative">
-
-    <!-- Capas de fondo -->
-    <div class="hero__media">
-        <img src="images/assets-landing-ciudad.webp" alt="">
-    </div>
+<section class="hero hero--alive -mt-24 pt-32 pb-20 md:pt-36 md:pb-24 relative">
+    <div class="hero__media"><img src="images/assets-landing-ciudad.webp" alt=""></div>
     <div class="hero__tint"></div>
     <div class="hero__grain"></div>
     <span class="hero__corner-tag">v2 · Argentina · 2026</span>
-
     <div class="container relative">
-        <div class="max-w-4xl">
-            <div class="hero__eyebrow mb-8">
-                <span class="pulse"></span>
-                Software de gestión municipal · Argentina
+        <div class="hero-grid">
+            <div>
+                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Software de gestión municipal · Argentina</div>
+                <h1 class="display-1 font-display" style="color:var(--ink)">
+                    Gestión municipal,<br>
+                    <span style="color:var(--muted)">para Argentina, por fin <em class="text-accent" style="font-style:normal">Munify</em>.</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
+                    Reclamos, trámites, tesorería y atención al vecino. Con IA y trazabilidad total.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="tag tag--accent"><i class="fas fa-gift"></i> 3 meses gratis</span>
+                    <span class="tag"><i class="fas fa-user-check"></i> Sin costo por vecino</span>
+                    <span class="tag"><i class="fas fa-bolt"></i> Listo en 1–2 semanas</span>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Generá tu municipio<i class="fas fa-arrow-right text-xs"></i></a>
+                    <a href="/software-gestion-municipal" class="btn btn-ghost">Ver cómo funciona</a>
+                </div>
             </div>
-
-            <h1 class="display-1 font-display mt-4" style="color:var(--ink)">
-                Sistema de gestión municipal<br>
-                <span style="color:var(--muted)">para Argentina, por fin <em class="text-accent" style="font-style:normal">Munify</em>.</span>
-            </h1>
-
-            <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
-                Software integral de reclamos vecinales online, trámites municipales digitales,
-                tesorería y atención al ciudadano. Reportes en tiempo real, asignación
-                automática con IA y trazabilidad total desde el celular del vecino hasta la
-                cuadrilla que resuelve.
-            </p>
-
-            <div class="mt-10 flex flex-wrap gap-3">
-                <a href="https://app.munify.com.ar/demo" class="btn btn-primary">
-                    Generá tu municipio
-                    <i class="fas fa-arrow-right text-xs"></i>
-                </a>
-                <a href="#contacto" class="btn btn-ghost">
-                    Ver cómo funciona
-                </a>
-            </div>
-
-            <!-- Mini-stats line bajo el hero -->
-            <div class="mt-16 flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 pt-8" style="border-top:1px solid var(--line)">
-                <div>
-                    <div class="text-2xl font-display" style="color:var(--ink)">3 meses</div>
-                    <div class="text-xs mt-1" style="color:var(--muted)">de prueba gratis</div>
-                </div>
-                <div>
-                    <div class="text-2xl font-display" style="color:var(--ink)">100%</div>
-                    <div class="text-xs mt-1" style="color:var(--muted)">trazabilidad</div>
-                </div>
-                <div>
-                    <div class="text-2xl font-display text-accent">24/7</div>
-                    <div class="text-xs mt-1" style="color:var(--muted)">app vecinos</div>
-                </div>
-                <div>
-                    <div class="text-2xl font-display" style="color:var(--ink)">0</div>
-                    <div class="text-xs mt-1" style="color:var(--muted)">costo por vecino</div>
+            <div class="reveal" data-anim="scale">
+                <div class="app-mock">
+                    <div class="app-mock__bar">
+                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
+                        <span class="app-mock__title">Munify · Panel del municipio</span>
+                    </div>
+                    <div class="app-mock__body">
+                        <div class="gauge" data-val="88">
+                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
+                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
+                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
+                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
+                            </svg>
+                            <div class="gauge__readout"><span class="gauge__num" data-count="88">88</span><span class="gauge__unit">%</span></div>
+                            <div class="gauge__cap">Reclamos resueltos a tiempo</div>
+                        </div>
+                        <div class="mock-grid">
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Reclamos esta semana</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="1.8" data-dur="1400">1.8</span><span> días</span></div><div class="mock-stat__lbl">Tiempo promedio</div></div>
+                        </div>
+                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Lun</span><div class="bar-track"><div class="bar-fill" style="--val:64%; --i:0"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mar</span><div class="bar-track"><div class="bar-fill" style="--val:82%; --i:1"></div></div></div>
+                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mié</span><div class="bar-track"><div class="bar-fill" style="--val:91%; --i:2"></div></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">0</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">0</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Gestión digitalizada</div></div>
+        </div>
     </div>
-
     <div class="hero__rule"></div>
 </section>
 

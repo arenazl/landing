@@ -156,7 +156,7 @@
 
 <main class="pt-24">
 
-<section class="hero -mt-24 pt-36 pb-16 md:pt-40 md:pb-20 relative">
+<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
     <div class="hero__media"><img src="images/assets-landing-trabajadores-hq.jpg" alt=""></div>
     <div class="hero__tint"></div>
     <div class="hero__grain"></div>
@@ -166,15 +166,51 @@
             <span class="mx-2">/</span>
             <span style="color:var(--ink)">Contacto</span>
         </nav>
-        <div class="max-w-4xl">
-            <div class="tag mb-6"><span class="dot"></span> Hablemos</div>
-            <h1 class="display-1 font-display" style="color:var(--ink)">
-                Estamos a un mensaje<br>
-                <span style="color:var(--muted)">de distancia.</span>
-            </h1>
-            <p class="mt-8 text-lg md:text-xl max-w-2xl" style="color:var(--muted); line-height:1.55">
-                Demo, cotización o soporte: elegí el canal que prefieras y te respondemos rápido.
-            </p>
+        <div class="hero-grid">
+            <div>
+                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Hablemos</div>
+                <h1 class="display-1 font-display" style="color:var(--ink)">
+                    Estamos a un mensaje<br>
+                    <span style="color:var(--muted)">de <em class="text-accent" style="font-style:normal">distancia</em>.</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
+                    Demo, cotización o soporte: elegí el canal y te respondemos rápido.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="tag tag--accent"><i class="fas fa-bolt"></i> Respuesta en minutos</span>
+                    <span class="tag"><i class="fas fa-gift"></i> Demo sin costo</span>
+                    <span class="tag"><i class="fab fa-whatsapp"></i> Soporte por WhatsApp</span>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" class="btn btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://app.munify.com.ar/demo" class="btn btn-ghost">Probar demo</a>
+                </div>
+            </div>
+            <div class="reveal" data-anim="scale">
+                <div class="app-mock">
+                    <div class="app-mock__bar">
+                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
+                        <span class="app-mock__title">Munify · Atención</span>
+                    </div>
+                    <div class="app-mock__body">
+                        <div class="gauge" data-val="98">
+                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
+                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
+                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
+                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
+                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
+                            </svg>
+                            <div class="gauge__readout"><span class="gauge__num" data-count="98">98</span><span class="gauge__unit">%</span></div>
+                            <div class="gauge__cap">Consultas respondidas</div>
+                        </div>
+                        <div class="mock-grid">
+                            <div class="mock-stat"><div class="mock-stat__num">&lt;<span data-count="1">1</span><span> día</span></div><div class="mock-stat__lbl">Tiempo de respuesta</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="4">4</span></div><div class="mock-stat__lbl">Canales de contacto</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="hero__rule"></div>

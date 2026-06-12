@@ -218,16 +218,18 @@
   var DIRS=[['↓',180],['↑',0],['→',90],['←',270],['↘',135],['↖',315]];
   var TXT=[['Debajo','debajo'],['Sobre la foto','over'],['Centrado','center']];
 
-  function apply(){
-    var c=COLORS[cur.color]||COLORS.crema;
+  function cssFor(){
+    var c=COLORS[cur.color]||COLORS.crema; var rgb=c.join(',');
     var a1=(cur.int/100)*0.8, a2=a1*0.18;
     var gray=(100-cur.gray)/100, sat=(cur.gray/100)*1.1;
-    root.style.setProperty('--ov-color',c[0]+','+c[1]+','+c[2]);
-    root.style.setProperty('--ov-a1',a1.toFixed(3));
-    root.style.setProperty('--ov-a2',a2.toFixed(3));
-    root.style.setProperty('--ov-dir',cur.dir+'deg');
-    root.style.setProperty('--ov-gray',gray.toFixed(2));
-    root.style.setProperty('--ov-sat',sat.toFixed(2));
+    return '.card-img .card-img__media img{filter:saturate('+sat.toFixed(2)+') grayscale('+gray.toFixed(2)+')!important}'+
+           '.card-img .card-img__media::after{background:linear-gradient('+cur.dir+'deg,rgba('+rgb+','+a1.toFixed(3)+') 0%,rgba('+rgb+','+a2.toFixed(3)+') 100%)!important}';
+  }
+  function apply(){
+    // INYECTA el estilo directo en la pagina (no depende del CSS file ni de cache)
+    var st=document.getElementById('fx-live');
+    if(!st){ st=document.createElement('style'); st.id='fx-live'; document.head.appendChild(st); }
+    st.textContent=cssFor();
     document.querySelectorAll('.card-img').forEach(function(el){
       el.classList.toggle('txt-over',cur.txt==='over');
       el.classList.toggle('txt-center',cur.txt==='center');
@@ -266,9 +268,10 @@
     document.getElementById('fxGray').oninput=function(){cur.gray=+this.value;apply();};
     document.getElementById('fxToggle').onclick=function(){document.getElementById('fxPanel').classList.toggle('open');};
     document.getElementById('fxApply').onclick=function(){
+      apply();   // RE-RENDERIZA: re-inyecta el <style> con la config actual sobre toda la página
       var c=COLORS[cur.color],a1=(cur.int/100)*0.8,a2=a1*0.18,gray=(100-cur.gray)/100,sat=(cur.gray/100)*1.1;
       var css='--ov-color: '+c.join(', ')+'; --ov-a1: '+a1.toFixed(3)+'; --ov-a2: '+a2.toFixed(3)+'; --ov-dir: '+cur.dir+'deg; --ov-gray: '+gray.toFixed(2)+'; --ov-sat: '+sat.toFixed(2)+'; /* texto: '+cur.txt+' */';
-      document.getElementById('fxOut').textContent=css;
+      document.getElementById('fxOut').textContent='aplicado ✓  '+css;
       try{navigator.clipboard.writeText(css);}catch(e){}
     };
     apply();refreshOn();

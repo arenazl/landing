@@ -195,33 +195,14 @@
                         <span class="app-mock__title">Munify · Panel del municipio</span>
                     </div>
                     <div class="app-mock__body">
-                        <!-- Tacómetro -->
-                        <div class="gauge" data-val="88">
-                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
-                                <defs>
-                                    <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0" stop-color="#112a6c"/>
-                                        <stop offset="1" stop-color="#3f6ac8"/>
-                                    </linearGradient>
-                                </defs>
-                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
-                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
-                            </svg>
-                            <div class="gauge__readout"><span class="gauge__num" data-count="88">88</span><span class="gauge__unit">%</span></div>
-                            <div class="gauge__cap">Reclamos resueltos a tiempo</div>
-                        </div>
-                        <!-- Mini stats -->
-                        <div class="mock-grid">
+                        <div class="mock-grid" style="margin-top:0">
                             <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Reclamos esta semana</div></div>
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="1.8" data-dur="1400">1.8</span><span> días</span></div><div class="mock-stat__lbl">Tiempo promedio</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">Resueltos a tiempo</div></div>
                         </div>
-                        <!-- Mini barras: resueltos por día -->
-                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Lun</span><div class="bar-track"><div class="bar-fill" style="--val:64%; --i:0"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mar</span><div class="bar-track"><div class="bar-fill" style="--val:82%; --i:1"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mié</span><div class="bar-track"><div class="bar-fill" style="--val:91%; --i:2"></div></div></div>
+                        <div class="mock-list" style="margin-top:1rem">
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">Ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">Hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
                         </div>
                     </div>
                 </div>
@@ -231,22 +212,22 @@
         <!-- KPI strip: barras "loading" + count-up -->
         <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
             <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="88">0</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div>
+                <div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div>
                 <div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div>
                 <div class="kpi__lbl">Reclamos resueltos a tiempo</div>
             </div>
             <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num">−<span data-count="85">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div>
+                <div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div>
                 <div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div>
                 <div class="kpi__lbl">Menos tiempo de respuesta</div>
             </div>
             <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="92">0</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div>
+                <div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div>
                 <div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div>
                 <div class="kpi__lbl">Satisfacción del vecino</div>
             </div>
             <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-layer-group kpi__ico"></i></div>
+                <div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-layer-group kpi__ico"></i></div>
                 <div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div>
                 <div class="kpi__lbl">Gestión digitalizada</div>
             </div>

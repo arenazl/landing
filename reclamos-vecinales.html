@@ -190,35 +190,24 @@
                         <span class="app-mock__title">Munify · Reclamos</span>
                     </div>
                     <div class="app-mock__body">
-                        <div class="gauge" data-val="88">
-                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
-                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
-                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
-                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
-                            </svg>
-                            <div class="gauge__readout"><span class="gauge__num" data-count="88">88</span><span class="gauge__unit">%</span></div>
-                            <div class="gauge__cap">Resueltos a tiempo</div>
+                        <div class="mock-grid" style="margin-top:0">
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Reclamos esta semana</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">Resueltos a tiempo</div></div>
                         </div>
-                        <div class="mock-grid">
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="37">37</span></div><div class="mock-stat__lbl">En curso ahora</div></div>
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="1.8" data-dur="1400">1.8</span><span> días</span></div><div class="mock-stat__lbl">Tiempo promedio</div></div>
-                        </div>
-                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:4.5rem">Bacheo</span><div class="bar-track"><div class="bar-fill" style="--val:78%; --i:0"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:4.5rem">Alumbrado</span><div class="bar-track"><div class="bar-fill" style="--val:64%; --i:1"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:4.5rem">Residuos</span><div class="bar-track"><div class="bar-fill" style="--val:91%; --i:2"></div></div></div>
+                        <div class="mock-list" style="margin-top:1rem">
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">Ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">Hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">0</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">0</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Reclamos trazables</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Reclamos trazables</div></div>
         </div>
     </div>
     <div class="hero__rule"></div>
@@ -226,56 +215,8 @@
 
 <div class="divider"></div>
 
-<!-- ¿Cómo funciona el sistema de reclamos vecinales? -->
-<section class="container py-16 md:py-20">
-    <div class="max-w-3xl mb-10">
-        <div class="eyebrow mb-4">Cómo funciona</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">¿Cómo funciona el sistema de reclamos vecinales?</h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">
-            El ciclo de vida de un reclamo en Munify atraviesa tres etapas claras, todas con
-            evidencia documentada y notificación automática al vecino. Esto es lo que pasa
-            paso a paso desde que el ciudadano reporta hasta que la cuadrilla resuelve.
-        </p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bento">
-            <div class="eyebrow mb-3" style="color:var(--accent)">Paso 01</div>
-            <h3 class="display-3 mb-3">El vecino reporta</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Desde la app móvil, la PWA, el sitio web o el bot de WhatsApp, el vecino abre
-                un reclamo en menos de un minuto. Saca una foto del problema (un bache, una
-                luminaria caída, un contenedor desbordado), el sistema captura la
-                geolocalización GPS y la IA propone la categoría correcta. El vecino confirma
-                y listo: el reclamo entra al sistema con número único de seguimiento.
-            </p>
-        </div>
 
-        <div class="bento bento--warm">
-            <div class="eyebrow mb-3" style="color:var(--accent)">Paso 02</div>
-            <h3 class="display-3 mb-3">El sistema asigna</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Munify clasifica automáticamente el reclamo, lo deriva a la secretaría
-                correcta según la categoría (Servicios Públicos, Obras Públicas, Tránsito,
-                Ambiente, etc.) y notifica al supervisor responsable. La IA detecta si hay
-                reclamos duplicados en la misma zona para no generar trabajo repetido. El
-                supervisor asigna a la cuadrilla disponible en menos de cinco minutos.
-            </p>
-        </div>
-
-        <div class="bento bento--ink">
-            <div class="eyebrow mb-3" style="color:#a39a85">Paso 03</div>
-            <h3 class="display-3 mb-3" style="color:#fafafa">El municipio resuelve</h3>
-            <p class="text-[0.95rem]" style="color:#a39a85; line-height:1.6">
-                La cuadrilla recibe la tarea en su celular, ve la ubicación exacta en mapa y
-                sale a resolver. Saca foto de "antes" antes de empezar y foto de "después"
-                cuando termina. El sistema cierra el reclamo automáticamente y envía una
-                notificación al vecino con la evidencia. El supervisor ve las métricas:
-                tiempo de resolución, distancia recorrida, productividad por cuadrilla.
-            </p>
-        </div>
-    </div>
-</section>
 
 <div class="divider"></div>
 

@@ -259,35 +259,24 @@
                         <span class="app-mock__title">Munify · Panel del municipio</span>
                     </div>
                     <div class="app-mock__body">
-                        <div class="gauge" data-val="88">
-                            <svg viewBox="0 0 200 108" class="gauge__svg" aria-hidden="true">
-                                <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#112a6c"/><stop offset="1" stop-color="#3f6ac8"/></linearGradient></defs>
-                                <path class="gauge__track" d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <path class="gauge__fill"  d="M16 100 A 84 84 0 0 1 184 100"/>
-                                <line class="gauge__needle" x1="100" y1="100" x2="100" y2="30"/>
-                                <circle class="gauge__hub" cx="100" cy="100" r="6"/>
-                            </svg>
-                            <div class="gauge__readout"><span class="gauge__num" data-count="88">88</span><span class="gauge__unit">%</span></div>
-                            <div class="gauge__cap">Reclamos resueltos a tiempo</div>
-                        </div>
-                        <div class="mock-grid">
+                        <div class="mock-grid" style="margin-top:0">
                             <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Reclamos esta semana</div></div>
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="1.8" data-dur="1400">1.8</span><span> días</span></div><div class="mock-stat__lbl">Tiempo promedio</div></div>
+                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">Resueltos a tiempo</div></div>
                         </div>
-                        <div class="barchart" style="gap:0.55rem; margin-top:1rem">
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Lun</span><div class="bar-track"><div class="bar-fill" style="--val:64%; --i:0"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mar</span><div class="bar-track"><div class="bar-fill" style="--val:82%; --i:1"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:2.5rem">Mié</span><div class="bar-track"><div class="bar-fill" style="--val:91%; --i:2"></div></div></div>
+                        <div class="mock-list" style="margin-top:1rem">
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">Ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
+                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">Hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">0</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">0</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">0</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">0</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Gestión digitalizada</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
+            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Gestión digitalizada</div></div>
         </div>
     </div>
     <div class="hero__rule"></div>
@@ -365,62 +354,8 @@
 
 <div class="divider"></div>
 
-<!-- ============================================ QUÉ ES MUNIFY ============================================ -->
-<section id="que-es-munify" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="flex items-center gap-2 mb-4">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <div class="eyebrow" style="color:var(--accent)">¿Qué es Munify?</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            El sistema de gestión municipal <em class="text-accent" style="font-style:normal">integral</em> de Argentina.
-        </h2>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bento md:col-span-2 reveal">
-            <p class="text-[1.05rem]" style="color:var(--ink); line-height:1.7">
-                <strong>Munify es un software de gestión municipal argentino</strong> que unifica
-                en una sola plataforma los reclamos vecinales, los trámites municipales online,
-                la tesorería del municipio, la gestión de obras públicas y la atención al
-                ciudadano. Es un sistema GovTech pensado específicamente para intendencias,
-                comunas y gobiernos locales de Argentina, con foco en la trazabilidad total
-                del ciclo de vida de cada reclamo e incidencia en la vía pública.
-            </p>
-            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
-                A diferencia de los sistemas enlatados cerrados o de los CRMs municipales
-                genéricos, Munify modela el flujo real de un municipio argentino: desde el
-                vecino que reporta un bache o una luminaria con foto y geolocalización, hasta
-                el triaje interno por secretaría, la asignación a la cuadrilla, la resolución
-                en terreno y la notificación de cierre al vecino. Todo en tiempo real, con
-                evidencia fotográfica antes/después y métricas para que el intendente decida
-                con datos, no con suposiciones.
-            </p>
-            <p class="mt-5 text-[1.05rem]" style="color:var(--muted); line-height:1.7">
-                Munify se contrata por municipio, es multi-tenant (cada municipio ve solo sus
-                datos), funciona en web, PWA instalable, app móvil para vecinos y bot de
-                WhatsApp, y resuelve el problema de la fragmentación de canales que sufren
-                hoy las administraciones locales: llamados al 0800, formularios de papel,
-                cuadernos del corralón, planillas de Excel y mensajes sueltos al WhatsApp del
-                intendente.
-            </p>
-        </div>
 
-        <div class="bento bento--warm reveal">
-            <div class="eyebrow mb-3">Categoría</div>
-            <h3 class="display-3 mb-3">Software GovTech</h3>
-            <ul class="space-y-2.5 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Sistema integral, no CRM genérico</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Argentino, hecho para municipios argentinos</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Trazabilidad total del reclamo</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Multi-tenant (un sistema, varios municipios)</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Web + PWA + app móvil + bot WhatsApp</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> IA para clasificar y asignar reclamos</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Tesorería municipal incluida</li>
-            </ul>
-        </div>
-    </div>
-</section>
 
 <div class="divider"></div>
 

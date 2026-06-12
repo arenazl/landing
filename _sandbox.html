@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Serif&display=swap">
+<style>
+body{margin:0;background:#e9e4d8;font-family:'Manrope',sans-serif;padding:28px}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1180px;margin:0 auto}
+.cell{}
+.cell h4{font-family:'Manrope';font-size:13px;font-weight:700;color:#3a342c;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.cell h4 b{color:#16285f}
+
+/* ===== MOCKUP base ===== */
+.mk{border-radius:16px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(17,42,108,.45),0 6px 16px -10px rgba(0,0,0,.12);
+  background:var(--bg);border:1px solid var(--line)}
+.mk__bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--head);border-bottom:1px solid var(--line)}
+.dot{width:9px;height:9px;border-radius:99px}
+.dot:nth-child(1){background:#e4b7ac}.dot:nth-child(2){background:#e6d3a3}.dot:nth-child(3){background:#b9d0c0}
+.mk__title{margin-left:6px;font-size:12.5px;color:var(--head-tx);font-weight:600}
+.mk__body{padding:16px}
+.kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:13px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 11px}
+.kpi__n{font-family:'Instrument Serif',serif;font-size:24px;line-height:1;color:var(--accent)}
+.kpi__l{font-size:10.5px;color:var(--muted);margin-top:3px}
+.list{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.ic{width:32px;height:32px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;font-size:13px;background:var(--ic-bg);color:var(--ic-c)}
+.tx{flex:1;min-width:0}
+.tx b{display:block;font-size:13px;color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx span{font-size:11px;color:var(--muted)}
+.pill{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.p-curso{background:var(--curso-b);color:var(--curso-c)}
+.p-ok{background:var(--ok-b);color:var(--ok-c)}
+.p-asig{background:var(--asig-b);color:var(--asig-c)}
+.p-rec{background:var(--rec-b);color:var(--rec-c)}
+
+/* ===== 6 esquemas de color (todos bg crema, gama de marca) ===== */
+.v1{--bg:#faf7f1;--line:#ece6d9;--head:#f3eee3;--head-tx:#6b6557;--card:#fffdf9;--accent:#112a6c;--ink:#2a2620;--muted:#8a8473;
+ --ic-bg:#e9edf6;--ic-c:#112a6c;--curso-b:#e9edf6;--curso-c:#112a6c;--ok-b:#e7f4ec;--ok-c:#15803d;--asig-b:#fbf0dd;--asig-c:#b45309;--rec-b:#eef1f7;--rec-c:#3955a8}
+.v2{--bg:#faf7f1;--line:#e4ddcd;--head:#eef1f8;--head-tx:#2f57b5;--card:#ffffff;--accent:#2f57b5;--ink:#1f2433;--muted:#8a8473;
+ --ic-bg:#dfe7fb;--ic-c:#2f57b5;--curso-b:#dfe7fb;--curso-c:#2f57b5;--ok-b:#dcf2e6;--ok-c:#16a34a;--asig-b:#fdeccf;--asig-c:#c2790a;--rec-b:#e7ecfb;--rec-c:#3f6ac8}
+.v3{--bg:#f7f1e4;--line:#e7ddc6;--head:#efe6d2;--head-tx:#6a5d3f;--card:#fffbf2;--accent:#1a3a8c;--ink:#2c2718;--muted:#938a72;
+ --ic-bg:#e7ecf8;--ic-c:#1a3a8c;--curso-b:#e7ecf8;--curso-c:#1a3a8c;--ok-b:#eaf3e3;--ok-c:#4d7c0f;--asig-b:#f6ead0;--asig-c:#a16207;--rec-b:#edeefb;--rec-c:#4f46e5}
+.v4{--bg:#faf7f1;--line:#e6dfd0;--head:#16285f;--head-tx:#dbe4f5;--card:#fffdf9;--accent:#16285f;--ink:#2a2620;--muted:#8a8473;
+ --ic-bg:#16285f;--ic-c:#cdd8f2;--curso-b:#e9edf6;--curso-c:#16285f;--ok-b:#e7f4ec;--ok-c:#15803d;--asig-b:#fbf0dd;--asig-c:#b45309;--rec-b:#eef1f7;--rec-c:#3955a8}
+.v5{--bg:#f6f3ec;--line:#e3ddcf;--head:#eef0f6;--head-tx:#3a4a78;--card:#fcfbf6;--accent:#21449e;--ink:#222a3d;--muted:#8d8775;
+ --ic-bg:#dde4f5;--ic-c:#21449e;--curso-b:#cdd8f0;--curso-c:#21449e;--ok-b:#dde7f7;--ok-c:#3f6ac8;--asig-b:#e7ebf6;--asig-c:#5a74c0;--rec-b:#eef1f9;--rec-c:#8095cc}
+.v6{--bg:#faf8f2;--line:#ebe4d6;--head:#f4efe4;--head-tx:#6b6557;--card:#ffffff;--accent:#112a6c;--ink:#262219;--muted:#8a8473;
+ --ic-bg:#e9edf6;--ic-c:#112a6c;--curso-b:#dbeafe;--curso-c:#1d4ed8;--ok-b:#dcfce7;--ok-c:#16a34a;--asig-b:#ffedd5;--asig-c:#ea580c;--rec-b:#ede9fe;--rec-c:#7c3aed}
+</style></head>
+<body>
+<div class="wrap" id="wrap"></div>
+<script>
+var SCHEMES=[
+ ['v1','Crema · Azul marino (clásico)'],
+ ['v2','Crema · Azul vivo'],
+ ['v3','Crema cálido · Índigo'],
+ ['v4','Crema · Header azul-noche'],
+ ['v5','Crema · Monocromo azul'],
+ ['v6','Crema · Estados vivos']
+];
+function mk(cls){return (
+'<div class="mk '+cls+'">'+
+ '<div class="mk__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mk__title">Munify · Reclamos</span></div>'+
+ '<div class="mk__body">'+
+   '<div class="kpis">'+
+     '<div class="kpi"><div class="kpi__n">142</div><div class="kpi__l">Esta semana</div></div>'+
+     '<div class="kpi"><div class="kpi__n">6</div><div class="kpi__l">En curso</div></div>'+
+     '<div class="kpi"><div class="kpi__n">88%</div><div class="kpi__l">A tiempo</div></div>'+
+   '</div>'+
+   '<div class="list">'+
+     '<div class="row"><span class="ic"><i class="fas fa-road"></i></span><div class="tx"><b>Bache en Av. Mitre 450</b><span>Vecino Demo · hace 2 h · Cuadrilla 3</span></div><span class="pill p-curso">En curso</span></div>'+
+     '<div class="row"><span class="ic"><i class="fas fa-lightbulb"></i></span><div class="tx"><b>Luminaria apagada · Plaza San Martín</b><span>M. González · ayer</span></div><span class="pill p-ok">Resuelto</span></div>'+
+     '<div class="row"><span class="ic"><i class="fas fa-trash-can"></i></span><div class="tx"><b>Contenedor desbordado · B° Norte</b><span>R. Pérez · hace 5 h</span></div><span class="pill p-asig">Asignado</span></div>'+
+     '<div class="row"><span class="ic"><i class="fas fa-droplet"></i></span><div class="tx"><b>Pérdida de agua · Moreno 730</b><span>L. Sosa · hace 3 h</span></div><span class="pill p-rec">Recibido</span></div>'+
+   '</div>'+
+ '</div></div>');
+}
+var w=document.getElementById('wrap');
+SCHEMES.forEach(function(s){var c=document.createElement('div');c.className='cell';c.innerHTML='<h4>'+s[1].replace('·','<b>·</b>')+'</h4>'+mk(s[0]);w.appendChild(c);});
+</script>
+</body></html>

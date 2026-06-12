@@ -4,7 +4,7 @@
    las páginas de la versión 2.
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif&display=swap');
 
 /* ===== Transiciones entre paginas (View Transitions API — MPA) =====
    Cross-fade suave al navegar entre las paginas estaticas, en vez del
@@ -84,7 +84,7 @@
 }
 
 * {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -131,13 +131,14 @@ body {
    Esto mata la "ensalada" de títulos serif vs sans mezclados.
    ============================================================ */
 h1, h2, h3, h4, h5, h6,
-.display-1, .display-2, .display-3 {
-  font-family: 'Instrument Serif', 'Inter', serif !important;
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+.display-1, .display-2, .display-3, .font-display {
+  font-family: 'Instrument Serif', serif !important;
   font-weight: 400 !important;
   letter-spacing: -0.015em;
 }
-/* el eyebrow (label chico uppercase) NO es un header serif: queda en Inter */
-.eyebrow { font-family: 'Inter', sans-serif !important; }
+/* texto común (incl. eyebrow) en Manrope */
+.eyebrow { font-family: 'Manrope', 'Inter', sans-serif !important; }
 
 .eyebrow {
   font-size: 0.75rem;
@@ -531,6 +532,23 @@ main > section.section-band {
               rgba(var(--ov-color), var(--ov-a1)) 0%,
               rgba(var(--ov-color), var(--ov-a2)) 100%);
   pointer-events: none;
+}
+/* Mismo filtro/velo de marca para las imágenes tipo bento (home + comparación
+   Antes/Después). Las que tienen texto encima llevan un refuerzo oscuro abajo
+   para legibilidad. El hero NO usa estas reglas. */
+.bento__media img {
+  filter: saturate(var(--ov-sat, 1)) grayscale(var(--ov-gray, 0)) !important;
+}
+.bento__media::after {
+  background:
+    linear-gradient(180deg, transparent 50%, rgba(15,20,40,0.5)) !important;
+}
+.bento__media::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(var(--ov-dir, 165deg),
+              rgba(var(--ov-color), var(--ov-a1)) 0%,
+              rgba(var(--ov-color), var(--ov-a2)) 100%);
 }
 .card-img:hover .card-img__media img { transform: scale(1.05); }
 .card-img .card-img__body {

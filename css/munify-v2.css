@@ -70,6 +70,16 @@
   /* Curvas y tiempos compartidos para que todo el movimiento se sienta igual */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 600ms;
+
+  /* === Filtro de imágenes de card (tuneable desde el panel del home) ===
+     Default: velo CREMA suave de la app sobre la foto a color. Afecta a TODAS
+     las imágenes de card (NO al hero). */
+  --ov-color: 243, 238, 227;   /* crema de la app (paper-warm) */
+  --ov-a1: 0.34;               /* opacidad del velo, lado fuerte del degradé */
+  --ov-a2: 0.06;               /* opacidad del velo, lado suave */
+  --ov-dir: 180deg;            /* dirección del degradé */
+  --ov-sat: 1;                 /* saturación de la foto (1 = normal) */
+  --ov-gray: 0;                /* 0 = color, 1 = blanco y negro */
 }
 
 * {
@@ -509,14 +519,16 @@ main > section.section-band {
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(1.03);            /* foto A COLOR, plena (NADA de blanco y negro) */
+  filter: saturate(var(--ov-sat, 1)) grayscale(var(--ov-gray, 0));
   transition: transform 800ms var(--ease);
 }
-/* velo azul MEGA SUAVE: apenas un toque de marca, la foto se ve a color. */
+/* velo en degradé, controlado por variables (color, opacidad, dirección). */
 .card-img .card-img__media::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(165deg, rgba(28,58,140,0.16) 0%, rgba(47,87,181,0.06) 55%, rgba(22,40,95,0.13) 100%);
+  background: linear-gradient(var(--ov-dir, 180deg),
+              rgba(var(--ov-color), var(--ov-a1)) 0%,
+              rgba(var(--ov-color), var(--ov-a2)) 100%);
   pointer-events: none;
 }
 .card-img:hover .card-img__media img { transform: scale(1.05); }

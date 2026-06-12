@@ -159,6 +159,124 @@
 </head>
 <body>
 
+<!-- ============================================ PANEL DE ESTILO DE FOTOS (solo home, herramienta de tuning) ============================================ -->
+<div id="fxPanel">
+  <button id="fxToggle" type="button"><i class="fas fa-sliders"></i> Estilo de fotos</button>
+  <div id="fxBody">
+    <div class="fx-row"><span class="fx-lbl">Preset</span><div class="fx-grid" id="fxPresets"></div></div>
+    <div class="fx-row"><span class="fx-lbl">Color del velo</span><div class="fx-sw" id="fxColors"></div></div>
+    <div class="fx-row"><label class="fx-lbl" for="fxInt">Intensidad del velo · <b id="fxIntV">34%</b></label><input type="range" id="fxInt" min="0" max="100" value="34"></div>
+    <div class="fx-row"><label class="fx-lbl" for="fxGray">Color &rarr; B&amp;N · <b id="fxGrayV">color</b></label><input type="range" id="fxGray" min="0" max="100" value="100"></div>
+    <div class="fx-row"><span class="fx-lbl">Dirección del degradé</span><div class="fx-grid" id="fxDirs"></div></div>
+    <div class="fx-row"><span class="fx-lbl">Posición del texto</span><div class="fx-grid" id="fxTxt"></div></div>
+    <button id="fxApply" type="button"><i class="fas fa-check"></i> Aplicar / copiar config</button>
+    <div id="fxOut"></div>
+  </div>
+</div>
+<style>
+#fxPanel{position:fixed;top:.75rem;right:.75rem;z-index:9999;font-family:Inter,sans-serif;width:18rem;max-width:calc(100vw - 1.5rem)}
+#fxToggle{display:inline-flex;align-items:center;gap:.5rem;margin-left:auto;background:#16285f;color:#fff;border:0;border-radius:999px;padding:.55rem 1rem;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 8px 24px -8px rgba(0,0,0,.4)}
+#fxBody{display:none;margin-top:.5rem;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border:1px solid #e6dfd2;border-radius:1rem;padding:1rem;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);max-height:82vh;overflow:auto}
+#fxPanel.open #fxBody{display:block}
+.fx-row{margin-bottom:.85rem}
+.fx-lbl{display:block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b6557;margin-bottom:.4rem}
+.fx-lbl b{color:#16285f}
+.fx-grid{display:flex;flex-wrap:wrap;gap:.3rem}
+.fx-grid button{font-size:.72rem;padding:.3rem .55rem;border:1px solid #e0d9cb;background:#faf7f1;border-radius:.5rem;cursor:pointer;color:#3a342c}
+.fx-grid button.on{background:#16285f;color:#fff;border-color:#16285f}
+.fx-sw{display:flex;gap:.45rem}
+.fx-sw button{width:1.8rem;height:1.8rem;border-radius:999px;border:2px solid #fff;box-shadow:0 0 0 1px #ccc;cursor:pointer}
+.fx-sw button.on{box-shadow:0 0 0 2px #16285f}
+#fxPanel input[type=range]{width:100%;accent-color:#16285f}
+#fxApply{width:100%;background:#16285f;color:#fff;border:0;border-radius:.6rem;padding:.6rem;font-size:.82rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.25rem}
+#fxOut{font-size:.62rem;color:#6b6557;margin-top:.5rem;word-break:break-all;font-family:monospace;line-height:1.4}
+/* posición del texto sobre la foto (opt-in por el panel) */
+.card-img.txt-over .card-img__media::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(0deg,rgba(20,30,60,.75),transparent 55%);pointer-events:none}
+.card-img.txt-over{padding:0!important}
+.card-img.txt-over .card-img__body{position:absolute;left:0;right:0;bottom:0;z-index:3}
+.card-img.txt-over .card-img__body h3,.card-img.txt-over .card-img__body p{color:#fff!important}
+.card-img.txt-over .card-img__icon{display:none}
+.card-img.txt-center .card-img__body{text-align:center}
+</style>
+<script>
+(function(){
+  var root=document.documentElement;
+  var COLORS={crema:[243,238,227],azul:[28,58,140],ink:[42,38,32],sepia:[120,86,50],frio:[90,130,200]};
+  var cur={color:'crema',int:34,gray:100,dir:180,txt:'debajo'};
+  var PRESETS=[
+    ['Crema suave',{color:'crema',int:34,gray:100,dir:180}],
+    ['Crema fuerte',{color:'crema',int:60,gray:100,dir:180}],
+    ['Crema + leve B&N',{color:'crema',int:42,gray:55,dir:180}],
+    ['Azul suave',{color:'azul',int:18,gray:100,dir:180}],
+    ['Azul medio',{color:'azul',int:42,gray:100,dir:165}],
+    ['Duotono azul',{color:'azul',int:70,gray:0,dir:165}],
+    ['Blanco y negro',{color:'ink',int:8,gray:0,dir:180}],
+    ['Sepia cálido',{color:'sepia',int:38,gray:35,dir:180}],
+    ['Editorial frío',{color:'frio',int:30,gray:45,dir:200}],
+    ['Nítido (sin velo)',{color:'crema',int:0,gray:100,dir:180}]
+  ];
+  var DIRS=[['↓',180],['↑',0],['→',90],['←',270],['↘',135],['↖',315]];
+  var TXT=[['Debajo','debajo'],['Sobre la foto','over'],['Centrado','center']];
+
+  function apply(){
+    var c=COLORS[cur.color]||COLORS.crema;
+    var a1=(cur.int/100)*0.8, a2=a1*0.18;
+    var gray=(100-cur.gray)/100, sat=(cur.gray/100)*1.1;
+    root.style.setProperty('--ov-color',c[0]+','+c[1]+','+c[2]);
+    root.style.setProperty('--ov-a1',a1.toFixed(3));
+    root.style.setProperty('--ov-a2',a2.toFixed(3));
+    root.style.setProperty('--ov-dir',cur.dir+'deg');
+    root.style.setProperty('--ov-gray',gray.toFixed(2));
+    root.style.setProperty('--ov-sat',sat.toFixed(2));
+    document.querySelectorAll('.card-img').forEach(function(el){
+      el.classList.toggle('txt-over',cur.txt==='over');
+      el.classList.toggle('txt-center',cur.txt==='center');
+    });
+    document.getElementById('fxIntV').textContent=cur.int+'%';
+    document.getElementById('fxGrayV').textContent=cur.gray>=95?'color':(cur.gray<=5?'B&N':cur.gray+'%');
+  }
+  function chips(host,arr,getOn,onClick){
+    host.innerHTML='';
+    arr.forEach(function(it,i){
+      var b=document.createElement('button');b.type='button';b.textContent=it[0]!==undefined?it[0]:it;
+      if(getOn(it,i))b.className='on';
+      b.onclick=function(){onClick(it,i);refreshOn();};host.appendChild(b);
+    });
+  }
+  function refreshOn(){
+    [...document.querySelectorAll('#fxPresets button')].forEach(function(b){b.classList.remove('on');});
+    [...document.querySelectorAll('#fxColors button')].forEach(function(b){b.classList.toggle('on',b.dataset.k===cur.color);});
+    [...document.querySelectorAll('#fxDirs button')].forEach(function(b){b.classList.toggle('on',+b.dataset.v===cur.dir);});
+    [...document.querySelectorAll('#fxTxt button')].forEach(function(b){b.classList.toggle('on',b.dataset.v===cur.txt);});
+  }
+  function build(){
+    var P=document.getElementById('fxPresets');
+    PRESETS.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];
+      b.onclick=function(){cur=Object.assign({txt:cur.txt},p[1]);document.getElementById('fxInt').value=cur.int;document.getElementById('fxGray').value=cur.gray;apply();refreshOn();};P.appendChild(b);});
+    var C=document.getElementById('fxColors');
+    Object.keys(COLORS).forEach(function(k){var b=document.createElement('button');b.type='button';b.dataset.k=k;var c=COLORS[k];b.style.background='rgb('+c[0]+','+c[1]+','+c[2]+')';
+      b.onclick=function(){cur.color=k;apply();refreshOn();};C.appendChild(b);});
+    var D=document.getElementById('fxDirs');
+    DIRS.forEach(function(d){var b=document.createElement('button');b.type='button';b.textContent=d[0];b.dataset.v=d[1];
+      b.onclick=function(){cur.dir=d[1];apply();refreshOn();};D.appendChild(b);});
+    var T=document.getElementById('fxTxt');
+    TXT.forEach(function(t){var b=document.createElement('button');b.type='button';b.textContent=t[0];b.dataset.v=t[1];
+      b.onclick=function(){cur.txt=t[1];apply();refreshOn();};T.appendChild(b);});
+    document.getElementById('fxInt').oninput=function(){cur.int=+this.value;apply();};
+    document.getElementById('fxGray').oninput=function(){cur.gray=+this.value;apply();};
+    document.getElementById('fxToggle').onclick=function(){document.getElementById('fxPanel').classList.toggle('open');};
+    document.getElementById('fxApply').onclick=function(){
+      var c=COLORS[cur.color],a1=(cur.int/100)*0.8,a2=a1*0.18,gray=(100-cur.gray)/100,sat=(cur.gray/100)*1.1;
+      var css='--ov-color: '+c.join(', ')+'; --ov-a1: '+a1.toFixed(3)+'; --ov-a2: '+a2.toFixed(3)+'; --ov-dir: '+cur.dir+'deg; --ov-gray: '+gray.toFixed(2)+'; --ov-sat: '+sat.toFixed(2)+'; /* texto: '+cur.txt+' */';
+      document.getElementById('fxOut').textContent=css;
+      try{navigator.clipboard.writeText(css);}catch(e){}
+    };
+    apply();refreshOn();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
+})();
+</script>
+
 <!-- ============================================ TOPBAR ============================================ -->
 <header id="topbar" class="topbar">
     <div class="container flex items-center justify-between py-3.5">

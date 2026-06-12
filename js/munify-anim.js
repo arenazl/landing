@@ -55,14 +55,24 @@
     });
   }
 
+  /* ---- Tacómetro: setea offset del arco + ángulo de la aguja, anima por CSS ---- */
+  var GAUGE_LEN = 264; // longitud del arco semicircular (r≈84)
+  function fillGauge(el) {
+    var val = Math.max(0, Math.min(100, parseFloat(el.getAttribute('data-val')) || 0));
+    el.style.setProperty('--off', (GAUGE_LEN * (1 - val / 100)).toFixed(1));
+    el.style.setProperty('--angle', ((val / 100) * 180 - 90).toFixed(1) + 'deg');
+    el.classList.add('in-view');
+  }
+
   /* ---- Observer principal ---- */
   function observe() {
     if (!('IntersectionObserver' in window)) {
       // Fallback: mostrar todo de una
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
       document.querySelectorAll('[data-count]').forEach(countUp);
-      document.querySelectorAll('.barchart').forEach(function (el) { el.classList.add('in-view'); });
+      document.querySelectorAll('.barchart, .kpi-strip').forEach(function (el) { el.classList.add('in-view'); });
       document.querySelectorAll('.donut').forEach(fillDonut);
+      document.querySelectorAll('.gauge').forEach(fillGauge);
       return;
     }
     var io = new IntersectionObserver(function (entries) {
@@ -70,14 +80,15 @@
         if (!e.isIntersecting) return;
         var t = e.target;
         if (t.classList.contains('reveal')) t.classList.add('visible');
-        if (t.classList.contains('barchart')) t.classList.add('in-view');
+        if (t.classList.contains('barchart') || t.classList.contains('kpi-strip')) t.classList.add('in-view');
         if (t.classList.contains('donut')) fillDonut(t);
+        if (t.classList.contains('gauge')) fillGauge(t);
         if (t.hasAttribute('data-count')) countUp(t);
         io.unobserve(t);
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
 
-    document.querySelectorAll('.reveal, .barchart, .donut, [data-count]')
+    document.querySelectorAll('.reveal, .barchart, .kpi-strip, .donut, .gauge, [data-count]')
       .forEach(function (el) { io.observe(el); });
   }
 

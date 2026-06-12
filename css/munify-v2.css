@@ -979,6 +979,104 @@ body.menu-open { overflow: hidden; }
 .band--warm  .bento--warm,
 .band--deep  .bento--warm { background: var(--card); box-shadow: var(--shadow-soft); }
 
+/* ----- Tacómetro / gauge (medidor con aguja, anima al entrar) ----- */
+.gauge { position: relative; width: 100%; max-width: 14rem; margin: 0 auto; }
+.gauge__svg { width: 100%; height: auto; overflow: visible; display: block; }
+.gauge__track { fill: none; stroke: var(--paper-deep); stroke-width: 15; stroke-linecap: round; }
+.gauge__fill {
+  fill: none; stroke: url(#gaugeGrad); stroke-width: 15; stroke-linecap: round;
+  stroke-dasharray: 264; stroke-dashoffset: 264;             /* arranca vacío */
+  transition: stroke-dashoffset 1.5s var(--ease);
+}
+.gauge.in-view .gauge__fill { stroke-dashoffset: var(--off, 264); }
+.gauge__needle {
+  stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round;
+  transform: rotate(-90deg); transform-origin: 100px 100px;
+  transition: transform 1.5s var(--ease);
+}
+.gauge.in-view .gauge__needle { transform: rotate(var(--angle, -90deg)); }
+.gauge__hub { fill: var(--ink); }
+.gauge__readout { text-align: center; margin-top: 0.3rem; }
+.gauge__num { font-family: 'Instrument Serif', serif; font-size: 2.4rem; line-height: 1; color: var(--accent); letter-spacing: -0.02em; font-feature-settings: "tnum" 1; }
+.gauge__unit { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: var(--accent-bright); }
+.gauge__cap { text-align: center; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+@media (prefers-reduced-motion: reduce) {
+  .gauge__fill, .gauge__needle { transition: none; }
+}
+
+/* ----- Mockup de producto (panel tipo dashboard, "preview de la app") ----- */
+.app-mock {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 34px 70px -34px rgba(17,42,108,0.50), 0 10px 28px -14px rgba(42,38,32,0.16);
+  animation: floaty 6.5s ease-in-out infinite;
+}
+.app-mock__bar {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.7rem 0.95rem;
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--line);
+}
+.app-mock__dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: var(--line); }
+.app-mock__dot:nth-child(1) { background: #e4b7ac; }
+.app-mock__dot:nth-child(2) { background: #e6d3a3; }
+.app-mock__dot:nth-child(3) { background: #b9d0c0; }
+.app-mock__title { margin-left: 0.5rem; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; }
+.app-mock__body { padding: clamp(1rem, 2vw, 1.5rem); }
+.mock-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 1rem; }
+.mock-stat { background: var(--paper); border: 1px solid var(--line); border-radius: 0.85rem; padding: 0.75rem 0.85rem; }
+.mock-stat__num { font-family: 'Instrument Serif', serif; font-size: 1.5rem; line-height: 1; color: var(--ink); }
+.mock-stat__num span { font-size: 0.6em; color: var(--accent); }
+.mock-stat__lbl { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@media (prefers-reduced-motion: reduce) { .app-mock { animation: none; } }
+
+/* ----- Hero "con vida": split texto + mockup, glow de marca más presente ----- */
+.hero--alive .hero__media img { opacity: 0.30; }   /* foto más al fondo, deja brillar el color */
+.hero--alive .hero__tint {
+  background:
+    radial-gradient(70% 60% at 78% 18%, rgba(63,106,200,0.30), transparent 60%),
+    radial-gradient(55% 50% at 8% 95%, rgba(17,42,108,0.14), transparent 60%),
+    linear-gradient(180deg, transparent 0%, var(--paper) 94%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+/* ----- KPI strip: tarjetas con barra "loading" + count-up (más innovador que números planos) ----- */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+@media (min-width: 768px) { .kpi-strip { grid-template-columns: repeat(4, 1fr); } }
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.kpi:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+.kpi__head { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 0.7rem; }
+.kpi__num {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem); line-height: 1;
+  color: var(--accent); letter-spacing: -0.02em; font-feature-settings: "tnum" 1;
+}
+.kpi__ico { margin-left: auto; color: var(--accent-bright); font-size: 0.85rem; }
+.kpi__lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.35; }
+.kpi-strip.in-view .bar-fill { width: var(--val, 0%); }
+
 /* ============================================================
    Transición entre páginas (View Transitions, MPA) — suaviza el
    "request chocante": cross-fade + leve slide, sin parpadeo blanco.

@@ -148,6 +148,7 @@
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/munify-v2.css">
+    <script src="js/style-loader.js"></script>
     <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
     <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
 
@@ -220,34 +221,33 @@
   var DIRS=[['↓',180],['↑',0],['→',90],['←',270],['↘',135],['↖',315]];
   var TXT=[['Debajo','debajo'],['Sobre la foto','over'],['Centrado','center']];
 
-  function cssFor(){
-    var c=COLORS[cur.color]||COLORS.crema; var rgb=c.join(',');
-    var a1=(cur.int/100)*0.8, a2=a1*0.18;
-    var gray=(100-cur.gray)/100, sat=(cur.gray/100)*1.1;
-    // 100% de las imágenes de contenido: card-img__media + bento__media (cubre
-    // bento--image y la sección comparación Antes/Después). El hero NO se toca.
-    var imgSel='.card-img__media img,.bento__media img';
-    var ovSel='.card-img__media::after,.bento__media::after';
-    var css=imgSel+'{filter:saturate('+sat.toFixed(2)+') grayscale('+gray.toFixed(2)+')!important}'+
-            ovSel+'{background:linear-gradient('+cur.dir+'deg,rgba('+rgb+','+a1.toFixed(3)+') 0%,rgba('+rgb+','+a2.toFixed(3)+') 100%)!important}';
-    if(cur.font && cur.font!=='Inter'){
-      var f="'"+cur.font+"',sans-serif";
-      css+="body,p,li,span,a,td,th,label,input,button,select,.nav-link,.foot-link,.eyebrow{font-family:"+f+"!important}"+
-           "h1,h2,h3,h4,h5,h6,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,.display-1,.display-2,.display-3,.font-display{font-family:'Instrument Serif',serif!important}";
-    }
-    return css;
+  // mapea el estado del panel (cur) al formato de config del loader compartido
+  function curCfg(){
+    var c=COLORS[cur.color]||COLORS.crema;
+    var a1=+((cur.int/100)*0.8).toFixed(3);
+    return { color:c, a1:a1, a2:+(a1*0.18).toFixed(3), dir:cur.dir,
+             gray:+((100-cur.gray)/100).toFixed(2), sat:+((cur.gray/100)*1.1).toFixed(2),
+             txt:cur.txt, font:cur.font };
+  }
+  // mapea una config guardada de vuelta a los controles (para que arranquen donde quedó)
+  function cfgToCur(cfg){
+    if(!cfg) return;
+    var name='crema'; for(var k in COLORS){ if(COLORS[k].join(',')===(cfg.color||[]).join(',')) name=k; }
+    cur.color=name;
+    cur.int=Math.round((cfg.a1||0)/0.8*100);
+    cur.gray=Math.round((cfg.sat!=null?cfg.sat:1.01)/1.1*100);
+    cur.dir=cfg.dir!=null?cfg.dir:165;
+    cur.txt=cfg.txt||'debajo';
+    cur.font=cfg.font||'Inter';
   }
   function apply(){
-    // INYECTA el estilo directo en la pagina (no depende del CSS file ni de cache)
-    var st=document.getElementById('fx-live');
-    if(!st){ st=document.createElement('style'); st.id='fx-live'; document.head.appendChild(st); }
-    st.textContent=cssFor();
+    if(window.MunifyStyle) window.MunifyStyle.apply(curCfg());   // preview vía loader compartido
     document.querySelectorAll('.card-img').forEach(function(el){
       el.classList.toggle('txt-over',cur.txt==='over');
       el.classList.toggle('txt-center',cur.txt==='center');
     });
-    document.getElementById('fxIntV').textContent=cur.int+'%';
-    document.getElementById('fxGrayV').textContent=cur.gray>=95?'color':(cur.gray<=5?'B&N':cur.gray+'%');
+    var iv=document.getElementById('fxIntV'); if(iv) iv.textContent=cur.int+'%';
+    var gv=document.getElementById('fxGrayV'); if(gv) gv.textContent=cur.gray>=95?'color':(cur.gray<=5?'B&N':cur.gray+'%');
   }
   function chips(host,arr,getOn,onClick){
     host.innerHTML='';
@@ -287,13 +287,21 @@
     document.getElementById('fxInt').oninput=function(){cur.int=+this.value;apply();};
     document.getElementById('fxGray').oninput=function(){cur.gray=+this.value;apply();};
     document.getElementById('fxToggle').onclick=function(){document.getElementById('fxPanel').classList.toggle('open');};
+    // APLICAR = persiste en el backend (Netlify Function) → queda para TODOS, sin pasar nada
     document.getElementById('fxApply').onclick=function(){
-      apply();   // RE-RENDERIZA: re-inyecta el <style> con la config actual sobre toda la página
-      var c=COLORS[cur.color],a1=(cur.int/100)*0.8,a2=a1*0.18,gray=(100-cur.gray)/100,sat=(cur.gray/100)*1.1;
-      var css='--ov-color: '+c.join(', ')+'; --ov-a1: '+a1.toFixed(3)+'; --ov-a2: '+a2.toFixed(3)+'; --ov-dir: '+cur.dir+'deg; --ov-gray: '+gray.toFixed(2)+'; --ov-sat: '+sat.toFixed(2)+'; /* texto: '+cur.txt+' | fuente: '+cur.font+' */';
-      document.getElementById('fxOut').textContent='aplicado ✓  '+css;
-      try{navigator.clipboard.writeText(css);}catch(e){}
+      var cfg=curCfg();
+      var key=localStorage.getItem('munifyStyleKey');
+      if(!key){ key=prompt('Clave para aplicar el estilo a todo el sitio:'); if(!key) return; localStorage.setItem('munifyStyleKey',key); }
+      var out=document.getElementById('fxOut'); out.textContent='Aplicando…';
+      fetch('/api/style-config',{method:'POST',headers:{'content-type':'application/json','x-style-key':key},body:JSON.stringify(cfg)})
+        .then(function(r){ if(r.status===401){ localStorage.removeItem('munifyStyleKey'); throw new Error('clave incorrecta'); } if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+        .then(function(){ if(window.MunifyStyle) window.MunifyStyle.apply(cfg); try{localStorage.setItem('munifyStyle',JSON.stringify(cfg));}catch(e){} out.textContent='✓ Aplicado en todo el sitio'; })
+        .catch(function(e){ out.textContent='Error: '+e.message; });
     };
+    // arrancar los controles desde la config ya guardada (si hay)
+    try{ var ls=localStorage.getItem('munifyStyle'); if(ls) cfgToCur(JSON.parse(ls)); }catch(e){}
+    document.getElementById('fxInt').value=cur.int;
+    document.getElementById('fxGray').value=cur.gray;
     apply();refreshOn();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();

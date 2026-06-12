@@ -488,18 +488,20 @@ main > section.section-band {
   overflow: hidden;
   flex-shrink: 0;
 }
+/* DUOTONO AZUL uniforme: 1) la foto se pasa a monocromo (grayscale) para que
+   TODAS partan de la misma base sin importar su color original; 2) se tiñe con
+   el azul de marca por multiply. Resultado: misma colorimetría en todas, como
+   un duotono. No es B&N apagado: mantiene contraste y queda vivo/de marca. */
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.92);
+  filter: grayscale(1) contrast(1.04) brightness(1.18);
   transition: transform 800ms var(--ease);
 }
-/* velo AZUL de marca sobre la foto (blend): baja la intensidad y la integra
-   al sitio sin desentonar (todas las fotos comparten el mismo tono). */
 .card-img .card-img__media::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(17,42,108,0.58) 0%, rgba(17,42,108,0.30) 50%, rgba(26,35,71,0.48) 100%);
+  background: linear-gradient(155deg, rgba(33,68,158,0.82) 0%, rgba(63,106,200,0.74) 55%, rgba(22,40,95,0.86) 100%);
   mix-blend-mode: multiply;
   pointer-events: none;
 }

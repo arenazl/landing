@@ -422,59 +422,57 @@ main > section.section-band {
   }
 }
 
-/* ===== Cards con foto de fondo + degrade azul-noche, texto abajo ===== */
+/* ===== Cards de feature: foto B&N tenue + tint arena (mismo lenguaje que el hero) ===== */
 .card-img {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  min-height: 340px;
+  min-height: 300px;
   /* !important vence el style="display:block" inline de los <a> que rompia el flex */
   display: flex !important;
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 !important;
+  background: var(--paper-warm);
 }
-/* foto translucida sobre el crema del bento -> arriba se integra con la pagina */
-.card-img .card-img__media { position: absolute; inset: 0; opacity: 0.6; z-index: -2; }
+/* foto B&N MUY tenue: integrada a la base arena, no protagonista (como el hero) */
+.card-img .card-img__media { position: absolute; inset: 0; z-index: -2; }
 .card-img .card-img__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.05);
+  filter: grayscale(1) contrast(1.05) brightness(1.02);
+  opacity: 0.30;
+  mix-blend-mode: multiply;
   transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-/* marino del logo concentrado ABAJO (donde va el texto) + glow del azul vivo arriba-der */
+/* tint arena (como hero__tint) + un toque del azul del logo arriba-derecha */
 .card-img::after {
   content: "";
   position: absolute; inset: 0; z-index: -1;
   background:
-    radial-gradient(80% 60% at 88% 8%, rgba(63,106,200,0.20) 0%, transparent 58%),
-    linear-gradient(180deg,
-      rgba(17,42,108,0) 0%,
-      rgba(17,42,108,0.05) 46%,
-      rgba(12,31,82,0.70) 76%,
-      rgba(10,27,72,0.94) 100%);
+    radial-gradient(65% 50% at 88% 6%, rgba(63,106,200,0.09) 0%, transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(243,238,227,0.30) 52%, var(--paper-warm) 92%);
 }
-.card-img:hover .card-img__media img { transform: scale(1.05); }
+.card-img:hover .card-img__media img { transform: scale(1.04); }
 .card-img .card-img__body { position: relative; padding: clamp(1.5rem, 3vw, 2rem); }
-/* texto claro sobre el degrade oscuro */
+/* texto OSCURO como el resto del sitio (no blanco que grita) */
 .card-img .card-img__body h3 {
-  color: #fff;
+  color: var(--ink);
   font-family: 'Instrument Serif', 'Inter', serif;
   font-weight: 400;
   letter-spacing: -0.01em;
 }
-.card-img .card-img__body p { color: rgba(255,255,255,0.82) !important; }
-.card-img .card-img__body .metric-num { color: #fff; }
-.card-img .card-img__body .metric-num span { color: rgba(255,255,255,0.7) !important; }
-/* icono glass claro sobre el degrade oscuro */
+.card-img .card-img__body p { color: var(--muted) !important; }
+.card-img .card-img__body .metric-num { color: var(--ink); }
+.card-img .card-img__body .metric-num span { color: var(--muted) !important; }
+/* icono: el azul del logo como acento suave */
 .card-img__icon {
   width: 2.5rem; height: 2.5rem;
   border-radius: 999px;
   display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.16);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
   font-size: 0.9rem;
   margin-bottom: 0.85rem;
 }

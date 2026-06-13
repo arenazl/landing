@@ -259,15 +259,34 @@
                         <span class="app-mock__title">Munify · Panel del municipio</span>
                     </div>
                     <div class="app-mock__body">
-                        <div class="mock-grid" style="margin-top:0">
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Reclamos esta semana</div></div>
-                            <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">Resueltos a tiempo</div></div>
+                        <div class="mock-slides">
+                            <div class="mock-slide is-active">
+                                <div class="mock-grid" style="grid-template-columns:1fr 1fr 1fr; margin-top:0">
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Esta semana</div></div>
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="6">6</span></div><div class="mock-stat__lbl">En curso</div></div>
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">A tiempo</div></div>
+                                </div>
+                                <div class="mock-list" style="margin-top:0.9rem">
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Vecino Demo · hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">M. González · ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">R. Pérez · hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-droplet"></i></span><div class="mock-row__main"><div class="mock-row__t">Pérdida de agua · Moreno 730</div><div class="mock-row__s">L. Sosa · hace 3 h</div></div><span class="mock-pill mock-pill--rec">Recibido</span></div>
+                                </div>
+                            </div>
+                            <div class="mock-slide">
+                                <table class="mock-table">
+                                    <thead><tr><th>#</th><th>Reclamo</th><th style="text-align:right">Estado</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="mt-id">5022</td><td><i class="fas fa-lightbulb mt-ico"></i>Iluminación Pública</td><td style="text-align:right"><span class="mock-pill mock-pill--rec">Recibido</span></td></tr>
+                                        <tr><td class="mt-id">5019</td><td><i class="fas fa-road mt-ico"></i>Bache · Av. Mitre 450</td><td style="text-align:right"><span class="mock-pill mock-pill--curso">En curso</span></td></tr>
+                                        <tr><td class="mt-id">5014</td><td><i class="fas fa-trash-can mt-ico"></i>Contenedor · B° Norte</td><td style="text-align:right"><span class="mock-pill mock-pill--pend">Asignado</span></td></tr>
+                                        <tr><td class="mt-id">5008</td><td><i class="fas fa-droplet mt-ico"></i>Pérdida de agua · Moreno</td><td style="text-align:right"><span class="mock-pill mock-pill--ok">Resuelto</span></td></tr>
+                                        <tr><td class="mt-id">5001</td><td><i class="fas fa-tree mt-ico"></i>Poda · Belgrano 120</td><td style="text-align:right"><span class="mock-pill mock-pill--ok">Resuelto</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="mock-list" style="margin-top:1rem">
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">Ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">Hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
-                        </div>
+                        <div class="mock-dots"><span class="is-active"></span><span></span></div>
                     </div>
                 </div>
             </div>

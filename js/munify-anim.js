@@ -106,12 +106,31 @@
     });
   }
 
+  /* ---- Slider del mockup: rota entre vistas (panel ⇄ grilla) ---- */
+  function initSliders() {
+    document.querySelectorAll('.mock-slides').forEach(function (box) {
+      var slides = box.querySelectorAll(':scope > .mock-slide');
+      if (slides.length < 2) return;
+      var dotsWrap = box.parentElement.querySelector('.mock-dots');
+      var dots = dotsWrap ? dotsWrap.querySelectorAll('span') : [];
+      var i = 0;
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+        for (var d = 0; d < dots.length; d++) dots[d].classList.toggle('is-active', d === i);
+      }
+      for (var d = 0; d < dots.length; d++) (function (k) { dots[k].onclick = function () { show(k); }; })(d);
+      if (!reduce) setInterval(function () { show(i + 1); }, 4500);
+    });
+  }
+
   function init() {
     // Avisa al fail-safe del <head> que el sistema de animación está vivo.
     document.documentElement.setAttribute('data-anim-ready', '1');
     assignStagger();
     stackTables();
     observe();
+    initSliders();
   }
 
   if (document.readyState === 'loading') {

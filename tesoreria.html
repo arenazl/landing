@@ -190,17 +190,34 @@
                         <span class="app-mock__title">Munify · Tesorería</span>
                     </div>
                     <div class="app-mock__body">
-                        <div class="mock-list">
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-users"></i></span><div class="mock-row__main"><div class="mock-row__t">Sueldos · Personal</div><div class="mock-row__s">Vence el 30</div></div><span class="mock-pill mock-pill--ok">Pagado</span></div>
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-truck"></i></span><div class="mock-row__main"><div class="mock-row__t">Proveedores varios</div><div class="mock-row__s">Programado</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
-                            <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-helmet-safety"></i></span><div class="mock-row__main"><div class="mock-row__t">Obra · Cordón cuneta</div><div class="mock-row__s">Caja FODEMEP</div></div><span class="mock-pill mock-pill--pend">Pendiente</span></div>
+                        <div class="mock-slides">
+                            <div class="mock-slide is-active">
+                                <div class="mock-grid" style="grid-template-columns:1fr 1fr 1fr; margin-top:0">
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="143">143</span></div><div class="mock-stat__lbl">Programados</div></div>
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="34">34</span></div><div class="mock-stat__lbl">Esta semana</div></div>
+                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="0">0</span></div><div class="mock-stat__lbl">Vencidos</div></div>
+                                </div>
+                                <div class="mock-list" style="margin-top:0.9rem">
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-users"></i></span><div class="mock-row__main"><div class="mock-row__t">Sueldos · Personal</div><div class="mock-row__s">Caja Coparticipación · vence el 30</div></div><span class="mock-pill mock-pill--ok">Pagado</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-truck"></i></span><div class="mock-row__main"><div class="mock-row__t">Proveedores varios</div><div class="mock-row__s">Caja FOFINDE · esta semana</div></div><span class="mock-pill mock-pill--curso">Programado</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-helmet-safety"></i></span><div class="mock-row__main"><div class="mock-row__t">Obra · Cordón cuneta</div><div class="mock-row__s">Caja FODEMEP · a confirmar</div></div><span class="mock-pill mock-pill--pend">Pendiente</span></div>
+                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-award"></i></span><div class="mock-row__main"><div class="mock-row__t">Incentivo docente</div><div class="mock-row__s">Mensual · esta semana</div></div><span class="mock-pill mock-pill--curso">Programado</span></div>
+                                </div>
+                            </div>
+                            <div class="mock-slide">
+                                <table class="mock-table">
+                                    <thead><tr><th>Concepto</th><th>Caja</th><th style="text-align:right">Estado</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><i class="fas fa-users mt-ico"></i>Sueldos</td><td class="mt-id">Copart.</td><td style="text-align:right"><span class="mock-pill mock-pill--ok">Pagado</span></td></tr>
+                                        <tr><td><i class="fas fa-truck mt-ico"></i>Proveedores</td><td class="mt-id">FOFINDE</td><td style="text-align:right"><span class="mock-pill mock-pill--curso">Programado</span></td></tr>
+                                        <tr><td><i class="fas fa-helmet-safety mt-ico"></i>Obra cordón</td><td class="mt-id">FODEMEP</td><td style="text-align:right"><span class="mock-pill mock-pill--pend">Pendiente</span></td></tr>
+                                        <tr><td><i class="fas fa-award mt-ico"></i>Incentivo</td><td class="mt-id">Copart.</td><td style="text-align:right"><span class="mock-pill mock-pill--curso">Programado</span></td></tr>
+                                        <tr><td><i class="fas fa-bolt mt-ico"></i>Presentismo</td><td class="mt-id">FOMEP</td><td style="text-align:right"><span class="mock-pill mock-pill--ok">Pagado</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="eyebrow" style="margin:1.1rem 0 0.6rem; font-size:0.62rem">Ejecución por caja</div>
-                        <div class="barchart" style="gap:0.5rem">
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">FOFINDE</span><div class="bar-track"><div class="bar-fill" style="--val:72%; --i:0"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">FODEMEP</span><div class="bar-track"><div class="bar-fill" style="--val:55%; --i:1"></div></div></div>
-                            <div class="bar-line"><span class="bar-tag" style="flex-basis:5rem">Copart.</span><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:2"></div></div></div>
-                        </div>
+                        <div class="mock-dots"><span class="is-active"></span><span></span></div>
                     </div>
                 </div>
             </div>

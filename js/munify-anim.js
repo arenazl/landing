@@ -11,6 +11,12 @@
   var reduce = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Estado global de "movimiento": el botón de la topbar lo togglea.
+     paused congela las animaciones CSS (vía .anim-paused) y corta los
+     timers de los sliders. La preferencia se recuerda en localStorage. */
+  var paused = false;
+  var sliderCtrls = [];   // { start, stop } por cada slider
+
   /* ---- Stagger: a cada .reveal le asigno su índice dentro del grupo
          (mismo padre) para que entren escalonados vía --i en el CSS ---- */
   function assignStagger() {
@@ -106,7 +112,7 @@
     });
   }
 
-  /* ---- Slider del mockup: rota entre vistas (panel ⇄ grilla) ---- */
+  /* ---- Slider del mockup: rota entre vistas (panel ⇄ wizard) ---- */
   function initSliders() {
     document.querySelectorAll('.mock-slides').forEach(function (box) {
       var slides = box.querySelectorAll(':scope > .mock-slide');
@@ -114,14 +120,46 @@
       var dotsWrap = box.parentElement.querySelector('.mock-dots');
       var dots = dotsWrap ? dotsWrap.querySelectorAll('span') : [];
       var i = 0;
+      var timer = null;
       function show(n) {
         i = (n + slides.length) % slides.length;
         slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
         for (var d = 0; d < dots.length; d++) dots[d].classList.toggle('is-active', d === i);
       }
+      function start() { if (!reduce && !paused && !timer) timer = setInterval(function () { show(i + 1); }, 4500); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
       for (var d = 0; d < dots.length; d++) (function (k) { dots[k].onclick = function () { show(k); }; })(d);
-      if (!reduce) setInterval(function () { show(i + 1); }, 4500);
+      start();
+      sliderCtrls.push({ start: start, stop: stop });
     });
+  }
+
+  /* ---- Pausa/reanuda TODO el movimiento de la página ---- */
+  function setPaused(p) {
+    paused = !!p;
+    document.documentElement.classList.toggle('anim-paused', paused);
+    sliderCtrls.forEach(function (c) { paused ? c.stop() : c.start(); });
+    document.querySelectorAll('.anim-toggle').forEach(function (b) {
+      b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      b.setAttribute('title', paused ? 'Reanudar animaciones' : 'Pausar animaciones');
+    });
+    try { localStorage.setItem('munify-anim-paused', paused ? '1' : '0'); } catch (e) {}
+  }
+
+  window.MunifyAnim = {
+    pause: function () { setPaused(true); },
+    resume: function () { setPaused(false); },
+    toggle: function () { setPaused(!paused); },
+    isPaused: function () { return paused; }
+  };
+
+  function initAnimToggle() {
+    var btns = document.querySelectorAll('.anim-toggle');
+    if (!btns.length) return;
+    btns.forEach(function (b) { b.addEventListener('click', function () { setPaused(!paused); }); });
+    var saved = null;
+    try { saved = localStorage.getItem('munify-anim-paused'); } catch (e) {}
+    if (saved === '1') setPaused(true);
   }
 
   function init() {
@@ -131,6 +169,7 @@
     stackTables();
     observe();
     initSliders();
+    initAnimToggle();
   }
 
   if (document.readyState === 'loading') {

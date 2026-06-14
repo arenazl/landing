@@ -1203,6 +1203,28 @@ body.menu-open { overflow: hidden; }
 @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 @media (prefers-reduced-motion: reduce) { .app-mock { animation: none; } }
 
+/* ----- Botón "stop general" de animaciones (topbar) ----- */
+.anim-toggle {
+  width: 2.5rem; height: 2.5rem; border-radius: 999px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--paper-deep); color: var(--ink);
+  border: 1px solid var(--line); cursor: pointer;
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.anim-toggle:hover { background: var(--line); }
+.anim-toggle i { font-size: 0.85rem; line-height: 1; }
+.anim-toggle .fa-play { display: none; }
+html.anim-paused .anim-toggle {
+  background: var(--accent-soft); color: var(--accent); border-color: var(--accent-line);
+}
+html.anim-paused .anim-toggle .fa-pause { display: none; }
+html.anim-paused .anim-toggle .fa-play  { display: inline-block; }
+
+/* Congela TODO el movimiento por CSS (floaty, caret, pulse, spinners…) */
+html.anim-paused *,
+html.anim-paused *::before,
+html.anim-paused *::after { animation-play-state: paused !important; }
+
 /* ----- Hero "con vida": split texto + mockup, glow de marca más presente ----- */
 .hero--alive .hero__media img { opacity: 0.30; }   /* foto más al fondo, deja brillar el color */
 .hero--alive .hero__tint {

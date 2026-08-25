@@ -134,15 +134,31 @@
     });
   }
 
-  /* ---- Hero con clips en loop: crossfade entre videos declarados en
-         data-videos del .hero__media. Progressive: si no corre este JS
-         (o hay reduced-motion / save-data / mobile) queda el <img>. ---- */
-  function initHeroVideos() {
-    var media = document.querySelector('.hero__media[data-videos]');
-    if (!media || reduce) return;
+  /* ---- Clips en loop: crossfade entre videos declarados en data-videos
+         de cualquier contenedor (hero, cards bento). Progressive: si no
+         corre este JS (o hay reduced-motion / save-data / mobile) queda
+         el <img> de base. ---- */
+  function initLoopVideos() {
+    if (reduce) return;
     if (navigator.connection && navigator.connection.saveData) return;
     if (!window.matchMedia || !window.matchMedia('(min-width: 768px)').matches) return;
+    var boxes = document.querySelectorAll('[data-videos]');
+    if (!('IntersectionObserver' in window)) {
+      boxes.forEach(initLoopBox);
+      return;
+    }
+    // lazy: los clips de cada contenedor recien se descargan al acercarse al viewport
+    var lazy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        lazy.unobserve(e.target);
+        initLoopBox(e.target);
+      });
+    }, { rootMargin: '300px 0px' });
+    boxes.forEach(function (b) { lazy.observe(b); });
+  }
 
+  function initLoopBox(media) {
     var srcs = media.getAttribute('data-videos').split(',')
       .map(function (s) { return s.trim(); }).filter(Boolean);
     if (!srcs.length) return;
@@ -238,7 +254,7 @@
     stackTables();
     observe();
     initSliders();
-    initHeroVideos();
+    initLoopVideos();
     initAnimToggle();
   }
 

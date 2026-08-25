@@ -617,9 +617,11 @@ main > section.section-band {
   opacity: 0.45;
   mix-blend-mode: multiply;
 }
-/* Clips en loop dentro del hero: los inyecta munify-anim.js sobre el <img>
-   (que queda como base para SEO / mobile / reduced-motion). Crossfade por opacity. */
-.hero__media video {
+/* Clips en loop: los inyecta munify-anim.js en cualquier contenedor con
+   [data-videos], sobre el <img> que queda como base (SEO / mobile /
+   reduced-motion). Crossfade por opacity; la opacidad final depende del
+   contexto: fondo de hero = tenue, card de imagen = plena. */
+[data-videos] video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -630,6 +632,11 @@ main > section.section-band {
   transition: opacity 1.4s ease;
 }
 .hero__media video.is-on { opacity: 0.34; }
+.bento__media video.is-on { opacity: 1; }
+.bento--image .bento__media video {
+  transition: opacity 1.4s ease, transform .6s cubic-bezier(.2,.6,.2,1);
+}
+.bento--image:hover .bento__media video { transform: scale(1.03); }
 .hero__tint {
   position: absolute;
   inset: 0;
@@ -1281,6 +1288,17 @@ html.anim-paused *::after { animation-play-state: paused !important; }
 .kpi__ico { margin-left: auto; color: var(--accent-bright); font-size: 0.85rem; }
 .kpi__lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.35; }
 .kpi-strip.in-view .bar-fill { width: var(--val, 0%); }
+
+/* ----- Tabla comparativa: la columna Munify (última) lleva el acento ----- */
+@media (min-width: 768px) {
+  .cmp-table th:last-child,
+  .cmp-table td:last-child {
+    background: var(--accent-soft);
+    border-left: 1px solid var(--accent-line);
+  }
+  .cmp-table th:last-child { color: var(--accent); }
+  .cmp-table td:last-child { color: var(--accent); }
+}
 
 /* ============================================================
    Transición entre páginas (View Transitions, MPA) — suaviza el

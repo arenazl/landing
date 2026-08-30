@@ -215,3 +215,45 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* ============================================================
+   Red de seguridad del reveal.
+
+   Las secciones .reveal arrancan en opacity:0 y las muestra un
+   IntersectionObserver (js/munify-anim.js). Si ese observer no
+   dispara —se comió el evento por una carrera con el scroll, la
+   pestaña estaba en segundo plano, el JS tardó— la sección queda
+   invisible PARA SIEMPRE y el visitante ve un hueco vacío.
+   Detectado con Playwright: falla de forma intermitente.
+
+   Esto no reemplaza al observer (que da la animación), sólo
+   garantiza que nada quede oculto: en cada scroll, y una vez a
+   los 3s, se revela todo lo que ya pasó por el viewport.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function rescatar() {
+    var alto = window.innerHeight || 800;
+    var pendientes = document.querySelectorAll('.reveal:not(.visible)');
+    for (var i = 0; i < pendientes.length; i++) {
+      var r = pendientes[i].getBoundingClientRect();
+      /* ya entró en pantalla (o quedó arriba) pero nadie la reveló */
+      if (r.top < alto * 0.92) pendientes[i].classList.add('visible');
+    }
+  }
+
+  var pedido = false;
+  function alScrollear() {
+    if (pedido) return;
+    pedido = true;
+    requestAnimationFrame(function () { pedido = false; rescatar(); });
+  }
+
+  window.addEventListener('scroll', alScrollear, { passive: true });
+  window.addEventListener('resize', alScrollear, { passive: true });
+  /* Ultimo recurso: si a los 3s algo sigue oculto habiendo pasado, se muestra */
+  setTimeout(rescatar, 3000);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rescatar);
+  else rescatar();
+})();

@@ -651,3 +651,9 @@ a:hover { color: var(--accent-bright); }
 
 .chip2 { display: inline-flex; align-items: center; gap: 7px; }
 .chip2 svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* munify-v2.css:141 clava `.eyebrow { font-family:'Manrope' !important }`.
+   Mismo peso para que gane la fuente de la app. Ver tambien la regla de los
+   headers mas arriba: son los dos !important que sobreviven del CSS viejo. */
+.eyebrow, .hero2__eyebrow, .sec2__eyebrow, .carru__k, .fuerte__tag,
+.banda-ia__k { font-family: var(--font-body) !important; }

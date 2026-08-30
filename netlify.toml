@@ -51,6 +51,11 @@
   from = "/demo"
   to = "/demo.html"
   status = 200
+
+[[redirects]]
+  from = "/comunicaciones"
+  to = "/comunicaciones.html"
+  status = 200
   status = 200
 
 # Fallback final: cualquier otra ruta cae al index

@@ -38,6 +38,7 @@ const PAGINAS = [
   ['precios', '/precios'],
   ['contacto', '/contacto'],
   ['demo', '/demo.html'],
+  ['comunicaciones', '/comunicaciones.html'],
   ['software', '/software-gestion-municipal'],
 ];
 

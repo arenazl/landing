@@ -73,12 +73,13 @@ async function leer(page, url) {
   });
 }
 
-const b = await chromium.launch({ channel: 'msedge' });
+const b = await chromium.launch({ channel: 'msedge', args: ['--disable-http-cache'] });
+/* bypassCache: sin esto se mide el CSS cacheado y los arreglos parecen no aplicar */
 let problemas = [];
 
 for (const [nombre, dc, ruta] of lista) {
   const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
-  const pa = await ctx.newPage(), pb = await ctx.newPage();
+  const pa = await (async () => { const q = await ctx.newPage(); await q.route('**/*.{css,js}', r => r.continue({ headers: { ...r.request().headers(), 'cache-control': 'no-cache' } })); return q; })(), pb = await (async () => { const q = await ctx.newPage(); await q.route('**/*.{css,js}', r => r.continue({ headers: { ...r.request().headers(), 'cache-control': 'no-cache' } })); return q; })();
   const proto = await leer(pa, DC + encodeURIComponent(dc));
   const mio = await leer(pb, WEB + ruta);
 

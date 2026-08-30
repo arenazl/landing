@@ -46,12 +46,13 @@ const filtro = process.argv[2];
 const lista = filtro ? PAGINAS.filter(p => p[0] === filtro) : PAGINAS;
 
 let fallas = [];
-const b = await chromium.launch({ channel: 'msedge' });
+const b = await chromium.launch({ channel: 'msedge', args: ['--disable-http-cache'] });
+/* bypassCache: sin esto se mide el CSS cacheado y los arreglos parecen no aplicar */
 
 for (const [nombre, ruta] of lista) {
   for (const modo of ['dark', 'light']) {
     const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
-    const p = await ctx.newPage();
+    const p = await (async () => { const q = await ctx.newPage(); await q.route('**/*.{css,js}', r => r.continue({ headers: { ...r.request().headers(), 'cache-control': 'no-cache' } })); return q; })();
     const errs = [], reqFail = [];
     // El 401 de /municipios/catalogo NO es un fallo: la pantalla de demos
     // pregunta si el catalogo multipais ya esta publicado en prod y degrada
@@ -85,8 +86,22 @@ for (const [nombre, ruta] of lista) {
         nav: fam(sel('.tb2__nav a')),
       };
       const familias = [...new Set(Object.values(muestras).filter(Boolean))];
+      /* Hay que preguntar por el PESO que la pagina realmente usa: el navegador
+         solo descarga los pesos que aparecen, y `check('16px Sora')` asume 400.
+         Comunicaciones usa Sora 600/700/800 y ninguno 400 -> decia "declarada
+         pero no cargada" sobre una fuente que estaba perfectamente cargada. */
+      const pesos = {};
+      document.querySelectorAll('h1,h2,h3,p,span,a,div').forEach(n => {
+        if (n.children.length) return;
+        const c = getComputedStyle(n);
+        const fam = c.fontFamily.split(',')[0].replace(/["']/g, '').trim();
+        (pesos[fam] = pesos[fam] || new Set()).add(c.fontWeight);
+      });
       const cargada = {};
-      familias.forEach(x => { cargada[x] = document.fonts.check(`16px "${x}"`); });
+      familias.forEach(x => {
+        const ws = pesos[x] ? [...pesos[x]] : ['400'];
+        cargada[x] = ws.some(w => document.fonts.check(`${w} 16px "${x}"`));
+      });
       return { muestras, familias, cargada };
     });
     const PERMITIDAS = ['Sora', 'Inter'];
@@ -196,7 +211,7 @@ for (const [nombre, ruta] of lista) {
       // y el test las reporta invisibles sin estarlo.
       const fin = () => document.documentElement.scrollHeight;
       for (let y = 0; y < fin(); y += 400) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 70)); }
-      window.scrollTo(0, fin()); await new Promise(r => setTimeout(r, 250));
+      window.scrollTo(0, fin()); await new Promise(r => setTimeout(r, 900));
       window.scrollTo(0, 0);
     });
     await p.waitForTimeout(900);

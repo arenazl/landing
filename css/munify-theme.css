@@ -1045,3 +1045,225 @@ a:hover { color: var(--accent-bright); }
    Sora 600, con los ya recorridos atenuados: es la escala la que ordena la
    lectura, no el color. Estaban como eyebrow de 12px y no pesaban. */
 .flujo__n { font: 600 30px var(--font-display); color: var(--accent); margin-bottom: 12px; line-height: 1; }
+
+/* ============================================================
+   12. TIPOGRAFÍA EXACTA DEL PROTOTIPO
+
+   Medido con Playwright contra los .dc, propiedad por propiedad:
+   familia, tamaño, PESO, letter-spacing, line-height y transform.
+   Antes sólo se había sobreescrito la familia, y `munity-v2.css`
+   seguía imponiendo lo demás:
+
+     munify-v2.css:96   body { letter-spacing: -0.01em }
+     munify-v2.css:140  h1..h6 { font-weight: 400 !important }
+     munify-v2.css:108+ .display-1/2/3 con sus propios pesos
+
+   Resultado: 82 textos del home salían con otra letra que el
+   prototipo — los títulos en peso 400 en vez de 600/700, y todo
+   el cuerpo con -0.16px de espaciado que el .dc no tiene.
+
+   Los valores de acá salen del .dc, no de un criterio propio.
+   ============================================================ */
+
+/* ---- Cuerpo: Inter 400, SIN letter-spacing ---- */
+body {
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+/* ---- Títulos: Sora, con el peso y el tracking de cada nivel ----
+   El !important es para ganarle al `font-weight: 400 !important`
+   de munify-v2.css:140, que si no aplana todos los títulos. */
+h1, .display-1, .hero2__h1, .ih__h1 {
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.06;
+}
+h2, .display-2, .sec2__h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15;
+}
+h3, .display-3 {
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+}
+h4, h5, h6 { font-weight: 700 !important; letter-spacing: normal !important; }
+
+/* Los hijos de un título heredan: no vuelven a 400 */
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+/* ---- Números de KPI: Sora 800, cifras tabulares ---- */
+.ihk__n, .kpi__num, .kpi-strip__num, .kcard__n, [data-count] {
+  font-weight: 800 !important;
+  letter-spacing: normal !important;
+}
+/* el contenedor manda: el <span data-count> es sólo el número */
+.ihk__n [data-count], .kcard__n [data-count] { font-weight: inherit !important; }
+
+/* ---- Eyebrows: Inter 600, 12px, uppercase, tracking 0.08em ---- */
+.eyebrow, .hero2__eyebrow, .sec2__eyebrow, .ih__eyebrow, .carru__k, .banda-ia__k, .mock__key {
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+/* ---- Párrafos y UI: sin tracking heredado ---- */
+p, li, td, th, label, input, textarea, select,
+.hero2__sub, .ih__sub, .sec2__lead, .split__p, .cierre__p {
+  letter-spacing: normal;
+}
+
+/* ---- Botones y chips: Inter, peso del prototipo ---- */
+.btn2 { letter-spacing: normal; }
+.btn2--accent { font-weight: 700; }
+.btn2--ghost { font-weight: 600; }
+.chip2, .ih__chip { font-weight: 600; letter-spacing: normal; }
+.tb2__nav a { font-weight: 500; letter-spacing: normal; }
+.tb2__brand span { font-weight: 700; letter-spacing: -0.01em; }
+
+/* Tres h3 que el prototipo NO pone en 700: los títulos de los fuertes y los
+   nombres de plan van en Sora 600 con -0.02em, como un h2 chico. Medido. */
+.fuerte h3 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+/* El nombre del plan va en 600 pero SIN tracking: medido, el .dc lo deja en 0 */
+.plan h3 { font-weight: 600 !important; letter-spacing: normal !important; }
+
+/* ---- Móvil: el hero no puede arrancar debajo de la topbar ----
+   En desktop el contenido del hero se empuja al fondo (margin-top:auto) y la
+   topbar transparente le queda muy por encima. En un teléfono el contenido
+   ocupa todo el alto, arranca arriba de todo y el eyebrow terminaba PISADO por
+   el logo — medido: 70px de solape en 390x844. */
+@media (max-width: 1024px) {
+  .hero2__body { padding-top: 104px; }
+  .hero2 { min-height: 600px; }
+}
+@media (max-width: 640px) {
+  .hero2__body { padding-top: 96px; }
+  .hero2__h1 { font-size: clamp(30px, 8.5vw, 40px); }
+}
+
+/* Ajustes finos, todos medidos contra el .dc con _tipografia.mjs:
+   - los H2 de sección son 34px en el prototipo, no 36 (mi clamp llegaba a 36)
+   - los h3 de las cards de "casos de uso" y de los pasos van en 600, no 700
+     (los de beneficios de Reclamos SÍ son 700: por eso se distinguen por clase
+     en vez de una regla global)
+   - el H1 de la pantalla de demos es 52px, no 50 como el resto de las internas */
+.sec2__h2 { font-size: clamp(26px, 3.4vw, 34px); }
+.uso h3, .paso h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+body.pagina-demo .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* ---- Escala tipográfica: el home y las internas NO son iguales ----
+   Medido contra los .dc: el home usa H2 de 36px y H1 de 60px; las páginas de
+   módulo usan H2 de 34px y H1 de 52px. Poner un solo valor global arreglaba
+   unas y rompía las otras. */
+.sec2__h2 { font-size: clamp(26px, 3.4vw, 36px); }
+.cierre h2 { font-size: clamp(26px, 4vw, 38px); }
+
+.pagina-interna .sec2__h2,
+.pagina-interna .split h2,
+.pagina-interna .cierre h2 { font-size: clamp(24px, 3.2vw, 34px); }
+.pagina-interna .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* Detalles medidos uno por uno */
+.mock__key { letter-spacing: 0.06em !important; }   /* el .dc usa 0.06em, no 0.08 */
+.benc h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+.uso h3, .paso h3 { letter-spacing: normal !important; }
+/* el peso del nav lo aplanaba el `body { font-weight: 400 }` de más arriba */
+.tb2__nav a { font-weight: 500 !important; }
+.tb2__nav a.is-active { font-weight: 600 !important; }
+
+/* ============================================================
+   13. Los últimos valores, medidos uno por uno con _tipografia.mjs
+   Formato de la medición: prototipo -> lo que yo tenía.
+   ============================================================ */
+
+/* H1 de las internas: 50px, no 52 (había leído la medición al revés) */
+.pagina-interna .ih__h1 { font-size: clamp(30px, 4.4vw, 50px); }
+
+/* Los h3 de las cards de beneficios SON 700 y sin tracking (medido en
+   Reclamos: "Tiempos de respuesta más cortos"). El único 600 es el de la
+   banda destacada, que es un título de bloque, no de card. */
+.benc h3 { font-weight: 700 !important; letter-spacing: normal !important; }
+.benc__banda h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+
+/* Contacto: los h3 de canal son 22px y el destacado 30px */
+.pagina-interna .benc h3 { font-size: 22px; }
+.pagina-interna .benc h2 { font-size: 30px !important; letter-spacing: -0.02em !important; }
+
+/* Los H2 de sección de las internas son 34px. Las páginas que todavía traen
+   markup viejo los pintan con .display-2/.display-3, que tienen su propia
+   escala: se alinean acá. */
+.pagina-interna .display-2 { font-size: clamp(24px, 3.2vw, 34px) !important; letter-spacing: -0.02em !important; }
+.pagina-interna .display-3 { font-size: 26px !important; font-weight: 600 !important; letter-spacing: -0.02em !important; }
+
+/* .tag seguía en Manrope 400: es el badge "Más elegido", va Inter 700 */
+.tag { font-family: var(--font-body) !important; font-weight: 700 !important; }
+
+/* Los botones del prototipo: el primario 600, no 700 */
+.pagina-interna .btn, .pagina-interna .btn-primary, .pagina-interna .btn-ghost {
+  font-weight: 600 !important; letter-spacing: normal !important;
+}
+
+/* ============================================================
+   14. Valores POR PÁGINA
+
+   Los .dc no comparten una escala única: el H1 es 50px en
+   Reclamos y 52px en Tesorería, y los h3 de las cards van de 17
+   a 24px según la página. Poner un valor global arreglaba una y
+   rompía otra — se probó, y por eso ahora cada página declara
+   los suyos. Todos salen de la medición, no de un criterio mío.
+   ============================================================ */
+
+/* --- H1: dos tamaños según la página --- */
+.pag-reclamos .ih__h1, .pag-tramites .ih__h1, .pag-comunicaciones .ih__h1 { font-size: clamp(30px, 4.4vw, 50px); }
+.pag-tesoreria .ih__h1, .pag-precios .ih__h1, .pag-contacto .ih__h1,
+.pag-demo .ih__h1, .pag-software .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* --- Reclamos: cards de beneficio 19px las grandes, 18px las chicas --- */
+.pag-reclamos .benc--3 h3 { font-size: 19px !important; }
+.pag-reclamos .benc--2 h3 { font-size: 18px !important; }
+.pag-reclamos .benc__banda h3 { letter-spacing: normal !important; }
+
+/* --- Trámites: los tipos de trámite son h3 de 19px, peso 700 --- */
+.pag-tramites .benc h3, .pag-tramites .display-3 {
+  font-size: 19px !important; font-weight: 700 !important; letter-spacing: normal !important;
+}
+
+/* --- Tesorería: los dos bloques grandes 24px/600; las cards 17px/700 --- */
+.pag-tesoreria .benc--3 h3 { font-size: 24px !important; font-weight: 600 !important; letter-spacing: -0.02em !important; }
+.pag-tesoreria .display-3, .pag-tesoreria .bento h3 {
+  font-size: 17px !important; font-weight: 700 !important; letter-spacing: normal !important;
+}
+
+/* --- Precios: el nombre del plan es 20px sin tracking --- */
+.pag-precios .plan h3, .pag-precios .display-3 { font-size: 20px !important; letter-spacing: normal !important; }
+.pag-precios .btn, .pag-precios .btn-primary { font-weight: 700 !important; }
+
+/* --- Contacto: los h3 de canal en 700 --- */
+.pag-contacto .benc h3 { font-weight: 700 !important; }
+.pag-contacto .fuerte__tag { font-size: 12px !important; }
+
+/* Los ultimos cinco, medidos: */
+/* el nombre del plan es 20px, pero la banda "3 meses gratis" es 26px con -0.02em:
+   mi regla por .display-3 los aplanaba a los dos */
+.pag-precios .bento--accent .display-3 { font-size: 26px !important; letter-spacing: -0.02em !important; }
+.pag-precios .btn, .pag-precios .btn-primary { font-weight: 600 !important; }
+/* los h3 de canal de Contacto van en 600, no 700 */
+.pag-contacto .benc h3 { font-weight: 600 !important; }
+
+/* El formulario de la demo desbordaba 85px en un teléfono: los items de un
+   grid no se encogen por debajo de su contenido salvo que se les diga. Es el
+   mismo motivo por el que se rompía la topbar. */
+.dmform > * { min-width: 0; }
+.dmsel, .dmbox, .dmwrap, .dmform button { max-width: 100%; }
+.dmbox input { min-width: 0; width: 100%; }
+@media (max-width: 700px) {
+  .dmform { grid-template-columns: 1fr; }
+  .dmform > * { grid-column: 1 / -1; }
+}

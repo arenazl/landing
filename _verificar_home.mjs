@@ -45,7 +45,7 @@ for (const modo of ['dark', 'light']) {
              body: getComputedStyle(document.body).fontFamily.split(',')[0],
              paper: cs.getPropertyValue('--paper').trim(), accent: cs.getPropertyValue('--accent').trim() };
   });
-  ok(t.h1.includes('Sora') && t.body.includes('Inter'), 'Sora + Inter (' + t.h1 + ' / ' + t.body + ')');
+  ok(t.h1.includes('Sora') && t.body.includes('Nunito'), 'Sora + Nunito (' + t.h1 + ' / ' + t.body + ')');
   ok(t.paper === (modo === 'dark' ? '#060E22' : '#F2F5FA'), 'token --paper ' + t.paper);
   ok(t.accent === (modo === 'dark' ? '#4CD9C6' : '#0E9384'), 'token --accent ' + t.accent);
 

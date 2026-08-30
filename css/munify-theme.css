@@ -60,7 +60,11 @@
 
   /* Tipografia */
   --font-display: 'Sora', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* El handoff pide Inter, pero LA APP usa Nunito para el cuerpo y Sora para
+     display. Manda la coherencia con la app: landing y app son el mismo producto
+     y no pueden verse de dos familias distintas. Sora se mantiene (la app la usa
+     igual, para H1/numeros). */
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Radios */
   --r-card: 16px;
@@ -240,8 +244,11 @@ a:hover { color: var(--accent-bright); }
   --topbar-bg: rgba(255, 255, 255, 0.75);
   --topbar-bg-scrolled: rgba(255, 255, 255, 0.94);
 }
-.topbar { background: var(--topbar-bg); }
-.topbar.scrolled { background: var(--topbar-bg-scrolled); }
+/* En el prototipo la topbar vive ENCIMA del video del hero, sin fondo: el hero
+   arranca desde el borde de la pagina. El fondo aparece recien al scrollear,
+   cuando ya hay contenido debajo que necesita separarse. */
+.topbar { background: transparent; border-bottom-color: transparent; }
+.topbar.scrolled { background: var(--topbar-bg-scrolled); border-bottom-color: var(--line); }
 
 /* --- CTA primario: el handoff lo pide cian pleno con glow, no degrade --- */
 .btn-primary {
@@ -377,8 +384,13 @@ a:hover { color: var(--accent-bright); }
 
 /* ---- Timeline de 4 pasos ---- */
 .tl2 { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+/* La linea une el CENTRO del primer circulo con el del ultimo. Cada paso mide
+   25% y el circulo (40px) arranca tras un padding de 16px -> su centro cae a
+   36px del borde de la celda. Con un 12% a cada lado (lo que dice el .dc) la
+   linea queda cortada y no toca las puntas. */
 .tl2__rail {
-  position: absolute; top: 19px; left: 12%; right: 12%;
+  position: absolute; top: 19px;
+  left: 36px; right: calc(25% - 36px);
   height: 2px; background: var(--line-strong);
 }
 .tl2__step { position: relative; padding: 0 16px; }
@@ -624,3 +636,18 @@ a:hover { color: var(--accent-bright); }
   .carru__slide { position: relative; display: none; }
   .carru__slide.is-on { display: block; }
 }
+
+
+/* ---- Videos en loop de los contenedores del restyling ----
+   js/munify-anim.js (initLoopVideos) rota los clips y le pone .is-on al
+   activo, pero la opacidad FINAL la decide el CSS segun el contexto
+   (.hero__media 0.34, .bento__media 1). Los contenedores nuevos hay que
+   declararlos aca o los videos se quedan en opacity:0 y solo se ve el <img>. */
+.hero2__media video.is-on,
+.bandavid__media video.is-on { opacity: 1; }
+/* El <img> es la base para SEO y para cuando el video no corre; cuando hay
+   un clip encima no hace falta que compita */
+.hero2__media video.is-on ~ img { opacity: 0; }
+
+.chip2 { display: inline-flex; align-items: center; gap: 7px; }
+.chip2 svg { width: 14px; height: 14px; flex-shrink: 0; }

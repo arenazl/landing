@@ -1,0 +1,17 @@
+import { createRequire } from 'module';
+const require = createRequire('d:/Code/sugerenciasMun/frontend/');
+const { chromium } = require('playwright');
+const b = await chromium.launch({ channel: 'msedge' });
+const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
+await p.goto('http://localhost:8123/', { waitUntil: 'networkidle' });
+await p.locator('#dos-lados').scrollIntoViewIfNeeded();
+await p.waitForTimeout(1200);
+const t1 = await p.evaluate(() => document.querySelector('[data-pill]')?.textContent);
+await p.locator('#dos-lados').screenshot({ path: 'd:/Code/sugerenciasMun/landing/_shots/dos-lados.png' });
+await p.waitForTimeout(2300);
+const t2 = await p.evaluate(() => document.querySelector('[data-pill]')?.textContent);
+await p.waitForTimeout(2100);
+const t3 = await p.evaluate(() => document.querySelector('[data-pill]')?.textContent);
+console.log('la simulacion avanza sola:', t1, '->', t2, '->', t3);
+console.log('secciones que quedaron:', await p.evaluate(() => [...document.querySelectorAll('section')].map(s => s.id || s.className.split(' ')[0])));
+await b.close();

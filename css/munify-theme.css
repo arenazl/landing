@@ -405,3 +405,75 @@ a:hover { color: var(--accent-bright); }
 .theme-toggle--pill::after { content: "Modo claro"; }
 :root[data-theme="light"] .theme-toggle--pill::after { content: "Modo oscuro"; }
 .theme-toggle--pill svg { width: 15px; height: 15px; }
+
+/* ---- 02 · Los dos lados en tiempo real ---- */
+.dos { background: var(--paper-warm); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 72px 64px; }
+.dos__head { text-align: center; }
+.dos__head .sec2__lead { margin-left: auto; margin-right: auto; max-width: 560px; }
+.dos__grid { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 24px; align-items: stretch; }
+
+.panel { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); box-shadow: var(--shadow-soft); }
+
+/* Lado vecino */
+.vec { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.vec__cap { background: var(--paper-warm); color: var(--ink); font: 600 12px var(--font-body); text-align: center; margin: -24px -24px 18px; padding: 12px; border-radius: var(--r-card) var(--r-card) 0 0; }
+.vec__cap b { color: var(--accent); font-weight: 600; }
+.vec__item { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 14px; display: flex; gap: 12px; align-items: center; }
+.vec__ico { width: 38px; height: 38px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.vec__t { font: 600 14px var(--font-body); color: var(--ink); }
+.vec__s { font: 400 12px var(--font-body); color: var(--muted); margin-top: 2px; }
+
+.vsteps { display: flex; flex-direction: column; margin-top: 16px; }
+.vstep { display: flex; gap: 10px; align-items: flex-start; }
+.vstep__rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; }
+.vstep__dot { width: 12px; height: 12px; border-radius: var(--r-pill); flex-shrink: 0; background: var(--line-strong); transition: background 400ms var(--ease), box-shadow 400ms var(--ease); }
+.vstep__line { width: 2px; flex: 1; min-height: 12px; background: var(--line-strong); }
+.vstep__txt { padding-bottom: 12px; opacity: .38; transition: opacity 400ms var(--ease); }
+.vstep__txt > div:first-child { font: 600 12px var(--font-body); color: var(--ink); }
+.vstep__txt > div:last-child { font: 400 11px var(--font-body); color: var(--muted-soft); }
+.vstep.is-on .vstep__dot { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.vstep.is-on .vstep__txt { opacity: 1; }
+
+.toast { margin-top: 16px; display: flex; gap: 10px; align-items: center; background: var(--paper-warm); border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 10px 12px; opacity: 0; transform: translateY(6px); transition: opacity 380ms var(--ease), transform 380ms var(--ease); }
+.toast.is-on { opacity: 1; transform: none; }
+.toast__ico { width: 26px; height: 26px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.toast__t { font: 600 12px var(--font-body); color: var(--ink); }
+.toast__s { font: 400 11px var(--font-body); color: var(--muted); }
+
+/* Nexo central */
+.nexo { display: flex; flex-direction: column; align-items: center; justify-content: center; align-self: center; gap: 8px; color: var(--accent); }
+.nexo svg { transition: transform 600ms var(--ease); }
+.nexo__lbl { font: 600 11px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Lado municipio */
+.muni { overflow: hidden; }
+.muni__bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: var(--paper-warm); border-bottom: 1px solid var(--line-soft); }
+.muni__dot { width: 9px; height: 9px; border-radius: var(--r-pill); }
+.muni__title { margin-left: 8px; font: 500 12px var(--font-body); color: var(--ink); }
+.muni__live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 10px var(--font-body); color: var(--accent); }
+.muni__live i { width: 7px; height: 7px; border-radius: var(--r-pill); background: var(--accent); display: inline-block; }
+.muni__body { padding: 16px 20px; }
+.muni__grid { display: grid; grid-template-columns: 150px 1fr; gap: 10px; }
+.mapa { position: relative; border-radius: var(--r-control); overflow: hidden; background: var(--card-inner); border: 1px solid var(--line-soft); min-height: 190px; }
+.mapa svg { position: absolute; inset: 0; }
+.mapa__pin { position: absolute; left: 50%; top: 38%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: var(--r-pill); background: var(--accent); border: 3px solid var(--card-inner); box-shadow: 0 0 0 6px var(--accent-soft), var(--accent-glow); }
+.mapa__lbl { position: absolute; left: 50%; top: 38%; transform: translate(-50%, 14px); background: var(--paper-warm); border: 1px solid var(--accent-line); border-radius: var(--r-pill); padding: 4px 10px; font: 600 10px var(--font-body); color: var(--accent); white-space: nowrap; }
+.mapa__gps { position: absolute; left: 8px; bottom: 8px; background: var(--paper-warm); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; font: 600 9px var(--font-body); color: var(--muted); letter-spacing: 0.05em; }
+
+.rows { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.row2 { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: var(--r-control); padding: 9px 12px; }
+.row2--on { background: var(--accent-soft); border-color: var(--accent-line); }
+.row2__id { font: 700 12px var(--font-body); color: var(--accent); font-feature-settings: "tnum"; }
+.row2__b { flex: 1; min-width: 0; }
+.row2__t, .row2__s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row2__t { font: 600 13px var(--font-body); color: var(--ink); }
+.row2__s { font: 400 11px var(--font-body); color: var(--muted); }
+.pill2 { font: 600 11px var(--font-body); padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; transition: background 400ms var(--ease), color 400ms var(--ease); }
+.tagbox { font: 700 11px var(--font-body); padding: 4px 8px; border-radius: 8px; }
+
+@media (max-width: 1024px) {
+  .dos { padding: 56px 24px; }
+  .dos__grid { grid-template-columns: 1fr; gap: 16px; }
+  .nexo { flex-direction: row; }
+  .nexo svg { transform: rotate(90deg); }
+}

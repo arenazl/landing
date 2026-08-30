@@ -295,75 +295,110 @@
     </div>
 </section>
 
-<!-- Bento 3 valores + imagen ciudad -->
-<section class="container py-16 md:py-24">
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <!-- Card imagen ciudad -->
-        <div class="bento bento--image md:col-span-2 reveal" style="min-height:280px">
-            <div class="bento__media" style="aspect-ratio:auto; height:100%" data-videos="videos/hero-ciudad.mp4">
-                <img src="images/assets-landing-ciudad.webp" alt="Ciudad argentina">
-            </div>
-            <div class="bento__caption">
-                <div class="text-xs uppercase tracking-widest mb-1" style="color:#e6f4fb">Munify</div>
-                <div class="text-lg font-display">Pensado para cada municipio<br>de Argentina</div>
-            </div>
-        </div>
+<!-- ============ 02 · Los dos lados en tiempo real ============ -->
+<section class="dos reveal" id="dos-lados" data-sim>
+    <div class="dos__head">
+        <div class="sec2__eyebrow">02 · Tiempo real</div>
+        <h2 class="sec2__h2">El mismo reclamo, visto de los dos lados</h2>
+        <p class="sec2__lead">Lo que el vecino carga en su celular aparece al instante en el panel del municipio. Sin llamadas, sin cuadernos.</p>
+    </div>
 
-        <div class="bento md:col-span-2 reveal flex flex-col">
-            <div class="flex items-center gap-2 mb-4">
-                <span class="accent-bar" style="width:3px; height:18px"></span>
-                <div class="eyebrow">El problema</div>
-            </div>
-            <h3 class="display-3" style="color:var(--ink)">La comunicación se corta</h3>
-            <p class="mt-3 text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Todos los municipios tienen sistemas de reclamos, pero el vecino nunca sabe
-                qué pasó con su pedido.
-            </p>
-        </div>
-
-        <div class="bento bento--warm md:col-span-2 reveal">
-            <div class="flex items-center gap-2 mb-4">
-                <span class="accent-bar accent-bar--gradient" style="width:3px; height:18px"></span>
-                <div class="eyebrow" style="color:var(--accent)">La solución</div>
-            </div>
-            <h3 class="display-3" style="color:var(--ink)">IA + trazabilidad total</h3>
-            <p class="mt-3 text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Reporte instantáneo y transparente. Seguimiento en tiempo real hasta que la
-                cuadrilla resuelve el problema.
-            </p>
-        </div>
-
-        <div class="bento bento--ink md:col-span-4 reveal">
-            <div class="flex items-start gap-6 flex-wrap">
-                <div class="flex-1 min-w-0 md:min-w-[16rem]">
-                    <div class="eyebrow mb-4" style="color:#a39a85">El resultado</div>
-                    <h3 class="display-2 font-display" style="color:#f5f0e6">Todos conectados.<br>El círculo, cerrado.</h3>
-                    <p class="mt-4 text-[1rem] max-w-md" style="color:#a39a85; line-height:1.55">
-                        El vecino sabe quién lo atiende, el empleado sabe qué hacer, el supervisor
-                        tiene los datos.
-                    </p>
+    <div class="dos__grid">
+        <!-- Lado del vecino -->
+        <div class="panel vec">
+            <div class="vec__cap">App del vecino · <b>gratis</b></div>
+            <div class="vec__item">
+                <span class="vec__ico">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </span>
+                <div>
+                    <div class="vec__t">Bache en Av. Mitre 450</div>
+                    <div class="vec__s">Reclamo #5019 · con foto y GPS</div>
                 </div>
-                <div class="flex gap-3 self-stretch items-end">
-                    <div class="text-right">
-                        <div class="metric-num" style="color:#f5f0e6">3</div>
-                        <div class="text-xs" style="color:#a39a85">roles, 1 sistema</div>
+            </div>
+
+            <div class="vsteps">
+                <div class="vstep" data-step="0"><div class="vstep__rail"><span class="vstep__dot"></span><span class="vstep__line"></span></div><div class="vstep__txt"><div>Recibido</div><div>09:12</div></div></div>
+                <div class="vstep" data-step="1"><div class="vstep__rail"><span class="vstep__dot"></span><span class="vstep__line"></span></div><div class="vstep__txt"><div>Asignado a Cuadrilla 3</div><div>09:12 · clasificado por IA</div></div></div>
+                <div class="vstep" data-step="2"><div class="vstep__rail"><span class="vstep__dot"></span><span class="vstep__line"></span></div><div class="vstep__txt"><div>Cuadrilla en camino</div><div>10:05 · te avisamos al salir</div></div></div>
+                <div class="vstep" data-step="3"><div class="vstep__rail"><span class="vstep__dot"></span></div><div class="vstep__txt"><div>Resuelto</div><div>14:30 · con foto de evidencia</div></div></div>
+            </div>
+
+            <div class="toast" data-toast>
+                <span class="toast__ico">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+                </span>
+                <div>
+                    <div class="toast__t" data-toast-title>Tu reclamo fue recibido</div>
+                    <div class="toast__s">Munify · ahora</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nexo -->
+        <div class="nexo">
+            <span data-sync>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+            </span>
+            <span class="nexo__lbl">Tiempo real</span>
+        </div>
+
+        <!-- Lado del municipio -->
+        <div class="panel muni">
+            <div class="muni__bar">
+                <span class="muni__dot" style="background:#FF5F57"></span>
+                <span class="muni__dot" style="background:#FEBC2E"></span>
+                <span class="muni__dot" style="background:#28C840"></span>
+                <span class="muni__title">Panel del municipio · Reclamos</span>
+                <span class="muni__live"><i></i>EN VIVO</span>
+            </div>
+            <div class="muni__body">
+                <div class="muni__grid">
+                    <div class="mapa">
+                        <svg width="100%" height="100%" viewBox="0 0 180 190" preserveAspectRatio="xMidYMid slice">
+                            <rect width="180" height="190" fill="var(--card-inner)"></rect>
+                            <g stroke="#2A3D66" stroke-width="4" opacity="0.95"><line x1="0" y1="48" x2="180" y2="40"></line><line x1="0" y1="120" x2="180" y2="112"></line><line x1="58" y1="0" x2="66" y2="190"></line><line x1="126" y1="0" x2="132" y2="190"></line><line x1="0" y1="180" x2="180" y2="70"></line></g>
+                            <g stroke="#22335A" stroke-width="1.5" opacity="0.9"><line x1="0" y1="84" x2="180" y2="78"></line><line x1="0" y1="156" x2="180" y2="150"></line><line x1="92" y1="0" x2="98" y2="190"></line></g>
+                            <path d="M140 190 L180 140 L180 190 Z" fill="rgba(40,200,64,0.18)"></path>
+                        </svg>
+                        <span class="mapa__pin"></span>
+                        <span class="mapa__lbl">Av. Mitre 450</span>
+                        <span class="mapa__gps">GPS EN VIVO</span>
+                    </div>
+
+                    <div class="rows">
+                        <div class="row2 row2--on">
+                            <span class="row2__id">#5019</span>
+                            <div class="row2__b">
+                                <div class="row2__t">Bache en Av. Mitre 450</div>
+                                <div class="row2__s" data-row-sub>recién ingresado · sin asignar</div>
+                            </div>
+                            <span class="pill2" data-pill>Recibido</span>
+                        </div>
+                        <div class="row2">
+                            <span class="tagbox" style="color:var(--accent-bright); background:rgba(63,106,200,0.2)">#5022</span>
+                            <div class="row2__b">
+                                <div class="row2__t">Luminaria · Plaza San Martín</div>
+                                <div class="row2__s">clasificado por IA · Alumbrado</div>
+                            </div>
+                            <span class="pill2" style="background:rgba(63,106,200,0.2); color:var(--accent-bright)">Asignado</span>
+                        </div>
+                        <div class="row2">
+                            <span class="tagbox" style="color:var(--good); background:rgba(40,200,64,0.15)">#5014</span>
+                            <div class="row2__b">
+                                <div class="row2__t">Contenedor · B° Norte</div>
+                                <div class="row2__s">resuelto con foto de evidencia</div>
+                            </div>
+                            <span class="pill2" style="background:rgba(40,200,64,0.15); color:var(--good)">Resuelto</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Card imagen trabajador -->
-        <div class="bento bento--image md:col-span-2 reveal" style="min-height:240px">
-            <div class="bento__media" style="aspect-ratio:auto; height:100%" data-videos="videos/hero-reclamos.mp4">
-                <img src="images/assets-landing-trabajador-tablet.jpg" alt="Empleado municipal con tablet">
-            </div>
-            <div class="bento__caption">
-                <div class="text-xs uppercase tracking-widest mb-1" style="color:#e6f4fb">En terreno</div>
-                <div class="text-lg font-display">Cuadrillas conectadas<br>desde el móvil</div>
-            </div>
-        </div>
     </div>
 </section>
+
+
 
 <div class="divider"></div>
 
@@ -373,815 +408,26 @@
 <div class="divider"></div>
 
 <!-- ============================================ PROBLEMA ============================================ -->
-<section id="problema" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="eyebrow mb-4">01 · El diagnóstico</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">Los problemas de la gestión municipal tradicional</h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">La realidad de los municipios sin sistema integrado.</p>
-    </div>
-
-    <!-- Bento grid asimétrico -->
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <!-- Reclamo HOY (ancha) -->
-        <div class="bento md:col-span-4 reveal">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-bullhorn text-sm"></i>
-                </div>
-                <h3 class="display-3">Reclamo HOY</h3>
-            </div>
-            <p class="text-[1.05rem]" style="color:var(--muted); line-height:1.6">
-                Vecino llama <span style="color:var(--ink-soft)">→</span> anotan en cuaderno
-                <span style="color:var(--ink-soft)">→</span> se pierde
-                <span style="color:var(--ink-soft)">→</span> vuelve a llamar
-                <span style="color:var(--ink-soft)">→</span> nadie sabe nada
-                <span style="color:var(--ink-soft)">→</span> frustración.
-            </p>
-        </div>
-
-        <!-- Métrica 1 -->
-        <div class="bento bento--warm md:col-span-2 reveal">
-            <div class="eyebrow mb-3">Reclamos perdidos</div>
-            <div class="metric-num">30–40<span style="font-size:0.5em">%</span></div>
-            <p class="mt-2 text-sm" style="color:var(--muted)">se pierden sin sistema</p>
-        </div>
-
-        <!-- Métrica 2 -->
-        <div class="bento bento--warm md:col-span-2 reveal">
-            <div class="eyebrow mb-3">Tiempo de respuesta</div>
-            <div class="metric-num">2–4 <span style="font-size:0.4em; color:var(--muted)">sem.</span></div>
-            <p class="mt-2 text-sm" style="color:var(--muted)">promedio sin sistema</p>
-        </div>
-
-        <!-- Trámite HOY (ancha) -->
-        <div class="bento md:col-span-4 reveal">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-file-alt text-sm"></i>
-                </div>
-                <h3 class="display-3">Trámite HOY</h3>
-            </div>
-            <p class="text-[1.05rem]" style="color:var(--muted); line-height:1.6">
-                Vecino va al municipio <span style="color:var(--ink-soft)">→</span> hace cola
-                <span style="color:var(--ink-soft)">→</span> falta un papel
-                <span style="color:var(--ink-soft)">→</span> vuelve otro día
-                <span style="color:var(--ink-soft)">→</span> más cola
-                <span style="color:var(--ink-soft)">→</span> semanas de espera.
-            </p>
-        </div>
-    </div>
-
-    <!-- Tabla comparativa minimal -->
-    <div class="mt-16 bento p-0 overflow-hidden reveal">
-        <div class="p-6 md:p-8 border-b" style="border-color:var(--line)">
-            <h3 class="display-3">Consecuencias medibles</h3>
-            <p class="mt-2 text-sm" style="color:var(--muted)">Antes y después de digitalizar la gestión municipal.</p>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="table-stack cmp-table w-full text-sm md:text-[0.95rem]">
-                <thead style="background:var(--paper-warm)">
-                    <tr style="color:var(--muted)">
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">Aspecto</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">Sin sistema</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium" style="color:var(--ink)">Con Munify</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Tiempo de respuesta</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">2–4 semanas</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">2–3 días</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Reclamos perdidos</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">30–40%</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">0%</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Comunicación</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Llamadas repetidas</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Notificaciones automáticas</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Asignación</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Manual, demoras de días</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Automática en segundos</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Evidencia</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Sin registro fotográfico</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Fotos antes/después + GPS</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Satisfacción del vecino</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">40–50%</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">85–90%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
 
 <div class="divider"></div>
 
 <!-- ============================================ SOLUCIÓN ============================================ -->
-<section id="solucion" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-10 reveal">
-        <div class="flex items-center gap-2 mb-4">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <div class="eyebrow" style="color:var(--accent)">02 · La solución</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            Tres pilares para una<br>
-            <em class="text-accent" style="font-style:normal">gestión moderna</em>.
-        </h2>
-        <p class="mt-4 text-lg" style="color:var(--muted)">
-            Un sistema único que conecta vecinos, empleados y supervisores en tiempo real.
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-bolt"></i>
-            </div>
-            <div class="eyebrow mb-2">Pilar 1</div>
-            <h3 class="display-3 mb-3">Interacción en tiempo real</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                El vecino reporta desde su celular con foto y ubicación GPS. El sistema
-                clasifica con IA y asigna automáticamente al área correcta.
-            </p>
-        </div>
-        <div class="bento bento--warm reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-route"></i>
-            </div>
-            <div class="eyebrow mb-2">Pilar 2</div>
-            <h3 class="display-3 mb-3">Gestión y seguimiento</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Cada reclamo y trámite tiene estado, responsable y línea de tiempo. El
-                supervisor ve el panorama completo y toma decisiones con datos reales.
-            </p>
-        </div>
-        <div class="bento bento--ink reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-check-double"></i>
-            </div>
-            <div class="eyebrow mb-2" style="color:#a39a85">Pilar 3</div>
-            <h3 class="display-3 mb-3" style="color:#f5f0e6">Sin burocracia</h3>
-            <p class="text-[0.95rem]" style="color:#a39a85; line-height:1.6">
-                Trámites 100% online sin presentar papeles. Notificaciones automáticas en cada
-                paso. El vecino sabe siempre qué falta y cuánto queda.
-            </p>
-        </div>
-    </div>
-
-    <!-- Diferenciales técnicos del sistema -->
-    <div class="mt-16 mb-6 reveal">
-        <h3 class="display-3 mb-3" style="color:var(--ink)">Lo que hace diferente al sistema de gestión municipal de Munify</h3>
-        <p class="text-[1rem]" style="color:var(--muted); line-height:1.6">
-            Construimos Munify desde cero pensando en cómo funciona un municipio argentino real.
-            Estas son las decisiones técnicas que nos distinguen de los sistemas enlatados y de
-            los CRMs adaptados a las apuradas para gobierno.
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-building"></i>
-            </div>
-            <h4 class="text-lg font-bold mb-2" style="color:var(--ink)">Multi-tenant real</h4>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Un solo sistema sirve a múltiples municipios. Cada uno tiene sus datos
-                totalmente aislados, sus colores, su logo y sus categorías de reclamo.
-                Merlo no ve los datos de Tigre, ni viceversa.
-            </p>
-        </div>
-        <div class="bento bento--warm reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h4 class="text-lg font-bold mb-2" style="color:var(--ink)">Multiplataforma de verdad</h4>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Web, PWA instalable desde el navegador, app nativa iOS y Android, bot de
-                WhatsApp y panel responsive 100%. El vecino elige cómo comunicarse, sin
-                obligarlo a pasar por Google Play.
-            </p>
-        </div>
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-robot"></i>
-            </div>
-            <h4 class="text-lg font-bold mb-2" style="color:var(--ink)">Inteligencia artificial</h4>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                IA que clasifica reclamos por categoría y zona, asigna automáticamente a la
-                cuadrilla correcta, detecta duplicados, predice zonas conflictivas y atiende
-                consultas 24/7 a través de un chatbot integrado.
-            </p>
-        </div>
-        <div class="bento bento--warm reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-bolt"></i>
-            </div>
-            <h4 class="text-lg font-bold mb-2" style="color:var(--ink)">Tiempo real</h4>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Notificaciones push instantáneas, tracking GPS de las cuadrillas, dashboards
-                que se actualizan en vivo y sincronización inmediata entre la app del vecino
-                y el panel del municipio. Sin demoras, sin recargas.
-            </p>
-        </div>
-    </div>
-</section>
 
 <!-- ============================================ ACTORES ============================================ -->
-<section id="actores" class="section-band band--warm py-16 md:py-24">
-  <div class="container">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="flex items-center gap-2 mb-4">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <div class="eyebrow" style="color:var(--accent)">03 · Los actores</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">Una sola plataforma,<br><em class="text-accent" style="font-style:normal">tres perspectivas</em>.</h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">
-            Munify conecta a los tres actores del ciclo de gestión municipal: el vecino que reporta
-            o inicia el trámite, el empleado que ejecuta en terreno y el supervisor o intendente
-            que mide los resultados. Cada uno trabaja con la interfaz que necesita —app móvil,
-            panel web o dashboard de control— pero todos ven la misma información en tiempo real.
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Ciudadano -->
-        <div class="bento reveal">
-            <div class="flex items-center justify-between mb-6">
-                <div class="tag tag--accent">
-                    <i class="fas fa-user"></i> Ciudadano
-                </div>
-                <span class="text-xs" style="color:var(--muted-soft)">App móvil</span>
-            </div>
-            <h3 class="display-3 mb-4">Reporta y consulta</h3>
-            <ul class="space-y-3 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Reporta reclamos con foto y GPS</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Inicia trámites online sin ir al municipio</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Sigue el estado en tiempo real</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Recibe notificaciones automáticas</li>
-            </ul>
-        </div>
-
-        <!-- Empleado -->
-        <div class="bento bento--warm reveal">
-            <div class="flex items-center justify-between mb-6">
-                <div class="tag">
-                    <i class="fas fa-hard-hat"></i> Empleado
-                </div>
-                <span class="text-xs" style="color:var(--muted-soft)">Panel web</span>
-            </div>
-            <h3 class="display-3 mb-4">Resuelve en terreno</h3>
-            <ul class="space-y-3 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Recibe tareas asignadas automáticamente</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Ve la ubicación exacta en mapa</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Sube fotos de antes y después</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--good)"></i> Cierra reclamos desde el móvil</li>
-            </ul>
-        </div>
-
-        <!-- Supervisor -->
-        <div class="bento bento--ink reveal">
-            <div class="flex items-center justify-between mb-6">
-                <div class="tag" style="background:#3a342c; color:#f5f0e6; border-color:#4a4238">
-                    <i class="fas fa-chart-line"></i> Supervisor
-                </div>
-                <span class="text-xs" style="color:#7a715e">Dashboard</span>
-            </div>
-            <h3 class="display-3 mb-4" style="color:#f5f0e6">Decide con datos</h3>
-            <ul class="space-y-3 text-[0.95rem]" style="color:#a39a85; line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:#3955a8"></i> Ve estadísticas en tiempo real</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:#3955a8"></i> Identifica zonas críticas en mapa</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:#3955a8"></i> Mide tiempos y productividad</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:#3955a8"></i> Exporta reportes oficiales</li>
-            </ul>
-        </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================ COMPARACIÓN ============================================ -->
-<section id="comparacion" class="section-band band--deep py-16 md:py-24">
-  <div class="container">
-    <div class="max-w-3xl mb-10 reveal">
-        <div class="flex items-center gap-2 mb-4">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <div class="eyebrow" style="color:var(--accent)">04 · Antes y después</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">El cambio se nota.</h2>
-        <p class="mt-4 text-lg" style="color:var(--muted)">La diferencia entre gestionar con papeles y gestionar con Munify.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Antes -->
-        <div class="bento reveal" style="padding:0; overflow:hidden">
-            <div class="bento__media" style="aspect-ratio:16/9; position:relative; overflow:hidden">
-                <img src="images/workers-checking-the-overall-equipment-effectiveness.jpg" alt="Gestión tradicional con papeles" style="width:100%; height:100%; object-fit:cover; filter:grayscale(0.4) brightness(0.9)">
-                <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(42,38,32,0.55))"></div>
-                <div style="position:absolute; left:1.25rem; bottom:1.25rem; right:1.25rem; color:#f5f0e6">
-                    <div class="text-xs uppercase tracking-widest mb-1" style="opacity:0.8">Antes</div>
-                    <div class="text-lg font-display">Pilas de papeles, carpetas perdidas</div>
-                </div>
-            </div>
-            <div style="padding:clamp(1.25rem, 2.5vw, 2.25rem)">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-2 h-8 rounded-full" style="background:var(--muted-soft)"></div>
-                <div>
-                    <div class="eyebrow">Antes</div>
-                    <div class="display-3" style="color:var(--muted)">Sistema tradicional</div>
-                </div>
-            </div>
-            <ul class="space-y-4 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> Reclamos anotados en cuadernos que se pierden</li>
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> El vecino llama y nadie sabe nada</li>
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> Trámites con colas presenciales</li>
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> Sin foto ni evidencia documentada</li>
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> Reportes hechos a mano cada mes</li>
-                <li class="flex gap-3"><i class="fas fa-times mt-1" style="color:var(--bad)"></i> Decisiones por intuición, no por datos</li>
-            </ul>
-            <div class="mt-8 pt-6 border-t flex gap-8" style="border-color:var(--line)">
-                <div>
-                    <div class="metric-num" style="color:var(--muted)">2–4<span style="font-size:0.4em"> sem.</span></div>
-                    <div class="text-xs mt-1" style="color:var(--muted-soft)">Respuesta promedio</div>
-                </div>
-                <div>
-                    <div class="metric-num" style="color:var(--muted)">40<span style="font-size:0.4em">%</span></div>
-                    <div class="text-xs mt-1" style="color:var(--muted-soft)">Satisfacción</div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <!-- Después -->
-        <div class="bento bento--ink reveal" style="padding:0; overflow:hidden">
-            <div class="bento__media" style="aspect-ratio:16/9; position:relative; overflow:hidden">
-                <img src="images/assets-landing-trabajador-tablet.jpg" alt="Gestión digital con Munify" style="width:100%; height:100%; object-fit:cover">
-                <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 30%, rgba(31,28,23,0.65))"></div>
-                <div style="position:absolute; left:1.25rem; bottom:1.25rem; right:1.25rem; color:#f5f0e6">
-                    <div class="text-xs uppercase tracking-widest mb-1" style="color:#3955a8">Después</div>
-                    <div class="text-lg font-display">Todo digital, todo en tiempo real</div>
-                </div>
-            </div>
-            <div style="padding:clamp(1.25rem, 2.5vw, 2.25rem)">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-2 h-8 rounded-full" style="background:#3955a8"></div>
-                <div>
-                    <div class="eyebrow" style="color:#a39a85">Después</div>
-                    <div class="display-3" style="color:#f5f0e6">Con Munify</div>
-                </div>
-            </div>
-            <ul class="space-y-4 text-[0.95rem]" style="color:#c9c0a8; line-height:1.5">
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Todo reclamo queda registrado con foto y GPS</li>
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Notificaciones automáticas en cada paso</li>
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Trámites 100% online desde el celular</li>
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Evidencia antes/después documentada</li>
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Dashboards en tiempo real</li>
-                <li class="flex gap-3"><i class="fas fa-check mt-1" style="color:#3955a8"></i> Decisiones con datos reales</li>
-            </ul>
-            <div class="mt-8 pt-6 border-t flex gap-8" style="border-color:#3a342c">
-                <div>
-                    <div class="metric-num" style="color:#f5f0e6">2–3<span style="font-size:0.4em; color:#a39a85"> días</span></div>
-                    <div class="text-xs mt-1" style="color:#a39a85">Respuesta promedio</div>
-                </div>
-                <div>
-                    <div class="metric-num" style="color:#f5f0e6">88<span style="font-size:0.4em">%</span></div>
-                    <div class="text-xs mt-1" style="color:#a39a85">Satisfacción</div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================ POR QUÉ DIGITALIZAR ============================================ -->
-<section id="por-que-digitalizar" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="flex items-center gap-2 mb-4">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <div class="eyebrow" style="color:var(--accent)">Por qué elegir Munify</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            Beneficios concretos para tu <em class="text-accent" style="font-style:normal">municipio</em>.
-        </h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">
-            Munify no es solo un software de gestión municipal: es un cambio de cultura en cómo
-            tu intendencia se relaciona con los vecinos. Estos son los seis beneficios medibles
-            que aparecen en los primeros tres meses de uso.
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-sitemap"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:var(--ink)">Organización total</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Todo en un solo lugar. Sin papeles perdidos, sin archivos dispersos por
-                computadoras distintas, sin información duplicada. Cada reclamo y cada
-                trámite tiene su lugar, su responsable y su historial completo.
-            </p>
-        </div>
-        <div class="bento bento--warm reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-cut"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:var(--ink)">Menos burocracia</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Procesos simplificados. El vecino no necesita ir tres veces al municipio para
-                un mismo trámite. El empleado no completa el mismo formulario cinco veces. La
-                IA elimina pasos repetitivos y libera tiempo para lo importante.
-            </p>
-        </div>
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-spell-check"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:var(--ink)">Menos errores</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Validaciones automáticas, detección de reclamos duplicados con inteligencia
-                artificial y trazabilidad completa de cada gestión. No más "se perdió el
-                expediente" o "el papel quedó en otra oficina".
-            </p>
-        </div>
-        <div class="bento bento--warm reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-headset"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:var(--ink)">Mejor atención al vecino</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Respuestas más rápidas, seguimiento transparente y comunicación proactiva. El
-                vecino sabe en todo momento qué pasa con su pedido, quién lo está atendiendo y
-                cuánto falta para resolverlo.
-            </p>
-        </div>
-        <div class="bento reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-chart-pie"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:var(--ink)">Datos para decidir</h3>
-            <p class="text-sm" style="color:var(--muted); line-height:1.55">
-                Dashboards con información real: qué barrios reclaman más, qué categorías
-                demoran, dónde poner recursos y qué cuadrilla rinde mejor. Decisiones de
-                gestión basadas en datos, no en suposiciones ni en favores políticos.
-            </p>
-        </div>
-        <div class="bento bento--ink reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fab fa-whatsapp"></i>
-            </div>
-            <h3 class="text-lg font-bold mb-2" style="color:#f5f0e6">Canal directo</h3>
-            <p class="text-sm" style="color:#a39a85; line-height:1.55">
-                WhatsApp, app móvil, web y bot conversacional. El vecino elige cómo
-                comunicarse. Sin intermediarios, sin esperas telefónicas eternas, sin
-                "vuelva mañana" ni "venga con un papel más".
-            </p>
-        </div>
-    </div>
-
-    <!-- Cita destacada -->
-    <div class="mt-12 bento bento--ink reveal">
-        <i class="fas fa-quote-left text-2xl mb-4" style="color:#7a715e"></i>
-        <p class="text-lg md:text-xl mb-3" style="color:#f5f0e6; line-height:1.55">
-            "Munify no agrega burocracia, la elimina. Automatiza lo repetitivo, ordena lo
-            caótico y transforma el trabajo diario del equipo municipal en información útil
-            para gobernar y en respuestas concretas para los vecinos — algo que se valora
-            mucho en los tiempos que corren."
-        </p>
-        <p class="text-sm" style="color:#a39a85">Reportes detallados, métricas en tiempo real y herramientas que potencian la gestión pública.</p>
-    </div>
-</section>
 
 <div class="divider"></div>
 
 <!-- ============================================ COMPARATIVA MUNIFY vs ALTERNATIVAS ============================================ -->
-<section id="comparativa" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-10 reveal">
-        <div class="eyebrow mb-4">¿Qué alternativas hay?</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            Munify vs. las alternativas habituales del mercado.
-        </h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">
-            La mayoría de los municipios argentinos resuelven sus reclamos y trámites con
-            alguna de cuatro opciones: papel, Excel, un CRM genérico tipo HubSpot o Salesforce,
-            o un sistema enlatado para gobierno. Esto es lo que Munify hace distinto.
-        </p>
-    </div>
-
-    <div class="bento p-0 overflow-hidden reveal">
-        <div class="overflow-x-auto">
-            <table class="table-stack cmp-table w-full text-sm md:text-[0.95rem]">
-                <thead style="background:var(--paper-warm)">
-                    <tr style="color:var(--muted)">
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">Característica</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">Papel / Excel</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">CRM genérico</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium">Enlatado gobierno</th>
-                        <th class="text-left px-5 md:px-8 py-4 font-medium" style="color:var(--ink)">Munify</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Diseñado para municipios argentinos</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">—</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">A veces</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Sí</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">App móvil para vecinos</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Limitada</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">iOS + Android + PWA</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">IA para clasificar reclamos</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Solo con add-ons caros</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Casi nunca</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Incluida</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Tesorería municipal integrada</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Excel aparte</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Sistema aparte</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Sí, mismo sistema</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Integración WhatsApp</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">No</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Costo extra</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Casi nunca</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Bot nativo</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Costo por habitante</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Bajo, pero caro en horas</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Caro (USD)</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Muy caro</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">Pesos AR, plan por tamaño</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Prueba gratuita</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">—</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">14 días</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Casi nunca</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">3 meses</td>
-                    </tr>
-                    <tr style="border-top:1px solid var(--line-soft); background:var(--paper-warm)">
-                        <td class="px-5 md:px-8 py-4 font-medium">Tiempo de implementación</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">Inmediato (pero malo)</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">2–6 meses de adaptación</td>
-                        <td class="px-5 md:px-8 py-4" style="color:var(--muted)">6–12 meses</td>
-                        <td class="px-5 md:px-8 py-4 font-medium">1–2 semanas</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <p class="mt-8 text-sm reveal" style="color:var(--muted); line-height:1.6">
-        La diferencia clave: Munify se construyó desde cero para resolver el problema específico
-        del municipio argentino —reclamos por bache, luminaria, residuos, agua, baches,
-        animales sueltos, ruidos molestos, contenedores; trámites de habilitaciones,
-        inscripciones de monotributo municipal, libre deuda, certificados; tesorería con
-        FOFINDE, FODEMEP, FOMEP, coparticipación— en vez de adaptar un CRM pensado para
-        vender productos o un enlatado pensado para Estados grandes.
-    </p>
-</section>
 
 <div class="divider"></div>
 
 <!-- ============================================ MÓDULOS ============================================ -->
-<section id="modulos" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="eyebrow mb-4">05 · Módulos</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">Todo lo que el municipio necesita</h2>
-    </div>
-
-    <!-- Bento asimétrico de módulos -->
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <!-- Reclamos (hero módulo) -->
-        <div id="reporta-reclamo" class="bento md:col-span-4 reveal">
-            <div class="flex items-start justify-between mb-8">
-                <div>
-                    <div class="eyebrow mb-3" style="color:var(--accent)">Reclamos vecinales</div>
-                    <h3 class="display-2 font-display" style="color:var(--ink)">Reportá y resolvé</h3>
-                </div>
-                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-            </div>
-            <p class="text-[1.05rem] mb-8" style="color:var(--muted); line-height:1.55">
-                El vecino reporta desde la app con foto y ubicación. El sistema clasifica con IA,
-                asigna al área correcta y notifica a todos los involucrados en cada paso.
-            </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="p-4 rounded-2xl" style="background:var(--paper-warm)">
-                    <div class="text-xs mb-1" style="color:var(--muted)">01</div>
-                    <div class="text-sm font-medium">Reporte con foto</div>
-                </div>
-                <div class="p-4 rounded-2xl" style="background:var(--paper-warm)">
-                    <div class="text-xs mb-1" style="color:var(--muted)">02</div>
-                    <div class="text-sm font-medium">Clasificación IA</div>
-                </div>
-                <div class="p-4 rounded-2xl" style="background:var(--paper-warm)">
-                    <div class="text-xs mb-1" style="color:var(--muted)">03</div>
-                    <div class="text-sm font-medium">Asignación automática</div>
-                </div>
-                <div class="p-4 rounded-2xl" style="background:var(--paper-warm)">
-                    <div class="text-xs mb-1" style="color:var(--muted)">04</div>
-                    <div class="text-sm font-medium">Resolución + evidencia</div>
-                </div>
-            </div>
-            <a href="/reclamos-vecinales" class="inline-flex items-center gap-2 mt-8 text-sm font-medium" style="color:var(--accent)">
-                Conocé el módulo de reclamos
-                <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-        </div>
-
-        <!-- Trámites -->
-        <div id="inicia-tramite" class="bento bento--warm md:col-span-2 reveal">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-file-signature"></i>
-            </div>
-            <div class="eyebrow mb-2">Módulo</div>
-            <h3 class="display-3 mb-3">Trámites online</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Habilitaciones, permisos y certificados 100% digitales. Sin colas, sin papeles,
-                con notificaciones automáticas y firma digital.
-            </p>
-            <a href="/tramites-municipales" class="inline-flex items-center gap-2 mt-6 text-sm font-medium" style="color:var(--ink)">
-                Ver trámites
-                <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-        </div>
-
-        <!-- Stats / chat IA -->
-        <div class="bento md:col-span-6 reveal">
-            <div class="flex items-start gap-6 flex-wrap">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-comment-dots"></i>
-                </div>
-                <div class="flex-1 min-w-0 md:min-w-[20rem]">
-                    <h3 class="display-3 mb-3">Chat IA para vecinos</h3>
-                    <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                        Un asistente conversacional 24/7 entrenado con la información del municipio.
-                        Responde dudas sobre horarios, requisitos y trámites, y deriva al área correcta
-                        cuando hace falta.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ============================================ TESORERÍA (NUEVO módulo) ============================================ -->
-<section id="tesoreria" class="section-band band--warm">
-  <div class="container">
-    <div class="max-w-3xl mb-10 reveal">
-        <div class="flex items-center gap-3 mb-4 flex-wrap">
-            <span class="accent-bar accent-bar--gradient" style="width:3px; height:24px"></span>
-            <span class="tag tag--new">NUEVO</span>
-            <div class="eyebrow" style="color:var(--accent)">Módulo · Tesorería Municipal</div>
-        </div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            Tesorería Municipal,<br>
-            <em class="text-accent" style="font-style:normal">adiós al Excel</em>.
-        </h2>
-        <p class="mt-4 text-lg" style="color:var(--muted)">
-            Control de gastos, ingresos y proyectos del municipio en un solo lugar.
-        </p>
-    </div>
-
-    <!-- Hero del módulo: 2 columnas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div class="bento reveal">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-cash-register"></i>
-                </div>
-                <h3 class="display-3" style="color:var(--ink)">Adiós al Excel</h3>
-            </div>
-            <p class="text-[1rem] mb-5" style="color:var(--muted); line-height:1.6">
-                Cargá gastos, sueldos, honorarios y subsidios desde una pantalla simple. Importá
-                el Excel histórico del intendente y arrancá con todos los movimientos del año cargados.
-            </p>
-            <ul class="space-y-2.5 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Wizard guiado paso a paso para cargar gastos</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Imputación a varios proyectos (cemento 50% obra A / 50% obra B)</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Cuotas y préstamos automáticos</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Forma de pago (efectivo / transfer / cheque / VEP)</li>
-            </ul>
-        </div>
-
-        <div class="bento bento--cool reveal">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-chart-bar"></i>
-                </div>
-                <h3 class="display-3" style="color:var(--ink)">Resumen Mes a Mes</h3>
-            </div>
-            <p class="text-[1rem] mb-5" style="color:var(--muted); line-height:1.6">
-                Mirá tus gastos por <b style="color:var(--ink)">mes</b> o <b style="color:var(--ink)">año</b> con un click. Filtrá por
-                dependencia, tipo de concepto, contacto o caja. Total visible siempre. El
-                intendente sabe cuánto gastó en cada cosa, en segundos.
-            </p>
-            <ul class="space-y-2.5 text-[0.95rem]" style="color:var(--muted); line-height:1.5">
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Navegación mes a mes con flechas ← →</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Vista anual con drill-down a cada mes</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Total filtrado en tiempo real</li>
-                <li class="flex gap-2.5"><i class="fas fa-check text-xs mt-1.5" style="color:var(--accent)"></i> Exportá a Excel para el concejo</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Sub-features grid 6 -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bento reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-coins"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Cajas / Fondos</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">FOFINDE, FODEMEP, FOMEP, Coparticipación, Tesoro propio. Cada gasto sale de una caja específica con saldo, ingresos y egresos en tiempo real.</p>
-        </div>
-
-        <div class="bento bento--cool reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Agenda de Pagos</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">Programá sueldos y pagos recurrentes una vez. El sistema te avisa los próximos vencimientos y con un click se generan los gastos del mes.</p>
-        </div>
-
-        <div class="bento reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Proyectos / Obras</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">Agrupá gastos por obra ("Pavimentación Av. San Martín"). Visualizá el % de presupuesto consumido. Un mismo gasto puede imputarse a varios proyectos.</p>
-        </div>
-
-        <div class="bento bento--cool reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-tag"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Catálogo Editable</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">15 tipos de concepto y 300 conceptos pre-cargados (Sueldos, Honorarios, Materiales, etc). Cada muni personaliza el suyo desde Configuración.</p>
-        </div>
-
-        <div class="bento reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Contactos + Mapa</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">Empleados, proveedores, contratistas, profesionales. Geolocalizá la casa de cada vecino o asigná un paraje (Santa Rita, Los Álamos) con polígono dibujado en el mapa.</p>
-        </div>
-
-        <div class="bento bento--cool reveal">
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fas fa-file-import"></i>
-                </div>
-                <h4 class="text-lg font-semibold" style="color:var(--ink)">Importación Excel</h4>
-            </div>
-            <p class="text-[0.9rem]" style="color:var(--muted); line-height:1.55">Subí el Excel histórico del intendente (concejales, sueldos, profesionales) y el sistema los carga automáticamente con su clasificación correcta.</p>
-        </div>
-    </div>
-
-    <!-- CTA Tesorería -->
-    <div class="bento bento--ink mt-6 text-center reveal">
-        <h3 class="display-3 mb-3" style="color:#f5f0e6">Sumá Tesorería al plan de tu municipio</h3>
-        <p class="text-[1rem] mb-6 max-w-2xl mx-auto" style="color:#a39a85; line-height:1.55">
-            Módulo opcional. Activación inmediata. Migración del Excel sin costo extra.
-        </p>
-        <a href="https://app.munify.com.ar/demo" class="btn" style="background:#f5f0e6; color:var(--ink)">
-            Quiero ver una demo
-            <i class="fas fa-arrow-right text-xs"></i>
-        </a>
-    </div>
-  </div>
-</section>
 
 <div class="divider"></div>
 
@@ -1252,199 +498,10 @@
 <div class="divider"></div>
 
 <!-- ============================================ FAQ ============================================ -->
-<section id="faq" class="container py-16 md:py-24">
-    <div class="max-w-3xl mb-12 reveal">
-        <div class="eyebrow mb-4">Preguntas frecuentes</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">
-            Lo que más nos preguntan los <em class="text-accent" style="font-style:normal">intendentes</em>.
-        </h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">
-            Más de cien municipios argentinos ya nos consultaron por Munify. Estas son las
-            preguntas que se repiten. Si tenés una que no está acá, escribinos por WhatsApp.
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Qué es Munify exactamente?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Munify es un software integral de gestión municipal hecho en Argentina. Unifica
-                en una sola plataforma los reclamos vecinales online, los trámites municipales
-                digitales, la tesorería del municipio, la gestión de obras públicas y la
-                atención al ciudadano. Es un sistema GovTech especializado, no un CRM genérico.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Munify es un CRM municipal?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                No exactamente. Un CRM (Customer Relationship Management) está pensado para
-                empresas que venden productos o servicios. Munify es un sistema GovTech
-                construido específicamente para municipios: modela el ciclo de vida de un
-                reclamo en la vía pública, el flujo de un trámite municipal y la trazabilidad
-                que exige la gestión pública. Cubre las funciones que la gente busca cuando
-                pide un "CRM municipal", pero hace mucho más.
-            </p>
-        </div>
-
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿En qué se diferencia de otros sistemas como Munidigital?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Munify se diseñó como una plataforma abierta, multi-tenant y multiplataforma
-                (web + PWA + app + WhatsApp). Incluye IA nativa para clasificar y asignar
-                reclamos, módulo de tesorería integrado, prueba gratis de 3 meses, precios en
-                pesos argentinos por tamaño de municipio y se implementa en una o dos semanas,
-                no en seis meses. La diferencia principal es la velocidad de implementación y
-                que la app del vecino es 100% gratis y sin obligación de pasar por Google Play.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Para qué tamaño de municipio sirve?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Munify funciona para municipios de todos los tamaños: comunas chicas de menos
-                de cinco mil habitantes, municipios medianos de veinte mil a cien mil
-                habitantes y ciudades grandes con múltiples dependencias. Tenemos tres planes
-                de contratación adaptados según la cantidad de habitantes y la complejidad de
-                la gestión: Estándar, Express y Premium.
-            </p>
-        </div>
-
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Los vecinos pagan por usar la app?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                No. La aplicación de Munify es 100% gratuita para los vecinos del municipio.
-                Pueden descargarla desde Google Play, App Store o instalarla como PWA desde el
-                navegador. También pueden usar el bot de WhatsApp sin necesidad de instalar
-                nada. Reportan reclamos, inician trámites, hacen seguimiento de obras y
-                consultan información municipal sin pagar ningún costo.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Cuánto tarda la implementación?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                La implementación básica del sistema lleva entre una y dos semanas. Incluye
-                la configuración inicial, la carga de las categorías de reclamos y trámites
-                propias del municipio, la capacitación al personal administrativo y a las
-                cuadrillas, y la personalización con los colores y logo de la intendencia.
-                Para municipios grandes con integraciones a sistemas legacy puede extenderse
-                a cuatro o seis semanas.
-            </p>
-        </div>
-
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Hay prueba gratuita?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Sí, ofrecemos una prueba gratuita de 3 meses, sin compromiso y sin pedir
-                tarjeta de crédito. El municipio recibe el sistema completo, con todos los
-                módulos, capacitación incluida y soporte por WhatsApp para que el equipo
-                pueda evaluar Munify con datos reales antes de tomar una decisión de
-                contratación.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Munify reemplaza al sistema actual?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                En la mayoría de los casos sí: Munify reemplaza por completo los cuadernos de
-                guardia, las planillas de Excel de reclamos, los formularios de papel y los
-                grupos de WhatsApp dispersos. Para los municipios que ya tienen un sistema
-                contable o de gestión de personal, Munify se integra vía API y convive con
-                ellos, sin obligar a tirar todo y empezar de cero.
-            </p>
-        </div>
-
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Cuánto cuesta Munify?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Los planes se cotizan en pesos argentinos según el tamaño del municipio. Hay
-                tres planes: Estándar (hasta 20.000 habitantes), Express (20.000 a 100.000
-                habitantes) y Premium (más de 100.000 habitantes). Todos los planes incluyen
-                3 meses de prueba gratis, no cobran por vecino registrado y no exigen
-                permanencia. Para cotización pasa por la página de Precios o escribinos por
-                WhatsApp.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Funciona sin internet en la cuadrilla?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Sí. La app de empleados de Munify funciona con modo offline: la cuadrilla
-                puede cargar evidencia, sacar fotos y marcar tareas resueltas sin conexión, y
-                cuando recupera señal se sincroniza automáticamente con el panel del
-                municipio. Esto es clave para localidades rurales y para zonas con cobertura
-                de telefonía móvil intermitente.
-            </p>
-        </div>
-
-        <div class="bento reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Qué tipo de reclamos cubre?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Munify cubre todas las categorías típicas de la gestión municipal argentina:
-                bacheo y reparación de calles, alumbrado público, recolección de residuos,
-                contenedores desbordados, baches, agua y cloacas, semáforos y señalización
-                vial, arbolado y espacios verdes, animales sueltos, ruidos molestos y
-                convivencia, obras públicas, transporte, defensa civil. Las categorías se
-                personalizan según las dependencias de cada municipio.
-            </p>
-        </div>
-
-        <div class="bento bento--warm reveal">
-            <h3 class="text-lg font-bold mb-3" style="color:var(--ink)">¿Es seguro almacenar los datos en Munify?</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
-                Sí. Munify cumple con la Ley argentina de Protección de Datos Personales
-                (25.326). Los datos de cada municipio están aislados (arquitectura
-                multi-tenant), se almacenan cifrados en servidores hosteados en infraestructura
-                de proveedores cloud reconocidos, hay backups diarios automáticos y el
-                municipio sigue siendo propietario de toda su información. Se puede exportar
-                en cualquier momento.
-            </p>
-        </div>
-    </div>
-</section>
 
 <div class="divider"></div>
 
 <!-- ============================================ CONTACTO ============================================ -->
-<section id="contacto" class="container py-16 md:py-24">
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div class="bento bento--ink md:col-span-4 reveal">
-            <div class="eyebrow mb-4" style="color:#a39a85">07 · Hablemos</div>
-            <h2 class="display-2 font-display mb-6" style="color:#f5f0e6">¿Listo para modernizar tu municipio?</h2>
-            <p class="text-[1.05rem] mb-10 max-w-xl" style="color:#a39a85; line-height:1.55">
-                Conversemos sobre cómo Munify puede ayudar a tu intendencia. Pedinos una demo
-                gratuita sin compromiso y te mostramos el sistema funcionando con datos reales.
-            </p>
-            <div class="flex flex-wrap gap-3">
-                <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20una%20demo%20de%20Munify" class="btn" style="background:#f5f0e6; color:var(--ink)">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="/contacto" class="btn" style="background:transparent; color:#f5f0e6; border:1px solid #4a4238">
-                    Formulario de contacto
-                </a>
-            </div>
-        </div>
-
-        <div class="bento md:col-span-2 reveal">
-            <div class="eyebrow mb-4">Contacto directo</div>
-            <div class="space-y-5">
-                <div>
-                    <div class="text-xs mb-1" style="color:var(--muted-soft)">WhatsApp ventas</div>
-                    <a href="https://wa.me/5491160526449" class="text-base font-medium hover:underline">+54 9 11 6052 6449</a>
-                </div>
-                <div>
-                    <div class="text-xs mb-1" style="color:var(--muted-soft)">Email</div>
-                    <a href="mailto:info@munify.com.ar" class="text-base font-medium hover:underline">info@munify.com.ar</a>
-                </div>
-                <div>
-                    <div class="text-xs mb-1" style="color:var(--muted-soft)">Demo en vivo</div>
-                    <a href="https://app.munify.com.ar/demo" class="text-base font-medium hover:underline">app.munify.com.ar/demo</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 </main>
 

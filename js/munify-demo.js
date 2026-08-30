@@ -29,13 +29,17 @@
      no hay que acordarse de cambiar una constante al promover, que es
      exactamente el tipo de cosa que se olvida y termina creando demos de
      prueba en la base productiva. */
-  var EN_PROD = /(^|\.)munify\.com\.ar$/.test(location.hostname);
+  /* BUG que costo caro: el regex era /(^|\.)munify\.com\.ar$/ y "qa.munify.com.ar"
+     TERMINA en ".munify.com.ar", asi que matcheaba y la landing de QA hablaba con
+     el backend de PRODUCCION — cada demo de prueba se creaba en la base real.
+     Produccion son dos hostnames y nada mas; se listan. */
+  var EN_PROD = ['munify.com.ar', 'www.munify.com.ar'].indexOf(location.hostname) !== -1;
   var API = EN_PROD
     ? 'https://munify-api-1060106389361.us-east4.run.app/api'
     : 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
   var APP = EN_PROD
     ? 'https://app.munify.com.ar'
-    : 'https://app-qa.munify.com.ar';
+    : 'https://qa-app.munify.com.ar';
 
   var PAISES = [
     { c: 'AR', n: 'Argentina' }, { c: 'PY', n: 'Paraguay' }, { c: 'UY', n: 'Uruguay' },

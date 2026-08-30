@@ -288,6 +288,65 @@
     });
 
     cargarDemos();
+    precargarDesdeURL();
+  }
+
+  /* ---------- Llegada desde el directorio de llamados ----------
+     /demo?m=Chivilcoy&pais=AR&origen=llamados
+
+     Quien vende no tiene que tipear el municipio delante del cliente: llega
+     con el nombre puesto, la busqueda ya hecha y el boton habilitado. Lo unico
+     que le queda es apretar "Probar ahora" — que es el momento que el cliente
+     tiene que ver, no la parte de escribir.
+
+     A proposito NO se crea sola: el acto de crearla es la demostracion. Si la
+     pantalla llegara con la demo ya hecha, se pierde lo unico que impresiona,
+     que es verla aparecer. */
+  function precargarDesdeURL() {
+    var p = new URLSearchParams(location.search);
+    var muni = (p.get('m') || p.get('municipio') || '').trim();
+    if (!muni) return;
+    var pais = (p.get('pais') || 'AR').toUpperCase();
+
+    var aplicar = function () {
+      if ([].slice.call(selPais.options).some(function (o) { return o.value === pais && !o.disabled; })) {
+        selPais.value = pais;
+      }
+      inpMuni.value = muni;
+      cargarProvincias(selPais.value).then(function () {
+        var url = modoLegacy
+          ? API + '/municipios/argentina?q=' + encodeURIComponent(muni)
+          : API + '/municipios/catalogo?q=' + encodeURIComponent(muni) + '&pais=' + selPais.value;
+        traer(url).then(function (rs) {
+          /* Con una sola coincidencia se elige sola: es el caso normal viniendo
+             del directorio, donde el municipio ya esta identificado. Con varias
+             (hay 6 'San Martin' en el pais) se muestran para que elija la
+             persona: adivinar el municipio equivocado delante del cliente es
+             peor que un click de mas. */
+          var exacta = rs.filter(function (x) {
+            return x.nombre.toLowerCase() === muni.toLowerCase();
+          });
+          if (exacta.length === 1) {
+            elegido = exacta[0];
+            inpMuni.value = exacta[0].nombre;
+            btn.disabled = false;
+            mostrar('work', 'Listo para crear la demo de <b>' + exacta[0].nombre + '</b>. Cuando quieras, tocá “Probar ahora”.');
+          } else if (rs.length) {
+            pintarSugerencias(rs);
+          }
+        }).catch(function () {});
+      });
+    };
+
+    /* El combo de paises se llena tras sondear el catalogo: si todavia no
+       esta, se espera a que aparezca en vez de escribir sobre un select vacio. */
+    if (selPais.options.length) aplicar();
+    else {
+      var esperas = 0;
+      var t = setInterval(function () {
+        if (selPais.options.length || ++esperas > 40) { clearInterval(t); aplicar(); }
+      }, 150);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);

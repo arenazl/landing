@@ -1275,10 +1275,26 @@ body.pagina-demo .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
    hacía zoom, y con el dedo se podía mover de costado.
    ============================================================ */
 
-/* FIX 1c — cero movimiento horizontal */
-html, body {
+/* FIX 1c — cero movimiento horizontal, SIN romper el vertical
+
+   OJO, esto costó caro: `overflow-x:hidden` en el <html> ROMPE EL SCROLL
+   VERTICAL en Safari de iOS. Es un bug viejo de WebKit — cuando html tiene
+   overflow-x, deja de propagar el scroll al viewport — y Chromium NO lo
+   reproduce, así que las pruebas daban verde mientras en el teléfono real la
+   página no se movía. Si alguien vuelve a ponerlo en html, rompe el sitio
+   entero en iPhone y no se va a ver en ningún test de escritorio.
+
+   El recorte horizontal va SOLO en el body, que alcanza y es seguro. Y el
+   overscroll-behavior queda en `contain` (frena el rubber-band del scroll
+   encadenado) en vez de `none`, que en iOS puede bloquear el gesto. */
+html {
+  width: 100%;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;   /* iOS no reescala el texto al rotar */
+}
+body {
   overflow-x: hidden;
-  overscroll-behavior: none;   /* corta el rubber-band y el pull-to-refresh */
+  overscroll-behavior-y: contain;
   width: 100%;
   max-width: 100%;
 }

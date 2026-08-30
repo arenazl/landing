@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Munify">
     <title>Software de Gestión Municipal Integral para Argentina | Munify</title>
 
     <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
@@ -80,6 +83,9 @@
 
 <header id="topbar" class="topbar">
     <div class="tb2">
+        <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
+                <i class="fas fa-bars" style="color:var(--ink)"></i>
+            </button>
         <a href="/" class="tb2__brand">
             <img src="images/munify-logo-color.svg" alt="Munify">
             <span>Munify</span>
@@ -105,9 +111,6 @@
                 Generá tu municipio
                 <i class="fas fa-arrow-right text-xs"></i>
             </a>
-            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
-                <i class="fas fa-bars" style="color:var(--ink)"></i>
-            </button>
         </div>
     </div>
 </header>

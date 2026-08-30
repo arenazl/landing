@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Munify">
     <title>Contacto | Munify - Software de Gestión Municipal para Argentina</title>
 
     <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
@@ -83,6 +86,9 @@
 
 <header id="topbar" class="topbar">
     <div class="tb2">
+        <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
+                <i class="fas fa-bars" style="color:var(--ink)"></i>
+            </button>
         <a href="/" class="tb2__brand">
             <img src="images/munify-logo-color.svg" alt="Munify">
             <span>Munify</span>
@@ -108,9 +114,6 @@
                 Generá tu municipio
                 <i class="fas fa-arrow-right text-xs"></i>
             </a>
-            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
-                <i class="fas fa-bars" style="color:var(--ink)"></i>
-            </button>
         </div>
     </div>
 </header>
@@ -214,8 +217,8 @@
 </section>
 
 <section class="cierre reveal">
-    <h2>Estamos a un mensaje de distancia</h2>
-    <p class="cierre__p">Demo, cotización o soporte: elegí el canal y te respondemos rápido.</p>
+    <h2>¿Arrancamos?</h2>
+    <p class="cierre__p">Escribinos por el canal que te quede cómodo. Respondemos en minutos en horario laboral.</p>
     <div class="cierre__cta">
         <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
         <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">WhatsApp · +54 9 11 6052 6449</a>

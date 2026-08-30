@@ -68,7 +68,16 @@ for (const p of PAGINAS) {
   igual('hreflang', 'hreflang distinto');
   igual('lang', 'atributo lang del <html>');
   igual('robots', 'meta robots');
-  igual('viewport', 'viewport');
+  /* viewport-fit=cover es una ADICION legitima (habilita las safe-area del
+     iPhone) y no cambia como indexa Google. Lo que SI seria un problema es
+     bloquear el zoom (user-scalable=no / maximum-scale) en un sitio publico:
+     Lighthouse lo marca como falla de accesibilidad. Se chequea eso. */
+  const sinZoom = /user-scalable\s*=\s*no|maximum-scale\s*=\s*1/.test(b.viewport);
+  if (sinZoom) fallas.push('el viewport BLOQUEA EL ZOOM: falla de accesibilidad en un sitio indexado');
+  const base = v => v.replace(/,?\s*viewport-fit=cover/, '').replace(/initial-scale=1\.0/, 'initial-scale=1').trim();
+  if (base(a.viewport) !== base(b.viewport)) fallas.push(`viewport distinto
+            master: ${a.viewport}
+            ahora : ${b.viewport}`);
 
   // Lo que no puede PERDERSE (cambiar el texto está bien; borrarlo no)
   if (a.title && !b.title) fallas.push('SE PERDIO el <title>');

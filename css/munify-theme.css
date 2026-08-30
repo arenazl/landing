@@ -1267,3 +1267,42 @@ body.pagina-demo .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
   .dmform { grid-template-columns: 1fr; }
   .dmform > * { grid-column: 1 / -1; }
 }
+
+/* ============================================================
+   15. VIEWPORT — estándar de base-compartida/11-FIX-VIEWPORT-PWA.md
+
+   No estaba aplicado y se notaba: al tocar un input la pantalla
+   hacía zoom, y con el dedo se podía mover de costado.
+   ============================================================ */
+
+/* FIX 1c — cero movimiento horizontal */
+html, body {
+  overflow-x: hidden;
+  overscroll-behavior: none;   /* corta el rubber-band y el pull-to-refresh */
+  width: 100%;
+  max-width: 100%;
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* FIX 1b — iOS hace auto-zoom si un input tiene menos de 16px al enfocarlo.
+   El formulario de la demo los tenía en 14 y 15px. */
+input, select, textarea { font-size: 16px; }
+.dmbox input, .dmsel { font-size: 16px; }
+
+/* FIX 2b — la barra de arriba del iPhone: el header se baja con la safe area,
+   nunca con un número fijo (varía por modelo: notch, Dynamic Island, sin notch) */
+:root { --safe-top: env(safe-area-inset-top, 0px); }
+.topbar { padding-top: max(var(--safe-top), 0px); }
+@media (max-width: 1024px) {
+  .hero2__body, .ih__body { padding-top: calc(104px + var(--safe-top)); }
+}
+
+/* URLs y tokens largos no empujan el layout */
+.pieCierre__links a, .dmchip__s, .telnov__d { overflow-wrap: anywhere; }
+
+/* ---- La hamburguesa va a la IZQUIERDA ----
+   Es donde está en la app (y en el mock del teléfono del propio prototipo:
+   ☰ primero, después el logo). Tenerla a la derecha en la landing y a la
+   izquierda en la app obliga al vecino a buscarla dos veces. */
+#mobileBtn { flex-shrink: 0; }
+@media (max-width: 1024px) { .tb2 { gap: 10px; } }

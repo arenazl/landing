@@ -80,3 +80,25 @@ Hero video + formulario/canales (WhatsApp +54 9 11 6052 6449, info@munify.com.ar
 ## Files
 - `pages/*.dc.html` — 16 páginas (8 dark + 8 light). El markup de referencia está dentro de `<x-dc>`; la lógica JS de carruseles/simulaciones en el `<script data-dc-script>` de cada archivo.
 - `assets/` — logo y fotos.
+
+
+---
+
+## Como abrir estos prototipos (doble clic)
+
+Los `.dc.html` referencian `assets/...` y `uploads/*.mp4` como si estuvieran en
+la raiz del paquete, pero viven en `pages/`. Y los videos NO vienen en el
+handoff (el README original avisa que pesan). Por eso, recien bajado, el
+prototipo abre sin logo y sin video — **no le falta ningun CSS**: los estilos
+son inline y el `<style>` del helmet, y las fuentes salen de Google Fonts.
+
+Antes de abrirlos, correr una vez:
+
+    sh _armar-prototipos.sh
+
+Copia `assets/` dentro de `pages/` y arma `pages/uploads/` mapeando los 7
+videos del prototipo a los reales de `landing/videos/`. Las dos carpetas estan
+gitignoreadas (son copias de archivos que ya estan en el repo).
+
+Verificado: pasa de 16 requests fallidos a 0 visibles, y el hero renderiza con
+video de fondo.

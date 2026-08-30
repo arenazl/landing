@@ -2,3 +2,9 @@
 # Verificacion local del restyle (no van al repo)
 _shots/
 _verificar_restyle.mjs
+
+# Prototipos del handoff: assets y videos se regeneran con
+# docs/design-sync/comercial-2026-08-30/_armar-prototipos.sh
+# (son copias de archivos que ya viven en el repo; no se duplican en git)
+docs/design-sync/*/pages/assets/
+docs/design-sync/*/pages/uploads/

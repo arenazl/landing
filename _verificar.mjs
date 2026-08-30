@@ -134,6 +134,11 @@ for (const [nombre, ruta] of lista) {
     }
 
     // --- Contraste real del texto de la topbar sobre lo que tiene detrás ---
+    /* Se scrollea para que la barra tome su fondo: transparente sobre el hero
+       no hay contraste que medir, y es el estado en el que un texto claro es
+       correcto. Lo que importa es que al scrollear siga legible. */
+    await p.evaluate(() => window.scrollTo(0, 400));
+    await p.waitForTimeout(500);
     const contraste = await p.evaluate(() => {
       const lum = (c) => { const [r, g, bb] = c.match(/\d+/g).map(Number).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }); return .2126 * r + .7152 * g + .0722 * bb; };
       const link = document.querySelector('.tb2__nav a'); if (!link) return null;
@@ -145,7 +150,9 @@ for (const [nombre, ruta] of lista) {
       const ratio = (Math.max(l1, l2) + .05) / (Math.min(l1, l2) + .05);
       return { ratio: +ratio.toFixed(2), color: getComputedStyle(link).color, detras };
     });
-    if (contraste && contraste.ratio < 3) mal(`links de la topbar ilegibles: contraste ${contraste.ratio}:1 (${contraste.color} sobre ${contraste.detras})`);
+    if (contraste && contraste.ratio < 3) mal(`links de la topbar ilegibles AL SCROLLEAR: contraste ${contraste.ratio}:1 (${contraste.color} sobre ${contraste.detras})`);
+    await p.evaluate(() => window.scrollTo(0, 0));
+    await p.waitForTimeout(400);
 
     // --- TEXTO INVISIBLE: color practicamente igual al fondo ---
     // Dos cosas que lo hacian dar falsas alarmas, ya resueltas:
@@ -176,6 +183,11 @@ for (const [nombre, ruta] of lista) {
       document.querySelectorAll('h1,h2,h3,p,span,a,div,button').forEach(el => {
         if (el.children.length) return;
         if (el.closest('.ih, .hero2, .bandavid')) return;   // encima de video + velo
+        /* La topbar sin scrollear es transparente y se apoya en el hero, que
+           es oscuro. Medir su texto contra el fondo del body da un contraste
+           que no existe. El estado que SI se puede medir es la barra
+           scrolleada, que tiene fondo propio — se chequea abajo. */
+        if (el.closest('.topbar:not(.scrolled)')) return;
         // Si el elemento o un ancestro pinta con GRADIENTE/imagen, el color de
         // fondo real no se puede leer con getComputedStyle: subir al ancestro
         // da el fondo de la seccion y se reporta como invisible algo que se ve

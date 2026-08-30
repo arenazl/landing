@@ -1306,3 +1306,100 @@ input, select, textarea { font-size: 16px; }
    izquierda en la app obliga al vecino a buscarla dos veces. */
 #mobileBtn { flex-shrink: 0; }
 @media (max-width: 1024px) { .tb2 { gap: 10px; } }
+
+/* ============================================================
+   16. LOGO POR TEMA, y el toggle sin borde
+
+   El logo trae el hexágono en blanco puro: sobre el fondo claro
+   del modo día desaparecía y quedaba el check flotando solo.
+   Se sirven las dos variantes y el tema elige — el <img> no se
+   puede recolorear por CSS.
+   ============================================================ */
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-dark { display: none; }
+:root[data-theme="light"] .logo-light { display: block; }
+
+/* Dentro del mock del teléfono la app SIEMPRE es oscura, tema aparte */
+.tel .logo-light { display: none !important; }
+.tel .logo-dark { display: block !important; }
+/* Y sobre el velo del hero también, que siempre es oscuro */
+.ih .logo-light, .hero2 .logo-light { display: none; }
+.ih .logo-dark, .hero2 .logo-dark { display: block; }
+
+/* ---- El toggle de tema: sin borde, con los colores de la marca ----
+   En claro quedaba como una píldora con borde gris, desconectada del resto.
+   Ahora es una superficie suave del acento, sin línea. */
+.theme-toggle, .theme-toggle--pill {
+  border: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.theme-toggle:hover, .theme-toggle--pill:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+:root[data-theme="light"] .theme-toggle,
+:root[data-theme="light"] .theme-toggle--pill {
+  background: rgba(17, 42, 108, 0.08);   /* el azul de marca, muy suave */
+  color: #112A6C;
+}
+:root[data-theme="light"] .theme-toggle:hover,
+:root[data-theme="light"] .theme-toggle--pill:hover {
+  background: #112A6C;
+  color: #fff;
+}
+/* Sobre el hero (velo oscuro) el toggle va claro en los dos temas */
+.hero2 .theme-toggle, .ih .theme-toggle,
+.hero2 .theme-toggle--pill, .ih .theme-toggle--pill {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.hero2 .theme-toggle:hover, .ih .theme-toggle:hover { background: rgba(255,255,255,0.22); color: #fff; }
+
+/* ============================================================
+   17. REGLA ÚNICA: lo que va SOBRE el hero es tinta clara
+
+   El hero es oscuro en los DOS temas (video + velo). Todo lo que
+   se apoya encima —la marca de la topbar, el toggle, el
+   breadcrumb, los KPIs— tiene que ir en claro, o en modo día
+   queda tinta oscura sobre fondo oscuro. Pasaba con el nombre
+   "Munify", con el botón de tema y con los números del hero.
+
+   Cuando la barra scrollea ya tiene fondo propio y ahí sí sigue
+   al tema: por eso la distinción es `:not(.scrolled)`.
+   ============================================================ */
+.topbar:not(.scrolled) .tb2__brand span { color: #fff; }
+.topbar:not(.scrolled) .tb2__nav a { color: rgba(255,255,255,0.8); }
+.topbar:not(.scrolled) .tb2__nav a:hover,
+.topbar:not(.scrolled) .tb2__nav a.is-active { color: #fff; }
+.topbar:not(.scrolled) #mobileBtn i { color: #fff !important; }
+.topbar:not(.scrolled) .logo-light { display: none; }
+.topbar:not(.scrolled) .logo-dark { display: block; }
+
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+.topbar:not(.scrolled) .theme-toggle:hover { background: rgba(255,255,255,0.26); color: #fff; }
+
+/* Contenido del hero interno: siempre claro, tema aparte */
+.ih__crumb, .ih__crumb a { color: #93A5C9; }
+.ih__crumb a:hover { color: #4CD9C6; }
+.ih__eyebrow { color: #4CD9C6 !important; }
+.ih__h1 { color: #fff; }
+.ih__sub { color: #C7D3E8; }
+.ihk { border-top-color: rgba(255,255,255,0.14); }
+.ihk__l { color: #93A5C9; }
+/* El KPI sin color propio va blanco: está sobre el hero, que es oscuro en los
+   dos temas. Los que llevan color semántico (cian, ámbar, verde) se dejan como
+   están — sobre oscuro se leen bien en ambos modos. No es invertir todo: es
+   pintar claro SÓLO lo que se apoya en algo oscuro. */
+.ihk__n { color: #fff; }
+
+/* En móvil el toggle va SIN texto: con "Modo oscuro" escrito se montaba
+   encima de la hamburguesa. */
+@media (max-width: 1150px) {
+  .theme-toggle--pill { width: 38px !important; height: 38px !important; padding: 0 !important; }
+  .theme-toggle--pill::after { content: none !important; }
+}

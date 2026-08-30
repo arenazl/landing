@@ -141,10 +141,15 @@
   function initLoopVideos() {
     if (reduce) return;
     if (navigator.connection && navigator.connection.saveData) return;
-    if (!window.matchMedia || !window.matchMedia('(min-width: 768px)').matches) return;
+    /* En movil TAMBIEN va video (2026-08-30): el hero sin el clip pierde la
+       mitad de la idea, y el telefono es donde mas gente entra. Lo que se
+       cuida son los datos: abajo de 768px se carga UN solo clip y no rota,
+       en vez de descargar los tres. save-data y reduced-motion siguen
+       mandando y cortan antes que esto. */
+    var esMovil = !window.matchMedia || !window.matchMedia('(min-width: 768px)').matches;
     var boxes = document.querySelectorAll('[data-videos]');
     if (!('IntersectionObserver' in window)) {
-      boxes.forEach(initLoopBox);
+      boxes.forEach(function (b) { initLoopBox(b, esMovil); });
       return;
     }
     // lazy: los clips de cada contenedor recien se descargan al acercarse al viewport
@@ -152,16 +157,18 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         lazy.unobserve(e.target);
-        initLoopBox(e.target);
+        initLoopBox(e.target, esMovil);
       });
     }, { rootMargin: '300px 0px' });
     boxes.forEach(function (b) { lazy.observe(b); });
   }
 
-  function initLoopBox(media) {
+  function initLoopBox(media, unoSolo) {
     var srcs = media.getAttribute('data-videos').split(',')
       .map(function (s) { return s.trim(); }).filter(Boolean);
     if (!srcs.length) return;
+    /* En movil: un solo clip. Se ve el video igual y se descarga un tercio. */
+    if (unoSolo) srcs = srcs.slice(0, 1);
 
     var vids = srcs.map(function (src, k) {
       var v = document.createElement('video');

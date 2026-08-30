@@ -60,11 +60,8 @@
 
   /* Tipografia */
   --font-display: 'Sora', system-ui, sans-serif;
-  /* El handoff pide Inter, pero LA APP usa Nunito para el cuerpo y Sora para
-     display. Manda la coherencia con la app: landing y app son el mismo producto
-     y no pueden verse de dos familias distintas. Sora se mantiene (la app la usa
-     igual, para H1/numeros). */
-  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Las del prototipo, tal cual: Sora display + Inter UI. */
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Radios */
   --r-card: 16px;
@@ -247,8 +244,23 @@ a:hover { color: var(--accent-bright); }
 /* En el prototipo la topbar vive ENCIMA del video del hero, sin fondo: el hero
    arranca desde el borde de la pagina. El fondo aparece recien al scrollear,
    cuando ya hay contenido debajo que necesita separarse. */
-.topbar { background: transparent; border-bottom-color: transparent; }
-.topbar.scrolled { background: var(--topbar-bg-scrolled); border-bottom-color: var(--line); }
+.topbar {
+  background: transparent;
+  border-bottom-color: transparent;
+  /* munify-v2 le deja un backdrop-filter: blur(20px) saturate(180%). Sin fondo,
+     ese blur igual DESENFOCA el video del hero en la franja de la barra y
+     dibuja un corte neto a la altura exacta de la topbar: se ve como una banda
+     pegada arriba. Medido con pixeles: salto de color en y=85. El blur solo
+     tiene sentido cuando hay fondo translucido, o sea al scrollear. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.topbar.scrolled {
+  background: var(--topbar-bg-scrolled);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
 
 /* --- CTA primario: el handoff lo pide cian pleno con glow, no degrade --- */
 .btn-primary {

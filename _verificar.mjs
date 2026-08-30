@@ -81,9 +81,9 @@ for (const [nombre, ruta] of lista) {
       familias.forEach(x => { cargada[x] = document.fonts.check(`16px "${x}"`); });
       return { muestras, familias, cargada };
     });
-    const PERMITIDAS = ['Sora', 'Nunito'];
+    const PERMITIDAS = ['Sora', 'Inter'];
     const intrusas = f.familias.filter(x => !PERMITIDAS.includes(x));
-    if (intrusas.length) mal(`fuentes que no son Sora/Nunito: ${intrusas.join(', ')} — ` +
+    if (intrusas.length) mal(`fuentes que no son Sora/Inter: ${intrusas.join(', ')} — ` +
       Object.entries(f.muestras).filter(([, v]) => intrusas.includes(v)).map(([k, v]) => `${k}=${v}`).join(' '));
     const sinCargar = f.familias.filter(x => !f.cargada[x]);
     if (sinCargar.length) mal(`declaradas pero NO cargadas: ${sinCargar.join(', ')}`);

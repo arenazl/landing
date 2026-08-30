@@ -1,0 +1,6 @@
+# Pretty URLs. Van ANTES del fallback: la primera regla que matchea gana.
+/demo   /demo.html   200
+
+# Fallback estatico. Los archivos reales (precios.html, robots.txt, sitemap.xml, /docs)
+# ganan sobre esta regla, y Cloudflare normaliza la barra final solo.
+/*  /index.html  200

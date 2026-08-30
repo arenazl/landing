@@ -14,8 +14,14 @@
       opacity 0 y salían huecos negros que no eran bugs.
       -> se recorre la página entera antes de capturar.
 
+   3. Probar UN SOLO ancho (1440). La topbar entraba ahi y se
+      rompia a ~1180: el logo pisaba el primer link y el boton de
+      WhatsApp se plegaba en cuatro renglones.
+      -> `node _check_anchos.mjs` mide la barra en 11 anchos.
+
    Uso:  node _verificar.mjs            (todas)
          node _verificar.mjs index      (una)
+         node _check_anchos.mjs         (la topbar en 11 anchos)
    ============================================================ */
 import { createRequire } from 'module';
 const require = createRequire('d:/Code/sugerenciasMun/frontend/');

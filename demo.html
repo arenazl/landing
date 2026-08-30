@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probá Munify en tu municipio | Demo gratis del software de gestión municipal</title>
+
+    <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
+    <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
+    <meta name="theme-color" content="#060E22">
+    <meta name="description" content="Creá una demo de Munify con los datos reales de tu municipio: elegí tu ciudad del catálogo oficial y en 2 minutos la tenés andando, con sus barrios y calles.">
+    <meta name="author" content="Munify Argentina">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="geo.region" content="AR">
+    <link rel="canonical" href="https://munify.com.ar/demo">
+    <link rel="alternate" hreflang="es-ar" href="https://munify.com.ar/demo">
+    <link rel="alternate" hreflang="es" href="https://munify.com.ar/demo">
+    <link rel="alternate" hreflang="x-default" href="https://munify.com.ar/demo">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://munify.com.ar/contacto">
+    <meta property="og:title" content="Contacto | Munify - Software de Gestión Municipal">
+    <meta property="og:description" content="Pedí una demo o presupuesto del software de gestión municipal Munify.">
+    <meta property="og:image" content="https://munify.com.ar/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://munify.com.ar/images/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contacto Munify",
+      "url": "https://munify.com.ar/contacto",
+      "description": "Página de contacto de Munify, software de gestión municipal para Argentina."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Munify",
+      "url": "https://munify.com.ar/",
+      "logo": "https://munify.com.ar/images/munify_logo_no_text (1).png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+54-9-11-6052-6449",
+        "contactType": "ventas",
+        "email": "info@munify.com.ar",
+        "availableLanguage": "Spanish",
+        "areaServed": "AR"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com/3.3.7"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/munify-v2.css">
+    <!-- Restyling comercial 2026 (docs/design-sync/comercial-2026-08-30) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/munify-theme.css">
+    <!-- theme guard: aplica el tema guardado antes del paint (sin flash) -->
+    <script>(function(){try{if(localStorage.getItem('munifyTheme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+    <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
+    <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
+
+    <script type="speculationrules">
+    {
+      "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+    }
+    </script>
+</head>
+<body>
+
+<header id="topbar" class="topbar">
+    <div class="tb2">
+        <a href="/" class="tb2__brand">
+            <img src="images/munify-logo-color.svg" alt="Munify">
+            <span>Munify</span>
+        </a>
+
+        <nav class="tb2__nav">
+                <a href="/reclamos-vecinales">Reclamos</a>
+                <a href="/tramites-municipales">Trámites</a>
+                <a href="/tesoreria">Tesorería</a>
+                <a href="/comunicaciones">Comunicaciones</a>
+                <a href="/demo">Demo</a>
+                <a href="/precios">Precios</a>
+                <a href="/contacto">Contacto</a>
+        </nav>
+
+        <div class="tb2__actions">
+            <button type="button" class="theme-toggle theme-toggle--pill" data-theme-toggle></button>
+            <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-topbar hidden md:inline-flex">
+                <i class="fab fa-whatsapp"></i>
+                Hablá con un asesor
+            </a>
+            <a href="/demo" class="btn btn-primary btn-topbar hidden md:inline-flex">
+                Generá tu municipio
+                <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
+                <i class="fas fa-bars" style="color:var(--ink)"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu__overlay" onclick="closeMenu()"></div>
+    <aside class="mobile-menu__panel">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <img src="images/munify-logo-color.svg" alt="" class="h-7 w-auto">
+                <span class="font-semibold">Munify</span>
+            </div>
+            <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
+            <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
+            <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
+            <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/comunicaciones" class="nav-link text-base"><i class="fas fa-tower-broadcast nav-ico"></i><span>Comunicaciones</span></a>
+            <a href="/demo" class="nav-link text-base"><i class="fas fa-play nav-ico"></i><span>Demo</span></a>
+            <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
+            <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
+        </nav>
+        <div class="mt-8 pt-6 border-t" style="border-color:var(--line)">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary w-full justify-center">Generá tu municipio</a>
+        </div>
+    </aside>
+</div>
+<script>
+    (function() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('mobileBtn');
+        if (!menu || !btn) return;
+        const openMenu = () => { menu.classList.add('open'); document.body.classList.add('menu-open'); };
+        const closeMenu = () => { menu.classList.remove('open'); document.body.classList.remove('menu-open'); };
+        btn.addEventListener('click', openMenu);
+        window.closeMenu = closeMenu;
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
+        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        menu.querySelectorAll('nav .nav-link').forEach(a => {
+            const href = a.getAttribute('href') || '';
+            const hrefPath = href.split('#')[0].replace(/\/$/, '') || '/';
+            if (hrefPath === path && !href.startsWith('/#')) a.classList.add('is-active');
+        });
+    })();
+</script>
+
+<main>
+
+<!-- ============ Hero ============ -->
+<section class="ih">
+    <div class="ih__media" data-videos="videos/loop-charla.mp4,videos/loop-atencion.mp4">
+        <img src="images/assets-landing-ciudad.webp" alt="">
+    </div>
+    <div class="ih__veil"></div>
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Demo</div>
+        <div class="ih__eyebrow" data-catalogo-titulo>Munify · Catálogo oficial de municipios</div>
+        <h1 class="ih__h1">Probá Munify en tu municipio.</h1>
+        <p class="ih__sub">Elegí tu ciudad del catálogo oficial y armamos la demo con sus calles, sus barrios y su mapa.</p>
+    </div>
+    <div class="ihk">
+        <div><div class="ihk__n" style="color:var(--ink)" data-cat-total>—</div><div class="ihk__l">municipios en el catálogo</div></div>
+        <div><div class="ihk__n" style="color:var(--ink)" data-cat-paises>—</div><div class="ihk__l" data-cat-paises-lbl>países</div></div>
+        <div><div class="ihk__n" style="color:var(--accent)" data-cat-demos>—</div><div class="ihk__l">demos andando ahora</div></div>
+        <div><div class="ihk__n" style="color:var(--warn)">2 min</div><div class="ihk__l">y la demo está lista</div></div>
+    </div>
+</section>
+
+<!-- ============ Crear demo ============ -->
+<section class="dm">
+    <div class="dmcard">
+        <div class="dmcard__head">
+            <div class="sec2__eyebrow" style="margin:0">Crear demo en vivo</div>
+            <div class="dmcard__cnt" data-cat-leyenda>Cargando el catálogo…</div>
+        </div>
+
+        <form class="dmform" data-crear novalidate>
+            <select class="dmsel" data-pais aria-label="País"></select>
+
+            <select class="dmsel" data-provincia aria-label="Provincia o departamento" disabled>
+                <option value="">Elegí la provincia…</option>
+            </select>
+
+            <div class="dmwrap">
+                <label class="dmbox">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <input type="text" data-muni autocomplete="off" spellcheck="false"
+                           placeholder="Escribí tu municipio…" aria-label="Municipio">
+                </label>
+                <div class="dmsug" data-sug hidden></div>
+            </div>
+
+            <button type="submit" class="btn2 btn2--accent" data-crear-btn disabled>
+                Probar ahora
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+        </form>
+
+        <div class="dmestado" data-estado role="status" aria-live="polite"></div>
+
+        <div class="dmfoot">
+            <div class="dmfoot__n">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                Sólo municipios del catálogo oficial: la demo sale con los barrios y las calles reales de tu ciudad.
+            </div>
+            <a href="https://wa.me/5491160526449?text=Hola!%20No%20encuentro%20mi%20municipio%20en%20el%20cat%C3%A1logo" target="_blank" rel="noopener" style="font:600 13px var(--font-body); color:var(--accent)">No encuentro mi municipio →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ Demos existentes ============ -->
+<section class="dmex">
+    <div class="dmex__sep"><i></i><span>O entrá a una demo existente</span><i></i></div>
+    <div class="dmex__buscar">
+        <label class="dmbox">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <input type="text" data-buscar-demo autocomplete="off" placeholder="Buscar una demo…" aria-label="Buscar demo">
+        </label>
+    </div>
+    <div class="dmex__grid" data-demos>
+        <div class="dmex__vacio">Cargando las demos…</div>
+    </div>
+</section>
+
+<!-- ============ Cierre ============ -->
+<section class="cierre">
+    <h2>¿Preferís que te la armemos nosotros?</h2>
+    <p class="cierre__p">Te mostramos Munify con los datos de tu municipio en una llamada de 20 minutos.</p>
+    <div class="cierre__cta">
+        <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20una%20demo%20de%20Munify" target="_blank" rel="noopener" class="btn2 btn2--accent">Hablá con un asesor</a>
+        <a href="/contacto" class="btn2 btn2--ghost">Contacto</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt=""> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="tel:+5491160526449">+54 9 11 6052 6449</a>
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+
+<script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
+
+<a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="js/munify-anim.js" defer></script>
+<script src="js/munify-theme.js" defer></script>
+<script src="js/munify-demo.js" defer></script>
+</body>
+</html>

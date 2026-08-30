@@ -37,6 +37,7 @@ const PAGINAS = [
   ['tesoreria', '/tesoreria'],
   ['precios', '/precios'],
   ['contacto', '/contacto'],
+  ['demo', '/demo.html'],
   ['software', '/software-gestion-municipal'],
 ];
 
@@ -51,6 +52,12 @@ for (const [nombre, ruta] of lista) {
     const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
     const p = await ctx.newPage();
     const errs = [], reqFail = [];
+    // El 401 de /municipios/catalogo NO es un fallo: la pantalla de demos
+    // pregunta si el catalogo multipais ya esta publicado en prod y degrada
+    // sola segun la respuesta. Se lo distingue de un error de verdad en vez
+    // de relajar el check entero.
+    let sondaCatalogo = 0;
+    p.on('response', r => { if (/municipios\/catalogo/.test(r.url()) && r.status() === 401) sondaCatalogo++; });
     p.on('console', m => { if (m.type() === 'error') errs.push(m.text().slice(0, 90)); });
     p.on('requestfailed', r => { if (!/\.mp4/.test(r.url())) reqFail.push(r.url().split('/').pop()); });
 
@@ -195,7 +202,8 @@ for (const [nombre, ruta] of lista) {
     const invis = await p.$$eval('main section, body > section', ns => ns.filter(n => +getComputedStyle(n).opacity < .9).map(n => n.className.split(' ')[0]));
     if (invis.length) mal(`secciones invisibles tras scroll: ${invis.join(', ')}`);
 
-    if (errs.length) mal(`errores de consola: ${errs.slice(0, 2).join(' | ')}`);
+    const errsReales = errs.filter(e => !(sondaCatalogo && /401/.test(e)));
+    if (errsReales.length) mal(`errores de consola: ${errsReales.slice(0, 2).join(' | ')}`);
     if (reqFail.length) mal(`requests fallidos: ${[...new Set(reqFail)].slice(0, 3).join(', ')}`);
 
     await p.screenshot({ path: `${OUT}/v-${nombre}-${modo}.png`, fullPage: true });

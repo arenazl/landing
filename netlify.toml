@@ -1,3 +1,16 @@
+# ============================================================
+# ESTE ARCHIVO YA NO SE LEE. Es legacy de Netlify.
+#
+# El sitio se publica con Cloudflare Pages y la configuracion viva
+# esta en `_headers`, `_redirects` y `functions/`. Editar algo aca
+# NO tiene ningun efecto en el deploy.
+#
+# Se conserva solo como documentacion de las URLs historicas. Y un
+# dato para el que venga: en Pages las pretty URLs (/demo,
+# /comunicaciones) salen SOLAS — declararlas en `_redirects` arma
+# un bucle de 308 contra la normalizacion de la propia plataforma.
+# ============================================================
+
 [build]
   publish = "."
   command = ""

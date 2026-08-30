@@ -1040,3 +1040,8 @@ a:hover { color: var(--accent-bright); }
   .pasos { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) { .usos { grid-template-columns: 1fr; } }
+
+/* Numeración de los pasos del flujo (Trámites). El prototipo los pone en 30px
+   Sora 600, con los ya recorridos atenuados: es la escala la que ordena la
+   lectura, no el color. Estaban como eyebrow de 12px y no pesaban. */
+.flujo__n { font: 600 30px var(--font-display); color: var(--accent); margin-bottom: 12px; line-height: 1; }

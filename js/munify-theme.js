@@ -148,3 +148,70 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* ============================================================
+   03 - Carrusel del intendente. Auto-avance 3.6s, pausa en
+   hover, dots clickeables (el activo se estira) y flechas.
+   Igual que la simulacion: corre solo mientras se ve.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function armar(sec) {
+    var slides = sec.querySelectorAll('[data-slide]');
+    var dotsBox = sec.querySelector('[data-dots]');
+    var prev = sec.querySelector('[data-prev]');
+    var next = sec.querySelector('[data-next]');
+    if (slides.length < 2) return;
+
+    var i = 0, timer = null, dots = [];
+
+    for (var k = 0; k < slides.length; k++) {
+      (function (n) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'carru__dot' + (n === 0 ? ' is-on' : '');
+        d.setAttribute('aria-label', 'Ver panel ' + (n + 1));
+        d.addEventListener('click', function () { ir(n); reiniciar(); });
+        dotsBox.appendChild(d);
+        dots.push(d);
+      })(k);
+    }
+
+    function ir(n) {
+      i = (n + slides.length) % slides.length;
+      for (var k = 0; k < slides.length; k++) {
+        slides[k].classList.toggle('is-on', k === i);
+        dots[k].classList.toggle('is-on', k === i);
+      }
+    }
+
+    function avanzar() { ir(i + 1); }
+    function play() { if (!timer) timer = setInterval(avanzar, 3600); }
+    function stop() { clearInterval(timer); timer = null; }
+    function reiniciar() { stop(); play(); }
+
+    if (prev) prev.addEventListener('click', function () { ir(i - 1); reiniciar(); });
+    if (next) next.addEventListener('click', function () { ir(i + 1); reiniciar(); });
+
+    /* Pausa en hover: si lo esta mirando, no se lo movemos abajo del dedo */
+    sec.addEventListener('mouseenter', stop);
+    sec.addEventListener('mouseleave', play);
+
+    var quieto = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (quieto) return;
+
+    if (!('IntersectionObserver' in window)) { play(); return; }
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) { en.isIntersecting ? play() : stop(); });
+    }, { threshold: 0.25 }).observe(sec);
+  }
+
+  function init() {
+    var cs = document.querySelectorAll('[data-carru]');
+    for (var i = 0; i < cs.length; i++) armar(cs[i]);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();

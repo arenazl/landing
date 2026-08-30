@@ -1,0 +1,10 @@
+import { createRequire } from 'module';
+const require = createRequire('d:/Code/sugerenciasMun/frontend/');
+const { chromium } = require('playwright');
+const b = await chromium.launch({ channel: 'msedge' });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+await p.goto('http://localhost:8123/', { waitUntil: 'networkidle' });
+await p.click('[data-theme-toggle]'); await p.waitForTimeout(900);
+await p.locator('.hero2').screenshot({ path: 'd:/Code/sugerenciasMun/landing/_shots/hero-light.png' });
+console.log('hero light capturado');
+await b.close();

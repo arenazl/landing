@@ -186,11 +186,50 @@
       estado.innerHTML = html;
     }
 
+    /* Las etapas REALES del alta, en el orden en que el backend las corre
+       (services/seed_demo.py). Los segundos son estimados y solo marcan el
+       ritmo: el ultimo paso no se cierra por reloj sino cuando responde el
+       servidor, para que la pantalla nunca diga "listo" antes de que lo este. */
+    var PASOS = [
+      { t: 'Ubicando {M} en el mapa',            d: 'coordenadas del catálogo oficial', s: 1.6 },
+      { t: 'Trayendo sus barrios',               d: 'los que tiene mapeados OpenStreetMap', s: 2.6 },
+      { t: 'Armando las áreas del municipio',    d: 'dependencias, y qué reclamo va a cuál', s: 1.6 },
+      { t: 'Cargando los trámites',              d: 'con los requisitos de cada uno', s: 1.4 },
+      { t: 'Sembrando tres meses de reclamos',   d: 'con su circuito completo, no fotos sueltas', s: 3.2 },
+      { t: 'Repartiendo el trabajo de campo',    d: 'cuadrillas, órdenes de trabajo e inventario', s: 2.4 },
+      { t: 'Abriendo la agenda y la tesorería',  d: 'turnos, cajas y gastos del municipio', s: 2.2 }
+    ];
+
+    function pintarPasos(nombre) {
+      estado.className = 'dmestado is-on dmestado--work';
+      estado.innerHTML = '<b>Armando la demo de ' + nombre + '</b>'
+        + '<div class="dmpasos">' + PASOS.map(function (p, i) {
+            return '<div class="dmpaso" data-p="' + i + '"><span class="dmpaso__ic"></span>'
+              + '<span class="dmpaso__n">' + p.t.replace('{M}', nombre)
+              + '<span class="dmpaso__d">' + p.d + '</span></span></div>';
+          }).join('') + '</div>';
+      return estado.querySelectorAll('.dmpaso');
+    }
+
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       if (!elegido) { inpMuni.focus(); return; }
       btn.disabled = true;
-      mostrar('work', '<span class="dmspin"></span> Armando la demo de ' + elegido.nombre + '…');
+
+      var filas = pintarPasos(elegido.nombre);
+      var actual = 0, timer = null, terminado = false;
+
+      function marcar(i, clase) { if (filas[i]) filas[i].className = 'dmpaso ' + clase; }
+      function avanzar() {
+        if (terminado) return;
+        if (actual > 0) marcar(actual - 1, 'is-ok');
+        /* Se frena en el ultimo: de ahi no pasa hasta que el servidor conteste. */
+        if (actual >= PASOS.length) return;
+        marcar(actual, 'is-now');
+        timer = setTimeout(avanzar, PASOS[actual].s * 1000);
+        actual++;
+      }
+      avanzar();
 
       fetch(API + '/municipios/crear-demo', {
         method: 'POST',
@@ -203,13 +242,31 @@
       })
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
         .then(function (d) {
-          mostrar('work', '<span class="dmspin"></span> Listo. Entrando a ' + d.nombre + '…');
-          window.location.href = APP + (d.redirect_path || '/' + d.codigo);
+          terminado = true; clearTimeout(timer);
+          for (var i = 0; i < PASOS.length; i++) marcar(i, 'is-ok');
+          var pie = document.createElement('div');
+          pie.className = 'dmpaso is-now';
+          pie.innerHTML = '<span class="dmpaso__ic"></span><span class="dmpaso__n">Entrando a '
+            + d.nombre + '…</span>';
+          estado.querySelector('.dmpasos').appendChild(pie);
+          /* Medio segundo para que se vean los siete tildes antes de saltar:
+             es el momento en que el prospecto entiende TODO lo que se armo. */
+          setTimeout(function () {
+            window.location.href = APP + (d.redirect_path || '/' + d.codigo);
+          }, 650);
         })
         .catch(function () {
+          terminado = true; clearTimeout(timer);
+          /* El paso en curso queda en rojo: se ve DONDE se corto, no un
+             "algo salio mal" generico. */
+          marcar(Math.max(0, actual - 1), 'is-bad');
           btn.disabled = false;
-          mostrar('bad', 'No pudimos crear la demo. Probá de nuevo o ' +
-            '<a href="https://wa.me/5491160526449" target="_blank" rel="noopener">escribinos por WhatsApp</a>.');
+          var msg = document.createElement('div');
+          msg.className = 'dmestado__err';
+          msg.innerHTML = 'No pudimos crear la demo. Probá de nuevo o '
+            + '<a href="https://wa.me/5491160526449" target="_blank" rel="noopener">escribinos por WhatsApp</a>.';
+          estado.appendChild(msg);
+          estado.className = 'dmestado is-on dmestado--bad';
         });
     });
 

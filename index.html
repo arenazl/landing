@@ -167,37 +167,33 @@
 
 <!-- ============================================ TOPBAR ============================================ -->
 <header id="topbar" class="topbar">
-    <div class="container flex items-center justify-between py-3.5">
-        <a href="/" class="flex items-center gap-2.5">
-            <img src="images/Munify.svg" alt="Munify" class="h-10 w-auto">
-            <span class="font-semibold tracking-tight text-[1.25rem]" style="color:var(--ink)">Munify</span>
+    <div class="tb2">
+        <a href="/" class="tb2__brand">
+            <img src="images/munify-logo-color.svg" alt="Munify">
+            <span>Munify</span>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-1">
-            <a href="/software-gestion-municipal" class="nav-link">Software</a>
-            <a href="/reclamos-vecinales" class="nav-link">Reclamos</a>
-            <a href="/tramites-municipales" class="nav-link">Trámites</a>
-            <a href="/tesoreria" class="nav-link inline-flex items-center gap-1.5">
-                Tesorería
-                <span class="tag tag--new" style="font-size:0.625rem; padding:0.15rem 0.45rem">NUEVO</span>
-            </a>
-            <a href="/precios" class="nav-link">Precios</a>
-            <a href="/contacto" class="nav-link">Contacto</a>
+        <nav class="tb2__nav">
+                <a href="/reclamos-vecinales">Reclamos</a>
+                <a href="/tramites-municipales">Trámites</a>
+                <a href="/tesoreria">Tesorería</a>
+                <a href="/comunicaciones">Comunicaciones</a>
+                <a href="/demo">Demo</a>
+                <a href="/precios">Precios</a>
+                <a href="/contacto">Contacto</a>
         </nav>
 
-        <div class="flex items-center gap-2">
+        <div class="tb2__actions">
+            <button type="button" class="theme-toggle theme-toggle--pill" data-theme-toggle></button>
             <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-topbar hidden md:inline-flex">
                 <i class="fab fa-whatsapp"></i>
                 Hablá con un asesor
             </a>
-            <a href="https://app.munify.com.ar/demo" target="_blank" class="btn btn-primary btn-topbar hidden md:inline-flex">
+            <a href="/demo" class="btn btn-primary btn-topbar hidden md:inline-flex">
                 Generá tu municipio
                 <i class="fas fa-arrow-right text-xs"></i>
             </a>
-            <button class="anim-toggle" type="button" aria-label="Pausar o reanudar las animaciones" aria-pressed="false" title="Pausar animaciones">
-                <i class="fas fa-pause"></i><i class="fas fa-play"></i>
-            </button>
-            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Menú">
+            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
                 <i class="fas fa-bars" style="color:var(--ink)"></i>
             </button>
         </div>
@@ -210,7 +206,7 @@
     <aside class="mobile-menu__panel">
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-2">
-                <img src="images/Munify.svg" alt="" class="h-7 w-auto">
+                <img src="images/munify-logo-color.svg" alt="" class="h-7 w-auto">
                 <span class="font-semibold">Munify</span>
             </div>
             <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]">
@@ -219,10 +215,11 @@
         </div>
         <nav class="flex flex-col gap-1">
             <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
-            <a href="/software-gestion-municipal" class="nav-link text-base"><i class="fas fa-cube nav-ico"></i><span>Software</span></a>
             <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
             <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
-            <a href="/tesoreria" onclick="closeMenu()" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/comunicaciones" class="nav-link text-base"><i class="fas fa-tower-broadcast nav-ico"></i><span>Comunicaciones</span></a>
+            <a href="/demo" class="nav-link text-base"><i class="fas fa-play nav-ico"></i><span>Demo</span></a>
             <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
             <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
         </nav>
@@ -232,44 +229,70 @@
     </aside>
 </div>
 
-<main class="pt-24">
+<main>
 
 <!-- ============================================ HERO ============================================ -->
-<section class="hero hero--alive -mt-24 pt-32 pb-20 md:pt-36 md:pb-24 relative">
-    <div class="hero__media" data-videos="videos/loop-oficina.mp4,videos/loop-townhall.mp4,videos/loop-vecina.mp4"><img src="images/assets-landing-ciudad.webp" alt=""></div>
-    <div class="hero__tint"></div>
-    <div class="hero__grain"></div>
-    <span class="hero__corner-tag">v2 · Argentina · 2026</span>
-    <div class="container relative">
-        <div class="hero-grid">
-            <div>
-                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Software de gestión municipal · Argentina</div>
-                <h1 class="display-1 font-display" style="color:var(--ink)">
-                    Gestión municipal,<br>
-                    <span style="color:var(--muted)">para Argentina, por fin <em class="text-accent" style="font-style:normal">Munify</em>.</span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
-                    Reclamos, trámites, tesorería y atención al vecino. Con IA y trazabilidad total.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="tag tag--accent"><i class="fas fa-gift"></i> 3 meses gratis</span>
-                    <span class="tag"><i class="fas fa-user-check"></i> Sin costo por vecino</span>
-                    <span class="tag"><i class="fas fa-bolt"></i> Listo en 1–2 semanas</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Generá tu municipio<i class="fas fa-arrow-right text-xs"></i></a>
-                    <a href="/software-gestion-municipal" class="btn btn-ghost">Ver cómo funciona</a>
-                </div>
-            </div>
+<section class="hero2">
+    <div class="hero2__media" data-videos="videos/loop-oficina.mp4,videos/loop-townhall.mp4,videos/loop-vecina.mp4">
+        <img src="images/assets-landing-ciudad.webp" alt="">
+    </div>
+    <div class="hero2__veil"></div>
+
+    <div class="hero2__body">
+        <div class="hero2__eyebrow">Software de gestión municipal · Argentina</div>
+        <h1 class="hero2__h1">Tu municipio, en línea con la gente.</h1>
+        <p class="hero2__sub">Reclamos y trámites en tiempo real. Dejan de ser dos mundos: el vecino y el municipio ven lo mismo, al mismo tiempo.</p>
+
+        <div class="hero2__chips">
+            <span class="chip2">App</span>
+            <span class="chip2">Web</span>
+            <span class="chip2">WhatsApp</span>
+            <span class="chip2">PWA sin instalar</span>
         </div>
-        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Gestión digitalizada</div></div>
+
+        <div class="hero2__cta">
+            <a href="/demo" class="btn2 btn2--accent">Generá tu municipio</a>
+            <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Hablá con un asesor</a>
+            <span class="hero2__fineprint">3 meses gratis · sin tarjeta</span>
         </div>
     </div>
-    <div class="hero__rule"></div>
+</section>
+
+<!-- ============ 01 · Timeline del reclamo ============ -->
+<section class="sec2 reveal">
+    <div class="sec2__eyebrow">01 · Reclamos en tiempo real</div>
+    <h2 class="sec2__h2">El vecino sigue su reclamo como sigue un pedido</h2>
+    <p class="sec2__lead">Desde que reporta hasta que la cuadrilla resuelve, cada paso llega a su celular. Nadie vuelve a llamar para preguntar qué pasó.</p>
+
+    <div class="tl2">
+        <div class="tl2__rail"></div>
+        <div class="tl2__step">
+            <div class="tl2__dot">1</div>
+            <div class="tl2__time">09:12</div>
+            <h3>Reclamo enviado</h3>
+            <p>Foto y ubicación GPS desde la app, la web o WhatsApp.</p>
+        </div>
+        <div class="tl2__step">
+            <div class="tl2__dot">2</div>
+            <div class="tl2__time">09:12 · en segundos</div>
+            <h3>La IA clasifica y asigna</h3>
+            <p>Categoría, zona y cuadrilla correcta, sin intervención manual.</p>
+        </div>
+        <div class="tl2__step">
+            <div class="tl2__dot tl2__dot--warn">3</div>
+            <div class="tl2__time">10:05</div>
+            <h3>Cuadrilla en camino</h3>
+            <p>El vecino recibe la notificación cuando el equipo sale a trabajar.</p>
+        </div>
+        <div class="tl2__step">
+            <div class="tl2__dot tl2__dot--good">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="tl2__time">14:30</div>
+            <h3>Resuelto con evidencia</h3>
+            <p>Foto de antes y después. Todo queda trazado y auditable.</p>
+        </div>
+    </div>
 </section>
 
 <!-- Bento 3 valores + imagen ciudad -->

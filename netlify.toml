@@ -1,3 +1,17 @@
+# ==============================================================================
+#  ARCHIVO MUERTO — la landing ya NO se sirve desde Netlify (migrada a Cloudflare
+#  Pages el 2026-08-28). Editar esto NO tiene ningun efecto en produccion.
+#
+#  La configuracion viva es, toda en este repo:
+#    _headers                  seguridad y cache
+#    _redirects                fallback
+#    functions/_middleware.js  reescribe los links a la app segun el hostname
+#                              (en qa.munify.com.ar apuntan a la app de QA,
+#                              no a produccion)
+#
+#  Se conserva solo como referencia historica de lo que hacia Netlify.
+# ==============================================================================
+
 [build]
   publish = "."
   command = ""

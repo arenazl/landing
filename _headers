@@ -1,0 +1,22 @@
+# Headers de la landing en Cloudflare Pages — VIVE EN EL REPO (del netlify.toml).
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self), camera=(), microphone=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# JS/CSS revalidan siempre: asi un cambio se ve al recargar, sin esperar cache.
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate

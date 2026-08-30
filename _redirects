@@ -1,0 +1,3 @@
+# Fallback SPA/estatico. Los archivos reales (precios.html, robots.txt, sitemap.xml,
+# /docs) ganan sobre esta regla, y Cloudflare normaliza la barra final solo.
+/* /index.html 200

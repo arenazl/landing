@@ -287,10 +287,6 @@
       return cargarProvincias(selPais.value);
     });
 
-    cargarDemos();
-    precargarDesdeURL();
-  }
-
   /* ---------- Llegada desde el directorio de llamados ----------
      /demo?m=Chivilcoy&pais=AR&origen=llamados
 
@@ -348,6 +344,11 @@
       }, 150);
     }
   }
+
+    cargarDemos();
+    precargarDesdeURL();
+  }
+
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
   else iniciar();

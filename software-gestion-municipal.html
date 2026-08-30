@@ -162,67 +162,31 @@
 <main>
 
 <!-- ============================ HERO ============================ -->
-<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
-    <div class="hero__media" data-videos="videos/loop-oficina2.mp4,videos/hero-software.mp4"><img src="images/assets-landing-sistema-moderno.webp" alt=""></div>
-    <div class="hero__tint"></div>
-    <div class="hero__grain"></div>
-    <div class="container relative">
-        <nav class="text-sm mb-6" style="color:var(--muted-soft)">
-            <a href="/" style="color:var(--muted)">Inicio</a>
-            <span class="mx-2">/</span>
-            <span style="color:var(--ink)">Software municipal</span>
-        </nav>
-
-        <div class="hero-grid">
-            <!-- Columna texto -->
-            <div>
-                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Software de gestión municipal · Argentina</div>
-                <h1 class="display-1 font-display" style="color:var(--ink)">
-                    Una plataforma,<br>
-                    <span style="color:var(--muted)">todo el municipio <em class="text-accent" style="font-style:normal">en orden</em>.</span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
-                    Reclamos, trámites, tesorería y atención al vecino. En un solo lugar.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="tag tag--accent"><i class="fas fa-gift"></i> 3 meses gratis</span>
-                    <span class="tag"><i class="fas fa-user-check"></i> Sin costo por vecino</span>
-                    <span class="tag"><i class="fas fa-bolt"></i> Listo en 1–2 semanas</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
-                    <a href="/precios" class="btn btn-ghost">Ver precios</a>
-                </div>
-            </div>
-
-            <!-- Columna mockup / preview del producto -->
+<section class="ih">
+    <div class="ih__media" data-videos="videos/loop-oficina2.mp4,videos/hero-software.mp4"><img src="images/assets-landing-sistema-moderno.webp" alt=""></div>
+    <div class="ih__veil"></div>
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Software de gestión municipal</div>
+        <div class="ih__eyebrow">La plataforma completa</div>
+        <h1 class="ih__h1">Software de gestión municipal, todo en un lugar.</h1>
+        <p class="ih__sub">Reclamos, trámites, tesorería y comunicación con el vecino. Un solo sistema, con IA y trazabilidad de punta a punta.</p>
+        <div class="ih__chips">
+            <span class="ih__chip ih__chip--on">Multi-módulo</span>
+            <span class="ih__chip">Con IA</span>
+            <span class="ih__chip">App para el vecino</span>
+            <span class="ih__chip">Listo en 1–2 semanas</span>
         </div>
-
-        <!-- KPI strip: barras "loading" + count-up -->
-        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div>
-                <div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div>
-                <div class="kpi__lbl">Reclamos resueltos a tiempo</div>
-            </div>
-            <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div>
-                <div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div>
-                <div class="kpi__lbl">Menos tiempo de respuesta</div>
-            </div>
-            <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div>
-                <div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div>
-                <div class="kpi__lbl">Satisfacción del vecino</div>
-            </div>
-            <div class="kpi">
-                <div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-layer-group kpi__ico"></i></div>
-                <div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div>
-                <div class="kpi__lbl">Gestión digitalizada</div>
-            </div>
+        <div class="ih__cta">
+            <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+            <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Consultar por WhatsApp</a>
         </div>
     </div>
-    <div class="hero__rule"></div>
+    <div class="ihk">
+        <div><div class="ihk__n" style="color:var(--accent)"><span data-count="88">88</span>%</div><div class="ihk__l">reclamos resueltos a tiempo</div></div>
+        <div><div class="ihk__n" style="color:var(--accent-bright)">−<span data-count="85">85</span>%</div><div class="ihk__l">tiempo de respuesta</div></div>
+        <div><div class="ihk__n" style="color:var(--warn)"><span data-count="92">92</span>%</div><div class="ihk__l">satisfacción del vecino</div></div>
+        <div><div class="ihk__n" style="color:var(--good)"><span data-count="100">100</span>%</div><div class="ihk__l">gestión digitalizada</div></div>
+    </div>
 </section>
 
 <!-- ============================ MÓDULOS ============================ -->
@@ -372,64 +336,29 @@
 </section>
 
 <!-- ============================ CTA ============================ -->
-<section class="container pb-16 md:pb-24">
-    <div class="bento bento--ink text-center reveal">
-        <h2 class="display-2 font-display mb-4" style="color:#f5f0e6">¿Listo para modernizar tu municipio?</h2>
-        <p class="text-lg max-w-2xl mx-auto mb-9" style="color:#c9c0a8; line-height:1.5">Demo gratuita sin compromiso. Te lo mostramos con datos reales.</p>
-        <div class="flex flex-wrap gap-3 justify-center">
-            <a href="https://wa.me/5491160526449" class="btn" style="background:#f5f0e6; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="/contacto" class="btn" style="background:transparent; color:#f5f0e6; border:1px solid #4a4238">Contacto</a>
+
+
+<!-- ============ CTA final + pie (patrón del handoff) ============ -->
+<section class="cierre">
+    <h2>¿Listo para modernizar tu municipio?</h2>
+    <p class="cierre__p">Demo gratuita sin compromiso. Te lo mostramos en 20 minutos.</p>
+    <div class="cierre__cta">
+        <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+        <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">WhatsApp · +54 9 11 6052 6449</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt=""> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="/reclamos-vecinales">Reclamos</a>
+            <a href="/tramites-municipales">Trámites</a>
+            <a href="/tesoreria">Tesorería</a>
+            <a href="/precios">Precios</a>
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
         </div>
     </div>
 </section>
-
 </main>
 
-<footer class="site-footer reveal">
-    <img class="site-footer__wm" src="images/munify_logo_no_text (1).png" alt="" aria-hidden="true">
-    <div class="container site-footer__inner">
-        <div class="site-footer__grid">
-            <div>
-                <div class="site-footer__brand"><img src="images/munify-logo-color.svg" alt="Munify"><span>Munify</span></div>
-                <p class="site-footer__tag">Software integral de gestión municipal para Argentina. Reclamos, trámites, tesorería y atención al ciudadano.</p>
-                <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="site-footer__wa"><i class="fab fa-whatsapp"></i> Hablá con un asesor</a>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Producto</div>
-                <div class="site-footer__links">
-                    <a href="/software-gestion-municipal" class="foot-link">Software municipal</a>
-                    <a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a>
-                    <a href="/tramites-municipales" class="foot-link">Trámites municipales</a>
-                    <a href="/tesoreria" class="foot-link">Tesorería</a>
-                    <a href="/precios" class="foot-link">Precios</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Empresa</div>
-                <div class="site-footer__links">
-                    <a href="/" class="foot-link">Inicio</a>
-                    <a href="/contacto" class="foot-link">Contacto</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link">Probar demo</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Contacto</div>
-                <div class="site-footer__links">
-                    <a href="https://wa.me/5491160526449" class="foot-link"><i class="fab fa-whatsapp"></i> +54 9 11 6052 6449</a>
-                    <a href="mailto:info@munify.com.ar" class="foot-link"><i class="fas fa-envelope"></i> info@munify.com.ar</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link"><i class="fas fa-arrow-up-right-from-square"></i> app.munify.com.ar</a>
-                </div>
-            </div>
-        </div>
-        <div class="site-footer__bottom">
-            <div class="site-footer__copy">&copy; 2026 Munify &middot; Software de gestión municipal &middot; Argentina</div>
-            <div class="site-footer__social">
-                <a href="https://wa.me/5491160526449" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@munify.com.ar" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script>
     const topbar = document.getElementById('topbar');

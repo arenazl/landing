@@ -362,8 +362,15 @@ a:hover { color: var(--accent-bright); }
 }
 .btn2--accent { background: var(--accent); color: var(--accent-ink); box-shadow: var(--accent-glow); }
 .btn2--accent:hover { background: var(--accent-strong); color: var(--accent-ink); transform: translateY(-2px); text-decoration: none; }
-.btn2--ghost { border-color: rgba(255,255,255,0.35); color: #fff; font-weight: 600; }
-.btn2--ghost:hover { border-color: #fff; text-decoration: none; }
+/* El ghost sigue al TEMA. Antes tenia #fff fijo y en light quedaba blanco
+   sobre fondo claro: el boton "Contacto" del cierre era invisible. */
+.btn2--ghost { border-color: var(--line-strong); color: var(--ink); font-weight: 600; }
+.btn2--ghost:hover { border-color: var(--ink); text-decoration: none; }
+/* Dentro de los heros con video el fondo SIEMPRE es oscuro, tema aparte */
+.hero2 .btn2--ghost, .ih .btn2--ghost, .bandavid .btn2--ghost {
+  border-color: rgba(255,255,255,0.35); color: #fff;
+}
+.hero2 .btn2--ghost:hover, .ih .btn2--ghost:hover { border-color: #fff; }
 .hero2__fineprint { font: 500 13px var(--font-body); color: #93A5C9; margin-left: 8px; }
 
 /* ---- Seccion con numeracion (01 · ...) ---- */
@@ -657,3 +664,142 @@ a:hover { color: var(--accent-bright); }
    headers mas arriba: son los dos !important que sobreviven del CSS viejo. */
 .eyebrow, .hero2__eyebrow, .sec2__eyebrow, .carru__k, .fuerte__tag,
 .banda-ia__k { font-family: var(--font-body) !important; }
+
+/* ============================================================
+   8. PÁGINAS INTERNAS — patrón común del handoff
+   (Reclamos, Trámites, Tesorería, Comunicaciones, Demo)
+   Hero con breadcrumb + chips + KPI strip, y bloques reusables.
+   ============================================================ */
+
+/* ---- Hero de página interna ---- */
+.ih { position: relative; overflow: hidden; }
+.ih__media, .ih__media img, .ih__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ih__media video.is-on { opacity: 1; }
+.ih__veil { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,14,34,0.88) 0%, rgba(6,14,34,0.72) 45%, var(--paper) 100%); }
+:root[data-theme="light"] .ih__veil {
+  background: linear-gradient(180deg, rgba(6,14,34,0.88) 0%, rgba(6,14,34,0.7) 55%,
+    rgba(6,14,34,0.6) 86%, rgba(120,140,170,0.28) 95%, var(--paper) 100%); }
+.ih__body { position: relative; padding: 56px 64px 48px; max-width: 860px; }
+
+.ih__crumb { font: 500 13px var(--font-body); color: #93A5C9; margin-bottom: 20px; }
+.ih__crumb a { color: #93A5C9; text-decoration: none; }
+.ih__crumb a:hover { color: var(--accent); }
+.ih__crumb span { margin: 0 6px; }
+.ih__eyebrow { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase;
+  color: #4CD9C6; margin-bottom: 16px; }
+.ih__h1 { margin: 0; color: #fff; font: 600 clamp(30px,4.4vw,50px)/1.06 var(--font-display); letter-spacing: -0.03em; }
+.ih__sub { margin: 18px 0 0; max-width: 520px; font: 400 18px/1.5 var(--font-body); color: #93A5C9; }
+.ih__chips { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+.ih__chip { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff;
+  font: 600 13px var(--font-body); padding: 7px 14px; border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.ih__chip svg { width: 13px; height: 13px; }
+.ih__chip--on { background: rgba(76,217,198,0.1); border-color: rgba(76,217,198,0.35); color: #4CD9C6; }
+.ih__cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+
+/* KPI strip del hero interno */
+.ihk { position: relative; display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
+  margin: 0 64px; padding: 28px 0 48px; border-top: 1px solid rgba(255,255,255,0.1);
+  font-feature-settings: "tnum"; }
+.ihk__n { font: 800 32px var(--font-display); }
+.ihk__l { font: 500 13px var(--font-body); color: #93A5C9; margin-top: 4px; }
+
+/* ---- Bloque partido: texto + mock ---- */
+.split { background: var(--paper-warm); border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft); padding: 72px 64px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.split h2 { margin: 0; font: 600 clamp(24px,3.2vw,34px)/1.15 var(--font-display); letter-spacing: -0.02em; color: var(--ink); }
+.split__p { margin: 16px 0 24px; font: 400 16px/1.6 var(--font-body); color: var(--muted); }
+.split__list { display: flex; flex-direction: column; gap: 10px; font: 400 14px var(--font-body); color: var(--ink-soft); }
+.split__li { display: flex; gap: 9px; align-items: flex-start; }
+.split__li svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+
+/* Mock de tarjeta (wizard, formulario, panel) */
+.mock { max-width: 420px; justify-self: center; width: 100%; background: var(--card);
+  border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 24px; box-shadow: var(--shadow-soft); }
+.mock__head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.mock__ico { width: 38px; height: 38px; border-radius: var(--r-control); background: var(--accent-soft);
+  border: 1px solid var(--accent-line); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mock__t { font: 700 15px var(--font-display); color: var(--ink); }
+.mock__s { font: 400 12px var(--font-body); color: var(--muted-soft); }
+.mock__steps { display: flex; gap: 6px; margin-bottom: 18px; }
+.mock__step { flex: 1; height: 4px; border-radius: var(--r-pill); background: var(--line-strong); }
+.mock__step--on { background: var(--accent); }
+.mock__lbl { font: 500 12px var(--font-body); color: var(--muted); margin-bottom: 8px; }
+.mock__input { background: var(--paper-warm); border: 1px solid var(--line-strong); border-radius: var(--r-input);
+  padding: 12px 14px; font: 400 14px var(--font-body); color: var(--ink); }
+.mock__caret { display: inline-block; width: 2px; height: 14px; background: var(--accent);
+  margin-left: 2px; vertical-align: middle; animation: mockCaret 1.1s steps(1) infinite; }
+@keyframes mockCaret { 0%,49% { opacity: 1 } 50%,100% { opacity: 0 } }
+.mock__hint { font: 400 11px var(--font-body); color: var(--muted-soft); margin: 8px 0 16px; display: flex; gap: 6px; align-items: center; }
+.mock__key { font: 600 11px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.mock__pick .sub { color: var(--ink-soft); }
+.mock__pick { display: flex; align-items: center; gap: 12px; background: var(--accent-soft);
+  border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 12px 14px; }
+.mock__pickIco { width: 34px; height: 34px; border-radius: var(--r-pill); background: var(--accent);
+  color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mock__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
+.mock__prev { font: 600 13px var(--font-body); color: var(--muted-soft); }
+.mock__next { background: var(--accent); color: var(--accent-ink); font: 700 13px var(--font-body);
+  padding: 10px 18px; border-radius: var(--r-input); }
+
+/* ---- Grilla de beneficios (bento 3+2+2+2 del handoff) ---- */
+.ben { padding: 72px 64px; }
+.ben__grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; }
+.benc { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 28px; }
+.benc--3 { grid-column: span 3; }
+.benc--2 { grid-column: span 2; }
+.benc--6 { grid-column: span 6; }
+.benc h3 { margin: 14px 0 8px; font: 700 19px var(--font-display); color: var(--ink); }
+.benc p { margin: 0; font: 400 14px/1.6 var(--font-body); color: var(--muted); }
+.benc--2 h3 { font-size: 18px; }
+.benc--2 p { font-size: 13px; }
+.benc__banda { position: relative; overflow: hidden; background: var(--paper-warm);
+  border: 1px solid var(--accent-line); border-radius: var(--r-card); padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.benc__banda::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(100% 140% at 92% 0%, rgba(76,217,198,0.16) 0%, transparent 55%); }
+.benc__banda > * { position: relative; }
+
+/* ---- Grilla de categorías / tipos ---- */
+.cats { background: var(--paper-warm); border-top: 1px solid var(--line-soft); padding: 72px 64px; }
+.cats__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.cat { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 24px; }
+.cat__n { font: 600 15px var(--font-body); margin-top: 12px; color: var(--ink); }
+
+@media (max-width: 1024px) {
+  .ih__body { padding: 40px 24px 32px; }
+  .ihk { margin: 0 24px; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .split { padding: 56px 24px; grid-template-columns: 1fr; gap: 32px; }
+  .ben, .cats { padding: 56px 24px; }
+  .ben__grid { grid-template-columns: 1fr; }
+  .benc--3, .benc--2, .benc--6 { grid-column: auto; }
+  .benc__banda { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .cats__grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) { .ihk { grid-template-columns: 1fr; } .cats__grid { grid-template-columns: 1fr; } }
+
+/* Guarda: --accent-ink es la tinta que va sobre el acento PLENO. Sobre el
+   acento SUAVE (.bento--accent usa --accent-soft) hay que usar la tinta del
+   tema, o en light queda blanco sobre verde claro. Se fija por las dudas. */
+.bento--accent { color: var(--ink); }
+.bento--accent p, .bento--accent .muted { color: var(--muted); }
+
+/* ---- .bento--ink: card deliberadamente OSCURA, en los dos temas ----
+   Su gradiente original usaba var(--ink) y var(--accent-ink), que en el tema
+   crema eran gris oscuro y azul. Con los tokens nuevos esos dos se dan vuelta
+   segun el modo y la card quedaba clara en dark / con texto oscuro en light.
+   Se fija en navy: es una card de acento, no una superficie del tema. */
+.bento--ink {
+  background:
+    radial-gradient(115% 95% at 88% 0%, rgba(63,106,200,0.30) 0%, transparent 56%),
+    linear-gradient(158deg, #0A152E 0%, #16264A 55%, #0C1830 100%) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #E8EEFA !important;
+}
+.bento--ink h1, .bento--ink h2, .bento--ink h3,
+.bento--ink .display-1, .bento--ink .display-2, .bento--ink .display-3 { color: #fff !important; }
+.bento--ink p, .bento--ink li { color: #93A5C9 !important; }
+.bento--ink .eyebrow { color: #4CD9C6 !important; }
+.bento--ink svg, .bento--ink .bento__ico { color: #4CD9C6; }

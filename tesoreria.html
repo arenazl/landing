@@ -161,45 +161,26 @@
 
 <main>
 
-<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
-    <div class="hero__media" data-videos="videos/hero-tesoreria.mp4"><img src="images/cards/card-tesoreria.jpg?v=3" alt=""></div>
-    <div class="hero__tint"></div>
-    <div class="hero__grain"></div>
-    <div class="container relative">
-        <nav class="text-sm mb-6" style="color:var(--muted-soft)">
-            <a href="/" style="color:var(--muted)">Inicio</a>
-            <span class="mx-2">/</span>
-            <span style="color:var(--ink)">Tesorería</span>
-        </nav>
-        <div class="hero-grid">
-            <div>
-                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Módulo · Tesorería · NUEVO</div>
-                <h1 class="display-1 font-display" style="color:var(--ink)">
-                    Tesorería,<br>
-                    <span style="color:var(--muted)">adiós al <em class="text-accent" style="font-style:normal">Excel</em>.</span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
-                    Importá el Excel del intendente, curá con IA y reportá los gastos al instante.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="tag tag--accent"><i class="fas fa-file-import"></i> Importá el Excel</span>
-                    <span class="tag"><i class="fas fa-robot"></i> Curado con IA</span>
-                    <span class="tag"><i class="fas fa-chart-pie"></i> Reportes al instante</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
-                    <a href="https://wa.me/5491160526449" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar</a>
-                </div>
-            </div>
-        </div>
-        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="90">90</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:90%; --i:0"></div></div><div class="kpi__lbl">Menos tiempo de carga</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:1"></div></div><div class="kpi__lbl">Gastos trazables</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="95">95</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:95%; --i:2"></div></div><div class="kpi__lbl">Menos errores de carga</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-calendar kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Control mes a mes</div></div>
+<section class="ih">
+    <div class="ih__media" data-videos="videos/hero-tesoreria.mp4,videos/loop-oficina2.mp4"><img src="images/cards/card-tesoreria.jpg?v=3" alt=""></div>
+    <div class="ih__veil"></div>
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Tesorería municipal</div>
+        <div class="ih__eyebrow">Módulo · Tesorería municipal</div>
+        <h1 class="ih__h1">Tesorería municipal, adiós al Excel.</h1>
+        <p class="ih__sub">Control de gastos, ingresos y proyectos del municipio en un solo lugar. Importá el Excel histórico y arrancá con todo el año cargado.</p>
+        <div class="ih__chips"><span class="ih__chip ih__chip--on">Importación de Excel</span><span class="ih__chip">Cajas y saldos</span><span class="ih__chip">Agenda de pagos</span><span class="ih__chip">Proyectos</span></div>
+        <div class="ih__cta">
+            <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+            <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Consultar por WhatsApp</a>
         </div>
     </div>
-    <div class="hero__rule"></div>
+    <div class="ihk">
+        <div><div class="ihk__n" style="color:var(--accent)"><span data-count="100">100</span>%</div><div class="ihk__l">gastos trazables</div></div>
+        <div><div class="ihk__n" style="color:var(--accent-bright)"><span data-count="0">0</span></div><div class="ihk__l">planillas sueltas</div></div>
+        <div><div class="ihk__n" style="color:var(--warn)"><span data-count="24">24</span>/7</div><div class="ihk__l">consulta del intendente</div></div>
+        <div><div class="ihk__n" style="color:var(--good)"><span data-count="1">1</span></div><div class="ihk__l">sola fuente de verdad</div></div>
+    </div>
 </section>
 
 <div class="divider"></div>
@@ -263,8 +244,8 @@
         </div>
         <div class="bento bento--ink">
             <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-file-import"></i></div>
-            <h3 class="display-3 mb-3" style="color:#fafafa">Importación Excel</h3>
-            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">
+            <h3 class="display-3 mb-3">Importación Excel</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">
                 Subí el Excel histórico del intendente (concejales, sueldos, profesionales) y
                 el sistema los carga automáticamente con la clasificación correcta.
             </p>
@@ -300,8 +281,8 @@
         </div>
         <div class="bento bento--ink md:col-span-2">
             <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-mobile-alt"></i></div>
-            <h3 class="display-3 mb-3" style="color:#fafafa">Desde el celular</h3>
-            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">El intendente consulta saldos, gastos del mes y agenda de pagos desde la cancha.</p>
+            <h3 class="display-3 mb-3" style="color:var(--ink)">Desde el celular</h3>
+            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">El intendente consulta saldos, gastos del mes y agenda de pagos desde la cancha.</p>
         </div>
         <div class="bento md:col-span-2">
             <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-lock"></i></div>
@@ -370,71 +351,36 @@
             <div class="font-medium text-sm">Impuestos / VEP</div>
         </div>
         <div class="bento bento--ink" style="padding:1.5rem">
-            <i class="fas fa-plus text-xl mb-3" style="color:#4ade80"></i>
-            <div class="font-medium text-sm" style="color:#fafafa">Y los que sumes</div>
+            <i class="fas fa-plus text-xl mb-3" style="color:var(--good)"></i>
+            <div class="font-medium text-sm" style="color:var(--ink)">Y los que sumes</div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="container py-16 md:py-24">
-    <div class="bento bento--ink text-center">
-        <h2 class="display-2 font-display mb-4" style="color:#fafafa">Sumá Tesorería al plan de tu municipio</h2>
-        <p class="text-lg max-w-2xl mx-auto mb-10" style="color:#a3a3a3; line-height:1.55">Módulo opcional. Activación inmediata. Migración del Excel sin costo extra.</p>
-        <div class="flex flex-wrap gap-3 justify-center">
-            <a href="https://wa.me/5491160526449" class="btn" style="background:#fafafa; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="/contacto" class="btn" style="background:transparent; color:#fafafa; border:1px solid #404040">Contacto</a>
+
+
+<!-- ============ CTA final + pie (patrón del handoff) ============ -->
+<section class="cierre">
+    <h2>Sumá Tesorería al plan de tu municipio</h2>
+    <p class="cierre__p">Importá tu Excel histórico y arrancá con el año cargado.</p>
+    <div class="cierre__cta">
+        <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+        <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">WhatsApp · +54 9 11 6052 6449</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt=""> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="/reclamos-vecinales">Reclamos</a>
+            <a href="/tramites-municipales">Trámites</a>
+            <a href="/tesoreria">Tesorería</a>
+            <a href="/precios">Precios</a>
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
         </div>
     </div>
 </section>
-
 </main>
 
-<footer class="site-footer reveal">
-    <img class="site-footer__wm" src="images/munify_logo_no_text (1).png" alt="" aria-hidden="true">
-    <div class="container site-footer__inner">
-        <div class="site-footer__grid">
-            <div>
-                <div class="site-footer__brand"><img src="images/munify-logo-color.svg" alt="Munify"><span>Munify</span></div>
-                <p class="site-footer__tag">Software integral de gestión municipal para Argentina. Reclamos, trámites, tesorería y atención al ciudadano.</p>
-                <a href="https://wa.me/5491160526449?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="site-footer__wa"><i class="fab fa-whatsapp"></i> Hablá con un asesor</a>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Producto</div>
-                <div class="site-footer__links">
-                    <a href="/software-gestion-municipal" class="foot-link">Software municipal</a>
-                    <a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a>
-                    <a href="/tramites-municipales" class="foot-link">Trámites municipales</a>
-                    <a href="/tesoreria" class="foot-link">Tesorería</a>
-                    <a href="/precios" class="foot-link">Precios</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Empresa</div>
-                <div class="site-footer__links">
-                    <a href="/" class="foot-link">Inicio</a>
-                    <a href="/contacto" class="foot-link">Contacto</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link">Probar demo</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Contacto</div>
-                <div class="site-footer__links">
-                    <a href="https://wa.me/5491160526449" class="foot-link"><i class="fab fa-whatsapp"></i> +54 9 11 6052 6449</a>
-                    <a href="mailto:info@munify.com.ar" class="foot-link"><i class="fas fa-envelope"></i> info@munify.com.ar</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link"><i class="fas fa-arrow-up-right-from-square"></i> app.munify.com.ar</a>
-                </div>
-            </div>
-        </div>
-        <div class="site-footer__bottom">
-            <div class="site-footer__copy">&copy; 2026 Munify &middot; Software de gestión municipal &middot; Argentina</div>
-            <div class="site-footer__social">
-                <a href="https://wa.me/5491160526449" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@munify.com.ar" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script>
     const topbar = document.getElementById('topbar');

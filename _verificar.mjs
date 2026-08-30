@@ -119,25 +119,51 @@ for (const [nombre, ruta] of lista) {
     if (contraste && contraste.ratio < 3) mal(`links de la topbar ilegibles: contraste ${contraste.ratio}:1 (${contraste.color} sobre ${contraste.detras})`);
 
     // --- TEXTO INVISIBLE: color practicamente igual al fondo ---
-    // (asi se colaron un eyebrow y un boton en blanco sobre blanco)
+    // Dos cosas que lo hacian dar falsas alarmas, ya resueltas:
+    //  a) no componia el alpha: leia rgba(76,217,198,.12) como si fuera un
+    //     verde opaco y creia que un texto claro encima no se leia.
+    //  b) el texto sobre los heros esta encima de un VIDEO + velo oscuro, no
+    //     sobre el fondo de la seccion -> se excluye ese caso.
     const fantasmas = await p.evaluate(() => {
-      const lum = c => { const m = c.match(/[\d.]+/g); if (!m) return null;
-        const [r, g, b] = m.slice(0, 3).map(Number).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; });
-        return .2126 * r + .7152 * g + .0722 * b; };
-      const fondoDe = el => { let n = el; while (n && n !== document.documentElement) {
-          const c = getComputedStyle(n).backgroundColor;
-          if (c && !/rgba\(0, 0, 0, 0\)|transparent/.test(c)) return c; n = n.parentElement; }
-        return getComputedStyle(document.body).backgroundColor; };
+      const rgb = c => { const m = (c || '').match(/[\d.]+/g); return m ? m.slice(0, 4).map(Number) : null; };
+      const sobre = (fg, bg) => {   // compone fg (con alpha) sobre bg opaco
+        const a = fg.length > 3 ? fg[3] : 1;
+        return [0, 1, 2].map(i => fg[i] * a + bg[i] * (1 - a));
+      };
+      const lum = ([r, g, b]) => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; };
+        return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+      const fondoReal = el => {                    // apila los fondos hasta uno opaco
+        const capas = []; let n = el;
+        while (n && n !== document.documentElement) {
+          const c = rgb(getComputedStyle(n).backgroundColor);
+          if (c && (c.length < 4 || c[3] > 0)) { capas.push(c); if (c.length < 4 || c[3] === 1) break; }
+          n = n.parentElement;
+        }
+        let base = rgb(getComputedStyle(document.body).backgroundColor) || [255, 255, 255];
+        for (let i = capas.length - 1; i >= 0; i--) base = sobre(capas[i], base);
+        return base;
+      };
       const out = [];
       document.querySelectorAll('h1,h2,h3,p,span,a,div,button').forEach(el => {
         if (el.children.length) return;
+        if (el.closest('.ih, .hero2, .bandavid')) return;   // encima de video + velo
+        // Si el elemento o un ancestro pinta con GRADIENTE/imagen, el color de
+        // fondo real no se puede leer con getComputedStyle: subir al ancestro
+        // da el fondo de la seccion y se reporta como invisible algo que se ve
+        // perfecto (paso con .bento--ink, blanco sobre una card navy).
+        // Preferimos no opinar antes que dar una falla falsa.
+        for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+          if (getComputedStyle(n).backgroundImage !== 'none') return;
+        }
         const t = (el.textContent || '').trim(); if (t.length < 3) return;
         const r = el.getBoundingClientRect(); if (!r.width || !r.height) return;
         const cs = getComputedStyle(el);
         if (cs.visibility === 'hidden' || +cs.opacity < .1) return;
-        const l1 = lum(cs.color), l2 = lum(fondoDe(el)); if (l1 === null || l2 === null) return;
+        const fg = rgb(cs.color); if (!fg) return;
+        const bg = fondoReal(el);
+        const l1 = lum(sobre(fg, bg)), l2 = lum(bg);
         const ratio = (Math.max(l1, l2) + .05) / (Math.min(l1, l2) + .05);
-        if (ratio < 1.7) out.push(t.slice(0, 34) + ' [' + ratio.toFixed(2) + ':1]');
+        if (ratio < 1.9) out.push(t.slice(0, 34) + ' [' + ratio.toFixed(2) + ':1]');
       });
       return [...new Set(out)].slice(0, 6);
     });
@@ -151,7 +177,12 @@ for (const [nombre, ruta] of lista) {
 
     // --- Recorrer la pagina (para los .reveal) y capturar ---
     await p.evaluate(async () => {
-      for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); }
+      // body.scrollHeight se queda corto: hay que usar documentElement y
+      // terminar tocando el fondo, o las ultimas secciones nunca intersectan
+      // y el test las reporta invisibles sin estarlo.
+      const fin = () => document.documentElement.scrollHeight;
+      for (let y = 0; y < fin(); y += 400) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 70)); }
+      window.scrollTo(0, fin()); await new Promise(r => setTimeout(r, 250));
       window.scrollTo(0, 0);
     });
     await p.waitForTimeout(900);

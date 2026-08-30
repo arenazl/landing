@@ -1394,12 +1394,14 @@ input, select, textarea { font-size: 16px; }
 .topbar:not(.scrolled) .tb2__nav a:hover,
 .topbar:not(.scrolled) .tb2__nav a.is-active { color: #fff; }
 .topbar:not(.scrolled) #mobileBtn i { color: #fff !important; }
-/* En la barra va SIEMPRE el logo a color (azul y verde), en los dos temas: el
-   blanco sobre la barra clara desaparecia y quedaba el check flotando. Con la
-   clase de la topbar delante le gana al switch por tema, que sigue mandando
-   en el pie y en el mock del telefono, donde el fondo si es oscuro. */
-.topbar .tb2__brand .logo-light { display: none; }
-.topbar .tb2__brand .logo-dark { display: block; }
+/* Cual de los dos logos, segun el FONDO que tiene detras (no segun el tema):
+   `color.svg` trae el hexagono BLANCO —sirve sobre oscuro— y `light.svg` es el
+   azul marino con el check verde, que es el que se ve sobre claro. Con la barra
+   arriba, detras hay una foto oscura aunque el tema sea claro: ahi va el blanco
+   igual. Ya scrolleada, la barra toma el color del tema y manda el switch de
+   arriba. */
+.topbar:not(.scrolled) .logo-light { display: none; }
+.topbar:not(.scrolled) .logo-dark { display: block; }
 
 .topbar:not(.scrolled) .theme-toggle,
 .topbar:not(.scrolled) .theme-toggle--pill {
@@ -1473,4 +1475,31 @@ input, select, textarea { font-size: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
   .dmpaso.is-now .dmpaso__ic { animation: none; }
+}
+
+/* ============================================================
+   20. EL PANEL REAL, EN LA SECCION DEL INTENDENTE
+
+   Una foto del producto andando pesa mas que cualquier mockup.
+   El marco la separa del fondo sin dibujarle un navegador falso
+   alrededor: borde fino, sombra y las esquinas de la app.
+   ============================================================ */
+.panelreal { margin: 0 auto; padding: 0 20px; max-width: 1240px; }
+.panelreal__marco {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,.6);
+  background: var(--card);
+}
+.panelreal img { display: block; width: 100%; height: auto; }
+.panelreal figcaption {
+  margin-top: 10px; text-align: center;
+  font-size: 13px; line-height: 1.5; color: var(--ink-3);
+}
+/* En el telefono un tablero entero no se lee. Se muestra a ancho completo
+   igual —da la idea de densidad— y el detalle lo da el carrusel de abajo,
+   que si esta pensado para pantalla chica. */
+@media (max-width: 640px) {
+  .panelreal { padding: 0 14px; }
+  .panelreal figcaption { font-size: 12px; }
 }

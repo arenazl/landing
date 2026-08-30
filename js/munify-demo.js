@@ -24,8 +24,18 @@
 (function () {
   'use strict';
 
-  var API = 'https://munify-api-1060106389361.us-east4.run.app/api';
-  var APP = 'https://app.munify.com.ar';
+  /* El backend se elige por HOST: la landing de produccion habla con el back de
+     produccion y todo lo demas (branch qa, previews, local) con el de QA. Asi
+     no hay que acordarse de cambiar una constante al promover, que es
+     exactamente el tipo de cosa que se olvida y termina creando demos de
+     prueba en la base productiva. */
+  var EN_PROD = /(^|\.)munify\.com\.ar$/.test(location.hostname);
+  var API = EN_PROD
+    ? 'https://munify-api-1060106389361.us-east4.run.app/api'
+    : 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
+  var APP = EN_PROD
+    ? 'https://app.munify.com.ar'
+    : 'https://app-qa.munify.com.ar';
 
   var PAISES = [
     { c: 'AR', n: 'Argentina' }, { c: 'PY', n: 'Paraguay' }, { c: 'UY', n: 'Uruguay' },

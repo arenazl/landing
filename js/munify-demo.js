@@ -157,7 +157,7 @@
       if (!rs.length) {
         caja.innerHTML = '<div class="dmsug__vacio">No encontramos ese municipio en el catálogo. ' +
           'Probá con otro nombre o <a href="https://wa.me/5491138518148" target="_blank" rel="noopener">consultanos por WhatsApp</a>.</div>';
-        caja.hidden = false; return;
+        caja.hidden = false; acomodar(); return;
       }
       rs.slice(0, 6).forEach(function (m) {
         var b = document.createElement('button');
@@ -176,9 +176,37 @@
         caja.appendChild(b);
       });
       caja.hidden = false;
+      acomodar();
     }
 
-    function cerrar() { caja.hidden = true; caja.innerHTML = ''; }
+    function cerrar() {
+      caja.hidden = true; caja.innerHTML = '';
+      caja.classList.remove('dmsug--arriba');
+      caja.style.maxHeight = '';
+    }
+
+    /* El listado abria SIEMPRE hacia abajo y con el formulario cerca del pie
+       se salia de la pantalla: los ultimos municipios quedaban abajo del
+       borde y no habia forma de llegar (dueño, 2026-08-31). Ahora mide lo que
+       hay libre y decide: si abajo no entra pero arriba si, abre hacia arriba;
+       si no entra en ningun lado, se queda abajo con scroll propio. */
+    function acomodar() {
+      if (caja.hidden) return;
+      caja.classList.remove('dmsug--arriba');
+      caja.style.maxHeight = '';
+      var refe = caja.parentElement.getBoundingClientRect();
+      var alto = caja.scrollHeight;
+      var margen = 16;
+      var abajo = window.innerHeight - refe.bottom - margen;
+      var arriba = refe.top - margen;
+      if (alto <= abajo) return;                       // entra abajo, sin tocar nada
+      if (alto <= arriba) { caja.classList.add('dmsug--arriba'); return; }
+      var lado = Math.max(abajo, arriba);
+      if (arriba > abajo) caja.classList.add('dmsug--arriba');
+      caja.style.maxHeight = Math.max(140, lado) + 'px';
+    }
+    window.addEventListener('resize', acomodar);
+    window.addEventListener('scroll', acomodar, { passive: true });
 
     /* ---------- crear la demo ---------- */
     function mostrar(clase, html) {

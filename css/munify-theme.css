@@ -478,13 +478,32 @@ a:hover { color: var(--accent-bright); }
    medianos empujaba a los demas botones. El boton conserva aria-label y title
    —lo que leen los lectores de pantalla—, asi que sacar la etiqueta visible no
    lo deja sin nombre. */
+/* El cambio de tema es un RINCONCITO, no un control de primera linea (dueño,
+   2026-08-31): chiquito, sin borde y a media tinta, para que no compita con el
+   CTA que tiene al lado. Se enciende al pasar por encima. */
 .theme-toggle--pill {
-  width: 38px; height: 38px; padding: 0;
+  width: 26px; height: 26px; padding: 0;
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 999px;
-  border-color: var(--line-strong); color: var(--ink);
+  border-color: transparent; color: var(--ink);
+  opacity: 0.4;
+  transition: opacity 200ms var(--ease), color 200ms var(--ease);
 }
-.theme-toggle--pill svg { width: 17px; height: 17px; }
+.theme-toggle--pill svg { width: 14px; height: 14px; }
+/* El hover de la variante general pintaba fondo y borde de acento: acá sólo
+   sube la tinta, que es todo lo que hace falta para saber que se puede tocar. */
+.theme-toggle--pill:hover {
+  opacity: 1;
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink);
+}
+/* En el telefono vuelve al area de toque de siempre: 26px es comodo con el
+   mouse y chico para un dedo. */
+@media (max-width: 1023px) {
+  .theme-toggle--pill { width: 34px; height: 34px; opacity: 0.55; }
+  .theme-toggle--pill svg { width: 16px; height: 16px; }
+}
 
 /* ---- 02 · Los dos lados en tiempo real ---- */
 .dos { background: var(--paper-warm); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 72px 64px; }
@@ -1700,4 +1719,44 @@ input, select, textarea { font-size: 16px; }
 @media (min-width: 1024px) and (max-width: 1140px) {
   .tb2__nav { gap: 11px; }
   .tb2__nav a { font-size: 12.5px; }
+}
+
+/* ============================================================
+   EL RINCONCITO DEL TEMA (dueño, 2026-08-31)
+   Va ULTIMO a proposito: mas arriba el toggle recibe fondo de acento y, con
+   la barra en el hero, un blanco translucido. Eso lo ponia a la par del CTA
+   que tiene al lado, cuando es un control de rincon: chiquito, sin fondo y a
+   media tinta. Se enciende al pasar por encima.
+   ============================================================ */
+.tb2 .theme-toggle,
+.tb2 .theme-toggle--pill,
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0.4;
+  transition: opacity 200ms var(--ease);
+}
+.tb2 .theme-toggle svg,
+.topbar:not(.scrolled) .theme-toggle svg { width: 14px; height: 14px; }
+.tb2 .theme-toggle:hover,
+.topbar:not(.scrolled) .theme-toggle:hover {
+  background: transparent;
+  opacity: 1;
+}
+/* Con la barra arriba el fondo es el hero (oscuro en los dos temas). */
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill { color: #fff; }
+.tb2 .theme-toggle { color: var(--ink); }
+/* En el telefono vuelve al area de toque comoda: 26px es chico para un dedo. */
+@media (max-width: 1023px) {
+  .tb2 .theme-toggle,
+  .tb2 .theme-toggle--pill,
+  .topbar:not(.scrolled) .theme-toggle,
+  .topbar:not(.scrolled) .theme-toggle--pill { width: 34px; height: 34px; opacity: 0.55; }
+  .tb2 .theme-toggle svg,
+  .topbar:not(.scrolled) .theme-toggle svg { width: 16px; height: 16px; }
 }

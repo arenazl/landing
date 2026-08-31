@@ -257,6 +257,16 @@
        provincia y se juntan. Los nombres que salen son REALES: los mismos que
        alimentan el buscador de arriba. */
     var SEMILLAS = ['san', 'la', 'villa', 'del'];
+    /* Cada pais llama distinto a lo mismo: en Peru y Paraguay son distritos,
+       en Chile comunas. Decirle "localidades" a un alcalde peruano es hablarle
+       en idioma ajeno (dueño, 2026-08-31). */
+    var COMO_SE_LLAMAN = {
+      AR: 'localidades', UY: 'municipios', BO: 'municipios',
+      PY: 'distritos',   PE: 'distritos',  CL: 'comunas'
+    };
+    function comoSeLlaman() {
+      return COMO_SE_LLAMAN[selPais.value] || 'localidades';
+    }
     function traerVecinas(m) {
       VECINAS = [];
       if (!m || !m.provincia) return;
@@ -292,11 +302,40 @@
     /* Va tildando los items de un paso, uno por uno, y avisa cuando termino. */
     function detallar(fila, i, dur, fin) {
       var d = DETALLE[i];
-      if (d && d.vecinas) d = VECINAS.length ? VECINAS : null;
-      if (!d) { setTimeout(fin, dur * 1000); return; }
       var caja = document.createElement('span');
       caja.className = 'dmpaso__items';
       fila.querySelector('.dmpaso__n').appendChild(caja);
+
+      /* Las vecinas viajan por red y pueden no haber llegado (o no existir
+         para esa provincia). En vez de dejar el paso mudo, se avisa que se
+         estan buscando, con la palabra que usa ESE pais. Si aparecen, se
+         tildan; si no, el aviso se queda y no se inventa ningun nombre. */
+      if (d && d.vecinas) {
+        if (VECINAS.length) {
+          d = VECINAS;
+        } else {
+          var esperando = document.createElement('span');
+          esperando.className = 'dmpaso__buscando';
+          esperando.textContent = 'Obteniendo ' + comoSeLlaman() + ' de la zona';
+          caja.appendChild(esperando);
+          var reintentos = 0;
+          var espera = setInterval(function () {
+            reintentos++;
+            if (VECINAS.length) {
+              clearInterval(espera);
+              caja.removeChild(esperando);
+              tildar(caja, VECINAS, Math.max(0.6, dur - reintentos * 0.3), fin);
+            } else if (reintentos > 10) {          // ~3s: no llegaron
+              clearInterval(espera);
+              esperando.textContent = 'Zona ubicada por coordenadas';
+              esperando.classList.add('is-ok');
+              fin();
+            }
+          }, 300);
+          return;
+        }
+      }
+      if (!d) { caja.remove(); setTimeout(fin, dur * 1000); return; }
 
       if (d.cuenta) {
         var n = document.createElement('span');
@@ -311,12 +350,17 @@
         return;
       }
 
-      var k = 0, cada = (dur * 1000) / (d.length + 0.5);
+      tildar(caja, d, dur, fin);
+    }
+
+    /* Va agregando los chips de a uno, repartidos en el tiempo del paso. */
+    function tildar(caja, lista, dur, fin) {
+      var k = 0, cada = (dur * 1000) / (lista.length + 0.5);
       var t2 = setInterval(function () {
-        if (k >= d.length) { clearInterval(t2); fin(); return; }
+        if (k >= lista.length) { clearInterval(t2); fin(); return; }
         var it = document.createElement('span');
         it.className = 'dmpaso__it';
-        it.textContent = d[k];
+        it.textContent = lista[k];
         caja.appendChild(it);
         k++;
       }, cada);

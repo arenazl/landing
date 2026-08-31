@@ -1657,7 +1657,23 @@ input, select, textarea { font-size: 16px; }
    191px se le montaba encima: en pantalla chica se queda con el icono solo,
    en circulo. Sigue siendo el mismo destino y el mismo color — lo que se cae
    es el texto, no la accion. */
-.tb2__cta { gap: 8px; white-space: nowrap; }
+/* El CTA de la barra usa el MISMO outline que el del hero (dueño,
+   2026-08-31): en verde solido competia con el boton principal de abajo y
+   ensuciaba la barra. El borde se iguala al del hero —mas marcado que el
+   `--line-strong` general— y el icono conserva el acento para que se lea que
+   es WhatsApp. */
+.tb2__cta { gap: 8px; white-space: nowrap; border-color: rgba(255,255,255,0.35); }
+.tb2__cta:hover { border-color: #fff; }
+.tb2__cta i { color: var(--accent); }
+:root[data-theme="light"] .tb2__cta { border-color: rgba(13,20,40,0.28); }
+:root[data-theme="light"] .tb2__cta:hover { border-color: rgba(13,20,40,0.55); }
+/* Con la barra ARRIBA el fondo es el hero (oscuro en los dos temas), asi que
+   el CTA outline va en blanco aunque el tema sea claro: si no, quedaba texto
+   oscuro sobre imagen oscura. Al scrollear vuelve al color del tema, como el
+   resto de la barra. Va DESPUES del bloque de light porque empatan en
+   especificidad y decide el orden. */
+.topbar:not(.scrolled) .tb2__cta { border-color: rgba(255,255,255,0.35); color: #fff; }
+.topbar:not(.scrolled) .tb2__cta:hover { border-color: #fff; }
 @media (max-width: 720px) {
   .tb2__cta {
     width: 40px; height: 40px; padding: 0; border-radius: 999px;

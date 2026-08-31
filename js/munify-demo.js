@@ -267,10 +267,41 @@
     function comoSeLlaman() {
       return COMO_SE_LLAMAN[selPais.value] || 'localidades';
     }
+    /* El catalogo de municipios no cambia de un dia para el otro, asi que las
+       vecinas de una provincia se guardan 7 dias: la segunda vez que alguien
+       arma una demo de la misma zona no sale ni un request (dueño,
+       2026-08-31). Mismo patron que el sondeo de paises de arriba. */
+    var CACHE_VEC = 'munifyVecinas';
+    function cacheLeer(clave) {
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_VEC) || '{}');
+        var e = c[clave];
+        if (e && Date.now() - e.t < 6048e5 && e.v && e.v.length) return e.v;   // 7 dias
+      } catch (e) {}
+      return null;
+    }
+    function cacheGuardar(clave, lista) {
+      if (!lista || !lista.length) return;
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_VEC) || '{}');
+        c[clave] = { t: Date.now(), v: lista };
+        localStorage.setItem(CACHE_VEC, JSON.stringify(c));
+      } catch (e) {}
+    }
+
     function traerVecinas(m) {
       VECINAS = [];
       if (!m || !m.provincia) return;
       var pais = selPais.value || 'AR';
+      var clave = pais + '|' + m.provincia;
+      var guardadas = cacheLeer(clave);
+      if (guardadas) {
+        // Se saca el municipio elegido por si quedo guardado desde otra demo
+        // de la misma provincia.
+        VECINAS = guardadas.filter(function (n) { return n !== m.nombre; }).slice(0, 6);
+        if (VECINAS.length) return;
+      }
+      var pendientes = SEMILLAS.length;
       SEMILLAS.forEach(function (q) {
         var url = API + '/municipios/catalogo?q=' + q + '&pais=' + pais
           + '&provincia=' + encodeURIComponent(m.provincia);
@@ -285,7 +316,11 @@
               VECINAS.push(r.nombre); puestas++;
             }
           });
-        }).catch(function () { /* sin vecinas cae al contador: no se inventa nada */ });
+        }).catch(function () { /* sin vecinas cae al aviso: no se inventa nada */ })
+          .then(function () {
+            // Cuando contestaron las cuatro, se guarda lo que se junto.
+            if (--pendientes <= 0) cacheGuardar(clave, VECINAS);
+          });
       });
     }
 

@@ -169,6 +169,9 @@
         b.querySelector('.dmsug__p').textContent = m.provincia || '';
         b.addEventListener('click', function () {
           elegido = m;
+          // Se piden las vecinas ya, para tenerlas listas cuando arranque la
+          // creacion: pedirlas ahi meteria una espera antes del primer paso.
+          traerVecinas(m);
           inpMuni.value = m.nombre;
           btn.disabled = false;
           cerrar();
@@ -218,23 +221,117 @@
        (services/seed_demo.py). Los segundos son estimados y solo marcan el
        ritmo: el ultimo paso no se cierra por reloj sino cuando responde el
        servidor, para que la pantalla nunca diga "listo" antes de que lo este. */
+    /* Cada paso con SU icono: siete circulitos iguales no cuentan nada, y esto
+       es lo unico que el visitante mira durante los dos minutos que tarda la
+       demo (dueño, 2026-08-31). El `s` es cuanto dura: la barrita de abajo se
+       llena en ese tiempo, asi el avance se ve en vez de adivinarse. */
     var PASOS = [
-      { t: 'Ubicando {M} en el mapa',            d: 'coordenadas del catálogo oficial', s: 1.6 },
-      { t: 'Trayendo sus barrios',               d: 'los que tiene mapeados OpenStreetMap', s: 2.6 },
-      { t: 'Armando las áreas del municipio',    d: 'dependencias, y qué reclamo va a cuál', s: 1.6 },
-      { t: 'Cargando los trámites',              d: 'con los requisitos de cada uno', s: 1.4 },
-      { t: 'Sembrando tres meses de reclamos',   d: 'con su circuito completo, no fotos sueltas', s: 3.2 },
-      { t: 'Repartiendo el trabajo de campo',    d: 'cuadrillas, órdenes de trabajo e inventario', s: 2.4 },
-      { t: 'Abriendo la agenda y la tesorería',  d: 'turnos, cajas y gastos del municipio', s: 2.2 }
+      { t: 'Ubicando {M} y su zona',             d: 'coordenadas y localidades del catálogo oficial', s: 2.2,
+        ic: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>' },
+      { t: 'Trayendo sus barrios',               d: 'los que tiene mapeados OpenStreetMap', s: 2.6,
+        ic: '<path d="m12 2 9 4.5-9 4.5-9-4.5L12 2Z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 17 9 4.5 9-4.5"/>' },
+      { t: 'Armando las áreas del municipio',    d: 'dependencias, y qué reclamo va a cuál', s: 1.6,
+        ic: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>' },
+      { t: 'Cargando los trámites',              d: 'con los requisitos de cada uno', s: 1.4,
+        ic: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6"/>' },
+      { t: 'Sembrando tres meses de reclamos',   d: 'con su circuito completo, no fotos sueltas', s: 3.2,
+        ic: '<path d="m3 11 18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>' },
+      { t: 'Repartiendo el trabajo de campo',    d: 'cuadrillas, órdenes de trabajo e inventario', s: 2.4,
+        ic: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>' },
+      { t: 'Abriendo la agenda y la tesorería',  d: 'turnos, cajas y gastos del municipio', s: 2.2,
+        ic: '<rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/>' }
     ];
+
+    /* Lo que el seed crea DE VERDAD, para irlo tildando de a uno mientras se
+       espera (dueño, 2026-08-31). No es socket: el timing lo marca el `s` de
+       cada paso repartido entre sus items. Los que no tienen lista —barrios,
+       reclamos— muestran un contador, porque sus nombres salen de OSM recien
+       al crearse y ponerlos inventados seria mentir. */
+    /* Las localidades de la MISMA provincia, sacadas del catalogo oficial. Es
+       lo que hace que la espera no parezca una demo generica: el visitante ve
+       nombres de su zona (dueño, 2026-08-31). Son reales —salen del mismo
+       endpoint que alimenta el buscador—, no una lista inventada. */
+    var VECINAS = [];
+    /* El endpoint del catalogo pide 3+ letras (con `q` vacio devuelve 0,
+       verificado), asi que se piden dos terminos frecuentes acotados a la
+       provincia y se juntan. Los nombres que salen son REALES: los mismos que
+       alimentan el buscador de arriba. */
+    var SEMILLAS = ['san', 'la', 'villa', 'del'];
+    function traerVecinas(m) {
+      VECINAS = [];
+      if (!m || !m.provincia) return;
+      var pais = selPais.value || 'AR';
+      SEMILLAS.forEach(function (q) {
+        var url = API + '/municipios/catalogo?q=' + q + '&pais=' + pais
+          + '&provincia=' + encodeURIComponent(m.provincia);
+        traer(url).then(function (rs) {
+          if (!Array.isArray(rs)) return;
+          /* Maximo 2 por semilla: con una sola, las seis salian empezando
+             con "San" y parecia una lista armada, no la zona real. */
+          var puestas = 0;
+          rs.forEach(function (r) {
+            if (puestas >= 2 || VECINAS.length >= 6) return;
+            if (r.nombre && r.nombre !== m.nombre && VECINAS.indexOf(r.nombre) === -1) {
+              VECINAS.push(r.nombre); puestas++;
+            }
+          });
+        }).catch(function () { /* sin vecinas cae al contador: no se inventa nada */ });
+      });
+    }
+
+    var DETALLE = [
+      { vecinas: true },
+      { cuenta: 'barrios mapeados' },
+      ['Obras Públicas', 'Servicios Públicos', 'Tránsito y Vial', 'Habilitaciones', 'Ambiente'],
+      ['Licencia de conducir', 'Habilitación comercial', 'Permiso de obra menor', 'Libre deuda municipal'],
+      { cuenta: 'reclamos con su circuito' },
+      ['Cuadrillas', 'Órdenes de trabajo', 'Inventario del corralón'],
+      ['Turnos', 'Cajas y fondos', 'Gastos por proyecto']
+    ];
+
+    /* Va tildando los items de un paso, uno por uno, y avisa cuando termino. */
+    function detallar(fila, i, dur, fin) {
+      var d = DETALLE[i];
+      if (d && d.vecinas) d = VECINAS.length ? VECINAS : null;
+      if (!d) { setTimeout(fin, dur * 1000); return; }
+      var caja = document.createElement('span');
+      caja.className = 'dmpaso__items';
+      fila.querySelector('.dmpaso__n').appendChild(caja);
+
+      if (d.cuenta) {
+        var n = document.createElement('span');
+        n.className = 'dmpaso__cuenta';
+        caja.appendChild(n);
+        var hasta = 12 + Math.floor(Math.random() * 26), v = 0;
+        var paso = Math.max(40, (dur * 1000) / hasta);
+        var t = setInterval(function () {
+          v++; n.textContent = v + ' ' + d.cuenta;
+          if (v >= hasta) { clearInterval(t); fin(); }
+        }, paso);
+        return;
+      }
+
+      var k = 0, cada = (dur * 1000) / (d.length + 0.5);
+      var t2 = setInterval(function () {
+        if (k >= d.length) { clearInterval(t2); fin(); return; }
+        var it = document.createElement('span');
+        it.className = 'dmpaso__it';
+        it.textContent = d[k];
+        caja.appendChild(it);
+        k++;
+      }, cada);
+    }
 
     function pintarPasos(nombre) {
       estado.className = 'dmestado is-on dmestado--work';
-      estado.innerHTML = '<b>Armando la demo de ' + nombre + '</b>'
+      estado.innerHTML = '<b>Creando la demo de ' + nombre + '</b>'
         + '<div class="dmpasos">' + PASOS.map(function (p, i) {
-            return '<div class="dmpaso" data-p="' + i + '"' + (i ? ' hidden' : '') + '><span class="dmpaso__ic"></span>'
+            return '<div class="dmpaso" data-p="' + i + '"' + (i ? ' hidden' : '') + '>'
+              + '<span class="dmpaso__ic"><svg viewBox="0 0 24 24" aria-hidden="true">' + p.ic + '</svg></span>'
               + '<span class="dmpaso__n">' + p.t.replace('{M}', nombre)
-              + '<span class="dmpaso__d">' + p.d + '</span></span></div>';
+              + '<span class="dmpaso__d">' + p.d + '</span>'
+              + '<span class="dmpaso__barra"><i style="animation-duration:' + p.s + 's"></i></span>'
+              + '</span></div>';
           }).join('') + '</div>';
       return estado.querySelectorAll('.dmpaso');
     }
@@ -259,9 +356,14 @@
         if (actual > 0) marcar(actual - 1, 'is-ok');
         /* Se frena en el ultimo: de ahi no pasa hasta que el servidor conteste. */
         if (actual >= PASOS.length) return;
-        marcar(actual, 'is-now');
-        timer = setTimeout(avanzar, PASOS[actual].s * 1000);
+        var i = actual;
+        marcar(i, 'is-now');
         actual++;
+        /* El paso no avanza por reloj pelado: avanza cuando termino de tildar
+           sus items. Asi lo que se ve es el trabajo, no una barra que corre. */
+        detallar(filas[i], i, PASOS[i].s, function () {
+          if (!terminado) timer = setTimeout(avanzar, 180);
+        });
       }
       avanzar();
 

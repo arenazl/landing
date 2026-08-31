@@ -447,17 +447,26 @@ a:hover { color: var(--accent-bright); }
      por nada. Aca el paso se arma en dos columnas —circulo y texto— y la linea
      baja de un circulo al siguiente, que es como se lee un recorrido en
      vertical. */
-  .tl2 { grid-template-columns: 1fr; }
+  .tl2 { grid-template-columns: 1fr; row-gap: 42px; }
   .tl2__step {
-    display: grid; grid-template-columns: 40px 1fr;
-    column-gap: 14px; align-items: start;
+    display: grid; grid-template-columns: 46px 1fr;
+    column-gap: 16px; align-items: start;
   }
-  .tl2__dot { grid-column: 1; grid-row: 1 / span 3; }
+  /* Un punto mas grande que en escritorio y con mas aire entre pasos: en el
+     telefono cada paso se lee solo, no en fila con los otros, asi que el
+     tamano de escritorio quedaba apretado. */
+  .tl2__dot {
+    grid-column: 1; grid-row: 1 / span 3;
+    width: 46px; height: 46px; font-size: 17px; margin-bottom: 0;
+  }
   .tl2__time, .tl2__step h3, .tl2__step p { grid-column: 2; }
+  .tl2__time { font-size: 12.5px; }
+  .tl2__step h3 { margin: 3px 0 5px; font-size: 18.5px; }
+  .tl2__step p { font-size: 14.5px; line-height: 1.6; }
   .tl2__step::before {
     content: ""; position: absolute;
-    left: 35px;            /* el centro del circulo: 16 de padding + 20 de radio */
-    top: 46px; bottom: -34px;   /* del borde del circulo hasta el siguiente */
+    left: 38px;            /* el centro del circulo: 16 de padding + 23 de radio */
+    top: 54px; bottom: -44px;   /* del borde del circulo hasta el siguiente */
     width: 2px; background: var(--line-strong);
   }
   .tl2__step:last-child::before { display: none; }

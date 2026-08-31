@@ -1942,3 +1942,59 @@ input, select, textarea { font-size: 16px; }
   font-weight: 600;
   padding: .9rem 1.25rem;
 }
+
+/* ============================================================
+   EL COMBO DE LA LANDING (dueño, 2026-08-31)
+   El <select> nativo abre la lista del sistema operativo: blanca, con la
+   tipografia de Windows y su barra de scroll, en el medio de una pagina
+   oscura. Este es el mismo control con la cara de la app. El select real
+   sigue existiendo debajo —oculto— para que el JS que lee su value y escucha
+   su change no se entere de nada.
+   ============================================================ */
+.mcombo { position: relative; min-width: 0; }
+.mcombo > select.dmsel {
+  position: absolute; opacity: 0; pointer-events: none;
+  width: 1px; height: 1px; padding: 0; border: 0;
+}
+.mcombo__b {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  background: var(--paper-warm); border: 1px solid var(--line-strong);
+  border-radius: var(--r-control); padding: 14px 16px; color: var(--ink);
+  font: 500 14px var(--font-body); cursor: pointer; text-align: left;
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+}
+.mcombo__b:hover { border-color: var(--accent-line); }
+.mcombo.is-open .mcombo__b { border-color: var(--accent); }
+.mcombo.is-vacio .mcombo__t { color: var(--muted-soft); }
+.mcombo.is-off .mcombo__b { opacity: .45; cursor: not-allowed; }
+.mcombo__t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mcombo__f { flex: none; width: 14px; height: 14px; display: inline-flex; transition: transform 200ms var(--ease); }
+.mcombo__f svg { width: 14px; height: 14px; fill: none; stroke: var(--muted-soft); stroke-width: 2.5;
+  stroke-linecap: round; stroke-linejoin: round; }
+.mcombo.is-open .mcombo__f { transform: rotate(180deg); }
+
+.mcombo__p {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30;
+  background: var(--card); border: 1px solid var(--accent-line);
+  border-radius: var(--r-control); box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  overflow-y: auto; overscroll-behavior: contain; padding: 5px;
+  animation: mcombo-in .16s ease-out both;
+}
+.mcombo--arriba .mcombo__p { top: auto; bottom: calc(100% + 6px); }
+@keyframes mcombo-in { from { opacity: 0; transform: translateY(-4px); } }
+.mcombo__o {
+  display: block; width: 100%; text-align: left; border: 0; background: transparent;
+  color: var(--ink); font: 500 13.5px var(--font-body); padding: 10px 12px;
+  border-radius: 8px; cursor: pointer; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; transition: background 120ms var(--ease);
+}
+.mcombo__o:hover { background: var(--accent-soft); }
+.mcombo__o.is-sel { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+/* La barra de scroll, del lado oscuro: la del sistema cantaba igual que la
+   lista que vinimos a reemplazar. */
+.mcombo__p::-webkit-scrollbar { width: 8px; }
+.mcombo__p::-webkit-scrollbar-track { background: transparent; }
+.mcombo__p::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+.mcombo__p::-webkit-scrollbar-thumb:hover { background: var(--accent-line); }
+.mcombo__p { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+@media (max-width: 1023px) { .mcombo__b { font-size: 16px; } }

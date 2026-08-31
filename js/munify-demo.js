@@ -24,22 +24,25 @@
 (function () {
   'use strict';
 
-  /* El backend se elige por HOST: la landing de produccion habla con el back de
-     produccion y todo lo demas (branch qa, previews, local) con el de QA. Asi
-     no hay que acordarse de cambiar una constante al promover, que es
-     exactamente el tipo de cosa que se olvida y termina creando demos de
-     prueba en la base productiva. */
-  /* BUG que costo caro: el regex era /(^|\.)munify\.com\.ar$/ y "qa.munify.com.ar"
-     TERMINA en ".munify.com.ar", asi que matcheaba y la landing de QA hablaba con
-     el backend de PRODUCCION — cada demo de prueba se creaba en la base real.
-     Produccion son dos hostnames y nada mas; se listan. */
-  var EN_PROD = ['munify.com.ar', 'www.munify.com.ar'].indexOf(location.hostname) !== -1;
-  var API = EN_PROD
-    ? 'https://munify-api-1060106389361.us-east4.run.app/api'
-    : 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
-  var APP = EN_PROD
-    ? 'https://app.munify.com.ar'
-    : 'https://qa-app.munify.com.ar';
+  /* LAS DEMOS SIEMPRE VAN A QA, tambien desde munify.com.ar. Es a proposito.
+
+     Dos motivos, los dos del dueño (2026-08-31):
+     1. El municipio que crea un prospecto es un PROTOTIPO, no tiene validez, y no
+        tiene por que ensuciar la base productiva — donde vive el unico municipio
+        real (San Pedro Norte).
+     2. La base de QA (sugerenciasmun-ensayo) es la que tiene cargada la geografia
+        completa: zonas con contorno, localidades por zona, los 6 paises. En la
+        base de produccion las demos salen pobres, sin geoposiciones.
+
+     O sea: esto NO es un olvido de promocion que haya que "corregir". Si algun dia
+     se quiere que produccion genere demos en su propia base, se cambian estas dos
+     constantes sabiendo lo que implica.
+
+     Historia: antes se elegia por hostname con /(^|.)munify.com.ar$/, y como
+     "qa.munify.com.ar" TERMINA en ".munify.com.ar" pasaba justo lo contrario: la
+     landing de QA escribia en la base REAL. */
+  var API = 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
+  var APP = 'https://qa-app.munify.com.ar';
 
   var PAISES = [
     { c: 'AR', n: 'Argentina' }, { c: 'PY', n: 'Paraguay' }, { c: 'UY', n: 'Uruguay' },

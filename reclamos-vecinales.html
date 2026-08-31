@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Munify">
     <title>Sistema de Reclamos Vecinales Online para Municipios | Munify</title>
 
     <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
     <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
-    <meta name="theme-color" content="#0088cc">
+    <meta name="theme-color" content="#060E22">
     <meta name="description" content="Sistema de reclamos vecinales online para municipios de Argentina. Los vecinos reportan desde la app y el municipio gestiona con seguimiento en tiempo real. Digitalizá los reclamos de tu intendencia.">
     <meta name="author" content="Munify Argentina">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -61,6 +64,12 @@
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/munify-v2.css">
+    <!-- Restyling comercial 2026 (docs/design-sync/comercial-2026-08-30) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/munify-theme.css">
+    <!-- theme guard: aplica el tema guardado antes del paint (sin flash) -->
+    <script>(function(){try{if(localStorage.getItem('munifyTheme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
     <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
     <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
 
@@ -70,40 +79,33 @@
     }
     </script>
 </head>
-<body>
+<body class="pagina-interna pag-reclamos">
 
 <header id="topbar" class="topbar">
-    <div class="container flex items-center justify-between py-3.5">
-        <a href="/" class="flex items-center gap-2.5">
-            <img src="images/Munify.svg" alt="Munify" class="h-10 w-auto">
-            <span class="font-semibold tracking-tight text-[1.25rem]" style="color:var(--ink)">Munify</span>
-        </a>
-        <nav class="hidden lg:flex items-center gap-1">
-            <a href="/software-gestion-municipal" class="nav-link">Software</a>
-            <a href="/reclamos-vecinales" class="nav-link active">Reclamos</a>
-            <a href="/tramites-municipales" class="nav-link">Trámites</a>
-            <a href="/tesoreria" class="nav-link inline-flex items-center gap-1.5">
-                Tesorería
-                <span class="tag tag--new" style="font-size:0.625rem; padding:0.15rem 0.45rem">NUEVO</span>
-            </a>
-            <a href="/precios" class="nav-link">Precios</a>
-            <a href="/contacto" class="nav-link">Contacto</a>
-        </nav>
-        <div class="flex items-center gap-2">
-            <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="wa-topbar hidden md:inline-flex">
-                <i class="fab fa-whatsapp"></i>
-                Hablá con un asesor
-            </a>
-            <a href="https://app.munify.com.ar/demo" target="_blank" class="btn btn-primary btn-topbar hidden md:inline-flex">
-                Generá tu municipio
-                <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-            <button class="anim-toggle" type="button" aria-label="Pausar o reanudar las animaciones" aria-pressed="false" title="Pausar animaciones">
-                <i class="fas fa-pause"></i><i class="fas fa-play"></i>
-            </button>
-            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Menú">
+    <div class="tb2">
+        <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
                 <i class="fas fa-bars" style="color:var(--ink)"></i>
             </button>
+        <a href="/" class="tb2__brand">
+            <img src="images/munify-logo-color.svg" alt="Munify" class="brand-logo" data-logo>
+            <span>Munify</span>
+        </a>
+
+        <nav class="tb2__nav">
+                <a href="/reclamos-vecinales">Reclamos</a>
+                <a href="/tramites-municipales">Trámites</a>
+                <a href="/tesoreria">Tesorería</a>
+                <a href="/comunicaciones">Comunicaciones</a>
+                <a href="/demo">Demo</a>
+                <a href="/precios">Precios</a>
+                <a href="/contacto">Contacto</a>
+        </nav>
+
+        <div class="tb2__actions">
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost tb2__cta" aria-label="Hablá con un asesor por WhatsApp" title="Hablá con un asesor">
+                <i class="fab fa-whatsapp"></i>
+                <span>Hablá con un asesor</span>
+            </a>
         </div>
     </div>
 </header>
@@ -114,19 +116,26 @@
     <aside class="mobile-menu__panel">
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-2">
-                <img src="images/Munify.svg" alt="" class="h-7 w-auto">
+                <img src="images/munify-logo-color.svg" alt="" class="h-7 w-auto brand-logo" data-logo>
                 <span class="font-semibold">Munify</span>
             </div>
-            <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]">
-                <i class="fas fa-times"></i>
-            </button>
+            <div class="menu-utils">
+                <button type="button" class="theme-toggle theme-toggle--pill" data-theme-toggle></button>
+                <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="menu-wa" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
         <nav class="flex flex-col gap-1">
             <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
-            <a href="/software-gestion-municipal" class="nav-link text-base"><i class="fas fa-cube nav-ico"></i><span>Software</span></a>
             <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
             <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
             <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/comunicaciones" class="nav-link text-base"><i class="fas fa-tower-broadcast nav-ico"></i><span>Comunicaciones</span></a>
+            <a href="/demo" class="nav-link text-base"><i class="fas fa-play nav-ico"></i><span>Demo</span></a>
             <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
             <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
         </nav>
@@ -154,279 +163,174 @@
     })();
 </script>
 
-<main class="pt-24">
+<main>
 
-<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
-    <div class="hero__media"><img src="images/workers-checking-the-overall-equipment-effectiveness.jpg" alt=""></div>
-    <div class="hero__tint"></div>
-    <div class="hero__grain"></div>
-    <div class="container relative">
-        <nav class="text-sm mb-6" style="color:var(--muted-soft)">
-            <a href="/" style="color:var(--muted)">Inicio</a>
-            <span class="mx-2">/</span>
-            <span style="color:var(--ink)">Reclamos vecinales</span>
-        </nav>
-        <div class="hero-grid">
+<!-- ============ Hero ============ -->
+<section class="ih">
+    <div class="ih__media" data-videos="videos/hero-reclamos.mp4,videos/loop-atencion-muni.mp4">
+        <img src="images/workers-checking-the-overall-equipment-effectiveness.jpg" alt="">
+    </div>
+    <div class="ih__veil"></div>
+
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Reclamos vecinales</div>
+        <div class="ih__eyebrow">Módulo · Reclamos vecinales</div>
+        <h1 class="ih__h1">Reclamos vecinales, trazables de punta a punta.</h1>
+        <p class="ih__sub">El vecino reporta, el municipio asigna y resuelve. Todos ven el estado en tiempo real.</p>
+        <div class="ih__chips">
+            <span class="ih__chip ih__chip--on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Foto + GPS</span>
+            <span class="ih__chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Asignación con IA</span>
+            <span class="ih__chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Aviso al vecino</span>
+        </div>
+        <div class="ih__cta">
+            <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Consultar por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="ihk">
+        <div><div class="ihk__n" style="color:var(--accent)"><span data-count="88">88</span>%</div><div class="ihk__l">reclamos resueltos a tiempo</div></div>
+        <div><div class="ihk__n" style="color:var(--accent-bright)">−<span data-count="85">85</span>%</div><div class="ihk__l">tiempo de respuesta</div></div>
+        <div><div class="ihk__n" style="color:var(--warn)"><span data-count="92">92</span>%</div><div class="ihk__l">satisfacción del vecino</div></div>
+        <div><div class="ihk__n" style="color:var(--good)"><span data-count="100">100</span>%</div><div class="ihk__l">reclamos trazables</div></div>
+    </div>
+</section>
+
+<!-- ============ Wizard con IA ============ -->
+<section class="split reveal">
+    <div>
+        <div class="sec2__eyebrow">Con inteligencia artificial</div>
+        <h2>El vecino escribe en sus palabras. La IA hace el resto.</h2>
+        <p class="split__p">"No tengo luz" alcanza: la IA sugiere la categoría correcta, detecta duplicados y asigna a la cuadrilla del área. El wizard guía el reporte en 6 pasos simples, con foto y ubicación.</p>
+        <div class="split__list">
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Categoría sugerida automáticamente</div>
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Detección de reclamos duplicados</div>
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Asignación directa a la cuadrilla correcta</div>
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Accesible 24/7, también por WhatsApp</div>
+        </div>
+    </div>
+
+    <div class="mock">
+        <div class="mock__head">
+            <span class="mock__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
             <div>
-                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Módulo · Reclamos vecinales</div>
-                <h1 class="display-1 font-display" style="color:var(--ink)">
-                    Reclamos vecinales,<br>
-                    <span style="color:var(--muted)">trazables <em class="text-accent" style="font-style:normal">de punta a punta</em>.</span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
-                    El vecino reporta, el municipio asigna y resuelve. Todos ven el estado en tiempo real.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="tag tag--accent"><i class="fas fa-location-dot"></i> Foto + GPS</span>
-                    <span class="tag"><i class="fas fa-robot"></i> Asignación con IA</span>
-                    <span class="tag"><i class="fas fa-bell"></i> Aviso al vecino</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
-                    <a href="https://wa.me/5491138518148" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Consultar</a>
-                </div>
-            </div>
-            <div class="reveal" data-anim="scale">
-                <div class="app-mock">
-                    <div class="app-mock__bar">
-                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
-                        <span class="app-mock__title">Munify · Reclamos</span>
-                    </div>
-                    <div class="app-mock__body">
-                        <div class="mock-slides">
-                            <!-- Slide 1: panel (KPIs + lista) -->
-                            <div class="mock-slide is-active">
-                                <div class="mock-grid" style="grid-template-columns:1fr 1fr 1fr; margin-top:0">
-                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="142">142</span></div><div class="mock-stat__lbl">Esta semana</div></div>
-                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="6">6</span></div><div class="mock-stat__lbl">En curso</div></div>
-                                    <div class="mock-stat"><div class="mock-stat__num"><span data-count="88">88</span><span>%</span></div><div class="mock-stat__lbl">A tiempo</div></div>
-                                </div>
-                                <div class="mock-list" style="margin-top:0.9rem">
-                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-road"></i></span><div class="mock-row__main"><div class="mock-row__t">Bache en Av. Mitre 450</div><div class="mock-row__s">Vecino Demo · hace 2 h · Cuadrilla 3</div></div><span class="mock-pill mock-pill--curso">En curso</span></div>
-                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-lightbulb"></i></span><div class="mock-row__main"><div class="mock-row__t">Luminaria apagada · Plaza San Martín</div><div class="mock-row__s">M. González · ayer</div></div><span class="mock-pill mock-pill--ok">Resuelto</span></div>
-                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-trash-can"></i></span><div class="mock-row__main"><div class="mock-row__t">Contenedor desbordado · B° Norte</div><div class="mock-row__s">R. Pérez · hace 5 h</div></div><span class="mock-pill mock-pill--pend">Asignado</span></div>
-                                    <div class="mock-row"><span class="mock-row__ico"><i class="fas fa-droplet"></i></span><div class="mock-row__main"><div class="mock-row__t">Pérdida de agua · Moreno 730</div><div class="mock-row__s">L. Sosa · hace 3 h</div></div><span class="mock-pill mock-pill--rec">Recibido</span></div>
-                                </div>
-                            </div>
-                            <!-- Slide 2: wizard "Nuevo reclamo" con sugerencia de IA -->
-                            <div class="mock-slide">
-                                <div class="mock-wz">
-                                    <div class="mock-wz__head">
-                                        <span class="mock-wz__badge"><i class="fas fa-bolt"></i></span>
-                                        <div><div class="mock-wz__title">Nuevo reclamo</div><div class="mock-wz__sub">Paso 1 de 6</div></div>
-                                    </div>
-                                    <div class="mock-wz__steps">
-                                        <span class="mock-wz__st is-active"><i class="fas fa-bolt"></i></span>
-                                        <span class="mock-wz__st"><i class="fas fa-user"></i></span>
-                                        <span class="mock-wz__st"><i class="fas fa-location-dot"></i></span>
-                                        <span class="mock-wz__st"><i class="fas fa-comment"></i></span>
-                                        <span class="mock-wz__st"><i class="fas fa-camera"></i></span>
-                                        <span class="mock-wz__st"><i class="fas fa-check"></i></span>
-                                    </div>
-                                    <div class="mock-wz__q">
-                                        <span class="mock-wz__qico"><i class="fas fa-bolt"></i></span>
-                                        <div><div class="mock-wz__qt">Qué</div><div class="mock-wz__qs">Elegí el tipo de reclamo</div></div>
-                                    </div>
-                                    <div class="mock-wz__label">Contanos qué está pasando</div>
-                                    <div class="mock-input">no tengo luz<span class="mock-input__caret"></span></div>
-                                    <div class="mock-wz__hint"><i class="fas fa-wand-magic-sparkles"></i> Escribí en tus palabras y la IA sugiere la categoría.</div>
-                                    <div class="mock-wz__recolbl"><i class="fas fa-sparkles"></i> Categoría recomendada</div>
-                                    <div class="mock-ai">
-                                        <span class="mock-ai__ico"><i class="fas fa-lightbulb"></i></span>
-                                        <div class="mock-ai__main"><div class="mock-ai__t">Alumbrado público</div><div class="mock-ai__s">Si está bien, tocá "Siguiente".</div></div>
-                                        <span class="mock-ai__chk"><i class="fas fa-check"></i></span>
-                                    </div>
-                                    <div class="mock-wz__foot">
-                                        <span class="mock-wz__btn mock-wz__btn--ghost"><i class="fas fa-chevron-left"></i> Anterior</span>
-                                        <div class="mock-wz__dots"><span class="is-active"></span><span></span><span></span><span></span><span></span><span></span></div>
-                                        <span class="mock-wz__btn mock-wz__btn--primary">Siguiente <i class="fas fa-chevron-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mock-dots"><span class="is-active"></span><span></span></div>
-                    </div>
-                </div>
+                <div class="mock__t">Nuevo reclamo</div>
+                <div class="mock__s">Paso 1 de 6</div>
             </div>
         </div>
-        <div class="kpi-strip reveal mt-12 pt-10" style="border-top:1px solid var(--line)">
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="88">88</span>%</span><i class="fas fa-circle-check kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:88%; --i:0"></div></div><div class="kpi__lbl">Reclamos resueltos a tiempo</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num">−<span data-count="85">85</span>%</span><i class="fas fa-gauge-high kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:85%; --i:1"></div></div><div class="kpi__lbl">Menos tiempo de respuesta</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="92">92</span>%</span><i class="fas fa-face-smile kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:92%; --i:2"></div></div><div class="kpi__lbl">Satisfacción del vecino</div></div>
-            <div class="kpi"><div class="kpi__head"><span class="kpi__num"><span data-count="100">100</span>%</span><i class="fas fa-route kpi__ico"></i></div><div class="bar-track"><div class="bar-fill" style="--val:100%; --i:3"></div></div><div class="kpi__lbl">Reclamos trazables</div></div>
+        <div class="mock__steps">
+            <span class="mock__step mock__step--on"></span><span class="mock__step"></span><span class="mock__step"></span>
+            <span class="mock__step"></span><span class="mock__step"></span><span class="mock__step"></span>
+        </div>
+        <div class="mock__lbl">Contanos qué está pasando</div>
+        <div class="mock__input">no tengo luz<span class="mock__caret"></span></div>
+        <div class="mock__hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Escribí en tus palabras y la IA sugiere la categoría.</div>
+        <div class="mock__key">Categoría recomendada</div>
+        <div class="mock__pick">
+            <span class="mock__pickIco"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg></span>
+            <div style="flex:1">
+                <div style="font:600 13px var(--font-body); color:var(--ink)">Alumbrado público</div>
+                <div style="font:400 11px var(--font-body); color:var(--ink-soft)">Si está bien, tocá "Siguiente".</div>
+            </div>
+            <span style="color:var(--accent)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        </div>
+        <div class="mock__nav">
+            <span class="mock__prev">← Anterior</span>
+            <span class="mock__next">Siguiente →</span>
         </div>
     </div>
-    <div class="hero__rule"></div>
 </section>
 
-<div class="divider"></div>
-
-
-
-
-<div class="divider"></div>
-
-<!-- Beneficios bento -->
-<section class="container py-16 md:py-20">
-    <div class="max-w-3xl mb-12">
-        <div class="eyebrow mb-4">Beneficios</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">Por qué digitalizar los reclamos</h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div class="bento md:col-span-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-clock"></i></div>
-            <h3 class="display-3 mb-3">Tiempos de respuesta más cortos</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Los municipios que usan Munify reducen drásticamente el tiempo promedio de resolución gracias a la asignación automática y la gestión digital.</p>
+<!-- ============ Beneficios ============ -->
+<section class="ben reveal">
+    <div class="sec2__eyebrow">Beneficios</div>
+    <h2 class="sec2__h2" style="margin-bottom:36px">Por qué digitalizar los reclamos</h2>
+    <div class="ben__grid">
+        <div class="benc benc--3">
+            <span style="color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+            <h3>Tiempos de respuesta más cortos</h3>
+            <p>Los municipios que usan Munify reducen drásticamente el tiempo promedio de resolución gracias a la asignación automática y la gestión digital.</p>
         </div>
-        <div class="bento bento--warm md:col-span-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-eye"></i></div>
-            <h3 class="display-3 mb-3">Transparencia con el vecino</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">El vecino ve en todo momento en qué estado está su reclamo. Esto aumenta la confianza en el municipio y reduce las quejas reiteradas.</p>
+        <div class="benc benc--3">
+            <span style="color:var(--accent-bright)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+            <h3>Transparencia con el vecino</h3>
+            <p>El vecino ve en todo momento en qué estado está su reclamo. Esto aumenta la confianza en el municipio y reduce las quejas reiteradas.</p>
         </div>
-        <div class="bento bento--ink md:col-span-2">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-chart-bar"></i></div>
-            <h3 class="display-3 mb-3" style="color:#fafafa">Datos para decidir</h3>
-            <p class="text-[0.95rem]" style="color:#a3a3a3; line-height:1.6">Estadísticas de qué categorías generan más reclamos, qué zonas y qué dependencias son más eficientes.</p>
+        <div class="benc benc--2">
+            <span style="color:var(--warn)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+            <h3>Datos para decidir</h3>
+            <p>Estadísticas de qué categorías generan más reclamos, qué zonas y qué dependencias son más eficientes.</p>
         </div>
-        <div class="bento md:col-span-2">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-tree"></i></div>
-            <h3 class="display-3 mb-3">Menos papel, más eficiencia</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Dejá atrás las planillas, los llamados y los post-it. Todo queda registrado digitalmente con historial.</p>
+        <div class="benc benc--2">
+            <span style="color:var(--good)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"></path><path d="M9 8h6"></path><path d="M12 15a6 6 0 0 0 6-6c0-3-2-5-6-7-4 2-6 4-6 7a6 6 0 0 0 6 6Z"></path></svg></span>
+            <h3>Menos papel, más eficiencia</h3>
+            <p>Dejá atrás las planillas, los llamados y los post-it. Todo queda registrado digitalmente con historial.</p>
         </div>
-        <div class="bento bento--warm md:col-span-2">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:var(--accent-soft); color:var(--accent)"><i class="fas fa-mobile-alt"></i></div>
-            <h3 class="display-3 mb-3">Accesible 24/7</h3>
-            <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Los vecinos pueden reportar en cualquier momento, incluso fuera del horario de atención del municipio.</p>
+        <div class="benc benc--2">
+            <span style="color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M12 18h.01"></path></svg></span>
+            <h3>Accesible 24/7</h3>
+            <p>Los vecinos pueden reportar en cualquier momento, incluso fuera del horario de atención del municipio.</p>
         </div>
-        <div class="bento md:col-span-6">
-            <div class="flex items-start justify-between flex-wrap gap-6">
-                <div class="max-w-xl">
-                    <div class="eyebrow mb-2">Imagen institucional</div>
-                    <h3 class="display-3 mb-3">Modernidad y profesionalismo</h3>
-                    <p class="text-[0.95rem]" style="color:var(--muted); line-height:1.6">Un municipio con sistema digital de reclamos proyecta modernidad y compromiso. Los vecinos valoran cuando la tecnología se aplica al gobierno con sentido común.</p>
+        <div class="benc--6">
+            <div class="benc__banda">
+                <div style="max-width:640px">
+                    <div class="sec2__eyebrow">Imagen institucional</div>
+                    <h3 style="margin:0 0 8px; font:600 22px var(--font-display); color:var(--ink)">Modernidad y profesionalismo</h3>
+                    <p style="margin:0; font:400 14px/1.6 var(--font-body); color:var(--muted)">Un municipio con sistema digital de reclamos proyecta modernidad y compromiso. Los vecinos valoran cuando la tecnología se aplica al gobierno con sentido común.</p>
                 </div>
-                <a href="https://app.munify.com.ar/demo" class="btn btn-primary">Probar demo<i class="fas fa-arrow-right text-xs"></i></a>
+                <a href="/demo" class="btn2 btn2--accent" style="flex-shrink:0">Probar demo</a>
             </div>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- Categorías -->
-<section class="container py-16 md:py-20">
-    <div class="max-w-3xl mb-12">
-        <div class="eyebrow mb-4">Categorías</div>
-        <h2 class="display-2 font-display" style="color:var(--ink)">Qué tipo de reclamos gestiona Munify</h2>
-        <p class="mt-6 text-lg" style="color:var(--muted)">Categorías pre-configuradas para municipios argentinos. Personalizables según las necesidades de cada intendencia.</p>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-road text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Baches y calles</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-lightbulb text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Alumbrado público</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-trash text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Higiene urbana</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-tree text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Espacios verdes</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-water text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Agua y cloacas</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-dog text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Zoonosis</div>
-        </div>
-        <div class="bento" style="padding:1.5rem">
-            <i class="fas fa-car text-xl mb-3" style="color:var(--ink)"></i>
-            <div class="font-medium text-sm">Tránsito</div>
-        </div>
-        <div class="bento bento--ink" style="padding:1.5rem">
-            <i class="fas fa-plus text-xl mb-3" style="color:#4ade80"></i>
-            <div class="font-medium text-sm" style="color:#fafafa">Y muchas más</div>
-        </div>
+<!-- ============ Categorías ============ -->
+<section class="cats reveal">
+    <div class="sec2__eyebrow">Categorías</div>
+    <h2 class="sec2__h2">Qué tipo de reclamos gestiona Munify</h2>
+    <p class="sec2__lead">Categorías pre-configuradas para municipios argentinos. Personalizables según las necesidades de cada intendencia.</p>
+    <div class="cats__grid">
+        <div class="cat"><span style="color:var(--accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 8 5"></path><path d="m16 5 4 14"></path><path d="M12 8v1"></path><path d="M12 13v1"></path><path d="M12 18v1"></path></svg></span><div class="cat__n">Baches y calles</div></div>
+        <div class="cat"><span style="color:var(--warn)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg></span><div class="cat__n">Alumbrado público</div></div>
+        <div class="cat"><span style="color:var(--good)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></span><div class="cat__n">Higiene urbana</div></div>
+        <div class="cat"><span style="color:var(--good)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"></path><path d="M12 15a6 6 0 0 0 6-6c0-3-2-5-6-7-4 2-6 4-6 7a6 6 0 0 0 6 6Z"></path></svg></span><div class="cat__n">Espacios verdes</div></div>
+        <div class="cat"><span style="color:var(--accent-bright)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18"></path><path d="M3 14h18"></path><path d="M5 20c2-2 4-2 6 0"></path></svg></span><div class="cat__n">Agua y cloacas</div></div>
+        <div class="cat"><span style="color:var(--warn)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16v-4a2 2 0 1 1 4 0v4"></path><path d="M5 16h14l-1.5-5a3 3 0 0 0-2.9-2.2H9.4A3 3 0 0 0 6.5 11Z"></path><circle cx="8" cy="19" r="1.5"></circle><circle cx="16" cy="19" r="1.5"></circle></svg></span><div class="cat__n">Zoonosis</div></div>
+        <div class="cat"><span style="color:var(--accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-1-6H6Z"></path><circle cx="8" cy="17" r="2"></circle><circle cx="16" cy="17" r="2"></circle></svg></span><div class="cat__n">Tránsito</div></div>
+        <div class="cat"><span style="color:var(--accent-bright)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span><div class="cat__n">Y muchas más</div></div>
     </div>
 </section>
 
-<!-- CTA -->
-<section class="container py-16 md:py-24">
-    <div class="bento bento--ink text-center">
-        <h2 class="display-2 font-display mb-4" style="color:#fafafa">Digitalizá los reclamos de tu municipio</h2>
-        <p class="text-lg max-w-2xl mx-auto mb-10" style="color:#a3a3a3; line-height:1.55">Probá Munify gratis por 3 meses sin compromiso.</p>
-        <div class="flex flex-wrap gap-3 justify-center">
-            <a href="https://wa.me/5491138518148" class="btn" style="background:#fafafa; color:var(--ink)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="/contacto" class="btn" style="background:transparent; color:#fafafa; border:1px solid #404040">Contacto</a>
+<!-- ============ Cierre ============ -->
+<section class="cierre reveal">
+    <h2>Digitalizá los reclamos de tu municipio</h2>
+    <p class="cierre__p">Probá Munify gratis por 1 mes, sin compromiso.</p>
+    <div class="cierre__cta">
+        <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+        <a href="/contacto" class="btn2 btn2--ghost">Contacto</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt="" class="brand-logo" data-logo> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
+            <a href="/demo">app.munify.com.ar/demo</a>
         </div>
     </div>
 </section>
 
 </main>
 
-<footer class="site-footer reveal">
-    <img class="site-footer__wm" src="images/munify_logo_no_text (1).png" alt="" aria-hidden="true">
-    <div class="container site-footer__inner">
-        <div class="site-footer__grid">
-            <div>
-                <div class="site-footer__brand"><img src="images/Munify.svg" alt="Munify"><span>Munify</span></div>
-                <p class="site-footer__tag">Software integral de gestión municipal para Argentina. Reclamos, trámites, tesorería y atención al ciudadano.</p>
-                <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="site-footer__wa"><i class="fab fa-whatsapp"></i> Hablá con un asesor</a>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Producto</div>
-                <div class="site-footer__links">
-                    <a href="/software-gestion-municipal" class="foot-link">Software municipal</a>
-                    <a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a>
-                    <a href="/tramites-municipales" class="foot-link">Trámites municipales</a>
-                    <a href="/tesoreria" class="foot-link">Tesorería</a>
-                    <a href="/precios" class="foot-link">Precios</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Empresa</div>
-                <div class="site-footer__links">
-                    <a href="/" class="foot-link">Inicio</a>
-                    <a href="/contacto" class="foot-link">Contacto</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link">Probar demo</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Contacto</div>
-                <div class="site-footer__links">
-                    <a href="https://wa.me/5491138518148" class="foot-link"><i class="fab fa-whatsapp"></i> +54 9 11 3851 8148</a>
-                    <a href="mailto:info@munify.com.ar" class="foot-link"><i class="fas fa-envelope"></i> info@munify.com.ar</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link"><i class="fas fa-arrow-up-right-from-square"></i> app.munify.com.ar</a>
-                </div>
-            </div>
-        </div>
-        <div class="site-footer__bottom">
-            <div class="site-footer__copy">&copy; 2026 Munify &middot; Software de gestión municipal &middot; Argentina</div>
-            <div class="site-footer__social">
-                <a href="https://wa.me/5491138518148" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@munify.com.ar" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script>
     const topbar = document.getElementById('topbar');
     window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 </script>
 
-<a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
+<a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20ver%20el%20m%C3%B3dulo%20de%20Reclamos" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script src="js/munify-anim.js" defer></script>
+<script src="js/munify-theme.js" defer></script>
 </body>
 </html>

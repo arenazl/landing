@@ -1,0 +1,28 @@
+
+  home  tipografia identica
+
+  reclamos  tipografia identica
+
+  tramites  tipografia identica
+
+  tesoreria  tipografia identica
+
+  precios  2 textos con la letra distinta
+      "probar demo"
+          peso: 600 -> 700
+      "3 meses gratis para municipios nuevos"
+          tam: 26 -> 20  |  espaciado: -0.52px -> 0px
+
+  contacto  3 textos con la letra distinta
+      "escribinos"
+          peso: 600 -> 700
+      "probá la plataforma"
+          peso: 600 -> 700
+      "te llamamos nosotros"
+          peso: 600 -> 700
+
+  demo  tipografia identica
+
+  comunicaciones  tipografia identica
+
+5 textos con tipografia distinta al prototipo

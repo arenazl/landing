@@ -134,6 +134,98 @@
     });
   }
 
+  /* ---- Clips en loop: crossfade entre videos declarados en data-videos
+         de cualquier contenedor (hero, cards bento). Progressive: si no
+         corre este JS (o hay reduced-motion / save-data / mobile) queda
+         el <img> de base. ---- */
+  function initLoopVideos() {
+    if (reduce) return;
+    if (navigator.connection && navigator.connection.saveData) return;
+    /* En movil TAMBIEN va video (2026-08-30): el hero sin el clip pierde la
+       mitad de la idea, y el telefono es donde mas gente entra. Lo que se
+       cuida son los datos: abajo de 768px se carga UN solo clip y no rota,
+       en vez de descargar los tres. save-data y reduced-motion siguen
+       mandando y cortan antes que esto. */
+    var esMovil = !window.matchMedia || !window.matchMedia('(min-width: 768px)').matches;
+    var boxes = document.querySelectorAll('[data-videos]');
+    if (!('IntersectionObserver' in window)) {
+      boxes.forEach(function (b) { initLoopBox(b, esMovil); });
+      return;
+    }
+    // lazy: los clips de cada contenedor recien se descargan al acercarse al viewport
+    var lazy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        lazy.unobserve(e.target);
+        initLoopBox(e.target, esMovil);
+      });
+    }, { rootMargin: '300px 0px' });
+    boxes.forEach(function (b) { lazy.observe(b); });
+  }
+
+  function initLoopBox(media, unoSolo) {
+    var srcs = media.getAttribute('data-videos').split(',')
+      .map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!srcs.length) return;
+    /* En movil: un solo clip. Se ve el video igual y se descarga un tercio. */
+    if (unoSolo) srcs = srcs.slice(0, 1);
+
+    var vids = srcs.map(function (src, k) {
+      var v = document.createElement('video');
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      v.preload = k === 0 ? 'auto' : 'metadata';
+      v.setAttribute('aria-hidden', 'true'); v.tabIndex = -1;
+      v.src = src;
+      media.appendChild(v);
+      return v;
+    });
+
+    var i = 0, timer = null, fadeT = null;
+    function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function show(n) {
+      i = (n + vids.length) % vids.length;
+      vids.forEach(function (v, k) {
+        v.classList.toggle('is-on', k === i);
+        if (k === i) play(v);
+      });
+      // al terminar el crossfade (1.4s) los clips ocultos dejan de decodificar
+      clearTimeout(fadeT);
+      fadeT = setTimeout(function () {
+        vids.forEach(function (v, k) {
+          if (k !== i) { try { v.pause(); } catch (e) {} }
+        });
+      }, 1600);
+    }
+    function start() {
+      if (paused || timer) return;
+      show(i);
+      if (vids.length > 1) timer = setInterval(function () { show(i + 1); }, 9000);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+      vids.forEach(function (v) { try { v.pause(); } catch (e) {} });
+    }
+    // el primer clip aparece recién cuando tiene data (sin flash gris)
+    vids[0].addEventListener('canplay', function onCan() {
+      vids[0].removeEventListener('canplay', onCan);
+      if (!paused) start();
+    });
+    play(vids[0]);
+
+    sliderCtrls.push({ start: start, stop: stop });
+
+    // perf: los clips se pausan cuando el hero sale del viewport
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { if (!paused) start(); } else { stop(); }
+        });
+      }, { threshold: 0.05 });
+      io.observe(media);
+    }
+  }
+
   /* ---- Pausa/reanuda TODO el movimiento de la página ---- */
   function setPaused(p) {
     paused = !!p;
@@ -169,6 +261,7 @@
     stackTables();
     observe();
     initSliders();
+    initLoopVideos();
     initAnimToggle();
   }
 

@@ -1,0 +1,2000 @@
+/* ============================================================
+   Munify — sistema de temas (restyling comercial 2026)
+   Fuente de verdad: docs/design-sync/comercial-2026-08-30/README.md
+
+   Este archivo se carga DESPUES de munify-v2.css y REDEFINE sus
+   tokens. Como toda la landing pinta por var() y no tiene un solo
+   hex inline, redefinir aca repinta los componentes existentes
+   (.bento, .card-img, .kpi, .barchart, .donut, .site-footer) sin
+   tocarlos. Sacando el <link> se vuelve al crema anterior.
+
+   Dark es el modo principal; light es el mapeo del handoff.
+   ============================================================ */
+
+/* ---------- 1. DARK (principal) ---------- */
+:root {
+  /* Fondos */
+  --paper: #060E22;         /* pagina */
+  --paper-warm: #0A152E;    /* seccion alterna */
+  --paper-cool: #0A152E;
+  --paper-deep: #0C1830;    /* banda destacada / interna */
+  --card: #101E3C;          /* superficie de card */
+  --card-inner: #0C1830;    /* card interna, mapa */
+
+  /* Texto */
+  --ink: #FFFFFF;
+  --ink-soft: #E8EEFA;
+  --muted: #93A5C9;
+  --muted-soft: #5E7099;
+
+  /* Acento primario — cian */
+  --accent: #4CD9C6;
+  --accent-strong: #35C0AD;
+  --accent-bright: #8FB2FF;   /* azul claro, highlights y hover de links */
+  --accent-ink: #06223F;      /* tinta SOBRE el acento */
+  --accent-soft: rgba(76,217,198,0.12);
+  --accent-line: rgba(76,217,198,0.32);
+  --accent-glow: 0 0 28px rgba(76,217,198,0.35);
+  --accent-blue: #3F6AC8;
+
+  /* Estados */
+  --good: #5BE38A;
+  --good-soft: rgba(91,227,138,0.12);
+  --warn: #FFB800;
+  --warn-soft: rgba(255,184,0,0.12);
+  --bad: #E5484D;
+  --bad-bright: #FF7A7A;
+  --bad-soft: rgba(229,72,77,0.12);
+
+  /* Bordes y sombras */
+  --line: rgba(255,255,255,0.10);
+  --line-soft: rgba(255,255,255,0.06);
+  --line-strong: rgba(255,255,255,0.15);
+  --card-line: rgba(255,255,255,0.10);
+  --shadow-soft: 0 12px 32px rgba(0,0,0,0.40);
+  --shadow-lift: 0 14px 32px rgba(6,14,34,0.30);
+
+  /* Movimiento — easing universal del handoff, sin bounces */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 700ms;
+
+  /* Tipografia */
+  --font-display: 'Sora', system-ui, sans-serif;
+  /* Las del prototipo, tal cual: Sora display + Inter UI. */
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Radios */
+  --r-card: 16px;
+  --r-control: 12px;
+  --r-input: 10px;
+  --r-pill: 999px;
+  --r-phone: 26px;
+
+  /* Ritmo de seccion */
+  --pad-section: 72px 64px;
+  --gap-card: 14px;
+
+  /* Velo de fotos — en dark el velo va navy, no crema */
+  --ov-color: 6, 14, 34;
+  --ov-a1: 0.55;
+  --ov-a2: 0.20;
+  --ov-dir: 165deg;
+  --ov-sat: 1.02;
+  --ov-gray: 0.06;
+
+  color-scheme: dark;
+}
+
+/* ---------- 2. LIGHT (mapeo del handoff) ---------- */
+:root[data-theme="light"] {
+  --paper: #F2F5FA;
+  --paper-warm: #E9EFF7;
+  --paper-cool: #E9EFF7;
+  --paper-deep: #E9EFF7;
+  --card: #FFFFFF;
+  --card-inner: #F2F5FA;
+
+  --ink: #0F1B33;
+  --ink-soft: #22304C;
+  --muted: #5A6880;
+  --muted-soft: #8B97AD;
+
+  --accent: #0E9384;
+  --accent-strong: #0B7A6D;
+  --accent-bright: #3F6AC8;
+  --accent-ink: #FFFFFF;        /* sobre teal va tinta blanca */
+  --accent-soft: rgba(14,147,132,0.10);
+  --accent-line: rgba(14,147,132,0.28);
+  --accent-glow: 0 0 24px rgba(14,147,132,0.22);
+  --accent-blue: #3F6AC8;
+
+  --good: #15803D;
+  --good-soft: rgba(21,128,61,0.10);
+  --warn: #B45309;
+  --warn-soft: rgba(180,83,9,0.10);
+  --bad: #C22F35;
+  --bad-bright: #C22F35;
+  --bad-soft: rgba(194,47,53,0.10);
+
+  --line: rgba(13,20,40,0.14);
+  --line-soft: rgba(13,20,40,0.12);
+  --line-strong: rgba(13,20,40,0.20);
+  --card-line: rgba(13,20,40,0.14);
+  --shadow-soft: 0 1px 2px rgba(13,20,40,0.04), 0 12px 28px -16px rgba(13,20,40,0.18);
+  --shadow-lift: 0 14px 32px rgba(13,20,40,0.14);
+
+  --ov-color: 13, 20, 40;
+  --ov-a1: 0.30;
+  --ov-a2: 0.06;
+
+  color-scheme: light;
+}
+
+/* ---------- 3. Tipografia del restyling ---------- */
+body,
+p, li, span, a, td, th, label, input, textarea, button, select {
+  font-family: var(--font-body);
+}
+
+/* munify-v2.css clava 'Instrument Serif' con !important en TODOS los headers
+   (linea 136) y en 4 selectores sueltos. El handoff pide Sora, asi que hay
+   que igualar el peso: mismo selector + !important. Al sacar este archivo,
+   la landing vuelve sola al serif editorial anterior. */
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+.display-1, .display-2, .display-3, .font-display,
+.metric-num, .stat__num,
+.card-img .card-img__body h3,
+.hero__brand-watermark span {
+  font-family: var(--font-display) !important;
+  letter-spacing: -0.03em;
+}
+
+h1, .display-1 {
+  font-weight: 600;
+  font-size: clamp(34px, 6vw, 60px);
+  line-height: 1.06;
+}
+
+h2, .display-2 {
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.12;
+}
+
+/* Numeros de KPI: cifras tabulares para que no bailen al contar */
+.kpi__num, .kpi-strip__num, [data-count] {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* ---------- 4. Base ---------- */
+body { background: var(--paper); color: var(--ink); }
+a { color: var(--accent); }
+a:hover { color: var(--accent-bright); }
+
+/* Cards vivas — hover del handoff: 4px arriba, 250ms */
+.card, .bento__item, .card-img, .kpi {
+  transition: transform 250ms var(--ease), box-shadow 250ms var(--ease);
+}
+.card:hover, .bento__item:hover, .card-img:hover, .kpi:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ---------- 5. Toggle de tema ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 250ms var(--ease), border-color 250ms var(--ease), background 250ms var(--ease);
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.theme-toggle svg { width: 18px; height: 18px; display: block; }
+/* Se muestra el icono del modo al que se VA a cambiar */
+.theme-toggle .icon-sun { display: block; }
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .bento__item, .card-img, .kpi { transition: none; }
+  .card:hover, .bento__item:hover, .card-img:hover, .kpi:hover { transform: none; }
+}
+
+/* ============================================================
+   6. Componentes que traian color LITERAL en munify-v2.css
+   (unicos puntos donde el markup no pintaba por var, por eso
+   no seguian al tema; se corrigen aca y no alla para que todo
+   el restyling siga viviendo en un solo archivo reversible)
+   ============================================================ */
+
+/* --- Topbar: tenia rgba(255,255,255,.75) fijo -> quedaba blanca en dark --- */
+:root {
+  --topbar-bg: rgba(6, 14, 34, 0.72);
+  --topbar-bg-scrolled: rgba(6, 14, 34, 0.94);
+}
+:root[data-theme="light"] {
+  --topbar-bg: rgba(255, 255, 255, 0.75);
+  --topbar-bg-scrolled: rgba(255, 255, 255, 0.94);
+}
+/* En el prototipo la topbar vive ENCIMA del video del hero, sin fondo: el hero
+   arranca desde el borde de la pagina. El fondo aparece recien al scrollear,
+   cuando ya hay contenido debajo que necesita separarse. */
+.topbar {
+  background: transparent;
+  border-bottom-color: transparent;
+  /* munify-v2 le deja un backdrop-filter: blur(20px) saturate(180%). Sin fondo,
+     ese blur igual DESENFOCA el video del hero en la franja de la barra y
+     dibuja un corte neto a la altura exacta de la topbar: se ve como una banda
+     pegada arriba. Medido con pixeles: salto de color en y=85. El blur solo
+     tiene sentido cuando hay fondo translucido, o sea al scrollear. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.topbar.scrolled {
+  background: var(--topbar-bg-scrolled);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* --- CTA primario: el handoff lo pide cian pleno con glow, no degrade --- */
+.btn-primary {
+  background: var(--accent);
+  background-image: none;
+  color: var(--accent-ink);
+  box-shadow: var(--accent-glow);
+}
+.btn-primary:hover {
+  background: var(--accent-strong);
+  background-image: none;
+  color: var(--accent-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 0 36px rgba(76, 217, 198, 0.45);
+}
+:root[data-theme="light"] .btn-primary:hover {
+  box-shadow: 0 0 30px rgba(14, 147, 132, 0.32);
+}
+
+/* ============================================================
+   7. HOME — piezas del prototipo (fase 1)
+   Recreado desde docs/design-sync/comercial-2026-08-30/pages/
+   "Munify Home.dc.html". El .dc es ESPECIFICACION: se copian
+   valores y copy, no el markup inline.
+   ============================================================ */
+
+/* ---- Topbar del restyling: logo + 7 links + acciones ---- */
+.tb2 {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; padding: 20px 64px;
+}
+.tb2__brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+/* Sin `display` aca: fijaba block sobre CUALQUIER img del brand — incluido el
+   logo que el tema esconde — y le ganaba por especificidad al `display:none`
+   del switch. Resultado: los dos logos juntos apenas la barra se scrolleaba
+   (con la barra arriba lo tapaba la regla de `:not(.scrolled)`, por eso no se
+   veia). El tamano y la visibilidad son cosas distintas. */
+.tb2__brand img { height: 44px; width: auto; }
+.tb2__brand span {
+  font: 700 24px var(--font-display);
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.tb2__nav { display: flex; align-items: center; gap: 26px; }
+.tb2__nav a {
+  font: 500 14px var(--font-body);
+  color: var(--muted); text-decoration: none;
+  transition: color 200ms var(--ease);
+}
+.tb2__nav a:hover, .tb2__nav a.is-active { color: var(--ink); text-decoration: none; }
+.tb2__actions { display: flex; align-items: center; gap: 10px; }
+
+/* ---- Hero de 660px con videos rotando ---- */
+.hero2 { position: relative; min-height: 660px; display: flex; flex-direction: column; }
+.hero2__media { position: absolute; inset: 0; overflow: hidden; }
+.hero2__media img, .hero2__media video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Overlay del handoff: funde al fondo de pagina en el ultimo stop */
+.hero2__veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(6,14,34,0.85) 0%, rgba(6,14,34,0.55) 40%, var(--paper) 100%);
+}
+/* En light el hero de video SIGUE SIENDO OSCURO y recien funde al fondo claro
+   en el ultimo tramo — valores del prototipo Light. Ir a casi-blanco antes de
+   tiempo borra el texto del hero, que se mantiene en la paleta dark. */
+:root[data-theme="light"] .hero2__veil {
+  background: linear-gradient(180deg,
+    rgba(6,14,34,0.85) 0%, rgba(6,14,34,0.5) 50%,
+    rgba(6,14,34,0.62) 84%, rgba(120,140,170,0.28) 94%, var(--paper) 100%);
+  /* DESVIO DELIBERADO del prototipo Light: alli el velo se aclara al 85%, justo
+     donde cae el subtitulo y el "3 meses gratis", y ese texto no se lee. Se
+     corre el fundido a 94% y se agrega un stop oscuro al 84%. Misma intencion
+     (el hero funde al fondo claro), texto legible. */
+}
+/* El contenido del hero no sigue al tema: va siempre sobre el velo oscuro */
+:root[data-theme="light"] .hero2__eyebrow { color: #4CD9C6; }
+:root[data-theme="light"] .hero2__h1 { color: #fff; }
+:root[data-theme="light"] .hero2__sub,
+:root[data-theme="light"] .hero2__fineprint { color: #A9BBD8; }
+:root[data-theme="light"] .hero2 .btn2--accent { background: #4CD9C6; color: #06223F; }
+:root[data-theme="light"] .hero2 .btn2--ghost { border-color: rgba(255,255,255,0.45); color: #fff; }
+:root[data-theme="light"] .bandavid__foot h2 { color: #fff; }
+.hero2__top { position: relative; z-index: 2; }
+.hero2__body { position: relative; z-index: 2; margin-top: auto; padding: 0 64px 56px; }
+
+.hero2__eyebrow {
+  font: 600 12px var(--font-body);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.hero2__h1 {
+  margin: 0; max-width: 820px; color: #fff;
+  font: 600 clamp(34px, 5.2vw, 60px)/1.04 var(--font-display);
+  letter-spacing: -0.03em;
+}
+.hero2__sub {
+  margin: 18px 0 0; max-width: 640px;
+  font: 400 18px/1.5 var(--font-body); color: #93A5C9;
+}
+.hero2__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.chip2 {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.20);
+  color: #fff; font: 600 13px var(--font-body);
+  padding: 7px 14px; border-radius: var(--r-pill);
+}
+.hero2__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.btn2 {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: var(--r-control);
+  font: 700 16px var(--font-body); text-decoration: none;
+  border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: transform 250ms var(--ease), box-shadow 250ms var(--ease), background 250ms var(--ease);
+}
+.btn2--accent { background: var(--accent); color: var(--accent-ink); box-shadow: var(--accent-glow); }
+.btn2--accent:hover { background: var(--accent-strong); color: var(--accent-ink); transform: translateY(-2px); text-decoration: none; }
+/* El ghost sigue al TEMA. Antes tenia #fff fijo y en light quedaba blanco
+   sobre fondo claro: el boton "Contacto" del cierre era invisible. */
+.btn2--ghost { border-color: var(--line-strong); color: var(--ink); font-weight: 600; }
+.btn2--ghost:hover { border-color: var(--ink); text-decoration: none; }
+/* Dentro de los heros con video el fondo SIEMPRE es oscuro, tema aparte */
+.hero2 .btn2--ghost, .ih .btn2--ghost, .bandavid .btn2--ghost {
+  border-color: rgba(255,255,255,0.35); color: #fff;
+}
+.hero2 .btn2--ghost:hover, .ih .btn2--ghost:hover { border-color: #fff; }
+.hero2__fineprint { font: 500 13px var(--font-body); color: #93A5C9; margin-left: 8px; }
+
+/* ---- Seccion con numeracion (01 · ...) ---- */
+.sec2 { padding: 88px 64px 72px; }
+.sec2__eyebrow {
+  font: 600 12px var(--font-body);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.sec2__h2 {
+  margin: 0 0 8px; font: 600 clamp(26px, 3.4vw, 36px)/1.15 var(--font-display);
+  letter-spacing: -0.02em; color: var(--ink);
+}
+.sec2__lead {
+  margin: 0 0 44px; max-width: 640px;
+  font: 400 16px/1.55 var(--font-body); color: var(--muted);
+}
+
+/* ---- Timeline de 4 pasos ---- */
+.tl2 { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+/* La linea une el CENTRO del primer circulo con el del ultimo. Cada paso mide
+   25% y el circulo (40px) arranca tras un padding de 16px -> su centro cae a
+   36px del borde de la celda. Con un 12% a cada lado (lo que dice el .dc) la
+   linea queda cortada y no toca las puntas. */
+.tl2__rail {
+  position: absolute; top: 19px;
+  left: 36px; right: calc(25% - 36px);
+  height: 2px; background: var(--line-strong);
+}
+.tl2__step { position: relative; padding: 0 16px; }
+.tl2__dot {
+  width: 40px; height: 40px; border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 15px var(--font-display);
+  margin-bottom: 16px; position: relative;
+  background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--accent);
+}
+.tl2__dot--warn { background: var(--warn-soft); border-color: rgba(255,184,0,0.5); color: var(--warn); }
+.tl2__dot--good { background: var(--good-soft); border-color: rgba(91,227,138,0.5); color: var(--good); }
+.tl2__time {
+  font: 600 12px var(--font-body); color: var(--muted-soft);
+  font-feature-settings: "tnum";
+}
+.tl2__step h3 { margin: 4px 0 6px; font: 700 17px var(--font-display); color: var(--ink); }
+.tl2__step p { margin: 0; font: 400 13px/1.55 var(--font-body); color: var(--muted); }
+
+@media (max-width: 1023px) {
+  .tb2, .hero2__body { padding-left: 24px; padding-right: 24px; }
+  .sec2 { padding: 64px 24px 56px; }
+  .tb2__nav { display: none; }
+  .tl2 { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+  .tl2__rail { display: none; }
+}
+@media (max-width: 640px) {
+  /* En una columna los pasos quedaban sueltos, sin nada que dijera que son una
+     secuencia: el riel horizontal se esconde antes (1023) y no se reemplazaba
+     por nada. Aca el paso se arma en dos columnas —circulo y texto— y la linea
+     baja de un circulo al siguiente, que es como se lee un recorrido en
+     vertical. */
+  .tl2 { grid-template-columns: 1fr; row-gap: 42px; }
+  .tl2__step {
+    display: grid; grid-template-columns: 46px 1fr;
+    column-gap: 16px; align-items: start;
+  }
+  /* Un punto mas grande que en escritorio y con mas aire entre pasos: en el
+     telefono cada paso se lee solo, no en fila con los otros, asi que el
+     tamano de escritorio quedaba apretado. */
+  .tl2__dot {
+    grid-column: 1; grid-row: 1 / span 3;
+    width: 46px; height: 46px; font-size: 17px; margin-bottom: 0;
+  }
+  .tl2__time, .tl2__step h3, .tl2__step p { grid-column: 2; }
+  .tl2__time { font-size: 12.5px; }
+  .tl2__step h3 { margin: 3px 0 5px; font-size: 18.5px; }
+  .tl2__step p { font-size: 14.5px; line-height: 1.6; }
+  .tl2__step::before {
+    content: ""; position: absolute;
+    left: 38px;            /* el centro del circulo: 16 de padding + 23 de radio */
+    top: 54px; bottom: -44px;   /* del borde del circulo hasta el siguiente */
+    width: 2px; background: var(--line-strong);
+  }
+  .tl2__step:last-child::before { display: none; }
+  .hero2 { min-height: 560px; }
+}
+
+/* Toggle de tema: SOLO el icono (luna / sol). Antes decia "Modo claro" con un
+   ::after y ocupaba media barra para decir lo que el icono ya dice; en anchos
+   medianos empujaba a los demas botones. El boton conserva aria-label y title
+   —lo que leen los lectores de pantalla—, asi que sacar la etiqueta visible no
+   lo deja sin nombre. */
+/* El cambio de tema es un RINCONCITO, no un control de primera linea (dueño,
+   2026-08-31): chiquito, sin borde y a media tinta, para que no compita con el
+   CTA que tiene al lado. Se enciende al pasar por encima. */
+.theme-toggle--pill {
+  width: 26px; height: 26px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  border-color: transparent; color: var(--ink);
+  opacity: 0.4;
+  transition: opacity 200ms var(--ease), color 200ms var(--ease);
+}
+.theme-toggle--pill svg { width: 14px; height: 14px; }
+/* El hover de la variante general pintaba fondo y borde de acento: acá sólo
+   sube la tinta, que es todo lo que hace falta para saber que se puede tocar. */
+.theme-toggle--pill:hover {
+  opacity: 1;
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink);
+}
+/* En el telefono vuelve al area de toque de siempre: 26px es comodo con el
+   mouse y chico para un dedo. */
+@media (max-width: 1023px) {
+  .theme-toggle--pill { width: 34px; height: 34px; opacity: 0.55; }
+  .theme-toggle--pill svg { width: 16px; height: 16px; }
+}
+
+/* ---- 02 · Los dos lados en tiempo real ---- */
+.dos { background: var(--paper-warm); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 72px 64px; }
+.dos__head { text-align: center; }
+.dos__head .sec2__lead { margin-left: auto; margin-right: auto; max-width: 560px; }
+.dos__grid { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 24px; align-items: stretch; }
+
+.panel { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); box-shadow: var(--shadow-soft); }
+
+/* Lado vecino */
+.vec { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.vec__cap { background: var(--paper-warm); color: var(--ink); font: 600 12px var(--font-body); text-align: center; margin: -24px -24px 18px; padding: 12px; border-radius: var(--r-card) var(--r-card) 0 0; }
+.vec__cap b { color: var(--accent); font-weight: 600; }
+.vec__item { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 14px; display: flex; gap: 12px; align-items: center; }
+.vec__ico { width: 38px; height: 38px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.vec__t { font: 600 14px var(--font-body); color: var(--ink); }
+.vec__s { font: 400 12px var(--font-body); color: var(--muted); margin-top: 2px; }
+
+.vsteps { display: flex; flex-direction: column; margin-top: 16px; }
+.vstep { display: flex; gap: 10px; align-items: flex-start; }
+.vstep__rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; }
+.vstep__dot { width: 12px; height: 12px; border-radius: var(--r-pill); flex-shrink: 0; background: var(--line-strong); transition: background 400ms var(--ease), box-shadow 400ms var(--ease); }
+.vstep__line { width: 2px; flex: 1; min-height: 12px; background: var(--line-strong); }
+.vstep__txt { padding-bottom: 12px; opacity: .38; transition: opacity 400ms var(--ease); }
+.vstep__txt > div:first-child { font: 600 12px var(--font-body); color: var(--ink); }
+.vstep__txt > div:last-child { font: 400 11px var(--font-body); color: var(--muted-soft); }
+.vstep.is-on .vstep__dot { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.vstep.is-on .vstep__txt { opacity: 1; }
+
+.toast { margin-top: 16px; display: flex; gap: 10px; align-items: center; background: var(--paper-warm); border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 10px 12px; opacity: 0; transform: translateY(6px); transition: opacity 380ms var(--ease), transform 380ms var(--ease); }
+.toast.is-on { opacity: 1; transform: none; }
+.toast__ico { width: 26px; height: 26px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.toast__t { font: 600 12px var(--font-body); color: var(--ink); }
+.toast__s { font: 400 11px var(--font-body); color: var(--muted); }
+
+/* Nexo central */
+.nexo { display: flex; flex-direction: column; align-items: center; justify-content: center; align-self: center; gap: 8px; color: var(--accent); }
+.nexo svg { transition: transform 600ms var(--ease); }
+.nexo__lbl { font: 600 11px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Lado municipio */
+.muni { overflow: hidden; }
+.muni__bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: var(--paper-warm); border-bottom: 1px solid var(--line-soft); }
+.muni__dot { width: 9px; height: 9px; border-radius: var(--r-pill); }
+.muni__title { margin-left: 8px; font: 500 12px var(--font-body); color: var(--ink); }
+.muni__live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 10px var(--font-body); color: var(--accent); }
+.muni__live i { width: 7px; height: 7px; border-radius: var(--r-pill); background: var(--accent); display: inline-block; }
+.muni__body { padding: 16px 20px; }
+.muni__grid { display: grid; grid-template-columns: 150px 1fr; gap: 10px; }
+.mapa { position: relative; border-radius: var(--r-control); overflow: hidden; background: var(--card-inner); border: 1px solid var(--line-soft); min-height: 190px; }
+.mapa svg { position: absolute; inset: 0; }
+.mapa__pin { position: absolute; left: 50%; top: 38%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: var(--r-pill); background: var(--accent); border: 3px solid var(--card-inner); box-shadow: 0 0 0 6px var(--accent-soft), var(--accent-glow); }
+.mapa__lbl { position: absolute; left: 50%; top: 38%; transform: translate(-50%, 14px); background: var(--paper-warm); border: 1px solid var(--accent-line); border-radius: var(--r-pill); padding: 4px 10px; font: 600 10px var(--font-body); color: var(--accent); white-space: nowrap; }
+.mapa__gps { position: absolute; left: 8px; bottom: 8px; background: var(--paper-warm); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; font: 600 9px var(--font-body); color: var(--muted); letter-spacing: 0.05em; }
+
+.rows { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.row2 { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: var(--r-control); padding: 9px 12px; }
+.row2--on { background: var(--accent-soft); border-color: var(--accent-line); }
+.row2__id { font: 700 12px var(--font-body); color: var(--accent); font-feature-settings: "tnum"; }
+.row2__b { flex: 1; min-width: 0; }
+.row2__t, .row2__s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row2__t { font: 600 13px var(--font-body); color: var(--ink); }
+.row2__s { font: 400 11px var(--font-body); color: var(--muted); }
+.pill2 { font: 600 11px var(--font-body); padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; transition: background 400ms var(--ease), color 400ms var(--ease); }
+.tagbox { font: 700 11px var(--font-body); padding: 4px 8px; border-radius: 8px; }
+
+@media (max-width: 1023px) {
+  .dos { padding: 56px 24px; }
+  .dos__grid { grid-template-columns: 1fr; gap: 16px; }
+  .nexo { flex-direction: row; }
+  .nexo svg { transform: rotate(90deg); }
+}
+
+/* ---- Fuertes 01/02 + banda de IA ---- */
+.fuertes { padding: 72px 64px; }
+.fuertes__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fuerte { position: relative; overflow: hidden; background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 32px; }
+.fuerte::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(90% 70% at 0% 0%, rgba(76,217,198,0.12) 0%, transparent 55%); }
+.fuerte--b::before { background: radial-gradient(90% 70% at 100% 0%, rgba(63,106,200,0.18) 0%, transparent 55%); }
+.fuerte > * { position: relative; }
+.fuerte__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.fuerte__ico { width: 48px; height: 48px; border-radius: var(--r-control); background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+.fuerte--b .fuerte__ico { background: rgba(63,106,200,0.15); border-color: rgba(143,178,255,0.35); color: var(--accent-bright); }
+.fuerte__tag { font: 600 11px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line); padding: 5px 12px; border-radius: var(--r-pill); }
+.fuerte--b .fuerte__tag { color: var(--accent-bright); background: rgba(63,106,200,0.15); border-color: rgba(143,178,255,0.35); }
+.fuerte h3 { margin: 0 0 10px; font: 600 26px var(--font-display); letter-spacing: -0.02em; color: var(--ink); }
+.fuerte > p { margin: 0 0 20px; font: 400 14px/1.6 var(--font-body); color: var(--muted); }
+.fuerte__list { display: flex; flex-direction: column; gap: 10px; }
+.fuerte__li { display: flex; align-items: center; gap: 10px; font: 400 14px var(--font-body); color: var(--ink-soft); }
+.fuerte__chk { width: 22px; height: 22px; border-radius: var(--r-pill); background: var(--accent-soft); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fuerte--b .fuerte__chk { background: rgba(63,106,200,0.2); color: var(--accent-bright); }
+
+.banda-ia { position: relative; overflow: hidden; margin-top: 16px; background: var(--paper-warm); border: 1px solid var(--accent-line); border-radius: var(--r-card); padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.banda-ia::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(110% 150% at 92% 0%, rgba(76,217,198,0.2) 0%, transparent 55%); }
+.banda-ia > * { position: relative; }
+.banda-ia__k { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.banda-ia__t { font: 600 20px var(--font-display); color: var(--ink); }
+.banda-ia__nums { display: flex; gap: 28px; flex-shrink: 0; font-feature-settings: "tnum"; }
+.banda-ia__n { font: 600 26px var(--font-display); }
+.banda-ia__l { font: 500 12px var(--font-body); color: var(--muted); }
+
+/* ---- 03 - Banda de video ---- */
+.bandavid { position: relative; height: 400px; overflow: hidden; }
+.bandavid__media, .bandavid__media img, .bandavid__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bandavid__veil { position: absolute; inset: 0; background: linear-gradient(180deg, var(--paper) 0%, rgba(6,14,34,0.45) 30%, rgba(6,14,34,0.65) 65%, var(--paper-warm) 100%); }
+/* Al pie, no en el medio de la foto: arriba tapaba la cara de la persona y
+   competia con el titular. Y con la tipografia de titulos, que es la de la
+   marca — estaba con la del cuerpo, como un cartel pegado encima. */
+.bandavid__tag {
+  position: absolute; left: 64px; bottom: 96px;
+  background: rgba(6,14,34,0.55); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font: 600 11px/1 var(--font-display); letter-spacing: 0.04em;
+  padding: 7px 14px; border-radius: var(--r-pill);
+  backdrop-filter: blur(6px);
+}
+.bandavid__foot { position: absolute; left: 64px; right: 64px; bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.bandavid__foot h2 { margin: 0; font: 600 clamp(24px,3.2vw,34px)/1.15 var(--font-display); letter-spacing: -0.02em; color: #fff; }
+/* Detras hay una FOTO, no el fondo del tema: el texto va blanco en los dos
+   modos, con sombra para despegarlo de la imagen. Antes era un gris azulado
+   fijo y en tema claro se disolvia — el titulo de al lado si tenia su regla y
+   quedaba legible, asi que el parrafo desaparecia solo. */
+.bandavid__foot p {
+  margin: 0; font: 400 14px/1.55 var(--font-body);
+  color: rgba(255,255,255,0.92); max-width: 360px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.55);
+}
+:root[data-theme="light"] .bandavid__foot p { color: rgba(255,255,255,0.92); }
+.bandavid__foot h2 { text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
+
+/* ---- Carrusel del intendente ---- */
+.carru { background: var(--paper-warm); padding: 48px 64px 72px; }
+.carru__stage { position: relative; }
+.carru__slide { position: absolute; inset: 0 0 auto; opacity: 0; visibility: hidden; transition: opacity 520ms var(--ease); }
+.carru__slide.is-on { opacity: 1; visibility: visible; position: relative; }
+.carru__k { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.carru__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
+.carru__dots { display: flex; gap: 8px; align-items: center; }
+.carru__dot { width: 8px; height: 8px; border-radius: var(--r-pill); background: var(--line-strong); border: 0; padding: 0; cursor: pointer; transition: width 320ms var(--ease), background 320ms var(--ease); }
+.carru__dot.is-on { width: 28px; background: var(--accent); }
+.carru__arrows { display: flex; gap: 8px; }
+.carru__arrow { width: 40px; height: 40px; border-radius: var(--r-pill); border: 1px solid var(--line-strong); background: transparent; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.carru__arrow--next { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.carru__note { margin-top: 20px; font: 400 13px var(--font-body); color: var(--muted-soft); }
+
+.k3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.kcard { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 20px 22px; }
+.kcard--bad { border-color: rgba(229,72,77,0.35); }
+.kcard--warn { border-color: rgba(255,184,0,0.35); }
+.kcard--ok { border-color: var(--accent-line); }
+.kcard__h { display: flex; align-items: center; gap: 8px; font: 600 13px var(--font-body); margin-bottom: 10px; color: var(--ink); }
+.kcard__ico { width: 26px; height: 26px; border-radius: var(--r-pill); display: inline-flex; align-items: center; justify-content: center; }
+.kcard__n { font: 800 40px var(--font-display); font-feature-settings: "tnum"; color: var(--ink); }
+.kcard__s { font: 400 13px var(--font-body); color: var(--muted); margin-top: 4px; }
+.kcard__a { font: 600 13px var(--font-body); margin-top: 12px; }
+.colatrab { margin-top: 12px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: var(--r-control); padding: 16px 20px; font: 500 14px var(--font-body); color: var(--ink-soft); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+
+.heat { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 20px 22px; }
+.heat__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px; flex-wrap: wrap; }
+.heat__t { font: 600 14px var(--font-body); color: var(--ink); }
+.heat__s { font: 400 12px var(--font-body); color: var(--muted-soft); }
+.heat__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.heat__chip { border: 1px solid var(--line); color: var(--muted); font: 600 11px var(--font-body); padding: 4px 10px; border-radius: var(--r-pill); }
+.heat__chip--on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.heat__map { position: relative; height: 250px; border-radius: var(--r-control); overflow: hidden; background: var(--card-inner); border: 1px solid var(--line-soft); }
+.heat__map svg { position: absolute; inset: 0; }
+.blob { position: absolute; filter: blur(10px); pointer-events: none; }
+.heat__pin { position: absolute; left: 14%; top: 34%; width: 14px; height: 14px; border-radius: var(--r-pill); background: #FF5F57; border: 3px solid var(--card-inner); box-shadow: 0 0 14px rgba(255,95,87,0.7); }
+.heat__cap { position: absolute; left: 12px; bottom: 12px; background: var(--paper-warm); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 6px 14px; font: 600 12px var(--font-body); color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.heat__leg { position: absolute; right: 12px; bottom: 12px; background: var(--paper-warm); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font: 500 10px var(--font-body); color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.heat__ramp { width: 70px; height: 8px; border-radius: var(--r-pill); background: linear-gradient(90deg, #5BE38A, #F59E0B, #E5484D); }
+
+.tend { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; }
+.tend__card { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 20px 22px; display: flex; flex-direction: column; }
+.tend__mini { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.tend__box { border-radius: var(--r-control); padding: 12px; }
+.tend__bn { font: 600 22px var(--font-display); color: var(--ink); }
+.tend__bl { font: 500 11px var(--font-body); color: var(--muted); }
+.tend__bars { flex: 1; display: flex; align-items: flex-end; gap: 6px; margin-top: 16px; padding-bottom: 4px; border-bottom: 1px solid var(--line); min-height: 90px; }
+.tend__bar { flex: 1; border-radius: 4px 4px 0 0; background: rgba(143,178,255,0.2); }
+.rank { display: flex; align-items: center; gap: 10px; }
+.rank__l { font: 500 12px var(--font-body); color: var(--muted); width: 92px; }
+.rank__t { flex: 1; height: 8px; border-radius: var(--r-pill); background: var(--line-strong); overflow: hidden; display: block; }
+.rank__f { display: block; height: 100%; border-radius: var(--r-pill); }
+
+/* ---- 04 - Planes ---- */
+.planes { padding: 88px 64px; border-top: 1px solid var(--line-soft); }
+.planes__head { text-align: center; max-width: 560px; margin: 0 auto 48px; }
+.planes__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; align-items: stretch; }
+.plan { position: relative; background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 32px; display: flex; flex-direction: column; }
+.plan--top { border-color: var(--accent); box-shadow: 0 0 32px var(--accent-soft); }
+.plan__badge { position: absolute; top: -13px; left: 28px; background: var(--accent); color: var(--accent-ink); font: 700 11px var(--font-body); padding: 5px 14px; border-radius: var(--r-pill); }
+.plan h3 { margin: 0 0 4px; font: 600 20px var(--font-display); color: var(--ink); }
+.plan__hab { margin: 0 0 24px; font: 400 14px var(--font-body); color: var(--muted); }
+.plan__list { display: flex; flex-direction: column; gap: 10px; font: 400 14px var(--font-body); color: var(--ink-soft); flex: 1; }
+.plan__li { display: flex; gap: 8px; align-items: flex-start; }
+.plan__li svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+.plan__cta { margin-top: 28px; border: 1px solid var(--line-strong); border-radius: var(--r-control); text-align: center; padding: 13px; font: 600 14px var(--font-body); color: var(--ink); text-decoration: none; }
+.plan__cta--top { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+
+/* ---- CTA final + footer ---- */
+.cierre { position: relative; overflow: hidden; background: var(--paper-warm); border-top: 1px solid var(--line-soft); padding: 72px 64px 40px; text-align: center; }
+.cierre::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 80% at 50% 0%, rgba(76,217,198,0.12) 0%, transparent 60%); }
+.cierre > * { position: relative; }
+.cierre h2 { margin: 0 0 12px; font: 600 clamp(26px,4vw,38px)/1.15 var(--font-display); letter-spacing: -0.02em; color: var(--ink); }
+.cierre__p { margin: 0 auto 28px; font: 400 16px var(--font-body); color: var(--muted); max-width: 520px; }
+.cierre__cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.pieCierre { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font: 400 13px var(--font-body); color: var(--muted-soft); }
+.pieCierre__m { display: flex; align-items: center; gap: 8px; }
+.pieCierre__m img { height: 22px; }
+.pieCierre__links { display: flex; gap: 24px; flex-wrap: wrap; }
+.pieCierre__links a { color: var(--muted-soft); }
+
+@media (max-width: 1023px) {
+  .fuertes, .planes { padding: 56px 24px; }
+  .fuertes__grid, .planes__grid, .tend, .k3 { grid-template-columns: 1fr; }
+  .banda-ia { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .carru { padding: 40px 24px 56px; }
+  .bandavid__tag, .bandavid__foot { left: 24px; right: 24px; }
+  /* En chico el pie ocupa dos lineas y la etiqueta se le montaria: vuelve
+     arriba, donde hay lugar. */
+  .bandavid__tag { bottom: auto; top: 24px; }
+  .bandavid__foot { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cierre { padding: 56px 24px 32px; }
+  .carru__slide { position: relative; display: none; }
+  .carru__slide.is-on { display: block; }
+}
+
+
+/* ---- Videos en loop de los contenedores del restyling ----
+   js/munify-anim.js (initLoopVideos) rota los clips y le pone .is-on al
+   activo, pero la opacidad FINAL la decide el CSS segun el contexto
+   (.hero__media 0.34, .bento__media 1). Los contenedores nuevos hay que
+   declararlos aca o los videos se quedan en opacity:0 y solo se ve el <img>. */
+.hero2__media video.is-on,
+.bandavid__media video.is-on { opacity: 1; }
+/* El <img> es la base para SEO y para cuando el video no corre; cuando hay
+   un clip encima no hace falta que compita */
+.hero2__media video.is-on ~ img { opacity: 0; }
+
+.chip2 { display: inline-flex; align-items: center; gap: 7px; }
+.chip2 svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* munify-v2.css:141 clava `.eyebrow { font-family:'Manrope' !important }`.
+   Mismo peso para que gane la fuente de la app. Ver tambien la regla de los
+   headers mas arriba: son los dos !important que sobreviven del CSS viejo. */
+.eyebrow, .hero2__eyebrow, .sec2__eyebrow, .carru__k, .fuerte__tag,
+.banda-ia__k { font-family: var(--font-body) !important; }
+
+/* ============================================================
+   8. PÁGINAS INTERNAS — patrón común del handoff
+   (Reclamos, Trámites, Tesorería, Comunicaciones, Demo)
+   Hero con breadcrumb + chips + KPI strip, y bloques reusables.
+   ============================================================ */
+
+/* ---- Hero de página interna ---- */
+.ih { position: relative; overflow: hidden; }
+.ih__media, .ih__media img, .ih__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ih__media video.is-on { opacity: 1; }
+.ih__veil { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,14,34,0.88) 0%, rgba(6,14,34,0.72) 45%, var(--paper) 100%); }
+:root[data-theme="light"] .ih__veil {
+  background: linear-gradient(180deg, rgba(6,14,34,0.88) 0%, rgba(6,14,34,0.7) 55%,
+    rgba(6,14,34,0.6) 86%, rgba(120,140,170,0.28) 95%, var(--paper) 100%); }
+/* La topbar es fixed y transparente (mide 85px): el contenido del hero tiene
+   que arrancar DEBAJO o el breadcrumb queda pisado por el logo. */
+.ih__body { position: relative; padding: 124px 64px 48px; max-width: 860px; }
+
+.ih__crumb { font: 500 13px var(--font-body); color: #93A5C9; margin-bottom: 20px; }
+.ih__crumb a { color: #93A5C9; text-decoration: none; }
+.ih__crumb a:hover { color: var(--accent); }
+.ih__crumb span { margin: 0 6px; }
+.ih__eyebrow { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase;
+  color: #4CD9C6; margin-bottom: 16px; }
+.ih__h1 { margin: 0; color: #fff; font: 600 clamp(30px,4.4vw,50px)/1.06 var(--font-display); letter-spacing: -0.03em; }
+.ih__sub { margin: 18px 0 0; max-width: 520px; font: 400 18px/1.5 var(--font-body); color: #93A5C9; }
+.ih__chips { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+.ih__chip { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff;
+  font: 600 13px var(--font-body); padding: 7px 14px; border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.ih__chip svg { width: 13px; height: 13px; }
+.ih__chip--on { background: rgba(76,217,198,0.1); border-color: rgba(76,217,198,0.35); color: #4CD9C6; }
+.ih__cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+
+/* KPI strip del hero interno */
+/* [v2026-08-31] Seis KPIs: entran en una fila en desktop ancho y se parten
+   solos abajo de 1200. `auto-fit` con minimo de 150px evita tener que tocar
+   esto cada vez que se suma o se saca uno. */
+.ihk { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px;
+  margin: 0 64px; padding: 28px 0 48px; border-top: 1px solid rgba(255,255,255,0.1);
+  font-feature-settings: "tnum"; }
+.ihk__n { font: 800 32px var(--font-display); }
+.ihk__l { font: 500 13px var(--font-body); color: #93A5C9; margin-top: 4px; }
+
+/* ---- Bloque partido: texto + mock ---- */
+.split { background: var(--paper-warm); border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft); padding: 72px 64px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.split h2 { margin: 0; font: 600 clamp(24px,3.2vw,34px)/1.15 var(--font-display); letter-spacing: -0.02em; color: var(--ink); }
+.split__p { margin: 16px 0 24px; font: 400 16px/1.6 var(--font-body); color: var(--muted); }
+.split__list { display: flex; flex-direction: column; gap: 10px; font: 400 14px var(--font-body); color: var(--ink-soft); }
+.split__li { display: flex; gap: 9px; align-items: flex-start; }
+.split__li svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+
+/* Mock de tarjeta (wizard, formulario, panel) */
+.mock { max-width: 420px; justify-self: center; width: 100%; background: var(--card);
+  border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 24px; box-shadow: var(--shadow-soft); }
+.mock__head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.mock__ico { width: 38px; height: 38px; border-radius: var(--r-control); background: var(--accent-soft);
+  border: 1px solid var(--accent-line); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mock__t { font: 700 15px var(--font-display); color: var(--ink); }
+.mock__s { font: 400 12px var(--font-body); color: var(--muted-soft); }
+.mock__steps { display: flex; gap: 6px; margin-bottom: 18px; }
+.mock__step { flex: 1; height: 4px; border-radius: var(--r-pill); background: var(--line-strong); }
+.mock__step--on { background: var(--accent); }
+.mock__lbl { font: 500 12px var(--font-body); color: var(--muted); margin-bottom: 8px; }
+.mock__input { background: var(--paper-warm); border: 1px solid var(--line-strong); border-radius: var(--r-input);
+  padding: 12px 14px; font: 400 14px var(--font-body); color: var(--ink); }
+.mock__caret { display: inline-block; width: 2px; height: 14px; background: var(--accent);
+  margin-left: 2px; vertical-align: middle; animation: mockCaret 1.1s steps(1) infinite; }
+@keyframes mockCaret { 0%,49% { opacity: 1 } 50%,100% { opacity: 0 } }
+.mock__hint { font: 400 11px var(--font-body); color: var(--muted-soft); margin: 8px 0 16px; display: flex; gap: 6px; align-items: center; }
+.mock__key { font: 600 11px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.mock__pick .sub { color: var(--ink-soft); }
+.mock__pick { display: flex; align-items: center; gap: 12px; background: var(--accent-soft);
+  border: 1px solid var(--accent-line); border-radius: var(--r-control); padding: 12px 14px; }
+.mock__pickIco { width: 34px; height: 34px; border-radius: var(--r-pill); background: var(--accent);
+  color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mock__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
+.mock__prev { font: 600 13px var(--font-body); color: var(--muted-soft); }
+.mock__next { background: var(--accent); color: var(--accent-ink); font: 700 13px var(--font-body);
+  padding: 10px 18px; border-radius: var(--r-input); }
+
+/* ---- Grilla de beneficios (bento 3+2+2+2 del handoff) ---- */
+.ben { padding: 72px 64px; }
+.ben__grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; }
+.benc { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 28px; }
+.benc--3 { grid-column: span 3; }
+.benc--2 { grid-column: span 2; }
+.benc--6 { grid-column: span 6; }
+.benc h3 { margin: 14px 0 8px; font: 700 19px var(--font-display); color: var(--ink); }
+.benc p { margin: 0; font: 400 14px/1.6 var(--font-body); color: var(--muted); }
+.benc--2 h3 { font-size: 18px; }
+.benc--2 p { font-size: 13px; }
+.benc__banda { position: relative; overflow: hidden; background: var(--paper-warm);
+  border: 1px solid var(--accent-line); border-radius: var(--r-card); padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.benc__banda::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(100% 140% at 92% 0%, rgba(76,217,198,0.16) 0%, transparent 55%); }
+.benc__banda > * { position: relative; }
+
+/* ---- Grilla de categorías / tipos ---- */
+.cats { background: var(--paper-warm); border-top: 1px solid var(--line-soft); padding: 72px 64px; }
+.cats__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.cat { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 24px; }
+.cat__n { font: 600 15px var(--font-body); margin-top: 12px; color: var(--ink); }
+
+@media (max-width: 1023px) {
+  .ih__body { padding: 104px 24px 32px; }
+  .ihk { margin: 0 24px; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .split { padding: 56px 24px; grid-template-columns: 1fr; gap: 32px; }
+  .ben, .cats { padding: 56px 24px; }
+  .ben__grid { grid-template-columns: 1fr; }
+  .benc--3, .benc--2, .benc--6 { grid-column: auto; }
+  .benc__banda { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .cats__grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) { .ihk { grid-template-columns: 1fr; } .cats__grid { grid-template-columns: 1fr; } }
+
+/* Guarda: --accent-ink es la tinta que va sobre el acento PLENO. Sobre el
+   acento SUAVE (.bento--accent usa --accent-soft) hay que usar la tinta del
+   tema, o en light queda blanco sobre verde claro. Se fija por las dudas. */
+.bento--accent { color: var(--ink); }
+.bento--accent p, .bento--accent .muted { color: var(--muted); }
+
+/* ---- .bento--ink: card deliberadamente OSCURA, en los dos temas ----
+   Su gradiente original usaba var(--ink) y var(--accent-ink), que en el tema
+   crema eran gris oscuro y azul. Con los tokens nuevos esos dos se dan vuelta
+   segun el modo y la card quedaba clara en dark / con texto oscuro en light.
+   Se fija en navy: es una card de acento, no una superficie del tema. */
+.bento--ink {
+  background:
+    radial-gradient(115% 95% at 88% 0%, rgba(63,106,200,0.30) 0%, transparent 56%),
+    linear-gradient(158deg, #0A152E 0%, #16264A 55%, #0C1830 100%) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #E8EEFA !important;
+}
+.bento--ink h1, .bento--ink h2, .bento--ink h3,
+.bento--ink .display-1, .bento--ink .display-2, .bento--ink .display-3 { color: #fff !important; }
+.bento--ink p, .bento--ink li { color: #93A5C9 !important; }
+.bento--ink .eyebrow { color: #4CD9C6 !important; }
+.bento--ink svg, .bento--ink .bento__ico { color: #4CD9C6; }
+
+/* ============================================================
+   9. TOPBAR QUE SE AUTOAJUSTA — nunca envuelve, nunca se pisa
+
+   A 1440 entraba y a ~1200 se rompía: el logo se superponía con
+   el primer link y "Hablá con un asesor" se plegaba en cuatro
+   renglones adentro de su píldora. La barra tiene que degradar
+   sola en TODOS los anchos, no en los dos que uno mira.
+
+   Orden en que cede el espacio, del menos al más importante:
+     1. el gap del nav se achica
+     2. "Hablá con un asesor" queda como ícono solo
+     3. el toggle pierde su texto (queda sol/luna)
+     4. el nav entero desaparece y manda el botón de menú
+   ============================================================ */
+.tb2 { flex-wrap: nowrap; gap: 16px; }
+.tb2 > * { min-width: 0; }                 /* sin esto, flex no deja encoger */
+.tb2__brand { flex-shrink: 0; }
+.tb2__brand span { white-space: nowrap; }
+.tb2__nav { flex: 0 1 auto; min-width: 0; flex-wrap: nowrap; overflow: hidden; }
+.tb2__nav a { white-space: nowrap; }
+.tb2__actions { flex-shrink: 0; }
+.tb2__actions .btn, .tb2__actions .wa-topbar, .theme-toggle { white-space: nowrap; flex-shrink: 0; }
+
+/* En desktop el nav va CENTRADO en la barra, no pegado al logo (dueño,
+   2026-08-30). Con flex quedaba donde lo dejara el space-between, o sea a
+   merced del ancho del logo y del boton de la derecha; el grid de tres
+   columnas lo clava al centro pase lo que pase con los costados. Debajo de
+   1024 el nav no existe (lo reemplaza el boton de menu) y sigue siendo flex. */
+@media (min-width: 1024px) {
+  .tb2 { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .tb2__brand { justify-self: start; }
+  .tb2__nav { justify-self: center; }
+  .tb2__actions { justify-self: end; }
+}
+
+/* 1. el nav se aprieta antes de romperse */
+@media (max-width: 1400px) { .tb2 { padding-left: 32px; padding-right: 32px; } .tb2__nav { gap: 18px; } }
+@media (max-width: 1280px) { .tb2__nav { gap: 13px; } .tb2__nav a { font-size: 13px; } }
+
+/* 2. y 3. los botones sueltan su texto antes de que algo se pliegue */
+@media (max-width: 1240px) {
+  .tb2__actions .wa-topbar { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 999px; }
+  .tb2__actions .wa-topbar span, .tb2__actions .wa-topbar em { display: none; }
+  .tb2__actions .wa-topbar { font-size: 0; }         /* el texto es nodo suelto */
+  .tb2__actions .wa-topbar i, .tb2__actions .wa-topbar svg { font-size: 15px; }
+}
+@media (max-width: 1150px) {
+  .theme-toggle--pill { width: 38px; height: 38px; padding: 0; }
+  .theme-toggle--pill::after { content: none; }
+}
+/* 4. abajo de 1024 el nav ya no entra: manda el botón de menú (regla previa) */
+
+/* ============================================================
+   10. DEMO — crear una demo en vivo
+   docs/design-sync/comercial-2026-08-30/pages/Demo.dc.html
+   ============================================================ */
+.dm { padding: 56px 64px; }
+.dmcard { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card);
+  padding: 32px; box-shadow: var(--shadow-soft); }
+.dmcard__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.dmcard__cnt { font: 400 13px var(--font-body); color: var(--muted); }
+
+.dmform { display: grid; grid-template-columns: 200px 240px 1fr auto; gap: 10px; align-items: center; }
+.dmsel, .dmbox { background: var(--paper-warm); border: 1px solid var(--line-strong);
+  border-radius: var(--r-control); padding: 14px 16px; color: var(--ink);
+  font: 500 14px var(--font-body); outline: none; }
+.dmsel { cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2393A5C9' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+.dmsel:focus, .dmbox:focus-within { border-color: var(--accent); }
+.dmsel:disabled { opacity: .45; cursor: not-allowed; }
+
+.dmbox { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-color: var(--accent-line); }
+.dmbox svg { color: var(--accent); flex-shrink: 0; }
+.dmbox input { flex: 1; min-width: 0; background: transparent; border: none; outline: none;
+  color: var(--ink); font: 400 15px var(--font-body); }
+.dmbox input::placeholder { color: var(--muted-soft); }
+
+.dmwrap { position: relative; min-width: 0; }
+.dmsug { position: absolute; left: 0; right: 0; top: calc(100% + 6px); background: var(--card);
+  border: 1px solid var(--accent-line); border-radius: var(--r-control);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35); overflow: hidden; z-index: 20; }
+.dmsug__i { display: flex; align-items: center; gap: 12px; padding: 12px 18px; cursor: pointer;
+  border-bottom: 1px solid var(--line-soft); background: none; border-left: 0; border-right: 0;
+  border-top: 0; width: 100%; text-align: left; }
+.dmsug__i:last-child { border-bottom: 0; }
+.dmsug__i:hover, .dmsug__i:focus-visible { background: var(--accent-soft); outline: none; }
+.dmsug__ico { color: var(--muted-soft); display: inline-flex; flex-shrink: 0; }
+.dmsug__n { flex: 1; min-width: 0; font: 500 14px var(--font-body); color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dmsug__p { font: 500 12px var(--font-body); color: var(--muted-soft); flex-shrink: 0; }
+.dmsug__a { font: 600 12px var(--font-body); color: var(--accent); flex-shrink: 0; }
+.dmsug__vacio { padding: 14px 18px; font: 400 13px var(--font-body); color: var(--muted-soft); }
+/* Variante hacia ARRIBA y scroll propio: las decide `acomodar()` en
+   munify-demo.js segun el lugar que haya en pantalla. */
+.dmsug--arriba { top: auto; bottom: calc(100% + 6px); }
+.dmsug { overflow-y: auto; overscroll-behavior: contain; }
+
+.dmfoot { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line-soft); flex-wrap: wrap; }
+.dmfoot__n { display: flex; align-items: center; gap: 8px; font: 400 13px var(--font-body); color: var(--muted); }
+.dmfoot__n svg { color: var(--accent); flex-shrink: 0; }
+
+/* Estado de la creación */
+.dmestado { margin-top: 16px; padding: 14px 18px; border-radius: var(--r-control);
+  font: 500 14px var(--font-body); display: none; align-items: center; gap: 10px; }
+.dmestado.is-on { display: flex; }
+.dmestado--work { background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--ink); }
+.dmestado--bad { background: var(--bad-soft); border: 1px solid var(--bad); color: var(--ink); }
+.dmspin { width: 16px; height: 16px; border-radius: 999px; border: 2px solid var(--accent-line);
+  border-top-color: var(--accent); animation: dmgira .7s linear infinite; flex-shrink: 0; }
+@keyframes dmgira { to { transform: rotate(360deg) } }
+
+/* Demos existentes */
+.dmex { background: var(--paper-warm); border-top: 1px solid var(--line-soft); padding: 56px 64px 72px; }
+.dmex__sep { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.dmex__sep i { flex: 1; height: 1px; background: var(--line); }
+.dmex__sep span { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-soft); }
+.dmex__buscar { max-width: 360px; margin: 0 auto 22px; }
+.dmex__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.dmchip { position: relative; display: flex; align-items: center; gap: 12px; background: var(--card);
+  border: 1px solid var(--card-line); border-radius: var(--r-control); padding: 12px 14px;
+  overflow: hidden; text-decoration: none; transition: border-color 220ms var(--ease), box-shadow 220ms var(--ease); }
+.dmchip::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-blue)); }
+.dmchip:hover { border-color: var(--accent-line); box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-decoration: none; }
+.dmchip__b { flex: 1; min-width: 0; }
+.dmchip__n { font: 700 15px var(--font-display); letter-spacing: -0.01em; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dmchip__s { font: 500 10px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dmchip__a { font: 600 12px var(--font-body); color: var(--accent); flex-shrink: 0; }
+.dmex__vacio { grid-column: 1/-1; text-align: center; padding: 28px;
+  font: 400 14px var(--font-body); color: var(--muted); }
+
+@media (max-width: 1100px) {
+  .dm, .dmex { padding-left: 24px; padding-right: 24px; }
+  .dmform { grid-template-columns: 1fr 1fr; }
+  .dmwrap, .dmform > button { grid-column: 1/-1; }
+  .dmex__grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+  .dmform { grid-template-columns: 1fr; }
+  .dmex__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   11. COMUNICACIONES — "así lo ve el vecino"
+   docs/design-sync/comercial-2026-08-30/pages/Comunicaciones.dc.html
+   ============================================================ */
+
+/* Casos de uso */
+.usos { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.uso { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 26px; }
+.uso__ico { width: 44px; height: 44px; border-radius: var(--r-control); display: inline-flex;
+  align-items: center; justify-content: center; margin-bottom: 14px; }
+.uso h3 { margin: 0 0 8px; font: 700 18px var(--font-display); color: var(--ink); }
+.uso p { margin: 0; font: 400 13px/1.6 var(--font-body); color: var(--muted); }
+
+/* El teléfono del vecino: mock de la app real */
+.tel { background: #0D1B36; border: 1px solid rgba(255,255,255,0.12); border-radius: var(--r-phone);
+  overflow: hidden; box-shadow: 0 20px 48px rgba(0,0,0,0.5); max-width: 420px; width: 100%;
+  justify-self: center; }
+:root[data-theme="light"] .tel { border-color: rgba(13,20,40,0.18); box-shadow: 0 20px 48px rgba(13,20,40,0.22); }
+/* El mock es la APP, que es oscura: no sigue al tema de la landing */
+.tel, .tel * { color-scheme: dark; }
+.tel__bar { display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: #101E3C; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.tel__marca { display: flex; align-items: center; gap: 8px; }
+.tel__marca img { height: 22px; }
+.tel__marca span { font: 700 15px var(--font-display); color: #fff; }
+.tel__acc { display: flex; align-items: center; gap: 14px; color: #93A5C9; }
+.tel__campana { position: relative; display: inline-flex; }
+.tel__badge { position: absolute; top: -5px; right: -6px; background: #E5484D; color: #fff;
+  font: 700 8px var(--font-body); min-width: 13px; height: 13px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center; }
+.tel__body { padding: 14px 14px 0; }
+
+.telalerta { position: relative; background: #0A152E; border: 1px solid rgba(229,72,77,0.4);
+  border-left: 3px solid #E5484D; border-radius: 14px; padding: 14px 16px; }
+.telalerta__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.telalerta__k { font: 600 10px var(--font-body); letter-spacing: 0.08em; color: #93A5C9; }
+.telalerta__nav { display: flex; align-items: center; gap: 6px; }
+.telalerta__dot { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.3); }
+.telalerta__dot--on { background: #E5484D; }
+.telalerta__b { width: 22px; height: 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2);
+  color: #93A5C9; display: inline-flex; align-items: center; justify-content: center; }
+.telalerta__t { font: 600 14px/1.4 var(--font-display); color: #fff; }
+.telalerta__t b { color: #FF7A7A; font-weight: 600; }
+.telalerta__cta { display: inline-block; margin-top: 12px; border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; font: 600 12px var(--font-body); padding: 8px 14px; border-radius: 10px; }
+
+.telsec { display: flex; align-items: center; gap: 8px; margin: 16px 2px 10px; }
+.telsec span { font: 600 14px var(--font-display); color: #fff; }
+.telsec svg { color: #4CD9C6; }
+
+.telnov { background: #101E3C; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+  overflow: hidden; margin-bottom: 12px; }
+.telnov__foto { position: relative; height: 130px; }
+.telnov__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.telnov__foto::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(10,21,46,0.92) 100%); }
+.telnov__txt { position: absolute; left: 14px; right: 14px; bottom: 10px; z-index: 2; }
+.telnov__t { font: 600 15px var(--font-display); color: #fff; }
+.telnov__d { font: 400 11px/1.4 var(--font-body); color: #C9D4E8;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.telnov__pie { display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.telnov__f { display: inline-flex; align-items: center; gap: 5px; font: 500 11px var(--font-body); color: #93A5C9; }
+.telnov__a { font: 600 11px var(--font-body); color: #4CD9C6; }
+
+.teltabs { display: grid; grid-template-columns: repeat(5,1fr); align-items: end;
+  padding: 10px 8px 12px; background: #101E3C; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 14px; }
+.teltab { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.teltab__i { border-radius: 10px; padding: 5px 10px; color: #5E7099; position: relative; display: inline-flex; }
+.teltab--on .teltab__i { background: rgba(76,217,198,0.15); color: #4CD9C6; }
+.teltab__l { font: 600 9px var(--font-body); color: #5E7099; }
+.teltab--on .teltab__l { color: #4CD9C6; }
+.teltab__n { position: absolute; top: -4px; right: -4px; background: #E5484D; color: #fff;
+  font: 700 8px var(--font-body); min-width: 13px; height: 13px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0 3px; }
+.teltab__mas { width: 34px; height: 34px; border-radius: 999px; background: #4CD9C6;
+  color: #06223F; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Cómo llega el aviso: 3 pasos */
+.pasos { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.paso { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 26px; }
+.paso__n { width: 34px; height: 34px; border-radius: 999px; background: var(--accent-soft);
+  border: 1px solid var(--accent-line); color: var(--accent); display: inline-flex;
+  align-items: center; justify-content: center; font: 700 14px var(--font-display); margin-bottom: 14px; }
+.paso h3 { margin: 0 0 8px; font: 700 18px var(--font-display); color: var(--ink); }
+.paso p { margin: 0; font: 400 13px/1.6 var(--font-body); color: var(--muted); }
+
+@media (max-width: 1100px) {
+  .usos { grid-template-columns: repeat(2,1fr); }
+  .pasos { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) { .usos { grid-template-columns: 1fr; } }
+
+/* Numeración de los pasos del flujo (Trámites). El prototipo los pone en 30px
+   Sora 600, con los ya recorridos atenuados: es la escala la que ordena la
+   lectura, no el color. Estaban como eyebrow de 12px y no pesaban. */
+.flujo__n { font: 600 30px var(--font-display); color: var(--accent); margin-bottom: 12px; line-height: 1; }
+
+/* ============================================================
+   12. TIPOGRAFÍA EXACTA DEL PROTOTIPO
+
+   Medido con Playwright contra los .dc, propiedad por propiedad:
+   familia, tamaño, PESO, letter-spacing, line-height y transform.
+   Antes sólo se había sobreescrito la familia, y `munity-v2.css`
+   seguía imponiendo lo demás:
+
+     munify-v2.css:96   body { letter-spacing: -0.01em }
+     munify-v2.css:140  h1..h6 { font-weight: 400 !important }
+     munify-v2.css:108+ .display-1/2/3 con sus propios pesos
+
+   Resultado: 82 textos del home salían con otra letra que el
+   prototipo — los títulos en peso 400 en vez de 600/700, y todo
+   el cuerpo con -0.16px de espaciado que el .dc no tiene.
+
+   Los valores de acá salen del .dc, no de un criterio propio.
+   ============================================================ */
+
+/* ---- Cuerpo: Inter 400, SIN letter-spacing ---- */
+body {
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+/* ---- Títulos: Sora, con el peso y el tracking de cada nivel ----
+   El !important es para ganarle al `font-weight: 400 !important`
+   de munify-v2.css:140, que si no aplana todos los títulos. */
+h1, .display-1, .hero2__h1, .ih__h1 {
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.06;
+}
+h2, .display-2, .sec2__h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15;
+}
+h3, .display-3 {
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+}
+h4, h5, h6 { font-weight: 700 !important; letter-spacing: normal !important; }
+
+/* Los hijos de un título heredan: no vuelven a 400 */
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+/* ---- Números de KPI: Sora 800, cifras tabulares ---- */
+.ihk__n, .kpi__num, .kpi-strip__num, .kcard__n, [data-count] {
+  font-weight: 800 !important;
+  letter-spacing: normal !important;
+}
+/* el contenedor manda: el <span data-count> es sólo el número */
+.ihk__n [data-count], .kcard__n [data-count] { font-weight: inherit !important; }
+
+/* ---- Eyebrows: Inter 600, 12px, uppercase, tracking 0.08em ---- */
+.eyebrow, .hero2__eyebrow, .sec2__eyebrow, .ih__eyebrow, .carru__k, .banda-ia__k, .mock__key {
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+/* ---- Párrafos y UI: sin tracking heredado ---- */
+p, li, td, th, label, input, textarea, select,
+.hero2__sub, .ih__sub, .sec2__lead, .split__p, .cierre__p {
+  letter-spacing: normal;
+}
+
+/* ---- Botones y chips: Inter, peso del prototipo ---- */
+.btn2 { letter-spacing: normal; }
+.btn2--accent { font-weight: 700; }
+.btn2--ghost { font-weight: 600; }
+.chip2, .ih__chip { font-weight: 600; letter-spacing: normal; }
+.tb2__nav a { font-weight: 500; letter-spacing: normal; }
+.tb2__brand span { font-weight: 700; letter-spacing: -0.01em; }
+
+/* Tres h3 que el prototipo NO pone en 700: los títulos de los fuertes y los
+   nombres de plan van en Sora 600 con -0.02em, como un h2 chico. Medido. */
+.fuerte h3 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+/* El nombre del plan va en 600 pero SIN tracking: medido, el .dc lo deja en 0 */
+.plan h3 { font-weight: 600 !important; letter-spacing: normal !important; }
+
+/* ---- Móvil: el hero no puede arrancar debajo de la topbar ----
+   En desktop el contenido del hero se empuja al fondo (margin-top:auto) y la
+   topbar transparente le queda muy por encima. En un teléfono el contenido
+   ocupa todo el alto, arranca arriba de todo y el eyebrow terminaba PISADO por
+   el logo — medido: 70px de solape en 390x844. */
+@media (max-width: 1023px) {
+  .hero2__body { padding-top: 104px; }
+  .hero2 { min-height: 600px; }
+}
+@media (max-width: 640px) {
+  .hero2__body { padding-top: 96px; }
+  .hero2__h1 { font-size: clamp(30px, 8.5vw, 40px); }
+}
+
+/* Ajustes finos, todos medidos contra el .dc con _tipografia.mjs:
+   - los H2 de sección son 34px en el prototipo, no 36 (mi clamp llegaba a 36)
+   - los h3 de las cards de "casos de uso" y de los pasos van en 600, no 700
+     (los de beneficios de Reclamos SÍ son 700: por eso se distinguen por clase
+     en vez de una regla global)
+   - el H1 de la pantalla de demos es 52px, no 50 como el resto de las internas */
+.sec2__h2 { font-size: clamp(26px, 3.4vw, 34px); }
+.uso h3, .paso h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+body.pagina-demo .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* ---- Escala tipográfica: el home y las internas NO son iguales ----
+   Medido contra los .dc: el home usa H2 de 36px y H1 de 60px; las páginas de
+   módulo usan H2 de 34px y H1 de 52px. Poner un solo valor global arreglaba
+   unas y rompía las otras. */
+.sec2__h2 { font-size: clamp(26px, 3.4vw, 36px); }
+.cierre h2 { font-size: clamp(26px, 4vw, 38px); }
+
+.pagina-interna .sec2__h2,
+.pagina-interna .split h2,
+.pagina-interna .cierre h2 { font-size: clamp(24px, 3.2vw, 34px); }
+.pagina-interna .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* Detalles medidos uno por uno */
+.mock__key { letter-spacing: 0.06em !important; }   /* el .dc usa 0.06em, no 0.08 */
+.benc h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+.uso h3, .paso h3 { letter-spacing: normal !important; }
+/* el peso del nav lo aplanaba el `body { font-weight: 400 }` de más arriba */
+.tb2__nav a { font-weight: 500 !important; }
+.tb2__nav a.is-active { font-weight: 600 !important; }
+
+/* ============================================================
+   13. Los últimos valores, medidos uno por uno con _tipografia.mjs
+   Formato de la medición: prototipo -> lo que yo tenía.
+   ============================================================ */
+
+/* H1 de las internas: 50px, no 52 (había leído la medición al revés) */
+.pagina-interna .ih__h1 { font-size: clamp(30px, 4.4vw, 50px); }
+
+/* Los h3 de las cards de beneficios SON 700 y sin tracking (medido en
+   Reclamos: "Tiempos de respuesta más cortos"). El único 600 es el de la
+   banda destacada, que es un título de bloque, no de card. */
+.benc h3 { font-weight: 700 !important; letter-spacing: normal !important; }
+.benc__banda h3 { font-weight: 600 !important; letter-spacing: -0.02em !important; }
+
+/* Contacto: los h3 de canal son 22px y el destacado 30px */
+.pagina-interna .benc h3 { font-size: 22px; }
+.pagina-interna .benc h2 { font-size: 30px !important; letter-spacing: -0.02em !important; }
+
+/* Los H2 de sección de las internas son 34px. Las páginas que todavía traen
+   markup viejo los pintan con .display-2/.display-3, que tienen su propia
+   escala: se alinean acá. */
+.pagina-interna .display-2 { font-size: clamp(24px, 3.2vw, 34px) !important; letter-spacing: -0.02em !important; }
+.pagina-interna .display-3 { font-size: 26px !important; font-weight: 600 !important; letter-spacing: -0.02em !important; }
+
+/* .tag seguía en Manrope 400: es el badge "Más elegido", va Inter 700 */
+.tag { font-family: var(--font-body) !important; font-weight: 700 !important; }
+
+/* Los botones del prototipo: el primario 600, no 700 */
+.pagina-interna .btn, .pagina-interna .btn-primary, .pagina-interna .btn-ghost {
+  font-weight: 600 !important; letter-spacing: normal !important;
+}
+
+/* ============================================================
+   14. Valores POR PÁGINA
+
+   Los .dc no comparten una escala única: el H1 es 50px en
+   Reclamos y 52px en Tesorería, y los h3 de las cards van de 17
+   a 24px según la página. Poner un valor global arreglaba una y
+   rompía otra — se probó, y por eso ahora cada página declara
+   los suyos. Todos salen de la medición, no de un criterio mío.
+   ============================================================ */
+
+/* --- H1: dos tamaños según la página --- */
+.pag-reclamos .ih__h1, .pag-tramites .ih__h1, .pag-comunicaciones .ih__h1 { font-size: clamp(30px, 4.4vw, 50px); }
+.pag-tesoreria .ih__h1, .pag-precios .ih__h1, .pag-contacto .ih__h1,
+.pag-demo .ih__h1, .pag-software .ih__h1 { font-size: clamp(30px, 4.6vw, 52px); }
+
+/* --- Reclamos: cards de beneficio 19px las grandes, 18px las chicas --- */
+.pag-reclamos .benc--3 h3 { font-size: 19px !important; }
+.pag-reclamos .benc--2 h3 { font-size: 18px !important; }
+.pag-reclamos .benc__banda h3 { letter-spacing: normal !important; }
+
+/* --- Trámites: los tipos de trámite son h3 de 19px, peso 700 --- */
+.pag-tramites .benc h3, .pag-tramites .display-3 {
+  font-size: 19px !important; font-weight: 700 !important; letter-spacing: normal !important;
+}
+
+/* --- Tesorería: los dos bloques grandes 24px/600; las cards 17px/700 --- */
+.pag-tesoreria .benc--3 h3 { font-size: 24px !important; font-weight: 600 !important; letter-spacing: -0.02em !important; }
+.pag-tesoreria .display-3, .pag-tesoreria .bento h3 {
+  font-size: 17px !important; font-weight: 700 !important; letter-spacing: normal !important;
+}
+
+/* --- Precios: el nombre del plan es 20px sin tracking --- */
+.pag-precios .plan h3, .pag-precios .display-3 { font-size: 20px !important; letter-spacing: normal !important; }
+.pag-precios .btn, .pag-precios .btn-primary { font-weight: 700 !important; }
+
+/* --- Contacto: los h3 de canal en 700 --- */
+.pag-contacto .benc h3 { font-weight: 700 !important; }
+.pag-contacto .fuerte__tag { font-size: 12px !important; }
+
+/* Los ultimos cinco, medidos: */
+/* el nombre del plan es 20px, pero la banda "3 meses gratis" es 26px con -0.02em:
+   mi regla por .display-3 los aplanaba a los dos */
+.pag-precios .bento--accent .display-3 { font-size: 26px !important; letter-spacing: -0.02em !important; }
+.pag-precios .btn, .pag-precios .btn-primary { font-weight: 600 !important; }
+/* los h3 de canal de Contacto van en 600, no 700 */
+.pag-contacto .benc h3 { font-weight: 600 !important; }
+
+/* El formulario de la demo desbordaba 85px en un teléfono: los items de un
+   grid no se encogen por debajo de su contenido salvo que se les diga. Es el
+   mismo motivo por el que se rompía la topbar. */
+.dmform > * { min-width: 0; }
+.dmsel, .dmbox, .dmwrap, .dmform button { max-width: 100%; }
+.dmbox input { min-width: 0; width: 100%; }
+@media (max-width: 700px) {
+  .dmform { grid-template-columns: 1fr; }
+  .dmform > * { grid-column: 1 / -1; }
+}
+
+/* ============================================================
+   15. VIEWPORT — estándar de base-compartida/11-FIX-VIEWPORT-PWA.md
+
+   No estaba aplicado y se notaba: al tocar un input la pantalla
+   hacía zoom, y con el dedo se podía mover de costado.
+   ============================================================ */
+
+/* FIX 1c — cero movimiento horizontal, SIN romper el vertical
+
+   OJO, esto costó caro: `overflow-x:hidden` en el <html> ROMPE EL SCROLL
+   VERTICAL en Safari de iOS. Es un bug viejo de WebKit — cuando html tiene
+   overflow-x, deja de propagar el scroll al viewport — y Chromium NO lo
+   reproduce, así que las pruebas daban verde mientras en el teléfono real la
+   página no se movía. Si alguien vuelve a ponerlo en html, rompe el sitio
+   entero en iPhone y no se va a ver en ningún test de escritorio.
+
+   El recorte horizontal va SOLO en el body, que alcanza y es seguro. Y el
+   overscroll-behavior queda en `contain` (frena el rubber-band del scroll
+   encadenado) en vez de `none`, que en iOS puede bloquear el gesto. */
+html {
+  width: 100%;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;   /* iOS no reescala el texto al rotar */
+}
+body {
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  width: 100%;
+  max-width: 100%;
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* FIX 1b — iOS hace auto-zoom si un input tiene menos de 16px al enfocarlo.
+   El formulario de la demo los tenía en 14 y 15px. */
+input, select, textarea { font-size: 16px; }
+.dmbox input, .dmsel { font-size: 16px; }
+
+/* FIX 2b — la barra de arriba del iPhone: el header se baja con la safe area,
+   nunca con un número fijo (varía por modelo: notch, Dynamic Island, sin notch) */
+:root { --safe-top: env(safe-area-inset-top, 0px); }
+.topbar { padding-top: max(var(--safe-top), 0px); }
+@media (max-width: 1023px) {
+  .hero2__body, .ih__body { padding-top: calc(104px + var(--safe-top)); }
+}
+
+/* URLs y tokens largos no empujan el layout */
+.pieCierre__links a, .dmchip__s, .telnov__d { overflow-wrap: anywhere; }
+
+/* ---- La hamburguesa va a la IZQUIERDA ----
+   Es donde está en la app (y en el mock del teléfono del propio prototipo:
+   ☰ primero, después el logo). Tenerla a la derecha en la landing y a la
+   izquierda en la app obliga al vecino a buscarla dos veces. */
+#mobileBtn { flex-shrink: 0; }
+@media (max-width: 1023px) { .tb2 { gap: 10px; } }
+
+/* ============================================================
+   16. LOGO POR TEMA, y el toggle sin borde
+
+   El logo trae el hexágono en blanco puro: sobre el fondo claro
+   del modo día desaparecía y quedaba el check flotando solo.
+   Se sirven las dos variantes y el tema elige — el <img> no se
+   puede recolorear por CSS.
+   ============================================================ */
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-dark { display: none; }
+:root[data-theme="light"] .logo-light { display: block; }
+
+/* Dentro del mock del teléfono la app SIEMPRE es oscura, tema aparte */
+.tel .logo-light { display: none !important; }
+.tel .logo-dark { display: block !important; }
+/* Y sobre el velo del hero también, que siempre es oscuro */
+.ih .logo-light, .hero2 .logo-light { display: none; }
+.ih .logo-dark, .hero2 .logo-dark { display: block; }
+
+/* ---- El toggle de tema: sin borde, con los colores de la marca ----
+   En claro quedaba como una píldora con borde gris, desconectada del resto.
+   Ahora es una superficie suave del acento, sin línea. */
+.theme-toggle, .theme-toggle--pill {
+  border: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.theme-toggle:hover, .theme-toggle--pill:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+:root[data-theme="light"] .theme-toggle,
+:root[data-theme="light"] .theme-toggle--pill {
+  background: rgba(17, 42, 108, 0.08);   /* el azul de marca, muy suave */
+  color: #112A6C;
+}
+:root[data-theme="light"] .theme-toggle:hover,
+:root[data-theme="light"] .theme-toggle--pill:hover {
+  background: #112A6C;
+  color: #fff;
+}
+/* Sobre el hero (velo oscuro) el toggle va claro en los dos temas */
+.hero2 .theme-toggle, .ih .theme-toggle,
+.hero2 .theme-toggle--pill, .ih .theme-toggle--pill {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.hero2 .theme-toggle:hover, .ih .theme-toggle:hover { background: rgba(255,255,255,0.22); color: #fff; }
+
+/* ============================================================
+   17. REGLA ÚNICA: lo que va SOBRE el hero es tinta clara
+
+   El hero es oscuro en los DOS temas (video + velo). Todo lo que
+   se apoya encima —la marca de la topbar, el toggle, el
+   breadcrumb, los KPIs— tiene que ir en claro, o en modo día
+   queda tinta oscura sobre fondo oscuro. Pasaba con el nombre
+   "Munify", con el botón de tema y con los números del hero.
+
+   Cuando la barra scrollea ya tiene fondo propio y ahí sí sigue
+   al tema: por eso la distinción es `:not(.scrolled)`.
+   ============================================================ */
+.topbar:not(.scrolled) .tb2__brand span { color: #fff; }
+.topbar:not(.scrolled) .tb2__nav a { color: rgba(255,255,255,0.8); }
+.topbar:not(.scrolled) .tb2__nav a:hover,
+.topbar:not(.scrolled) .tb2__nav a.is-active { color: #fff; }
+.topbar:not(.scrolled) #mobileBtn i { color: #fff !important; }
+/* Cual de los dos logos, segun el FONDO que tiene detras (no segun el tema).
+   OJO con el alcance: la regla apunta al brand de la BARRA, no a `.topbar`
+   entera — el menu movil vive adentro de la topbar y con la version amplia
+   heredaba el logo blanco sobre su panel claro, quedando el check flotando
+   sin hexagono. */
+   `color.svg` trae el hexagono BLANCO —sirve sobre oscuro— y `light.svg` es el
+   azul marino con el check verde, que es el que se ve sobre claro. Con la barra
+   arriba, detras hay una foto oscura aunque el tema sea claro: ahi va el blanco
+   igual. Ya scrolleada, la barra toma el color del tema y manda el switch de
+   arriba. */
+.topbar:not(.scrolled) .tb2__brand .logo-light { display: none; }
+.topbar:not(.scrolled) .tb2__brand .logo-dark { display: block; }
+
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+.topbar:not(.scrolled) .theme-toggle:hover { background: rgba(255,255,255,0.26); color: #fff; }
+
+/* Contenido del hero interno: siempre claro, tema aparte */
+.ih__crumb, .ih__crumb a { color: #93A5C9; }
+.ih__crumb a:hover { color: #4CD9C6; }
+.ih__eyebrow { color: #4CD9C6 !important; }
+.ih__h1 { color: #fff; }
+.ih__sub { color: #C7D3E8; }
+.ihk { border-top-color: rgba(255,255,255,0.14); }
+.ihk__l { color: #93A5C9; }
+/* El KPI sin color propio va blanco: está sobre el hero, que es oscuro en los
+   dos temas. Los que llevan color semántico (cian, ámbar, verde) se dejan como
+   están — sobre oscuro se leen bien en ambos modos. No es invertir todo: es
+   pintar claro SÓLO lo que se apoya en algo oscuro. */
+.ihk__n { color: #fff; }
+
+
+/* ============================================================
+   19. LA DEMO ARMANDOSE, PASO POR PASO
+
+   Se comparte pantalla mientras se crea: lo que pasa en esos
+   segundos es la demostracion. Cada renglon es una etapa real
+   del seed, y se tilda cuando pasa.
+   ============================================================ */
+.dmpasos { margin-top: 14px; display: grid; gap: 2px; text-align: left; }
+.dmpaso {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 7px 2px; font-size: 14px; line-height: 1.4;
+  color: var(--ink-3); transition: opacity .3s, color .3s;
+}
+/* Cada linea entra cuando le toca: antes estaban las siete a la vista y las
+   seis grises tapaban a la unica que importaba. */
+.dmpaso[hidden] { display: none; }
+.dmpaso.entra { animation: dmentra .32s ease-out both; }
+@keyframes dmentra {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+/* El icono de cada paso dice QUE se esta haciendo: siete circulitos iguales
+   no contaban nada, y esto es lo unico que se mira durante los dos minutos
+   que tarda la demo (dueño, 2026-08-31). */
+.dmpaso__ic {
+  flex: 0 0 26px; height: 26px; margin-top: 0; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  position: relative; transition: background .3s, border-color .3s, transform .3s;
+}
+.dmpaso__ic svg {
+  width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+/* El que esta EN CURSO late; el terminado se apaga y saca su tilde. */
+.dmpaso.is-now { opacity: 1; color: var(--accent); font-weight: 600; }
+.dmpaso.is-now .dmpaso__ic {
+  border-color: var(--accent); background: rgba(76,217,198,0.14);
+  animation: dmlate 1.4s ease-in-out infinite;
+}
+@keyframes dmlate {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76,217,198,0.35); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 6px rgba(76,217,198,0); }
+}
+.dmpaso.is-ok { opacity: .72; color: var(--ink-2); }
+.dmpaso.is-ok .dmpaso__ic {
+  border-color: var(--ok, #16a34a); background: var(--ok, #16a34a); color: #fff;
+}
+.dmpaso.is-ok .dmpaso__ic svg { display: none; }
+.dmpaso.is-ok .dmpaso__ic::after {
+  content: ""; position: absolute; left: 9px; top: 5px; width: 5px; height: 10px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
+  animation: dmtilde .22s ease-out both;
+}
+@keyframes dmtilde { from { opacity: 0; transform: rotate(45deg) scale(.4); } }
+.dmpaso.is-bad { opacity: 1; color: var(--bad, #dc2626); }
+.dmpaso.is-bad .dmpaso__ic { border-color: currentColor; }
+.dmpaso.is-bad .dmpaso__ic::after {
+  content: ""; position: absolute; inset: 3px; border-radius: 50%; background: currentColor;
+}
+.dmpaso__n { flex: 1; min-width: 0; }
+.dmpaso__d { display: block; font-size: 12.5px; font-weight: 400; color: var(--ink-3); margin-top: 1px; }
+/* Los items que se van tildando de a uno: es lo que le muestra al visitante
+   que se le esta armando SU municipio, no una barra que corre sola. */
+.dmpaso__items { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.dmpaso__it {
+  display: inline-flex; align-items: center; gap: 5px;
+  font: 500 11.5px var(--font-body); color: var(--ink-2);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px; padding: 3px 9px 3px 6px;
+  animation: dmitem .26s cubic-bezier(.2,.8,.3,1.2) both;
+}
+.dmpaso__it::before {
+  content: ""; width: 11px; height: 11px; flex: none; border-radius: 50%;
+  background: var(--ok, #16a34a);
+  /* el tilde, dibujado con el borde: no hace falta otro svg por chip */
+  background-image: linear-gradient(45deg, transparent 46%, #fff 46%, #fff 56%, transparent 56%),
+                    linear-gradient(-45deg, transparent 52%, #fff 52%, #fff 62%, transparent 62%);
+  background-size: 60% 60%, 60% 60%;
+  background-position: 2px 3px, 3px 2px;
+  background-repeat: no-repeat;
+}
+@keyframes dmitem { from { opacity: 0; transform: translateY(4px) scale(.94); } }
+.dmpaso__cuenta {
+  font: 600 12px var(--font-body); color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+/* Mientras se buscan las localidades: puntos que laten. Es preferible avisar
+   que se esta buscando antes que dejar el paso mudo — y si no aparecen, lo
+   dice, en vez de inventar nombres (dueño, 2026-08-31). */
+.dmpaso__buscando {
+  font: 500 11.5px var(--font-body); color: var(--ink-3);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.dmpaso__buscando::after {
+  content: "···"; letter-spacing: 2px; color: var(--accent);
+  animation: dmpuntos 1.1s steps(3, end) infinite;
+}
+.dmpaso__buscando.is-ok::after { content: ""; }
+@keyframes dmpuntos {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+/* Con pasos el cartel deja de ser una linea centrada y pasa a ser una lista:
+   el titulo arriba, los renglones abajo. (`.dmestado.is-on` es flex en fila
+   para el estado de una linea, que sigue existiendo). */
+/* Vale para --work Y para --bad: al fallar el contenedor cambia de clase y
+   antes volvia a ser una fila, con el titulo de un lado y el error del otro. */
+.dmestado:has(.dmpasos) { flex-direction: column; align-items: stretch; text-align: left; }
+.dmestado:has(.dmpasos) > b { margin-bottom: 4px; font-size: 15px; }
+.dmestado__err { margin-top: 10px; font-size: 13.5px; line-height: 1.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dmpaso.is-now .dmpaso__ic { animation: none; }
+}
+
+/* ============================================================
+   20. EL PANEL REAL, EN LA SECCION DEL INTENDENTE
+
+   Una foto del producto andando pesa mas que cualquier mockup.
+   El marco la separa del fondo sin dibujarle un navegador falso
+   alrededor: borde fino, sombra y las esquinas de la app.
+   ============================================================ */
+.panelreal { margin: 0 auto; padding: 0 20px; max-width: 1240px; }
+.panelreal__marco {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,.6);
+  background: var(--card);
+}
+.panelreal img { display: block; width: 100%; height: auto; }
+/* La aclaracion no explica la captura —eso se ve solo—: esta para que los
+   numeros de una demo no pasen por los de un municipio real. Por eso queda,
+   pero chica y con aire: pegada al borde competia con la imagen. */
+.panelreal figcaption {
+  margin-top: 16px; text-align: center;
+  font-size: 12px; line-height: 1.5; color: var(--ink-3); opacity: .75;
+}
+/* En el telefono un tablero entero no se lee. Se muestra a ancho completo
+   igual —da la idea de densidad— y el detalle lo da el carrusel de abajo,
+   que si esta pensado para pantalla chica. */
+@media (max-width: 640px) {
+  .panelreal { padding: 0 14px; }
+  .panelreal figcaption { font-size: 12px; }
+}
+
+/* Lo que el panel dice, en texto: el mismo contenido que muestra la captura,
+   legible para quien no ve la imagen y para el buscador. Reemplaza al
+   carrusel de slides pintados a mano. */
+.panelreal__que {
+  max-width: 1240px; margin: 40px auto 0; padding: 0 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+}
+.panelreal__que .pq h3 {
+  margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.panelreal__que .pq p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+@media (max-width: 860px) {
+  .panelreal__que { grid-template-columns: 1fr; gap: 16px; padding: 0 14px; }
+}
+
+/* El panel tiene su captura para cada tema: la oscura sobre fondo oscuro y la
+   clara sobre claro. Con una sola quedaba un rectangulo negro en el medio de
+   una pagina blanca. La que no se usa no se descarga (lazy + display:none). */
+.panelreal .panel-claro { display: none; }
+:root[data-theme="light"] .panelreal .panel-oscuro { display: none; }
+:root[data-theme="light"] .panelreal .panel-claro { display: block; }
+
+/* En el telefono el tablero entero deja letras de 3px: se ve que "hay algo" y
+   nada mas. Ahi van sus piezas, de a una y grandes — recortes de la MISMA
+   foto, no mockups dibujados. En escritorio manda la captura completa, que es
+   la que muestra la densidad del panel. */
+.panelreal__piezas { display: none; }
+@media (max-width: 760px) {
+  .panelreal__marco { display: none; }
+  .panelreal__piezas { display: grid; gap: 12px; }
+  .panelreal__piezas img {
+    display: block; width: 100%; height: auto;
+    border-radius: 12px; border: 1px solid var(--line);
+  }
+  .panelreal__piezas .panel-claro { display: none; }
+  :root[data-theme="light"] .panelreal__piezas .panel-oscuro { display: none; }
+  :root[data-theme="light"] .panelreal__piezas .panel-claro { display: block; }
+}
+
+/* Las tres frases del panel, centradas. */
+.panelreal__que { text-align: center; }
+
+/* ============================================================
+   21. LA BARRA: UNA SOLA ACCION, Y EL LOGO AL CENTRO
+
+   Tenia luna + WhatsApp + CTA a la derecha: en anchos medianos
+   eso empuja y termina partiendo la fila. El tema es una
+   preferencia y el WhatsApp un canal — ninguno pelea espacio
+   con lo que de verdad se quiere que hagan.
+   ============================================================ */
+.tb2__actions { margin-left: auto; }
+/* El logo al centro SOLO donde el nav ya se guardo en la hamburguesa (<=1024,
+   ver la regla que oculta `.tb2__nav`). Mas ancho, el nav ocupa el medio y un
+   brand absoluto le cae encima — se probo y los links quedaban tapados. */
+@media (max-width: 1023px) {
+  .tb2 { position: relative; }
+  .tb2__brand {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+  }
+}
+
+/* Las utilidades, arriba del menu: tema, WhatsApp y cerrar. */
+.menu-utils { display: flex; align-items: center; gap: 8px; }
+.menu-wa {
+  width: 36px; height: 36px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #128c7e; background: rgba(18,140,126,0.12);
+  border: 1px solid rgba(18,140,126,0.28);
+}
+.menu-wa:hover { background: rgba(18,140,126,0.2); }
+
+/* El CTA de la barra. Con el logo centrado, a partir de ~480px el boton de
+   191px se le montaba encima: en pantalla chica se queda con el icono solo,
+   en circulo. Sigue siendo el mismo destino y el mismo color — lo que se cae
+   es el texto, no la accion. */
+/* El CTA de la barra usa el MISMO outline que el del hero (dueño,
+   2026-08-31): en verde solido competia con el boton principal de abajo y
+   ensuciaba la barra. El borde se iguala al del hero —mas marcado que el
+   `--line-strong` general— y el icono conserva el acento para que se lea que
+   es WhatsApp. */
+.tb2__cta { gap: 8px; white-space: nowrap; border-color: rgba(255,255,255,0.35); }
+.tb2__cta:hover { border-color: #fff; }
+.tb2__cta i { color: var(--accent); }
+:root[data-theme="light"] .tb2__cta { border-color: rgba(13,20,40,0.28); }
+:root[data-theme="light"] .tb2__cta:hover { border-color: rgba(13,20,40,0.55); }
+/* Con la barra ARRIBA el fondo es el hero (oscuro en los dos temas), asi que
+   el CTA outline va en blanco aunque el tema sea claro: si no, quedaba texto
+   oscuro sobre imagen oscura. Al scrollear vuelve al color del tema, como el
+   resto de la barra. Va DESPUES del bloque de light porque empatan en
+   especificidad y decide el orden. */
+.topbar:not(.scrolled) .tb2__cta { border-color: rgba(255,255,255,0.35); color: #fff; }
+.topbar:not(.scrolled) .tb2__cta:hover { border-color: #fff; }
+@media (max-width: 720px) {
+  .tb2__cta {
+    width: 40px; height: 40px; padding: 0; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .tb2__cta span { position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; }
+  .tb2__cta i { font-size: 17px; }
+}
+
+/* El nav, centrado en la barra y no pegado al logo. Sin posicionarlo absoluto:
+   los dos costados —marca y CTA— toman el mismo `flex`, asi que el sobrante se
+   reparte igual y el nav queda en el medio SIN posibilidad de montarse encima
+   de ninguno de los dos (un nav absoluto centrado se solapa en cuanto el
+   costado crece; ya paso con el logo). */
+@media (min-width: 1024px) {
+  .tb2__brand { flex: 1 1 0; min-width: 0; }
+  .tb2__actions { flex: 1 1 0; min-width: 0; justify-content: flex-end; margin-left: 0; }
+  .tb2__nav { flex: 0 0 auto; }
+}
+/* En el rango justo —entre que aparece el nav y que hay lugar de sobra— el nav
+   quedaba a 1px del CTA. Se aprieta un poco: preferible ocho links algo mas
+   chicos que ocho links tocando el boton. */
+@media (min-width: 1024px) and (max-width: 1140px) {
+  .tb2__nav { gap: 11px; }
+  .tb2__nav a { font-size: 12.5px; }
+}
+
+/* ============================================================
+   EL RINCONCITO DEL TEMA (dueño, 2026-08-31)
+   Va ULTIMO a proposito: mas arriba el toggle recibe fondo de acento y, con
+   la barra en el hero, un blanco translucido. Eso lo ponia a la par del CTA
+   que tiene al lado, cuando es un control de rincon: chiquito, sin fondo y a
+   media tinta. Se enciende al pasar por encima.
+   ============================================================ */
+.tb2 .theme-toggle,
+.tb2 .theme-toggle--pill,
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0.4;
+  transition: opacity 200ms var(--ease);
+}
+.tb2 .theme-toggle svg,
+.topbar:not(.scrolled) .theme-toggle svg { width: 14px; height: 14px; }
+.tb2 .theme-toggle:hover,
+.topbar:not(.scrolled) .theme-toggle:hover {
+  background: transparent;
+  opacity: 1;
+}
+/* Con la barra arriba el fondo es el hero (oscuro en los dos temas). */
+.topbar:not(.scrolled) .theme-toggle,
+.topbar:not(.scrolled) .theme-toggle--pill { color: #fff; }
+.tb2 .theme-toggle { color: var(--ink); }
+/* En el telefono vuelve al area de toque comoda: 26px es chico para un dedo. */
+@media (max-width: 1023px) {
+  .tb2 .theme-toggle,
+  .tb2 .theme-toggle--pill,
+  .topbar:not(.scrolled) .theme-toggle,
+  .topbar:not(.scrolled) .theme-toggle--pill { width: 34px; height: 34px; opacity: 0.55; }
+  .tb2 .theme-toggle svg,
+  .topbar:not(.scrolled) .theme-toggle svg { width: 16px; height: 16px; }
+}
+
+/* El CTA del hero, en dos renglones (dueño, 2026-08-31): la promesa arriba y
+   el tiempo abajo, chiquito. El "2 minutos" es el argumento que mas convence
+   y colgado al costado se perdia entre el resto de la letra chica. */
+.btn2--dos {
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.15;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn2--dos .btn2__t { font: inherit; }
+.btn2--dos .btn2__s {
+  font-size: 11.5px;
+  font-weight: 500;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+}
+
+/* ===========================================================================
+   MENÚ MÓVIL — el panel de navegación del teléfono.
+   Va al final del tema (y no en munify-v2) porque necesita los tokens de
+   marca: los mismos verdes y azules que usa el resto de la página.
+   =========================================================================== */
+
+/* Vidrio, no pared. El panel dejaba la página tapada con un color sólido y
+   parecía otra pantalla; con la página asomándose detrás se siente una capa
+   encima de lo que estabas mirando, que es lo que un menú es. */
+.mobile-menu__panel {
+  width: min(21rem, 88vw);
+  background: var(--paper);                                   /* fallback */
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+  border-left: 1px solid var(--line);
+  box-shadow: -32px 0 64px -32px rgba(0,0,0,.55);
+  /* La MISMA tipografía que la aplicación. La landing venía con Manrope acá
+     y el menú se sentía de otro producto. */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 1.25rem 1.05rem calc(1.5rem + env(safe-area-inset-bottom));
+}
+.mobile-menu__overlay {
+  background: rgba(3, 8, 20, .55);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+/* La marca, con el peso que le corresponde: es lo primero que se lee. */
+.mobile-menu__panel .brand-logo { height: 2.1rem; width: auto; }
+.mobile-menu__panel .brand-logo + span {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+
+/* Los tres utiles de arriba eran tres botones distintos --- uno con aro verde,
+   otro sin nada, otro redondo. Ahora son el mismo control tres veces. */
+.mobile-menu__panel .menu-utils { display: flex; align-items: center; gap: .4rem; }
+.mobile-menu__panel .menu-utils > * {
+  width: 2.25rem; height: 2.25rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: .7rem;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .95rem;
+  opacity: 1;   /* el toggle venía a 0.4 de su variante pill y quedaba apagado */
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.mobile-menu__panel .menu-utils > *:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+/* UN solo radio para todo lo que se toca: los items y el botón de abajo. El
+   CTA venía con `border-radius: 999px` heredado de `.btn`, así que la píldora
+   no se parecía a nada de lo que tenía encima. */
+.mobile-menu__panel nav { gap: .18rem; }
+.mobile-menu__panel nav .nav-link {
+  border-radius: .8rem;
+  padding: .82rem .9rem;
+  font-size: .98rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink-soft);
+}
+.mobile-menu__panel nav .nav-link .nav-ico {
+  width: 1.15rem;
+  color: var(--muted-soft);
+  text-align: center;
+}
+.mobile-menu__panel nav .nav-link:hover,
+.mobile-menu__panel nav .nav-link:focus-visible {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.mobile-menu__panel nav .nav-link:hover .nav-ico { color: var(--accent); }
+.mobile-menu__panel nav .nav-link.is-active {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+  color: var(--ink);
+  font-weight: 600;
+}
+.mobile-menu__panel nav .nav-link.is-active .nav-ico { color: var(--accent); }
+
+.mobile-menu__panel .btn {
+  border-radius: .8rem;          /* el mismo de los items */
+  width: 100%;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 600;
+  padding: .9rem 1.25rem;
+}
+
+/* ============================================================
+   EL COMBO DE LA LANDING (dueño, 2026-08-31)
+   El <select> nativo abre la lista del sistema operativo: blanca, con la
+   tipografia de Windows y su barra de scroll, en el medio de una pagina
+   oscura. Este es el mismo control con la cara de la app. El select real
+   sigue existiendo debajo —oculto— para que el JS que lee su value y escucha
+   su change no se entere de nada.
+   ============================================================ */
+.mcombo { position: relative; min-width: 0; }
+.mcombo > select.dmsel {
+  position: absolute; opacity: 0; pointer-events: none;
+  width: 1px; height: 1px; padding: 0; border: 0;
+}
+.mcombo__b {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  background: var(--paper-warm); border: 1px solid var(--line-strong);
+  border-radius: var(--r-control); padding: 14px 16px; color: var(--ink);
+  font: 500 14px var(--font-body); cursor: pointer; text-align: left;
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+}
+.mcombo__b:hover { border-color: var(--accent-line); }
+.mcombo.is-open .mcombo__b { border-color: var(--accent); }
+.mcombo.is-vacio .mcombo__t { color: var(--muted-soft); }
+.mcombo.is-off .mcombo__b { opacity: .45; cursor: not-allowed; }
+.mcombo__t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mcombo__f { flex: none; width: 14px; height: 14px; display: inline-flex; transition: transform 200ms var(--ease); }
+.mcombo__f svg { width: 14px; height: 14px; fill: none; stroke: var(--muted-soft); stroke-width: 2.5;
+  stroke-linecap: round; stroke-linejoin: round; }
+.mcombo.is-open .mcombo__f { transform: rotate(180deg); }
+
+.mcombo__p {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30;
+  background: var(--card); border: 1px solid var(--accent-line);
+  border-radius: var(--r-control); box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  overflow-y: auto; overscroll-behavior: contain; padding: 5px;
+  animation: mcombo-in .16s ease-out both;
+}
+.mcombo--arriba .mcombo__p { top: auto; bottom: calc(100% + 6px); }
+@keyframes mcombo-in { from { opacity: 0; transform: translateY(-4px); } }
+.mcombo__o {
+  display: block; width: 100%; text-align: left; border: 0; background: transparent;
+  color: var(--ink); font: 500 13.5px var(--font-body); padding: 10px 12px;
+  border-radius: 8px; cursor: pointer; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; transition: background 120ms var(--ease);
+}
+.mcombo__o:hover { background: var(--accent-soft); }
+.mcombo__o.is-sel { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+/* La barra de scroll, del lado oscuro: la del sistema cantaba igual que la
+   lista que vinimos a reemplazar. */
+.mcombo__p::-webkit-scrollbar { width: 8px; }
+.mcombo__p::-webkit-scrollbar-track { background: transparent; }
+.mcombo__p::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+.mcombo__p::-webkit-scrollbar-thumb:hover { background: var(--accent-line); }
+.mcombo__p { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+@media (max-width: 1023px) { .mcombo__b { font-size: 16px; } }

@@ -1,3 +1,10 @@
-# Fallback SPA/estatico. Los archivos reales (precios.html, robots.txt, sitemap.xml,
-# /docs) ganan sobre esta regla, y Cloudflare normaliza la barra final solo.
-/* /index.html 200
+# Fallback estatico.
+#
+# OJO: NO poner reglas de pretty URL tipo `/demo /demo.html 200`. Cloudflare Pages ya
+# sirve las URLs sin extension por su cuenta (normaliza /demo.html -> /demo con un 308),
+# y la regla peleaba con esa normalizacion: /demo -> /demo.html -> /demo, bucle infinito.
+# Verificado en este mismo proyecto antes de sacarla.
+#
+# Los archivos reales (precios.html, demo.html, robots.txt, sitemap.xml, /docs) ganan
+# sobre el fallback, asi que se sirven igual.
+/*  /index.html  200

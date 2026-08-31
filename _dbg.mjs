@@ -1,0 +1,14 @@
+import { createRequire } from 'module';
+const require = createRequire('d:/Code/sugerenciasMun/frontend/');
+const { chromium } = require('playwright');
+const b = await chromium.launch({ channel: 'msedge' });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+p.on('pageerror', e => console.log('  PAGEERROR:', e.message.slice(0,120)));
+p.on('console', m => { if (m.type()==='error') console.log('  CONSOLA:', m.text().slice(0,120)); });
+p.on('response', r => { if (/\/api\//.test(r.url())) console.log('  API', r.status(), r.url().split('/api/')[1].slice(0,60)); });
+await p.goto('http://localhost:8123/demo.html?m=Chivilcoy&pais=AR', { waitUntil: 'networkidle' });
+await p.waitForTimeout(5000);
+console.log('  precargarDesdeURL existe:', await p.evaluate(() => typeof precargarDesdeURL));
+console.log('  input:', JSON.stringify(await p.evaluate(() => document.querySelector('[data-muni]')?.value)));
+console.log('  opciones de pais:', await p.evaluate(() => document.querySelectorAll('[data-pais] option').length));
+await b.close();

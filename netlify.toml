@@ -1,16 +1,15 @@
-# ==============================================================================
-#  ARCHIVO MUERTO — la landing ya NO se sirve desde Netlify (migrada a Cloudflare
-#  Pages el 2026-08-28). Editar esto NO tiene ningun efecto en produccion.
+# ============================================================
+# ESTE ARCHIVO YA NO SE LEE. Es legacy de Netlify.
 #
-#  La configuracion viva es, toda en este repo:
-#    _headers                  seguridad y cache
-#    _redirects                fallback
-#    functions/_middleware.js  reescribe los links a la app segun el hostname
-#                              (en qa.munify.com.ar apuntan a la app de QA,
-#                              no a produccion)
+# El sitio se publica con Cloudflare Pages y la configuracion viva
+# esta en `_headers`, `_redirects` y `functions/`. Editar algo aca
+# NO tiene ningun efecto en el deploy.
 #
-#  Se conserva solo como referencia historica de lo que hacia Netlify.
-# ==============================================================================
+# Se conserva solo como documentacion de las URLs historicas. Y un
+# dato para el que venga: en Pages las pretty URLs (/demo,
+# /comunicaciones) salen SOLAS — declararlas en `_redirects` arma
+# un bucle de 308 contra la normalizacion de la propia plataforma.
+# ============================================================
 
 [build]
   publish = "."
@@ -60,6 +59,16 @@
 [[redirects]]
   from = "/contacto"
   to = "/contacto.html"
+
+[[redirects]]
+  from = "/demo"
+  to = "/demo.html"
+  status = 200
+
+[[redirects]]
+  from = "/comunicaciones"
+  to = "/comunicaciones.html"
+  status = 200
   status = 200
 
 # Fallback final: cualquier otra ruta cae al index

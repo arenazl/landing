@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Munify">
     <title>Contacto | Munify - Software de Gestión Municipal para Argentina</title>
 
     <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
     <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
-    <meta name="theme-color" content="#0088cc">
+    <meta name="theme-color" content="#060E22">
     <meta name="description" content="Contactá al equipo de Munify para conocer el software de gestión municipal para tu intendencia. Pedí una demo gratis, solicitá un presupuesto o consultanos por WhatsApp.">
     <meta name="author" content="Munify Argentina">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -64,6 +67,12 @@
     <script src="https://cdn.tailwindcss.com/3.3.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/munify-v2.css">
+    <!-- Restyling comercial 2026 (docs/design-sync/comercial-2026-08-30) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/munify-theme.css">
+    <!-- theme guard: aplica el tema guardado antes del paint (sin flash) -->
+    <script>(function(){try{if(localStorage.getItem('munifyTheme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
     <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
     <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
 
@@ -73,37 +82,33 @@
     }
     </script>
 </head>
-<body>
+<body class="pagina-interna pag-contacto">
 
 <header id="topbar" class="topbar">
-    <div class="container flex items-center justify-between py-3.5">
-        <a href="/" class="flex items-center gap-2.5">
-            <img src="images/Munify.svg" alt="Munify" class="h-10 w-auto">
-            <span class="font-semibold tracking-tight text-[1.25rem]" style="color:var(--ink)">Munify</span>
-        </a>
-        <nav class="hidden lg:flex items-center gap-1">
-            <a href="/software-gestion-municipal" class="nav-link">Software</a>
-            <a href="/reclamos-vecinales" class="nav-link">Reclamos</a>
-            <a href="/tramites-municipales" class="nav-link">Trámites</a>
-            <a href="/tesoreria" class="nav-link inline-flex items-center gap-1.5">
-                Tesorería
-                <span class="tag tag--new" style="font-size:0.625rem; padding:0.15rem 0.45rem">NUEVO</span>
-            </a>
-            <a href="/precios" class="nav-link">Precios</a>
-            <a href="/contacto" class="nav-link active">Contacto</a>
-        </nav>
-        <div class="flex items-center gap-2">
-            <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="wa-topbar hidden md:inline-flex">
-                <i class="fab fa-whatsapp"></i>
-                Hablá con un asesor
-            </a>
-            <a href="https://app.munify.com.ar/demo" target="_blank" class="btn btn-primary btn-topbar hidden md:inline-flex">
-                Generá tu municipio
-                <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-            <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Menú">
+    <div class="tb2">
+        <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
                 <i class="fas fa-bars" style="color:var(--ink)"></i>
             </button>
+        <a href="/" class="tb2__brand">
+            <img src="images/munify-logo-color.svg" alt="Munify" class="brand-logo" data-logo>
+            <span>Munify</span>
+        </a>
+
+        <nav class="tb2__nav">
+                <a href="/reclamos-vecinales">Reclamos</a>
+                <a href="/tramites-municipales">Trámites</a>
+                <a href="/tesoreria">Tesorería</a>
+                <a href="/comunicaciones">Comunicaciones</a>
+                <a href="/demo">Demo</a>
+                <a href="/precios">Precios</a>
+                <a href="/contacto">Contacto</a>
+        </nav>
+
+        <div class="tb2__actions">
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost tb2__cta" aria-label="Hablá con un asesor por WhatsApp" title="Hablá con un asesor">
+                <i class="fab fa-whatsapp"></i>
+                <span>Hablá con un asesor</span>
+            </a>
         </div>
     </div>
 </header>
@@ -114,19 +119,26 @@
     <aside class="mobile-menu__panel">
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-2">
-                <img src="images/Munify.svg" alt="" class="h-7 w-auto">
+                <img src="images/munify-logo-color.svg" alt="" class="h-7 w-auto brand-logo" data-logo>
                 <span class="font-semibold">Munify</span>
             </div>
-            <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]">
-                <i class="fas fa-times"></i>
-            </button>
+            <div class="menu-utils">
+                <button type="button" class="theme-toggle theme-toggle--pill" data-theme-toggle></button>
+                <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="menu-wa" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
         <nav class="flex flex-col gap-1">
             <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
-            <a href="/software-gestion-municipal" class="nav-link text-base"><i class="fas fa-cube nav-ico"></i><span>Software</span></a>
             <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
             <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
             <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/comunicaciones" class="nav-link text-base"><i class="fas fa-tower-broadcast nav-ico"></i><span>Comunicaciones</span></a>
+            <a href="/demo" class="nav-link text-base"><i class="fas fa-play nav-ico"></i><span>Demo</span></a>
             <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
             <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
         </nav>
@@ -154,193 +166,88 @@
     })();
 </script>
 
-<main class="pt-24">
+<main>
 
-<section class="hero hero--alive -mt-24 pt-32 pb-14 md:pt-36 md:pb-16 relative">
-    <div class="hero__media"><img src="images/assets-landing-trabajadores-hq.jpg" alt=""></div>
-    <div class="hero__tint"></div>
-    <div class="hero__grain"></div>
-    <div class="container relative">
-        <nav class="text-sm mb-6" style="color:var(--muted-soft)">
-            <a href="/" style="color:var(--muted)">Inicio</a>
-            <span class="mx-2">/</span>
-            <span style="color:var(--ink)">Contacto</span>
-        </nav>
-        <div class="hero-grid">
-            <div>
-                <div class="hero__eyebrow mb-6"><span class="pulse"></span> Hablemos</div>
-                <h1 class="display-1 font-display" style="color:var(--ink)">
-                    Estamos a un mensaje<br>
-                    <span style="color:var(--muted)">de <em class="text-accent" style="font-style:normal">distancia</em>.</span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-xl" style="color:var(--muted); line-height:1.5">
-                    Demo, cotización o soporte: elegí el canal y te respondemos rápido.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="tag tag--accent"><i class="fas fa-bolt"></i> Respuesta en minutos</span>
-                    <span class="tag"><i class="fas fa-gift"></i> Demo sin costo</span>
-                    <span class="tag"><i class="fab fa-whatsapp"></i> Soporte por WhatsApp</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" class="btn btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    <a href="https://app.munify.com.ar/demo" class="btn btn-ghost">Probar demo</a>
-                </div>
-            </div>
-            <div class="reveal" data-anim="scale">
-                <div class="app-mock">
-                    <div class="app-mock__bar">
-                        <span class="app-mock__dot"></span><span class="app-mock__dot"></span><span class="app-mock__dot"></span>
-                        <span class="app-mock__title">Munify · Atención</span>
-                    </div>
-                    <div class="app-mock__body">
-                        <div class="mock-list">
-                            <a class="mock-row" href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" style="text-decoration:none"><span class="mock-row__ico"><i class="fab fa-whatsapp"></i></span><div class="mock-row__main"><div class="mock-row__t">WhatsApp ventas</div><div class="mock-row__s">+54 9 11 3851 8148</div></div><span class="mock-pill mock-pill--ok">Activo</span></a>
-                            <a class="mock-row" href="mailto:info@munify.com.ar" style="text-decoration:none"><span class="mock-row__ico"><i class="fas fa-envelope"></i></span><div class="mock-row__main"><div class="mock-row__t">Email</div><div class="mock-row__s">info@munify.com.ar</div></div></a>
-                            <a class="mock-row" href="https://app.munify.com.ar/demo" target="_blank" rel="noopener" style="text-decoration:none"><span class="mock-row__ico"><i class="fas fa-calendar-check"></i></span><div class="mock-row__main"><div class="mock-row__t">Demo en vivo</div><div class="mock-row__s">Coordinamos horario</div></div><span class="mock-pill mock-pill--curso">Hoy</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="ih">
+    <div class="ih__media" data-videos="videos/hero-contacto.mp4,videos/loop-atencion.mp4"><img src="images/assets-landing-trabajadores-hq.jpg" alt=""></div>
+    <div class="ih__veil"></div>
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Contacto</div>
+        <div class="ih__eyebrow">Hablemos</div>
+        <h1 class="ih__h1">Estamos a un mensaje de distancia.</h1>
+        <p class="ih__sub">Demo, cotización o soporte: elegí el canal y te respondemos rápido.</p>
+        <div class="ih__chips"><span class="ih__chip ih__chip--on">Respuesta en minutos</span><span class="ih__chip">Demo sin costo</span><span class="ih__chip">Soporte por WhatsApp</span></div>
+        <div class="ih__cta">
+            <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Consultar por WhatsApp</a>
         </div>
     </div>
-    <div class="hero__rule"></div>
 </section>
 
 <!-- Bento de canales -->
-<section class="container pb-16 md:pb-24">
-    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <!-- WhatsApp grande -->
-        <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" class="bento md:col-span-4 group" style="display:block">
-            <div class="flex items-start justify-between mb-6">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--accent-soft); color:var(--accent)">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                </div>
-                <i class="fas fa-arrow-up-right-from-square text-sm" style="color:var(--muted)"></i>
-            </div>
-            <div class="eyebrow mb-2">Lo más rápido</div>
-            <h3 class="display-2 font-display mb-4" style="color:var(--ink)">WhatsApp ventas</h3>
-            <p class="text-[1.05rem] mb-8" style="color:var(--muted); line-height:1.55">
-                Respondemos en minutos en horario laboral. Mandanos un mensaje contando tu
-                municipio y te llamamos para coordinar una demo.
-            </p>
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="background:var(--paper-warm)">
-                <i class="fab fa-whatsapp" style="color:#16a34a"></i>
-                <span class="font-medium">+54 9 11 3851 8148</span>
-            </div>
-        </a>
 
-        <!-- Email -->
-        <a href="mailto:info@munify.com.ar" class="bento bento--warm md:col-span-2 group" style="display:block">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="eyebrow mb-2">Email</div>
-            <h3 class="display-3 mb-3">Escribinos</h3>
-            <p class="text-[0.95rem] mb-4" style="color:var(--muted); line-height:1.55">
-                Para consultas más extensas o adjuntar documentos.
-            </p>
-            <div class="text-sm font-medium">info@munify.com.ar</div>
-        </a>
 
-        <!-- Demo -->
-        <a href="https://app.munify.com.ar/demo" class="bento bento--ink md:col-span-3" style="display:block">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center mb-6" style="background:var(--accent-soft); color:var(--accent)">
-                <i class="fas fa-play-circle"></i>
-            </div>
-            <div class="eyebrow mb-2" style="color:#a3a3a3">Demo en vivo</div>
-            <h3 class="display-3 mb-3" style="color:#fafafa">Probá la plataforma</h3>
-            <p class="text-[0.95rem] mb-4" style="color:#a3a3a3; line-height:1.55">
-                Ingresá a la demo con datos reales. Sin registro, sin instalación.
-            </p>
-            <div class="inline-flex items-center gap-2 text-sm font-medium" style="color:#4ade80">
-                app.munify.com.ar/demo
-                <i class="fas fa-arrow-right text-xs"></i>
-            </div>
-        </a>
-
-        <!-- Formulario simple -->
-        <div class="bento md:col-span-3">
-            <div class="eyebrow mb-4">Formulario</div>
-            <h3 class="display-3 mb-6">Te llamamos nosotros</h3>
-            <form action="https://wa.me/5491138518148" method="get" class="space-y-4">
-                <div>
-                    <label class="text-xs mb-1.5 block" style="color:var(--muted)">Nombre</label>
-                    <input type="text" required class="w-full px-4 py-3 rounded-2xl border outline-none text-sm focus:border-[var(--ink)]" style="border-color:var(--line); background:var(--paper-warm)">
-                </div>
-                <div>
-                    <label class="text-xs mb-1.5 block" style="color:var(--muted)">Municipio</label>
-                    <input type="text" required class="w-full px-4 py-3 rounded-2xl border outline-none text-sm focus:border-[var(--ink)]" style="border-color:var(--line); background:var(--paper-warm)">
-                </div>
-                <div>
-                    <label class="text-xs mb-1.5 block" style="color:var(--muted)">Mensaje</label>
-                    <textarea rows="3" name="text" class="w-full px-4 py-3 rounded-2xl border outline-none text-sm focus:border-[var(--ink)]" style="border-color:var(--line); background:var(--paper-warm)" placeholder="Contanos qué necesitás..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-full justify-center">
-                    Enviar por WhatsApp
-                    <i class="fas fa-arrow-right text-xs"></i>
-                </button>
-            </form>
+<!-- ============ CTA final + pie (patrón del handoff) ============ -->
+<!-- ============ Canales ============ -->
+<section class="ben reveal">
+    <div class="sec2__eyebrow">Canales</div>
+    <h2 class="sec2__h2" style="margin-bottom:36px">Elegí por dónde te respondemos</h2>
+    <div class="ben__grid">
+        <div class="benc benc--3">
+            <span class="fuerte__tag" style="margin-bottom:14px; display:inline-block">Lo más rápido</span>
+            <h2 style="margin:0 0 8px; font:600 24px var(--font-display); color:var(--ink)">WhatsApp ventas</h2>
+            <p>Respondemos en minutos en horario laboral. Mandanos un mensaje contando tu municipio y te llamamos para coordinar una demo.</p>
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--accent" style="margin-top:20px">+54 9 11 3851 8148</a>
+        </div>
+        <div class="benc benc--3">
+            <h3>Escribinos</h3>
+            <p>Para consultas más extensas o adjuntar documentos.</p>
+            <a href="mailto:info@munify.com.ar" style="display:inline-block; margin-top:16px; font:600 15px var(--font-body); color:var(--accent)">info@munify.com.ar</a>
+        </div>
+        <div class="benc benc--3">
+            <h3>Probá la plataforma</h3>
+            <p>Ingresá a la demo con datos reales. Sin registro, sin instalación.</p>
+            <a href="/demo" style="display:inline-block; margin-top:16px; font:600 15px var(--font-body); color:var(--accent)">Crear mi demo</a>
+        </div>
+        <div class="benc benc--3">
+            <h3>Te llamamos nosotros</h3>
+            <p>Dejanos tu municipio y un teléfono, y coordinamos una llamada de 20 minutos para mostrarte Munify con tus datos.</p>
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20que%20me%20llamen" target="_blank" rel="noopener" style="display:inline-block; margin-top:16px; font:600 15px var(--font-body); color:var(--accent)">Pedir que me llamen</a>
         </div>
     </div>
 </section>
 
-</main>
-
-<footer class="site-footer reveal">
-    <img class="site-footer__wm" src="images/munify_logo_no_text (1).png" alt="" aria-hidden="true">
-    <div class="container site-footer__inner">
-        <div class="site-footer__grid">
-            <div>
-                <div class="site-footer__brand"><img src="images/Munify.svg" alt="Munify"><span>Munify</span></div>
-                <p class="site-footer__tag">Software integral de gestión municipal para Argentina. Reclamos, trámites, tesorería y atención al ciudadano.</p>
-                <a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="site-footer__wa"><i class="fab fa-whatsapp"></i> Hablá con un asesor</a>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Producto</div>
-                <div class="site-footer__links">
-                    <a href="/software-gestion-municipal" class="foot-link">Software municipal</a>
-                    <a href="/reclamos-vecinales" class="foot-link">Reclamos vecinales</a>
-                    <a href="/tramites-municipales" class="foot-link">Trámites municipales</a>
-                    <a href="/tesoreria" class="foot-link">Tesorería</a>
-                    <a href="/precios" class="foot-link">Precios</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Empresa</div>
-                <div class="site-footer__links">
-                    <a href="/" class="foot-link">Inicio</a>
-                    <a href="/contacto" class="foot-link">Contacto</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link">Probar demo</a>
-                </div>
-            </div>
-            <div>
-                <div class="site-footer__col-title">Contacto</div>
-                <div class="site-footer__links">
-                    <a href="https://wa.me/5491138518148" class="foot-link"><i class="fab fa-whatsapp"></i> +54 9 11 3851 8148</a>
-                    <a href="mailto:info@munify.com.ar" class="foot-link"><i class="fas fa-envelope"></i> info@munify.com.ar</a>
-                    <a href="https://app.munify.com.ar/demo" class="foot-link"><i class="fas fa-arrow-up-right-from-square"></i> app.munify.com.ar</a>
-                </div>
-            </div>
-        </div>
-        <div class="site-footer__bottom">
-            <div class="site-footer__copy">&copy; 2026 Munify &middot; Software de gestión municipal &middot; Argentina</div>
-            <div class="site-footer__social">
-                <a href="https://wa.me/5491138518148" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@munify.com.ar" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
+<section class="cierre reveal">
+    <h2>¿Arrancamos?</h2>
+    <p class="cierre__p">Escribinos por el canal que te quede cómodo. Respondemos en minutos en horario laboral.</p>
+    <div class="cierre__cta">
+        <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+        <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">WhatsApp · +54 9 11 3851 8148</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt="" class="brand-logo" data-logo> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="/reclamos-vecinales">Reclamos</a>
+            <a href="/tramites-municipales">Trámites</a>
+            <a href="/tesoreria">Tesorería</a>
+            <a href="/precios">Precios</a>
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
         </div>
     </div>
-</footer>
+</section>
+</main>
+
 
 <script>
     const topbar = document.getElementById('topbar');
     window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 </script>
 
-<a href="https://wa.me/5491138518148?text=Hola!%20Estuve%20viendo%20Munify%20y%20quiero%20conocerlo%20m%C3%A1s%20en%20detalle" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
+<a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script src="js/munify-anim.js" defer></script>
+<script src="js/munify-theme.js" defer></script>
 </body>
 </html>

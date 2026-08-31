@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Munify">
+    <title>Comunicación municipal con el vecino | Avisos, obras y eventos - Munify</title>
+
+    <link rel="icon" type="image/png" href="images/munify_logo_no_text (1).png">
+    <link rel="apple-touch-icon" href="images/munify_logo_no_text (1).png">
+    <meta name="theme-color" content="#060E22">
+    <meta name="description" content="El municipio avisa obras, eventos y alertas directo al celular del vecino, con notificaciones propias y por barrio. Sin depender del algoritmo de las redes.">
+    <meta name="author" content="Munify Argentina">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="geo.region" content="AR">
+    <link rel="canonical" href="https://munify.com.ar/comunicaciones">
+    <link rel="alternate" hreflang="es-ar" href="https://munify.com.ar/comunicaciones">
+    <link rel="alternate" hreflang="es" href="https://munify.com.ar/comunicaciones">
+    <link rel="alternate" hreflang="x-default" href="https://munify.com.ar/comunicaciones">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://munify.com.ar/contacto">
+    <meta property="og:title" content="Contacto | Munify - Software de Gestión Municipal">
+    <meta property="og:description" content="Pedí una demo o presupuesto del software de gestión municipal Munify.">
+    <meta property="og:image" content="https://munify.com.ar/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://munify.com.ar/images/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contacto Munify",
+      "url": "https://munify.com.ar/contacto",
+      "description": "Página de contacto de Munify, software de gestión municipal para Argentina."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Munify",
+      "url": "https://munify.com.ar/",
+      "logo": "https://munify.com.ar/images/munify_logo_no_text (1).png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+54-9-11-3851-8148",
+        "contactType": "ventas",
+        "email": "info@munify.com.ar",
+        "availableLanguage": "Spanish",
+        "areaServed": "AR"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com/3.3.7"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/munify-v2.css">
+    <!-- Restyling comercial 2026 (docs/design-sync/comercial-2026-08-30) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/munify-theme.css">
+    <!-- theme guard: aplica el tema guardado antes del paint (sin flash) -->
+    <script>(function(){try{if(localStorage.getItem('munifyTheme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+    <!-- anim guard: activa html.anim antes del paint (sin flash) + fail-safe si el JS no carga -->
+    <script>(function(){var d=document.documentElement;try{if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('anim');}catch(e){}window.addEventListener('load',function(){setTimeout(function(){if(!d.hasAttribute('data-anim-ready'))d.classList.remove('anim');},80);});})();</script>
+
+    <script type="speculationrules">
+    {
+      "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+    }
+    </script>
+</head>
+<body class="pagina-interna pag-comunicaciones">
+
+<header id="topbar" class="topbar">
+    <div class="tb2">
+        <button id="mobileBtn" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center" aria-label="Menú">
+                <i class="fas fa-bars" style="color:var(--ink)"></i>
+            </button>
+        <a href="/" class="tb2__brand">
+            <img src="images/munify-logo-color.svg" alt="Munify" class="brand-logo" data-logo>
+            <span>Munify</span>
+        </a>
+
+        <nav class="tb2__nav">
+                <a href="/reclamos-vecinales">Reclamos</a>
+                <a href="/tramites-municipales">Trámites</a>
+                <a href="/tesoreria">Tesorería</a>
+                <a href="/comunicaciones">Comunicaciones</a>
+                <a href="/demo">Demo</a>
+                <a href="/precios">Precios</a>
+                <a href="/contacto">Contacto</a>
+        </nav>
+
+        <div class="tb2__actions">
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost tb2__cta" aria-label="Hablá con un asesor por WhatsApp" title="Hablá con un asesor">
+                <i class="fab fa-whatsapp"></i>
+                <span>Hablá con un asesor</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu__overlay" onclick="closeMenu()"></div>
+    <aside class="mobile-menu__panel">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <img src="images/munify-logo-color.svg" alt="" class="h-7 w-auto brand-logo" data-logo>
+                <span class="font-semibold">Munify</span>
+            </div>
+            <div class="menu-utils">
+                <button type="button" class="theme-toggle theme-toggle--pill" data-theme-toggle></button>
+                <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="menu-wa" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <button onclick="closeMenu()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--line-soft)]" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="/" class="nav-link text-base"><i class="fas fa-house nav-ico"></i><span>Inicio</span></a>
+            <a href="/reclamos-vecinales" class="nav-link text-base"><i class="fas fa-bullhorn nav-ico"></i><span>Reclamos</span></a>
+            <a href="/tramites-municipales" class="nav-link text-base"><i class="fas fa-file-lines nav-ico"></i><span>Trámites</span></a>
+            <a href="/tesoreria" class="nav-link text-base"><i class="fas fa-coins nav-ico"></i><span>Tesorería</span></a>
+            <a href="/comunicaciones" class="nav-link text-base"><i class="fas fa-tower-broadcast nav-ico"></i><span>Comunicaciones</span></a>
+            <a href="/demo" class="nav-link text-base"><i class="fas fa-play nav-ico"></i><span>Demo</span></a>
+            <a href="/precios" class="nav-link text-base"><i class="fas fa-tag nav-ico"></i><span>Precios</span></a>
+            <a href="/contacto" class="nav-link text-base"><i class="fas fa-envelope nav-ico"></i><span>Contacto</span></a>
+        </nav>
+        <div class="mt-8 pt-6 border-t" style="border-color:var(--line)">
+            <a href="https://app.munify.com.ar/demo" class="btn btn-primary w-full justify-center">Generá tu municipio</a>
+        </div>
+    </aside>
+</div>
+<script>
+    (function() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('mobileBtn');
+        if (!menu || !btn) return;
+        const openMenu = () => { menu.classList.add('open'); document.body.classList.add('menu-open'); };
+        const closeMenu = () => { menu.classList.remove('open'); document.body.classList.remove('menu-open'); };
+        btn.addEventListener('click', openMenu);
+        window.closeMenu = closeMenu;
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
+        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        menu.querySelectorAll('nav .nav-link').forEach(a => {
+            const href = a.getAttribute('href') || '';
+            const hrefPath = href.split('#')[0].replace(/\/$/, '') || '/';
+            if (hrefPath === path && !href.startsWith('/#')) a.classList.add('is-active');
+        });
+    })();
+</script>
+
+<main>
+
+<!-- ============ Hero ============ -->
+<section class="ih">
+    <div class="ih__media" data-videos="videos/loop-townhall.mp4,videos/loop-vecina.mp4">
+        <img src="images/assets-landing-ciudad.webp" alt="">
+    </div>
+    <div class="ih__veil"></div>
+    <div class="ih__body">
+        <div class="ih__crumb"><a href="/">Inicio</a><span>/</span>Comunicaciones</div>
+        <div class="ih__eyebrow">Módulo · Comunicaciones</div>
+        <h1 class="ih__h1">Obras, eventos y noticias, directo al celular del vecino.</h1>
+        <p class="ih__sub">El municipio informa sobre obras, proyectos, eventos y festivales con un sistema de notificaciones propio. Sin depender del algoritmo de las redes.</p>
+        <div class="ih__chips">
+            <span class="ih__chip ih__chip--on">Notificación push</span>
+            <span class="ih__chip">Por barrio</span>
+            <span class="ih__chip">Con foto</span>
+            <span class="ih__chip">Medible</span>
+        </div>
+        <div class="ih__cta">
+            <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+            <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">Consultar por WhatsApp</a>
+        </div>
+    </div>
+    <div class="ihk">
+        <div><div class="ihk__n" style="color:var(--accent)"><span data-count="97">97</span>%</div><div class="ihk__l">de los avisos llegan en 1 minuto</div></div>
+        <div><div class="ihk__n" style="color:var(--accent-bright)">×<span data-count="4">4</span></div><div class="ihk__l">más alcance que las redes sociales</div></div>
+        <div><div class="ihk__n" style="color:var(--warn)">0</div><div class="ihk__l">costo por mensaje para el municipio</div></div>
+        <div><div class="ihk__n" style="color:var(--good)"><span data-count="100">100</span>%</div><div class="ihk__l">medible: entregas y lecturas</div></div>
+    </div>
+</section>
+
+<!-- ============ Casos de uso ============ -->
+<section class="ben reveal">
+    <div class="sec2__eyebrow">Casos de uso</div>
+    <h2 class="sec2__h2" style="margin-bottom:36px">Qué comunica un municipio con Munify</h2>
+    <div class="usos">
+        <div class="uso">
+            <span class="uso__ico" style="background:var(--accent-soft); border:1px solid var(--accent-line); color:var(--accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"></path><path d="M6 20V10l6-5 6 5v10"></path><path d="M10 20v-5h4v5"></path></svg></span>
+            <h3>Obras</h3>
+            <p>Cortes de calle, arreglos y avances de obra, con la fecha y la zona afectada. El vecino se entera antes de salir de su casa.</p>
+        </div>
+        <div class="uso">
+            <span class="uso__ico" style="background:rgba(63,106,200,0.15); border:1px solid rgba(143,178,255,0.35); color:var(--accent-bright)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6"></path><path d="M6 20V10"></path><path d="M18 20V4"></path></svg></span>
+            <h3>Proyectos</h3>
+            <p>En qué está trabajando el municipio y cómo avanza. La gestión se muestra sola, sin necesidad de un acto.</p>
+        </div>
+        <div class="uso">
+            <span class="uso__ico" style="background:var(--warn-soft); border:1px solid rgba(255,184,0,0.35); color:var(--warn)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg></span>
+            <h3>Eventos y festivales</h3>
+            <p>La agenda cultural y deportiva en el celular, con recordatorio el día anterior. Más gente en la plaza, menos folletos.</p>
+        </div>
+        <div class="uso">
+            <span class="uso__ico" style="background:var(--bad-soft); border:1px solid rgba(229,72,77,0.35); color:var(--bad-bright)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>
+            <h3>Alertas urgentes</h3>
+            <p>Alerta meteorológica, corte de agua, calle cortada. Llega al instante y sabés cuántos lo leyeron.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ Así lo ve el vecino ============ -->
+<section class="split reveal">
+    <div>
+        <div class="sec2__eyebrow">Así lo ve el vecino</div>
+        <h2>Las novedades viven en el inicio de la app</h2>
+        <p class="split__p">No hay que buscarlas: apenas abre Munify, el vecino ve lo suyo primero y las novedades del municipio abajo. Con foto, fecha y un toque para leer la nota completa.</p>
+        <div class="split__list">
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Carrusel de avisos personales arriba: reclamos, turnos, vencimientos</div>
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Novedades del municipio con foto y "Leer más"</div>
+            <div class="split__li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Notificación push cuando hay algo nuevo en su barrio</div>
+        </div>
+    </div>
+
+    <!-- mock de la app real -->
+    <div class="tel">
+        <div class="tel__bar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93A5C9" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+            <div class="tel__marca"><img src="images/munify-logo-color.svg" alt="" class="brand-logo" data-logo><span>Ituzaingó</span></div>
+            <div class="tel__acc">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.9 4.9 1.4 1.4"></path><path d="m17.7 17.7 1.4 1.4"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m4.9 19.1 1.4-1.4"></path><path d="m17.7 6.3 1.4-1.4"></path></svg>
+                <span class="tel__campana">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+                    <span class="tel__badge">1</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="tel__body">
+            <div class="telalerta">
+                <div class="telalerta__top">
+                    <span class="telalerta__k">TUS RECLAMOS</span>
+                    <div class="telalerta__nav">
+                        <span class="telalerta__dot"></span>
+                        <span class="telalerta__dot telalerta__dot--on"></span>
+                        <span class="telalerta__b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+                        <span class="telalerta__b"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                    </div>
+                </div>
+                <div class="telalerta__t"><b>1</b> de tus reclamos fue rechazado. Podés ver el motivo y volver a reportarlo.</div>
+                <span class="telalerta__cta">Ver el motivo</span>
+            </div>
+
+            <div class="telsec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg>
+                <span>Novedades del Municipio</span>
+            </div>
+
+            <div class="telnov">
+                <div class="telnov__foto">
+                    <img src="images/assets-landing-trabajadores.jpg" alt="">
+                    <div class="telnov__txt">
+                        <div class="telnov__t">Corte de agua en el centro</div>
+                        <div class="telnov__d">Mañana de 8 a 14 no va a haber agua por una reparación…</div>
+                    </div>
+                </div>
+                <div class="telnov__pie">
+                    <span class="telnov__f"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>28 de agosto</span>
+                    <span class="telnov__a">Leer más ›</span>
+                </div>
+            </div>
+
+            <div class="telnov">
+                <div class="telnov__foto">
+                    <img src="images/assets-landing-ciudad.webp" alt="">
+                    <div class="telnov__txt">
+                        <div class="telnov__t">Vacunación antirrábica gratuita</div>
+                        <div class="telnov__d">Los sábados de 9 a 13 en la plaza central. Traer al anima…</div>
+                    </div>
+                </div>
+                <div class="telnov__pie">
+                    <span class="telnov__f"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>29 de agosto</span>
+                    <span class="telnov__a">Leer más ›</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="teltabs">
+            <div class="teltab teltab--on"><span class="teltab__i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><span class="teltab__l">Inicio</span></div>
+            <div class="teltab"><span class="teltab__i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"></path></svg><span class="teltab__n">9+</span></span><span class="teltab__l">Reclamos</span></div>
+            <div class="teltab"><span class="teltab__mas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></div>
+            <div class="teltab"><span class="teltab__i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg><span class="teltab__n">2</span></span><span class="teltab__l">Trámites</span></div>
+            <div class="teltab"><span class="teltab__i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg></span><span class="teltab__l">Tasas</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ Cómo llega el aviso ============ -->
+<section class="ben reveal">
+    <div class="sec2__eyebrow">Notificaciones</div>
+    <h2 class="sec2__h2">Cada aviso llega a quien tiene que llegar</h2>
+    <p class="sec2__lead">Un corte de agua en el centro no le sirve al vecino del otro extremo. El municipio elige a quién le habla.</p>
+    <div class="pasos">
+        <div class="paso">
+            <span class="paso__n">1</span>
+            <h3>El municipio publica</h3>
+            <p>Escribe la novedad, sube una foto y elige si va a todo el municipio o sólo a un barrio.</p>
+        </div>
+        <div class="paso">
+            <span class="paso__n">2</span>
+            <h3>Llega la notificación</h3>
+            <p>Push al celular de los vecinos alcanzados, y la novedad queda en el inicio de la app para el que no la vio en el momento.</p>
+        </div>
+        <div class="paso">
+            <span class="paso__n">3</span>
+            <h3>Se mide el alcance</h3>
+            <p>Cuántos la recibieron, cuántos la abrieron. Sin depender de lo que decida mostrar una red social.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ Cierre ============ -->
+<section class="cierre reveal">
+    <h2>Empezá a comunicar sin intermediarios</h2>
+    <p class="cierre__p">Probá Munify gratis por 1 mes y contale a tus vecinos lo que hace el municipio.</p>
+    <div class="cierre__cta">
+        <a href="/demo" class="btn2 btn2--accent">Probar demo</a>
+        <a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="btn2 btn2--ghost">WhatsApp · +54 9 11 3851 8148</a>
+    </div>
+    <div class="pieCierre">
+        <div class="pieCierre__m"><img src="images/munify-logo-color.svg" alt="" class="brand-logo" data-logo> © 2026 Munify · Argentina</div>
+        <div class="pieCierre__links">
+            <a href="/reclamos-vecinales">Reclamos</a>
+            <a href="/tramites-municipales">Trámites</a>
+            <a href="/tesoreria">Tesorería</a>
+            <a href="mailto:info@munify.com.ar">info@munify.com.ar</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+
+<script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
+
+<a href="https://wa.me/5491138518148?text=Hola!%20Quiero%20conocer%20Munify" target="_blank" rel="noopener" class="wa-fab" title="Escribinos por WhatsApp" aria-label="Escribinos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="js/munify-anim.js" defer></script>
+<script src="js/munify-theme.js" defer></script>
+</body>
+</html>

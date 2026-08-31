@@ -442,7 +442,25 @@ a:hover { color: var(--accent-bright); }
   .tl2__rail { display: none; }
 }
 @media (max-width: 640px) {
+  /* En una columna los pasos quedaban sueltos, sin nada que dijera que son una
+     secuencia: el riel horizontal se esconde antes (1023) y no se reemplazaba
+     por nada. Aca el paso se arma en dos columnas —circulo y texto— y la linea
+     baja de un circulo al siguiente, que es como se lee un recorrido en
+     vertical. */
   .tl2 { grid-template-columns: 1fr; }
+  .tl2__step {
+    display: grid; grid-template-columns: 40px 1fr;
+    column-gap: 14px; align-items: start;
+  }
+  .tl2__dot { grid-column: 1; grid-row: 1 / span 3; }
+  .tl2__time, .tl2__step h3, .tl2__step p { grid-column: 2; }
+  .tl2__step::before {
+    content: ""; position: absolute;
+    left: 35px;            /* el centro del circulo: 16 de padding + 20 de radio */
+    top: 46px; bottom: -34px;   /* del borde del circulo hasta el siguiente */
+    width: 2px; background: var(--line-strong);
+  }
+  .tl2__step:last-child::before { display: none; }
   .hero2 { min-height: 560px; }
 }
 
@@ -1625,3 +1643,36 @@ input, select, textarea { font-size: 16px; }
   border: 1px solid rgba(18,140,126,0.28);
 }
 .menu-wa:hover { background: rgba(18,140,126,0.2); }
+
+/* El CTA de la barra. Con el logo centrado, a partir de ~480px el boton de
+   191px se le montaba encima: en pantalla chica se queda con el icono solo,
+   en circulo. Sigue siendo el mismo destino y el mismo color — lo que se cae
+   es el texto, no la accion. */
+.tb2__cta { gap: 8px; white-space: nowrap; }
+@media (max-width: 720px) {
+  .tb2__cta {
+    width: 40px; height: 40px; padding: 0; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .tb2__cta span { position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; }
+  .tb2__cta i { font-size: 17px; }
+}
+
+/* El nav, centrado en la barra y no pegado al logo. Sin posicionarlo absoluto:
+   los dos costados —marca y CTA— toman el mismo `flex`, asi que el sobrante se
+   reparte igual y el nav queda en el medio SIN posibilidad de montarse encima
+   de ninguno de los dos (un nav absoluto centrado se solapa en cuanto el
+   costado crece; ya paso con el logo). */
+@media (min-width: 1024px) {
+  .tb2__brand { flex: 1 1 0; min-width: 0; }
+  .tb2__actions { flex: 1 1 0; min-width: 0; justify-content: flex-end; margin-left: 0; }
+  .tb2__nav { flex: 0 0 auto; }
+}
+/* En el rango justo —entre que aparece el nav y que hay lugar de sobra— el nav
+   quedaba a 1px del CTA. Se aprieta un poco: preferible ocho links algo mas
+   chicos que ocho links tocando el boton. */
+@media (min-width: 1024px) and (max-width: 1140px) {
+  .tb2__nav { gap: 11px; }
+  .tb2__nav a { font-size: 12.5px; }
+}

@@ -29,10 +29,34 @@
       btn.setAttribute('aria-label', 'Cambiar a modo ' + next);
       btn.setAttribute('title', 'Cambiar a modo ' + next);
     }
+    pintarLogos(mode);
     window.dispatchEvent(new CustomEvent('munify:themechange', { detail: { mode: mode } }));
   }
 
+  /* EL LOGO ES UNA SOLA IMAGEN y el archivo lo elige esto.
+     Antes habia dos <img> —una por tema— y un juego de reglas CSS decidiendo
+     cual se veia: tres veces se arreglo peleando especificidades y tres veces
+     volvieron a aparecer las dos juntas. Con un solo elemento eso es
+     imposible.
+     `color` trae el hexagono BLANCO (va sobre oscuro) y `light` el azul
+     marino con el tilde verde (va sobre claro). Sobre el hero, que es una
+     foto oscura, va el blanco aunque el tema sea claro: por eso la barra sin
+     scrollear se trata aparte. */
+  function pintarLogos(mode) {
+    var sobreHero = !!document.querySelector('.topbar:not(.scrolled)');
+    document.querySelectorAll('[data-logo]').forEach(function (img) {
+      var enBarra = !!img.closest('.topbar');
+      var claro = mode === LIGHT && !(enBarra && sobreHero);
+      var src = claro ? 'images/munify-logo-light.svg' : 'images/munify-logo-color.svg';
+      if (!img.src.endsWith(src)) img.src = src;
+    });
+  }
+
   function toggle() { apply(current() === LIGHT ? DARK : LIGHT); }
+
+  /* Al scrollear, la barra deja de tener la foto detras y pasa al color del
+     tema: el logo de la barra tiene que acompañar ese cambio. */
+  window.addEventListener('scroll', function () { pintarLogos(current()); }, { passive: true });
 
   /* Iconos SVG (nunca emojis): sol = pasar a claro, luna = pasar a oscuro */
   var ICONS =

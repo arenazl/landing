@@ -1503,3 +1503,19 @@ input, select, textarea { font-size: 16px; }
   .panelreal { padding: 0 14px; }
   .panelreal figcaption { font-size: 12px; }
 }
+
+/* Lo que el panel dice, en texto: el mismo contenido que muestra la captura,
+   legible para quien no ve la imagen y para el buscador. Reemplaza al
+   carrusel de slides pintados a mano. */
+.panelreal__que {
+  max-width: 1240px; margin: 26px auto 0; padding: 0 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+}
+.panelreal__que .pq h3 {
+  margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.panelreal__que .pq p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+@media (max-width: 860px) {
+  .panelreal__que { grid-template-columns: 1fr; gap: 16px; padding: 0 14px; }
+}

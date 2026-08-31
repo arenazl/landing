@@ -514,124 +514,22 @@
     <figcaption>El panel tal cual lo ve el intendente. Los datos son los de una demo; en la tuya son los de tu municipio.</figcaption>
 </figure>
 
-<section class="carru reveal" data-carru>
-    <div class="carru__stage">
-        <!-- Slide 1 · Prioridades del día -->
-        <div class="carru__slide is-on" data-slide>
-            <div class="carru__k">01 · Prioridades del día</div>
-            <div class="k3">
-                <div class="kcard kcard--bad">
-                    <div class="kcard__h"><span class="kcard__ico" style="background:rgba(229,72,77,0.18); color:var(--bad-bright)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>Urgentes</div>
-                    <div class="kcard__n">18</div>
-                    <div class="kcard__s">reclamos vencidos, prioridad alta</div>
-                    <div class="kcard__a" style="color:var(--bad-bright)">Asignar cuadrilla →</div>
-                </div>
-                <div class="kcard kcard--warn">
-                    <div class="kcard__h"><span class="kcard__ico" style="background:rgba(255,184,0,0.15); color:var(--warn)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>Sin asignar</div>
-                    <div class="kcard__n">125</div>
-                    <div class="kcard__s">reclamos sin dueño todavía</div>
-                    <div class="kcard__a" style="color:var(--warn)">Asignar en lote →</div>
-                </div>
-                <div class="kcard kcard--ok">
-                    <div class="kcard__h"><span class="kcard__ico" style="background:var(--accent-soft); color:var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>Para cerrar</div>
-                    <div class="kcard__n">9</div>
-                    <div class="kcard__s">la cuadrilla terminó y subió fotos</div>
-                    <div class="kcard__a" style="color:var(--accent)">Revisar y cerrar →</div>
-                </div>
-            </div>
-            <div class="colatrab">
-                <span>152 reclamos esperan una decisión tuya · cerraste 12 esta semana</span>
-                <span style="color:var(--accent); font-weight:600">Ver cola de trabajo →</span>
-            </div>
-        </div>
-
-        <!-- Slide 2 · Mapa de calor -->
-        <div class="carru__slide" data-slide>
-            <div class="carru__k">02 · Dónde se repiten los reclamos</div>
-            <div class="heat">
-                <div class="heat__top">
-                    <div>
-                        <div class="heat__t">Mapa de calor</div>
-                        <div class="heat__s">Últimos 90 días · por categoría</div>
-                    </div>
-                    <div class="heat__chips">
-                        <span class="heat__chip heat__chip--on">Todas 1365</span>
-                        <span class="heat__chip">Alumbrado 145</span>
-                        <span class="heat__chip">Bacheo 144</span>
-                    </div>
-                </div>
-                <div class="heat__map">
-                    <svg width="100%" height="100%" viewBox="0 0 560 250" preserveAspectRatio="xMidYMid slice">
-                        <rect width="560" height="250" fill="var(--card-inner)"></rect>
-                        <g stroke="#2A3D66" stroke-width="5" opacity="0.95"><line x1="0" y1="52" x2="560" y2="40"></line><line x1="0" y1="118" x2="560" y2="108"></line><line x1="0" y1="188" x2="560" y2="178"></line><line x1="70" y1="0" x2="86" y2="250"></line><line x1="180" y1="0" x2="192" y2="250"></line><line x1="300" y1="0" x2="308" y2="250"></line><line x1="420" y1="0" x2="430" y2="250"></line><line x1="0" y1="230" x2="560" y2="60"></line></g>
-                        <g stroke="#22335A" stroke-width="2" opacity="0.9"><line x1="0" y1="85" x2="560" y2="76"></line><line x1="0" y1="152" x2="560" y2="144"></line><line x1="125" y1="0" x2="136" y2="250"></line><line x1="240" y1="0" x2="250" y2="250"></line><line x1="360" y1="0" x2="368" y2="250"></line><line x1="490" y1="0" x2="498" y2="250"></line></g>
-                        <path d="M470 0 L560 90 L560 250 L500 250 Z" fill="rgba(40,200,64,0.15)"></path>
-                        <text x="120" y="30" font-size="10" font-weight="600" fill="#46587F" letter-spacing="1">AV. SAN MARTÍN</text>
-                        <text x="330" y="170" font-size="10" font-weight="600" fill="#46587F" letter-spacing="1">AV. MITRE</text>
-                        <text x="505" y="235" font-size="9" font-weight="600" fill="#3E7A54" letter-spacing="1">PARQUE</text>
-                    </svg>
-                    <div class="blob" style="left:8%; top:18%; width:190px; height:150px; background:radial-gradient(closest-side, rgba(229,72,77,0.8) 0%, rgba(239,120,60,0.6) 35%, rgba(245,158,11,0.4) 55%, rgba(91,227,138,0.2) 75%, transparent 100%)"></div>
-                    <div class="blob" style="left:36%; top:42%; width:130px; height:110px; background:radial-gradient(closest-side, rgba(239,120,60,0.75) 0%, rgba(245,158,11,0.45) 45%, rgba(91,227,138,0.2) 72%, transparent 100%)"></div>
-                    <div class="blob" style="left:62%; top:8%; width:120px; height:100px; background:radial-gradient(closest-side, rgba(245,158,11,0.65) 0%, rgba(212,196,80,0.35) 50%, rgba(91,227,138,0.18) 75%, transparent 100%)"></div>
-                    <div class="blob" style="left:55%; top:58%; width:90px; height:80px; background:radial-gradient(closest-side, rgba(91,227,138,0.4) 0%, rgba(91,227,138,0.15) 60%, transparent 100%)"></div>
-                    <div class="heat__pin"></div>
-                    <div class="heat__cap"><span style="width:8px; height:8px; border-radius:999px; background:#FF5F57"></span> B° San Roque · 347 reclamos · el 25% del total</div>
-                    <div class="heat__leg"><span>Menos</span><span class="heat__ramp"></span><span>Más</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3 · Tendencia y analítica -->
-        <div class="carru__slide" data-slide>
-            <div class="carru__k">03 · Tendencia y analítica</div>
-            <div class="tend">
-                <div class="tend__card">
-                    <div class="heat__t">Tendencia del mes</div>
-                    <div class="heat__s" style="margin-bottom:14px">Ingresados vs. resueltos · junio</div>
-                    <div class="tend__mini">
-                        <div class="tend__box" style="background:rgba(63,106,200,0.15)"><div class="tend__bn" style="color:var(--accent-bright)">188</div><div class="tend__bl">ingresados</div></div>
-                        <div class="tend__box" style="background:var(--accent-soft)"><div class="tend__bn">135</div><div class="tend__bl">resueltos</div></div>
-                        <div class="tend__box" style="background:var(--accent-soft)"><div class="tend__bn" style="color:var(--accent)">72%</div><div class="tend__bl" style="color:var(--accent)">tasa de cierre</div></div>
-                    </div>
-                    <div class="tend__bars">
-                        <div class="tend__bar" style="height:34%"></div>
-                        <div class="tend__bar" style="height:52%"></div>
-                        <div class="tend__bar" style="height:40%"></div>
-                        <div class="tend__bar" style="height:68%; background:rgba(143,178,255,0.45)"></div>
-                        <div class="tend__bar" style="height:55%; background:rgba(143,178,255,0.45)"></div>
-                        <div class="tend__bar" style="height:82%; background:var(--accent-blue)"></div>
-                        <div class="tend__bar" style="height:100%; background:var(--accent)"></div>
-                    </div>
-                    <div style="margin-top:10px; font:400 12px/1.5 var(--font-body); color:var(--muted)">1 de cada 10 reclamos es de alumbrado público. Bacheo e higiene urbana suman otros 282.</div>
-                </div>
-
-                <div class="tend__card" style="justify-content:space-between">
-                    <div>
-                        <div class="heat__t">¿Dónde hay más reclamos?</div>
-                        <div class="heat__s" style="margin-bottom:14px">Analítica por barrio · top 3</div>
-                        <div style="font:600 30px var(--font-display); color:var(--ink)">San Roque</div>
-                        <div style="font:500 13px var(--font-body); color:var(--muted); margin-top:2px">347 reclamos · un solo barrio explica el 25% del total</div>
-                    </div>
-                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px">
-                        <div class="rank"><span class="rank__l">San Roque</span><span class="rank__t"><span class="rank__f" style="width:86%; background:var(--accent)"></span></span></div>
-                        <div class="rank"><span class="rank__l">La Recoleta</span><span class="rank__t"><span class="rank__f" style="width:52%; background:var(--accent-blue)"></span></span></div>
-                        <div class="rank"><span class="rank__l">Encarnación</span><span class="rank__t"><span class="rank__f" style="width:38%; background:var(--accent-bright)"></span></span></div>
-                    </div>
-                    <div style="margin-top:14px; background:var(--accent-soft); border-radius:var(--r-control); padding:12px 14px; font:400 12px/1.5 var(--font-body); color:var(--muted)">2 de 17 categorías fuera de meta: solo Recolección de residuos tarda más de 7 días.</div>
-                </div>
-            </div>
-        </div>
+<div class="panelreal__que reveal">
+    <div class="pq">
+        <h3>Dónde se repiten los reclamos</h3>
+        <p>El mapa de calor muestra en qué esquinas vuelve a pasar lo mismo. No es un listado: es la ciudad con sus focos marcados.</p>
     </div>
-
-    <div class="carru__nav">
-        <div class="carru__dots" data-dots></div>
-        <div class="carru__arrows">
-            <button type="button" class="carru__arrow" data-prev aria-label="Anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-            <button type="button" class="carru__arrow carru__arrow--next" data-next aria-label="Siguiente"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-        </div>
+    <div class="pq">
+        <h3>Qué es lo que más preocupa</h3>
+        <p>Qué categoría explica la mayor parte de los reclamos, y cuáles vienen atrás. Para decidir dónde poner la cuadrilla.</p>
     </div>
-    <div class="carru__note">Vista simplificada del panel real. En la demo lo ves con los datos de tu municipio.</div>
-</section>
+    <div class="pq">
+        <h3>En cuánto se resuelve</h3>
+        <p>Cuántas categorías se pasan de la meta y cuáles cierran a tiempo, con el promedio de días de cada una.</p>
+    </div>
+</div>
+
+
 
 <!-- ============ 04 · Planes ============ -->
 <section class="planes reveal" id="precios">

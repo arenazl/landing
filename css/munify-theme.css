@@ -1396,14 +1396,18 @@ input, select, textarea { font-size: 16px; }
 .topbar:not(.scrolled) .tb2__nav a:hover,
 .topbar:not(.scrolled) .tb2__nav a.is-active { color: #fff; }
 .topbar:not(.scrolled) #mobileBtn i { color: #fff !important; }
-/* Cual de los dos logos, segun el FONDO que tiene detras (no segun el tema):
+/* Cual de los dos logos, segun el FONDO que tiene detras (no segun el tema).
+   OJO con el alcance: la regla apunta al brand de la BARRA, no a `.topbar`
+   entera — el menu movil vive adentro de la topbar y con la version amplia
+   heredaba el logo blanco sobre su panel claro, quedando el check flotando
+   sin hexagono. */
    `color.svg` trae el hexagono BLANCO —sirve sobre oscuro— y `light.svg` es el
    azul marino con el check verde, que es el que se ve sobre claro. Con la barra
    arriba, detras hay una foto oscura aunque el tema sea claro: ahi va el blanco
    igual. Ya scrolleada, la barra toma el color del tema y manda el switch de
    arriba. */
-.topbar:not(.scrolled) .logo-light { display: none; }
-.topbar:not(.scrolled) .logo-dark { display: block; }
+.topbar:not(.scrolled) .tb2__brand .logo-light { display: none; }
+.topbar:not(.scrolled) .tb2__brand .logo-dark { display: block; }
 
 .topbar:not(.scrolled) .theme-toggle,
 .topbar:not(.scrolled) .theme-toggle--pill {
@@ -1534,3 +1538,22 @@ input, select, textarea { font-size: 16px; }
 :root[data-theme="light"] .panelreal .panel-oscuro { display: none; }
 :root[data-theme="light"] .panelreal .panel-claro { display: block; }
 
+/* En el telefono el tablero entero deja letras de 3px: se ve que "hay algo" y
+   nada mas. Ahi van sus piezas, de a una y grandes — recortes de la MISMA
+   foto, no mockups dibujados. En escritorio manda la captura completa, que es
+   la que muestra la densidad del panel. */
+.panelreal__piezas { display: none; }
+@media (max-width: 760px) {
+  .panelreal__marco { display: none; }
+  .panelreal__piezas { display: grid; gap: 12px; }
+  .panelreal__piezas img {
+    display: block; width: 100%; height: auto;
+    border-radius: 12px; border: 1px solid var(--line);
+  }
+  .panelreal__piezas .panel-claro { display: none; }
+  :root[data-theme="light"] .panelreal__piezas .panel-oscuro { display: none; }
+  :root[data-theme="light"] .panelreal__piezas .panel-claro { display: block; }
+}
+
+/* Las tres frases del panel, centradas. */
+.panelreal__que { text-align: center; }

@@ -156,7 +156,7 @@
       caja.innerHTML = '';
       if (!rs.length) {
         caja.innerHTML = '<div class="dmsug__vacio">No encontramos ese municipio en el catálogo. ' +
-          'Probá con otro nombre o <a href="https://wa.me/5491160526449" target="_blank" rel="noopener">consultanos por WhatsApp</a>.</div>';
+          'Probá con otro nombre o <a href="https://wa.me/5491138518148" target="_blank" rel="noopener">consultanos por WhatsApp</a>.</div>';
         caja.hidden = false; return;
       }
       rs.slice(0, 6).forEach(function (m) {
@@ -270,7 +270,7 @@
           var msg = document.createElement('div');
           msg.className = 'dmestado__err';
           msg.innerHTML = 'No pudimos crear la demo. Probá de nuevo o '
-            + '<a href="https://wa.me/5491160526449" target="_blank" rel="noopener">escribinos por WhatsApp</a>.';
+            + '<a href="https://wa.me/5491138518148" target="_blank" rel="noopener">escribinos por WhatsApp</a>.';
           estado.appendChild(msg);
           estado.className = 'dmestado is-on dmestado--bad';
         });

@@ -434,7 +434,7 @@ a:hover { color: var(--accent-bright); }
 .tl2__step h3 { margin: 4px 0 6px; font: 700 17px var(--font-display); color: var(--ink); }
 .tl2__step p { margin: 0; font: 400 13px/1.55 var(--font-body); color: var(--muted); }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .tb2, .hero2__body { padding-left: 24px; padding-right: 24px; }
   .sec2 { padding: 64px 24px 56px; }
   .tb2__nav { display: none; }
@@ -524,7 +524,7 @@ a:hover { color: var(--accent-bright); }
 .pill2 { font: 600 11px var(--font-body); padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; transition: background 400ms var(--ease), color 400ms var(--ease); }
 .tagbox { font: 700 11px var(--font-body); padding: 4px 8px; border-radius: 8px; }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .dos { padding: 56px 24px; }
   .dos__grid { grid-template-columns: 1fr; gap: 16px; }
   .nexo { flex-direction: row; }
@@ -563,10 +563,30 @@ a:hover { color: var(--accent-bright); }
 .bandavid { position: relative; height: 400px; overflow: hidden; }
 .bandavid__media, .bandavid__media img, .bandavid__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bandavid__veil { position: absolute; inset: 0; background: linear-gradient(180deg, var(--paper) 0%, rgba(6,14,34,0.45) 30%, rgba(6,14,34,0.65) 65%, var(--paper-warm) 100%); }
-.bandavid__tag { position: absolute; left: 64px; top: 36px; background: rgba(6,14,34,0.55); border: 1px solid rgba(255,255,255,0.2); color: #fff; font: 600 12px var(--font-body); padding: 8px 16px; border-radius: var(--r-pill); }
+/* Al pie, no en el medio de la foto: arriba tapaba la cara de la persona y
+   competia con el titular. Y con la tipografia de titulos, que es la de la
+   marca — estaba con la del cuerpo, como un cartel pegado encima. */
+.bandavid__tag {
+  position: absolute; left: 64px; bottom: 96px;
+  background: rgba(6,14,34,0.55); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font: 600 11px/1 var(--font-display); letter-spacing: 0.04em;
+  padding: 7px 14px; border-radius: var(--r-pill);
+  backdrop-filter: blur(6px);
+}
 .bandavid__foot { position: absolute; left: 64px; right: 64px; bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
 .bandavid__foot h2 { margin: 0; font: 600 clamp(24px,3.2vw,34px)/1.15 var(--font-display); letter-spacing: -0.02em; color: #fff; }
-.bandavid__foot p { margin: 0; font: 400 14px/1.55 var(--font-body); color: #93A5C9; max-width: 360px; }
+/* Detras hay una FOTO, no el fondo del tema: el texto va blanco en los dos
+   modos, con sombra para despegarlo de la imagen. Antes era un gris azulado
+   fijo y en tema claro se disolvia — el titulo de al lado si tenia su regla y
+   quedaba legible, asi que el parrafo desaparecia solo. */
+.bandavid__foot p {
+  margin: 0; font: 400 14px/1.55 var(--font-body);
+  color: rgba(255,255,255,0.92); max-width: 360px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.55);
+}
+:root[data-theme="light"] .bandavid__foot p { color: rgba(255,255,255,0.92); }
+.bandavid__foot h2 { text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
 
 /* ---- Carrusel del intendente ---- */
 .carru { background: var(--paper-warm); padding: 48px 64px 72px; }
@@ -651,12 +671,15 @@ a:hover { color: var(--accent-bright); }
 .pieCierre__links { display: flex; gap: 24px; flex-wrap: wrap; }
 .pieCierre__links a { color: var(--muted-soft); }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .fuertes, .planes { padding: 56px 24px; }
   .fuertes__grid, .planes__grid, .tend, .k3 { grid-template-columns: 1fr; }
   .banda-ia { flex-direction: column; align-items: flex-start; gap: 20px; }
   .carru { padding: 40px 24px 56px; }
   .bandavid__tag, .bandavid__foot { left: 24px; right: 24px; }
+  /* En chico el pie ocupa dos lineas y la etiqueta se le montaria: vuelve
+     arriba, donde hay lugar. */
+  .bandavid__tag { bottom: auto; top: 24px; }
   .bandavid__foot { flex-direction: column; align-items: flex-start; gap: 12px; }
   .cierre { padding: 56px 24px 32px; }
   .carru__slide { position: relative; display: none; }
@@ -789,7 +812,7 @@ a:hover { color: var(--accent-bright); }
 .cat { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 24px; }
 .cat__n { font: 600 15px var(--font-body); margin-top: 12px; color: var(--ink); }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .ih__body { padding: 104px 24px 32px; }
   .ihk { margin: 0 24px; grid-template-columns: repeat(2,1fr); gap: 20px; }
   .split { padding: 56px 24px; grid-template-columns: 1fr; gap: 32px; }
@@ -1146,7 +1169,7 @@ p, li, td, th, label, input, textarea, select,
    topbar transparente le queda muy por encima. En un teléfono el contenido
    ocupa todo el alto, arranca arriba de todo y el eyebrow terminaba PISADO por
    el logo — medido: 70px de solape en 390x844. */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .hero2__body { padding-top: 104px; }
   .hero2 { min-height: 600px; }
 }
@@ -1316,7 +1339,7 @@ input, select, textarea { font-size: 16px; }
    nunca con un número fijo (varía por modelo: notch, Dynamic Island, sin notch) */
 :root { --safe-top: env(safe-area-inset-top, 0px); }
 .topbar { padding-top: max(var(--safe-top), 0px); }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .hero2__body, .ih__body { padding-top: calc(104px + var(--safe-top)); }
 }
 
@@ -1328,7 +1351,7 @@ input, select, textarea { font-size: 16px; }
    ☰ primero, después el logo). Tenerla a la derecha en la landing y a la
    izquierda en la app obliga al vecino a buscarla dos veces. */
 #mobileBtn { flex-shrink: 0; }
-@media (max-width: 1024px) { .tb2 { gap: 10px; } }
+@media (max-width: 1023px) { .tb2 { gap: 10px; } }
 
 /* ============================================================
    16. LOGO POR TEMA, y el toggle sin borde
@@ -1503,9 +1526,12 @@ input, select, textarea { font-size: 16px; }
   background: var(--card);
 }
 .panelreal img { display: block; width: 100%; height: auto; }
+/* La aclaracion no explica la captura —eso se ve solo—: esta para que los
+   numeros de una demo no pasen por los de un municipio real. Por eso queda,
+   pero chica y con aire: pegada al borde competia con la imagen. */
 .panelreal figcaption {
-  margin-top: 10px; text-align: center;
-  font-size: 13px; line-height: 1.5; color: var(--ink-3);
+  margin-top: 16px; text-align: center;
+  font-size: 12px; line-height: 1.5; color: var(--ink-3); opacity: .75;
 }
 /* En el telefono un tablero entero no se lee. Se muestra a ancho completo
    igual —da la idea de densidad— y el detalle lo da el carrusel de abajo,
@@ -1519,7 +1545,7 @@ input, select, textarea { font-size: 16px; }
    legible para quien no ve la imagen y para el buscador. Reemplaza al
    carrusel de slides pintados a mano. */
 .panelreal__que {
-  max-width: 1240px; margin: 26px auto 0; padding: 0 20px;
+  max-width: 1240px; margin: 40px auto 0; padding: 0 20px;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
 }
 .panelreal__que .pq h3 {
@@ -1557,3 +1583,33 @@ input, select, textarea { font-size: 16px; }
 
 /* Las tres frases del panel, centradas. */
 .panelreal__que { text-align: center; }
+
+/* ============================================================
+   21. LA BARRA: UNA SOLA ACCION, Y EL LOGO AL CENTRO
+
+   Tenia luna + WhatsApp + CTA a la derecha: en anchos medianos
+   eso empuja y termina partiendo la fila. El tema es una
+   preferencia y el WhatsApp un canal — ninguno pelea espacio
+   con lo que de verdad se quiere que hagan.
+   ============================================================ */
+.tb2__actions { margin-left: auto; }
+/* El logo al centro SOLO donde el nav ya se guardo en la hamburguesa (<=1024,
+   ver la regla que oculta `.tb2__nav`). Mas ancho, el nav ocupa el medio y un
+   brand absoluto le cae encima — se probo y los links quedaban tapados. */
+@media (max-width: 1023px) {
+  .tb2 { position: relative; }
+  .tb2__brand {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+  }
+}
+
+/* Las utilidades, arriba del menu: tema, WhatsApp y cerrar. */
+.menu-utils { display: flex; align-items: center; gap: 8px; }
+.menu-wa {
+  width: 36px; height: 36px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #128c7e; background: rgba(18,140,126,0.12);
+  border: 1px solid rgba(18,140,126,0.28);
+}
+.menu-wa:hover { background: rgba(18,140,126,0.2); }

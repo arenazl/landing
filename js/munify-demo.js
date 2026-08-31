@@ -204,7 +204,7 @@
       estado.className = 'dmestado is-on dmestado--work';
       estado.innerHTML = '<b>Armando la demo de ' + nombre + '</b>'
         + '<div class="dmpasos">' + PASOS.map(function (p, i) {
-            return '<div class="dmpaso" data-p="' + i + '"><span class="dmpaso__ic"></span>'
+            return '<div class="dmpaso" data-p="' + i + '"' + (i ? ' hidden' : '') + '><span class="dmpaso__ic"></span>'
               + '<span class="dmpaso__n">' + p.t.replace('{M}', nombre)
               + '<span class="dmpaso__d">' + p.d + '</span></span></div>';
           }).join('') + '</div>';
@@ -219,7 +219,13 @@
       var filas = pintarPasos(elegido.nombre);
       var actual = 0, timer = null, terminado = false;
 
-      function marcar(i, clase) { if (filas[i]) filas[i].className = 'dmpaso ' + clase; }
+      function marcar(i, clase) {
+        var f = filas[i]; if (!f) return;
+        f.className = 'dmpaso ' + clase;
+        /* Cuando le toca, la linea aparece; las anteriores quedan a la vista
+           tildadas, que es lo que muestra el trabajo hecho. */
+        if (f.hidden) { f.hidden = false; f.classList.add('entra'); }
+      }
       function avanzar() {
         if (terminado) return;
         if (actual > 0) marcar(actual - 1, 'is-ok');

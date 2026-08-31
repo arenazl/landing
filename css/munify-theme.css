@@ -1442,7 +1442,15 @@ input, select, textarea { font-size: 16px; }
 .dmpaso {
   display: flex; align-items: flex-start; gap: 10px;
   padding: 7px 2px; font-size: 14px; line-height: 1.4;
-  color: var(--ink-3); opacity: .45; transition: opacity .3s, color .3s;
+  color: var(--ink-3); transition: opacity .3s, color .3s;
+}
+/* Cada linea entra cuando le toca: antes estaban las siete a la vista y las
+   seis grises tapaban a la unica que importaba. */
+.dmpaso[hidden] { display: none; }
+.dmpaso.entra { animation: dmentra .32s ease-out both; }
+@keyframes dmentra {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
 }
 .dmpaso__ic {
   flex: 0 0 18px; height: 18px; margin-top: 1px; border-radius: 50%;
@@ -1454,7 +1462,7 @@ input, select, textarea { font-size: 16px; }
   animation: dmgira .7s linear infinite;
 }
 @keyframes dmgira { to { transform: rotate(360deg); } }
-.dmpaso.is-ok { opacity: 1; color: var(--ink-2); }
+.dmpaso.is-ok { opacity: .72; color: var(--ink-2); }
 .dmpaso.is-ok .dmpaso__ic { border-color: var(--ok, #16a34a); background: var(--ok, #16a34a); }
 .dmpaso.is-ok .dmpaso__ic::after {
   content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
@@ -1470,8 +1478,11 @@ input, select, textarea { font-size: 16px; }
 /* Con pasos el cartel deja de ser una linea centrada y pasa a ser una lista:
    el titulo arriba, los renglones abajo. (`.dmestado.is-on` es flex en fila
    para el estado de una linea, que sigue existiendo). */
-.dmestado--work:has(.dmpasos) { flex-direction: column; align-items: stretch; text-align: left; }
-.dmestado--work:has(.dmpasos) > b { margin-bottom: 4px; font-size: 15px; }
+/* Vale para --work Y para --bad: al fallar el contenedor cambia de clase y
+   antes volvia a ser una fila, con el titulo de un lado y el error del otro. */
+.dmestado:has(.dmpasos) { flex-direction: column; align-items: stretch; text-align: left; }
+.dmestado:has(.dmpasos) > b { margin-bottom: 4px; font-size: 15px; }
+.dmestado__err { margin-top: 10px; font-size: 13.5px; line-height: 1.5; }
 
 @media (prefers-reduced-motion: reduce) {
   .dmpaso.is-now .dmpaso__ic { animation: none; }

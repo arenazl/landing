@@ -609,11 +609,14 @@ a:hover { color: var(--accent-bright); }
 .bandavid { position: relative; height: 400px; overflow: hidden; }
 .bandavid__media, .bandavid__media img, .bandavid__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bandavid__veil { position: absolute; inset: 0; background: linear-gradient(180deg, var(--paper) 0%, rgba(6,14,34,0.45) 30%, rgba(6,14,34,0.65) 65%, var(--paper-warm) 100%); }
-/* Al pie, no en el medio de la foto: arriba tapaba la cara de la persona y
-   competia con el titular. Y con la tipografia de titulos, que es la de la
-   marca — estaba con la del cuerpo, como un cartel pegado encima. */
+/* ARRIBA A LA DERECHA. Paso por dos lugares antes: en el medio de la foto
+   tapaba la cara, y al pie quedaba apilada sobre el titular --- las dos en la
+   misma columna izquierda, una encima de la otra, compitiendo por la misma
+   mirada. La esquina superior derecha es la unica zona realmente libre de la
+   banda: el pie ocupa abajo, las caras van al centro, y ahi la etiqueta se lee
+   como lo que es, un sello sobre la escena y no un subtitulo del titulo. */
 .bandavid__tag {
-  position: absolute; left: 64px; bottom: 96px;
+  position: absolute; right: 64px; top: 28px; left: auto; bottom: auto;
   background: rgba(6,14,34,0.55); border: 1px solid rgba(255,255,255,0.2);
   color: rgba(255,255,255,0.9);
   font: 600 11px/1 var(--font-display); letter-spacing: 0.04em;
@@ -722,10 +725,12 @@ a:hover { color: var(--accent-bright); }
   .fuertes__grid, .planes__grid, .tend, .k3 { grid-template-columns: 1fr; }
   .banda-ia { flex-direction: column; align-items: flex-start; gap: 20px; }
   .carru { padding: 40px 24px 56px; }
-  .bandavid__tag, .bandavid__foot { left: 24px; right: 24px; }
-  /* En chico el pie ocupa dos lineas y la etiqueta se le montaria: vuelve
-     arriba, donde hay lugar. */
-  .bandavid__tag { bottom: auto; top: 24px; }
+  .bandavid__foot { left: 24px; right: 24px; }
+  /* Arriba tambien en chico, pero sin estirarse de lado a lado: con el ancho
+     del telefono el texto entra en dos lineas y asi parecia una barra, no una
+     etiqueta. */
+  .bandavid__tag { left: 24px; right: 24px; top: 20px; bottom: auto;
+                   text-align: left; line-height: 1.35; }
   .bandavid__foot { flex-direction: column; align-items: flex-start; gap: 12px; }
   .cierre { padding: 56px 24px 32px; }
   .carru__slide { position: relative; display: none; }

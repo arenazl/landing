@@ -24,23 +24,25 @@
 (function () {
   'use strict';
 
-  /* LAS DEMOS SIEMPRE VAN A QA, tambien desde munify.com.ar. Es a proposito.
+  /* A QUE BACKEND ESCRIBE ESTA LANDING  —  ojo al promover, se explica abajo
+   =======================================================================
+   ESTA ES LA RAMA `qa`: escribe en el backend de QA.
+   En `master` estas dos constantes apuntan a PRODUCCION. Es lo unico del archivo
+   que difiere entre las dos ramas.
 
-     Dos motivos, los dos del dueño (2026-08-31):
-     1. El municipio que crea un prospecto es un PROTOTIPO, no tiene validez, y no
-        tiene por que ensuciar la base productiva — donde vive el unico municipio
-        real (San Pedro Norte).
-     2. La base de QA (sugerenciasmun-ensayo) es la que tiene cargada la geografia
-        completa: zonas con contorno, localidades por zona, los 6 paises. En la
-        base de produccion las demos salen pobres, sin geoposiciones.
+   >>> AL PROMOVER qa -> master: el merge trae ESTAS DOS LINEAS y pisa las de
+   >>> produccion. Hay que devolverlas a las de prod antes de publicar:
+   >>>     API = 'https://munify-api-vmpxsxe7ra-uk.a.run.app/api'
+   >>>     APP = 'https://app.munify.com.ar'
+   >>> Ya paso una vez (commit 524b314) y por eso la landing comercial termino
+   >>> escribiendo en QA durante dias.
 
-     O sea: esto NO es un olvido de promocion que haya que "corregir". Si algun dia
-     se quiere que produccion genere demos en su propia base, se cambian estas dos
-     constantes sabiendo lo que implica.
-
-     Historia: antes se elegia por hostname con /(^|.)munify.com.ar$/, y como
-     "qa.munify.com.ar" TERMINA en ".munify.com.ar" pasaba justo lo contrario: la
-     landing de QA escribia en la base REAL. */
+   Por que cada landing va a SU ambiente: QA es donde se rompen cosas a proposito,
+   todos los dias. Si la vidriera comercial depende de el, el dia que QA se cae el
+   prospecto que entra a munify.com.ar no puede crear su demo — el peor momento para
+   fallar. La razon por la que la landing de prod apuntaba a QA (que solo esa base
+   tenia la geografia completa) dejo de existir el 2026-09-01: `munify_prod` nacio
+   de QA y tiene el mismo catalogo de municipios, zonas y unidades administrativas. */
   var API = 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
   var APP = 'https://qa-app.munify.com.ar';
 
@@ -499,58 +501,52 @@
     });
 
     /* ---------- los que ya armaron su demo ----------
-       DOS COSAS DISTINTAS salen de la misma llamada (Lucas, 2026-09-02):
+       UNA sola llamada trae el numero y los nombres, porque son la misma
+       cosa: el listado comercial. No se entra a ninguno —la demo de otro
+       puede tener los datos que cargo esa persona—, asi que ningun item es un
+       link y no hay buscador: buscar sirve para llegar a algo, y aca no hay
+       adonde llegar.
 
-       1. El LISTADO COMERCIAL: los municipios que ya generaron la suya. Es
-          para mostrar volumen —"mira cuantos ya la tienen"—, no un menu de
-          accesos: no se entra a ninguno, porque la demo de otro puede tener
-          los datos que cargo esa persona. Por eso ningun item es un link.
-
-       2. La de MUESTRA (`demo_publica`), que sale del listado y va arriba,
-          en su propio bloque, como la puerta para el que no quiere generar
-          nada. Es una sola: si hubiera varias marcadas, manda la primera. */
+       El backend ya filtra las pruebas contra el catalogo oficial y deja
+       afuera la de muestra. Si no contesta, la seccion entera se esconde: la
+       pagina comercial nunca muestra un numero inventado. */
     function cargarDemos() {
-      var cont = $('[data-demos]'), buscador = $('[data-buscar-demo]');
+      var cont = $('[data-demos]');
+      var kpi = $('[data-cat-demos]');
       var probar = $('[data-probar]');
-      if (!cont) return;
+
+      /* La de muestra sale del listado publico, que es el unico lugar donde
+         figura marcada. Es la que abre el boton "Entrar ahora". */
       traer(API + '/municipios/public').then(function (ds) {
-        var muestra = null, lista = [];
-        ds.forEach(function (d) {
-          if (d.demo_publica && !muestra) muestra = d; else lista.push(d);
-        });
-
-        /* El KPI cuenta lo que el listado muestra: la de muestra es nuestra,
-           no un municipio que se acerco solo. Contarla infla el numero. */
-        var kpi = $('[data-cat-demos]');
-        if (kpi) kpi.textContent = lista.length;
-
-        if (probar && muestra) {
-          probar.href = APP + '/' + muestra.codigo;
-          probar.hidden = false;
-        }
-
-        function pintar(filtro) {
-          var f = (filtro || '').trim().toLowerCase();
-          var vis = f ? lista.filter(function (d) {
-            return (d.nombre + ' ' + d.codigo).toLowerCase().indexOf(f) !== -1;
-          }) : lista;
-          cont.innerHTML = '';
-          if (!vis.length) {
-            cont.innerHTML = '<div class="dmex__vacio">No hay municipios que coincidan con “' + f + '”.</div>';
-            return;
+        for (var i = 0; i < ds.length; i++) {
+          if (ds[i].demo_publica) {
+            if (probar) { probar.href = APP + '/' + ds[i].codigo; probar.hidden = false; }
+            break;
           }
-          vis.forEach(function (d) {
-            var it = document.createElement('div');
-            it.className = 'dmit';
-            it.innerHTML = '<span class="dmit__p"></span><span class="dmit__n"></span>';
-            it.querySelector('.dmit__n').textContent = d.nombre;
-            cont.appendChild(it);
-          });
         }
-        pintar('');
-        if (buscador) buscador.addEventListener('input', function () { pintar(buscador.value); });
+      }).catch(function () {});
+
+      traer(API + '/municipios/public/demo-stats').then(function (st) {
+        var nombres = (st && st.municipios) || [];
+        if (kpi) kpi.textContent = st.generadas || nombres.length;
+        if (!cont) return;
+        if (!nombres.length) throw new Error('sin datos');
+        cont.innerHTML = '';
+        nombres.forEach(function (n) {
+          var it = document.createElement('div');
+          it.className = 'dmit';
+          it.innerHTML = '<span class="dmit__p"></span><span class="dmit__n"></span>';
+          it.querySelector('.dmit__n').textContent = n;
+          cont.appendChild(it);
+        });
       }).catch(function () {
-        cont.innerHTML = '<div class="dmex__vacio">No pudimos cargar el listado. Recargá la página.</div>';
+        /* Sin dato no se muestra media seccion: se esconden las dos, la del
+           listado y el KPI. Un "no pudimos cargar" en una pagina comercial es
+           peor que no tener la seccion. */
+        var sec = cont && cont.closest ? cont.closest('.dmex') : null;
+        if (sec) sec.style.display = 'none';
+        var caja = kpi && kpi.parentElement;
+        if (caja) caja.style.display = 'none';
       });
     }
 
@@ -632,7 +628,7 @@
             elegido = exacta[0];
             inpMuni.value = exacta[0].nombre;
             btn.disabled = false;
-            mostrar('work', 'Listo para crear la demo de <b>' + exacta[0].nombre + '</b>. Cuando quieras, tocá “Probar ahora”.');
+            mostrar('work', 'Listo para crear la demo de <b>' + exacta[0].nombre + '</b>. Cuando quieras, tocá “Generar ahora”.');
           } else if (rs.length) {
             pintarSugerencias(rs);
           }

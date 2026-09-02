@@ -650,7 +650,7 @@
             elegido = exacta[0];
             inpMuni.value = exacta[0].nombre;
             btn.disabled = false;
-            mostrar('work', 'Listo para crear la demo de <b>' + exacta[0].nombre + '</b>. Cuando quieras, tocá “Probar ahora”.');
+            mostrar('work', 'Listo para crear la demo de <b>' + exacta[0].nombre + '</b>. Cuando quieras, tocá “Generar ahora”.');
           } else if (rs.length) {
             pintarSugerencias(rs);
           }

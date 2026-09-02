@@ -383,6 +383,16 @@ a:hover { color: var(--accent-bright); }
    sobre fondo claro: el boton "Contacto" del cierre era invisible. */
 .btn2--ghost { border-color: var(--line-strong); color: var(--ink); font-weight: 600; }
 .btn2--ghost:hover { border-color: var(--ink); text-decoration: none; }
+/* Sin esto, el boton bloqueado se pintaba IGUAL que el activo: verde, con
+   glow, invitando a un click que no hacia nada. La logica ya lo deshabilita
+   hasta que se elige un municipio del catalogo — lo que faltaba era decirlo
+   en pantalla. */
+.btn2:disabled, .btn2[disabled] {
+  opacity: 0.45; cursor: not-allowed; box-shadow: none; transform: none;
+}
+.btn2:disabled:hover, .btn2[disabled]:hover {
+  background: var(--accent); transform: none; box-shadow: none;
+}
 /* Dentro de los heros con video el fondo SIEMPRE es oscuro, tema aparte */
 .hero2 .btn2--ghost, .ih .btn2--ghost, .bandavid .btn2--ghost {
   border-color: rgba(255,255,255,0.35); color: #fff;
@@ -958,7 +968,16 @@ a:hover { color: var(--accent-bright); }
    10. DEMO — crear una demo en vivo
    docs/design-sync/comercial-2026-08-30/pages/Demo.dc.html
    ============================================================ */
-.dm { padding: 56px 64px; }
+/* EL ORDEN DE APILADO ENTRE ESTAS TRES SECCIONES ES EXPLICITO A PROPOSITO.
+   `.reveal` anima con transform, y eso convierte a CADA seccion en su propio
+   contexto de apilamiento: el z-index:30 del desplegable de provincias queda
+   encerrado ahi adentro y no puede ganarle a lo que viene despues en el DOM.
+   Sin estas tres lineas, la banda de "Probar la plataforma" se le monta
+   encima al combo abierto. Si manana se mete otra seccion entre medio, va con
+   su z-index o vuelve el mismo bug. */
+.dm { padding: 56px 64px; position: relative; z-index: 3; }
+.dmprobar { position: relative; z-index: 2; }
+.dmex { position: relative; z-index: 1; }
 .dmcard { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--r-card);
   padding: 32px; box-shadow: var(--shadow-soft); }
 .dmcard__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }

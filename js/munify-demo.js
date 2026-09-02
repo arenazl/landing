@@ -498,44 +498,59 @@
         });
     });
 
-    /* ---------- demos existentes ---------- */
+    /* ---------- los que ya armaron su demo ----------
+       DOS COSAS DISTINTAS salen de la misma llamada (Lucas, 2026-09-02):
+
+       1. El LISTADO COMERCIAL: los municipios que ya generaron la suya. Es
+          para mostrar volumen —"mira cuantos ya la tienen"—, no un menu de
+          accesos: no se entra a ninguno, porque la demo de otro puede tener
+          los datos que cargo esa persona. Por eso ningun item es un link.
+
+       2. La de MUESTRA (`demo_publica`), que sale del listado y va arriba,
+          en su propio bloque, como la puerta para el que no quiere generar
+          nada. Es una sola: si hubiera varias marcadas, manda la primera. */
     function cargarDemos() {
       var cont = $('[data-demos]'), buscador = $('[data-buscar-demo]');
+      var probar = $('[data-probar]');
       if (!cont) return;
       traer(API + '/municipios/public').then(function (ds) {
+        var muestra = null, lista = [];
+        ds.forEach(function (d) {
+          if (d.demo_publica && !muestra) muestra = d; else lista.push(d);
+        });
+
+        /* El KPI cuenta lo que el listado muestra: la de muestra es nuestra,
+           no un municipio que se acerco solo. Contarla infla el numero. */
         var kpi = $('[data-cat-demos]');
-        if (kpi) kpi.textContent = ds.length;
+        if (kpi) kpi.textContent = lista.length;
+
+        if (probar && muestra) {
+          probar.href = APP + '/' + muestra.codigo;
+          probar.hidden = false;
+        }
 
         function pintar(filtro) {
           var f = (filtro || '').trim().toLowerCase();
-          var vis = f ? ds.filter(function (d) {
+          var vis = f ? lista.filter(function (d) {
             return (d.nombre + ' ' + d.codigo).toLowerCase().indexOf(f) !== -1;
-          }) : ds;
+          }) : lista;
           cont.innerHTML = '';
           if (!vis.length) {
-            cont.innerHTML = '<div class="dmex__vacio">No hay demos que coincidan con “' + f + '”.</div>';
+            cont.innerHTML = '<div class="dmex__vacio">No hay municipios que coincidan con “' + f + '”.</div>';
             return;
           }
           vis.forEach(function (d) {
-            /* VITRINA, no puerta. La demo de otro prospecto puede tener datos
-               que cargo esa persona, asi que se muestra y no se entra (Lucas,
-               2026-09-02). La UNICA con acceso abierto es la de muestra, que
-               ademas es la que ofrece el boton "Probar la plataforma". */
-            var abierta = !!d.demo_publica;
-            var a = document.createElement(abierta ? 'a' : 'div');
-            a.className = 'dmchip' + (abierta ? '' : ' dmchip--priv');
-            if (abierta) a.href = APP + '/' + d.codigo;
-            a.innerHTML = '<div class="dmchip__b"><div class="dmchip__n"></div><div class="dmchip__s"></div></div>'
-              + '<span class="dmchip__a">' + (abierta ? 'Entrar →' : 'Privada') + '</span>';
-            a.querySelector('.dmchip__n').textContent = d.nombre;
-            a.querySelector('.dmchip__s').textContent = d.codigo;
-            cont.appendChild(a);
+            var it = document.createElement('div');
+            it.className = 'dmit';
+            it.innerHTML = '<span class="dmit__p"></span><span class="dmit__n"></span>';
+            it.querySelector('.dmit__n').textContent = d.nombre;
+            cont.appendChild(it);
           });
         }
         pintar('');
         if (buscador) buscador.addEventListener('input', function () { pintar(buscador.value); });
       }).catch(function () {
-        cont.innerHTML = '<div class="dmex__vacio">No pudimos cargar las demos. Recargá la página.</div>';
+        cont.innerHTML = '<div class="dmex__vacio">No pudimos cargar el listado. Recargá la página.</div>';
       });
     }
 

@@ -1034,19 +1034,41 @@ a:hover { color: var(--accent-bright); }
 .dmchip__s { font: 500 10px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--muted-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dmchip__a { font: 600 12px var(--font-body); color: var(--accent); flex-shrink: 0; }
-/* Demo de otro prospecto: se VE (prueba social: mira cuantos ya la tienen) y
-   no se entra. Sin hover, sin cursor de link y con la banda apagada — tiene
-   que leerse como una vitrina, no como un boton que no anda. */
-.dmchip--priv { opacity: 0.72; cursor: default; }
-.dmchip--priv::before { background: var(--card-line); }
-.dmchip--priv:hover { border-color: var(--card-line); box-shadow: none; }
-.dmchip--priv .dmchip__a { color: var(--muted-soft); font-weight: 500; }
+/* ---- Probar la plataforma -------------------------------------------
+   La puerta para el que no quiere generar su demo. Es una BANDA, no una
+   tarjeta mas: tiene que encontrarse de un vistazo mientras se scrollea. */
+.dmprobar { max-width: 1180px; margin: 0 auto 42px; padding: 0 32px; }
+.dmprobar__caja { display: flex; align-items: center; gap: 18px;
+  background: var(--card); border: 1px solid var(--accent-line);
+  border-radius: var(--r-card, 18px); padding: 20px 22px; position: relative; overflow: hidden; }
+.dmprobar__caja::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-blue)); }
+.dmprobar__ic { flex: none; width: 46px; height: 46px; display: grid; place-items: center;
+  border-radius: 999px; background: var(--accent-soft, rgba(255,255,255,0.06)); color: var(--accent); }
+.dmprobar__tx { flex: 1; min-width: 0; }
+.dmprobar__tx h3 { margin: 0; font: 700 19px/1.25 var(--font-display);
+  letter-spacing: -0.015em; color: var(--ink); }
+.dmprobar__tx p { margin: 5px 0 0; font: 400 13.5px/1.55 var(--font-body); color: var(--muted); }
+.dmprobar__btn { flex: none; }
+.dmprobar__nota { margin: 10px 4px 0; font: 400 12px/1.5 var(--font-body); color: var(--muted-soft); }
+
+/* ---- Listado comercial ----------------------------------------------
+   Los municipios que ya armaron su demo. Es VOLUMEN: entran muchos de un
+   vistazo, sin accion ninguna. Columnas que se acomodan solas para que la
+   lista no se vuelva una pared de una sola fila en una pantalla ancha. */
+.dmex__lista { display: grid; gap: 2px 26px;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); }
+.dmit { display: flex; align-items: center; gap: 9px; padding: 7px 2px;
+  border-bottom: 1px solid var(--card-line); min-width: 0; }
+.dmit__p { flex: none; width: 5px; height: 5px; border-radius: 999px; background: var(--accent); opacity: 0.65; }
+.dmit__n { font: 500 14px var(--font-body); color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .dmex__vacio { grid-column: 1/-1; text-align: center; padding: 28px;
   font: 400 14px var(--font-body); color: var(--muted); }
 
 @media (max-width: 1100px) {
-  .dm, .dmex { padding-left: 24px; padding-right: 24px; }
+  .dm, .dmex, .dmprobar { padding-left: 24px; padding-right: 24px; }
   .dmform { grid-template-columns: 1fr 1fr; }
   .dmwrap, .dmform > button { grid-column: 1/-1; }
   .dmex__grid { grid-template-columns: repeat(2,1fr); }
@@ -2011,3 +2033,9 @@ input, select, textarea { font-size: 16px; }
 .mcombo__p::-webkit-scrollbar-thumb:hover { background: var(--accent-line); }
 .mcombo__p { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
 @media (max-width: 1023px) { .mcombo__b { font-size: 16px; } }
+
+@media (max-width: 640px) {
+  .dmprobar__caja { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .dmprobar__btn { width: 100%; justify-content: center; }
+  .dmex__lista { grid-template-columns: 1fr 1fr; gap: 0 18px; }
+}

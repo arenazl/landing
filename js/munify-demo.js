@@ -470,7 +470,17 @@
           /* Medio segundo para que se vean los siete tildes antes de saltar:
              es el momento en que el prospecto entiende TODO lo que se armo. */
           setTimeout(function () {
-            window.location.href = APP + (d.redirect_path || '/' + d.codigo);
+            /* LA LLAVE VIAJA EN LA URL, y no es un detalle: la app vive en OTRO
+               dominio, asi que el localStorage donde ella la guarda no se
+               comparte con esta pagina. Sin este parametro, el prospecto que
+               acaba de generar su demo llega a una pantalla que no lo deja
+               entrar — la demo es suya y no tiene como abrirla. */
+            var url = APP + (d.redirect_path || '/' + d.codigo);
+            if (d.demo_token) {
+              url += (url.indexOf('?') === -1 ? '?' : '&')
+                   + 't=' + encodeURIComponent(d.demo_token);
+            }
+            window.location.href = url;
           }, 650);
         })
         .catch(function () {
@@ -507,10 +517,16 @@
             return;
           }
           vis.forEach(function (d) {
-            var a = document.createElement('a');
-            a.className = 'dmchip';
-            a.href = APP + '/' + d.codigo;
-            a.innerHTML = '<div class="dmchip__b"><div class="dmchip__n"></div><div class="dmchip__s"></div></div><span class="dmchip__a">Entrar →</span>';
+            /* VITRINA, no puerta. La demo de otro prospecto puede tener datos
+               que cargo esa persona, asi que se muestra y no se entra (Lucas,
+               2026-09-02). La UNICA con acceso abierto es la de muestra, que
+               ademas es la que ofrece el boton "Probar la plataforma". */
+            var abierta = !!d.demo_publica;
+            var a = document.createElement(abierta ? 'a' : 'div');
+            a.className = 'dmchip' + (abierta ? '' : ' dmchip--priv');
+            if (abierta) a.href = APP + '/' + d.codigo;
+            a.innerHTML = '<div class="dmchip__b"><div class="dmchip__n"></div><div class="dmchip__s"></div></div>'
+              + '<span class="dmchip__a">' + (abierta ? 'Entrar →' : 'Privada') + '</span>';
             a.querySelector('.dmchip__n').textContent = d.nombre;
             a.querySelector('.dmchip__s').textContent = d.codigo;
             cont.appendChild(a);

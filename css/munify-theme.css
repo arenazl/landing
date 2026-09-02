@@ -1034,6 +1034,14 @@ a:hover { color: var(--accent-bright); }
 .dmchip__s { font: 500 10px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--muted-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dmchip__a { font: 600 12px var(--font-body); color: var(--accent); flex-shrink: 0; }
+/* Demo de otro prospecto: se VE (prueba social: mira cuantos ya la tienen) y
+   no se entra. Sin hover, sin cursor de link y con la banda apagada — tiene
+   que leerse como una vitrina, no como un boton que no anda. */
+.dmchip--priv { opacity: 0.72; cursor: default; }
+.dmchip--priv::before { background: var(--card-line); }
+.dmchip--priv:hover { border-color: var(--card-line); box-shadow: none; }
+.dmchip--priv .dmchip__a { color: var(--muted-soft); font-weight: 500; }
+
 .dmex__vacio { grid-column: 1/-1; text-align: center; padding: 28px;
   font: 400 14px var(--font-body); color: var(--muted); }
 

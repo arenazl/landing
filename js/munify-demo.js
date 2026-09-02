@@ -26,25 +26,23 @@
 
   /* A QUE BACKEND ESCRIBE ESTA LANDING  —  ojo al promover, se explica abajo
    =======================================================================
-   ESTA ES LA RAMA `qa`: escribe en el backend de QA.
-   En `master` estas dos constantes apuntan a PRODUCCION. Es lo unico del archivo
-   que difiere entre las dos ramas.
+   ESTA ES LA RAMA `master`: escribe en PRODUCCION.
+   En `qa` estas dos constantes apuntan al backend de QA. Es lo unico del archivo
+   que difiere entre las dos ramas, a proposito: asi se pueden probar cambios en la
+   landing de QA sin tocar la comercial, y cada landing escribe en SU ambiente.
 
-   >>> AL PROMOVER qa -> master: el merge trae ESTAS DOS LINEAS y pisa las de
-   >>> produccion. Hay que devolverlas a las de prod antes de publicar:
-   >>>     API = 'https://munify-api-vmpxsxe7ra-uk.a.run.app/api'
-   >>>     APP = 'https://app.munify.com.ar'
-   >>> Ya paso una vez (commit 524b314) y por eso la landing comercial termino
-   >>> escribiendo en QA durante dias.
+   >>> AL PROMOVER qa -> master: el merge trae las dos lineas de QA y pisa estas.
+   >>> Hay que devolverlas a lo que dice aca abajo antes de publicar. Ya paso una
+   >>> vez (commit 524b314) y la landing comercial termino escribiendo en QA.
 
-   Por que cada landing va a SU ambiente: QA es donde se rompen cosas a proposito,
-   todos los dias. Si la vidriera comercial depende de el, el dia que QA se cae el
-   prospecto que entra a munify.com.ar no puede crear su demo — el peor momento para
-   fallar. La razon por la que la landing de prod apuntaba a QA (que solo esa base
-   tenia la geografia completa) dejo de existir el 2026-09-01: `munify_prod` nacio
-   de QA y tiene el mismo catalogo de municipios, zonas y unidades administrativas. */
-  var API = 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
-  var APP = 'https://qa-app.munify.com.ar';
+   Por que produccion y no QA, que es como estuvo hasta hoy: QA es donde se rompen
+   cosas a proposito, todos los dias. Si la vidriera comercial depende de el, el dia
+   que QA se cae el prospecto que entra a munify.com.ar no puede crear su demo — el
+   peor momento para fallar. La razon por la que apuntaba a QA (que solo esa base
+   tenia la geografia completa) dejo de existir el 2026-09-01: `munify_prod` nacio de
+   QA y tiene el mismo catalogo de municipios, zonas y unidades administrativas. */
+  var API = 'https://munify-api-vmpxsxe7ra-uk.a.run.app/api';
+  var APP = 'https://app.munify.com.ar';
 
   var PAISES = [
     { c: 'AR', n: 'Argentina' }, { c: 'PY', n: 'Paraguay' }, { c: 'UY', n: 'Uruguay' },

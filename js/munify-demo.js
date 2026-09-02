@@ -24,23 +24,25 @@
 (function () {
   'use strict';
 
-  /* LAS DEMOS SIEMPRE VAN A QA, tambien desde munify.com.ar. Es a proposito.
+  /* A QUE BACKEND ESCRIBE ESTA LANDING  —  ojo al promover, se explica abajo
+   =======================================================================
+   ESTA ES LA RAMA `qa`: escribe en el backend de QA.
+   En `master` estas dos constantes apuntan a PRODUCCION. Es lo unico del archivo
+   que difiere entre las dos ramas.
 
-     Dos motivos, los dos del dueño (2026-08-31):
-     1. El municipio que crea un prospecto es un PROTOTIPO, no tiene validez, y no
-        tiene por que ensuciar la base productiva — donde vive el unico municipio
-        real (San Pedro Norte).
-     2. La base de QA (sugerenciasmun-ensayo) es la que tiene cargada la geografia
-        completa: zonas con contorno, localidades por zona, los 6 paises. En la
-        base de produccion las demos salen pobres, sin geoposiciones.
+   >>> AL PROMOVER qa -> master: el merge trae ESTAS DOS LINEAS y pisa las de
+   >>> produccion. Hay que devolverlas a las de prod antes de publicar:
+   >>>     API = 'https://munify-api-vmpxsxe7ra-uk.a.run.app/api'
+   >>>     APP = 'https://app.munify.com.ar'
+   >>> Ya paso una vez (commit 524b314) y por eso la landing comercial termino
+   >>> escribiendo en QA durante dias.
 
-     O sea: esto NO es un olvido de promocion que haya que "corregir". Si algun dia
-     se quiere que produccion genere demos en su propia base, se cambian estas dos
-     constantes sabiendo lo que implica.
-
-     Historia: antes se elegia por hostname con /(^|.)munify.com.ar$/, y como
-     "qa.munify.com.ar" TERMINA en ".munify.com.ar" pasaba justo lo contrario: la
-     landing de QA escribia en la base REAL. */
+   Por que cada landing va a SU ambiente: QA es donde se rompen cosas a proposito,
+   todos los dias. Si la vidriera comercial depende de el, el dia que QA se cae el
+   prospecto que entra a munify.com.ar no puede crear su demo — el peor momento para
+   fallar. La razon por la que la landing de prod apuntaba a QA (que solo esa base
+   tenia la geografia completa) dejo de existir el 2026-09-01: `munify_prod` nacio
+   de QA y tiene el mismo catalogo de municipios, zonas y unidades administrativas. */
   var API = 'https://munify-api-qa-vmpxsxe7ra-uk.a.run.app/api';
   var APP = 'https://qa-app.munify.com.ar';
 

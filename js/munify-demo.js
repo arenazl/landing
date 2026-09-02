@@ -498,6 +498,29 @@
         });
     });
 
+    /* ---------- el contador ----------
+       Cuenta TODAS las demos que se generaron alguna vez, no las que estan
+       vivas hoy (dueño, 2026-09-02): las que se dieron de baja fueron
+       municipios reales que armaron la suya y se borraron por comodidad
+       nuestra. Y sube con cada una nueva, aunque a esa no se le de acceso —
+       se genero igual.
+
+       Sale de la base, no hay piso decorativo: el numero real ya es mas del
+       doble del que se iba a poner a mano. Si el endpoint no contesta, el
+       KPI se esconde en vez de mostrar un numero inventado. */
+    function cargarContador() {
+      var kpi = $('[data-cat-demos]');
+      if (!kpi) return;
+      traer(API + '/municipios/public/demo-stats').then(function (st) {
+        var n = (st && st.generadas) || 0;
+        if (!n) throw new Error('sin dato');
+        kpi.textContent = n;
+      }).catch(function () {
+        var caja = kpi.parentElement;
+        if (caja) caja.style.display = 'none';
+      });
+    }
+
     /* ---------- los que ya armaron su demo ----------
        DOS COSAS DISTINTAS salen de la misma llamada (Lucas, 2026-09-02):
 
@@ -518,11 +541,6 @@
         ds.forEach(function (d) {
           if (d.demo_publica && !muestra) muestra = d; else lista.push(d);
         });
-
-        /* El KPI cuenta lo que el listado muestra: la de muestra es nuestra,
-           no un municipio que se acerco solo. Contarla infla el numero. */
-        var kpi = $('[data-cat-demos]');
-        if (kpi) kpi.textContent = lista.length;
 
         if (probar && muestra) {
           probar.href = APP + '/' + muestra.codigo;
@@ -652,6 +670,7 @@
   }
 
     cargarDemos();
+    cargarContador();
     precargarDesdeURL();
   }
 

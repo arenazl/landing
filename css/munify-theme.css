@@ -1039,7 +1039,6 @@ a:hover { color: var(--accent-bright); }
 .dmex__sep { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
 .dmex__sep i { flex: 1; height: 1px; background: var(--line); }
 .dmex__sep span { font: 600 12px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-soft); }
-.dmex__buscar { max-width: 360px; margin: 0 auto 22px; }
 .dmex__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
 .dmchip { position: relative; display: flex; align-items: center; gap: 12px; background: var(--card);
   border: 1px solid var(--card-line); border-radius: var(--r-control); padding: 12px 14px;
@@ -1056,7 +1055,7 @@ a:hover { color: var(--accent-bright); }
 /* ---- Probar la plataforma -------------------------------------------
    La puerta para el que no quiere generar su demo. Es una BANDA, no una
    tarjeta mas: tiene que encontrarse de un vistazo mientras se scrollea. */
-.dmprobar { max-width: 1180px; margin: 0 auto 42px; padding: 0 32px; }
+.dmprobar { margin: 0 0 42px; padding: 0 64px; }
 .dmprobar__caja { display: flex; align-items: center; gap: 18px;
   background: var(--card); border: 1px solid var(--accent-line);
   border-radius: var(--r-card, 18px); padding: 20px 22px; position: relative; overflow: hidden; }

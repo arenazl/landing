@@ -498,77 +498,53 @@
         });
     });
 
-    /* ---------- el contador ----------
-       Cuenta TODAS las demos que se generaron alguna vez, no las que estan
-       vivas hoy (dueño, 2026-09-02): las que se dieron de baja fueron
-       municipios reales que armaron la suya y se borraron por comodidad
-       nuestra. Y sube con cada una nueva, aunque a esa no se le de acceso —
-       se genero igual.
-
-       Sale de la base, no hay piso decorativo: el numero real ya es mas del
-       doble del que se iba a poner a mano. Si el endpoint no contesta, el
-       KPI se esconde en vez de mostrar un numero inventado. */
-    function cargarContador() {
-      var kpi = $('[data-cat-demos]');
-      if (!kpi) return;
-      traer(API + '/municipios/public/demo-stats').then(function (st) {
-        var n = (st && st.generadas) || 0;
-        if (!n) throw new Error('sin dato');
-        kpi.textContent = n;
-      }).catch(function () {
-        var caja = kpi.parentElement;
-        if (caja) caja.style.display = 'none';
-      });
-    }
-
     /* ---------- los que ya armaron su demo ----------
-       DOS COSAS DISTINTAS salen de la misma llamada (Lucas, 2026-09-02):
+       UNA sola llamada trae el numero y los nombres, porque son la misma
+       cosa: el listado comercial. No se entra a ninguno —la demo de otro
+       puede tener los datos que cargo esa persona—, asi que ningun item es un
+       link y no hay buscador: buscar sirve para llegar a algo, y aca no hay
+       adonde llegar.
 
-       1. El LISTADO COMERCIAL: los municipios que ya generaron la suya. Es
-          para mostrar volumen —"mira cuantos ya la tienen"—, no un menu de
-          accesos: no se entra a ninguno, porque la demo de otro puede tener
-          los datos que cargo esa persona. Por eso ningun item es un link.
-
-       2. La de MUESTRA (`demo_publica`), que sale del listado y va arriba,
-          en su propio bloque, como la puerta para el que no quiere generar
-          nada. Es una sola: si hubiera varias marcadas, manda la primera. */
+       El backend ya filtra las pruebas contra el catalogo oficial y deja
+       afuera la de muestra. Si no contesta, la seccion entera se esconde: la
+       pagina comercial nunca muestra un numero inventado. */
     function cargarDemos() {
-      var cont = $('[data-demos]'), buscador = $('[data-buscar-demo]');
+      var cont = $('[data-demos]');
+      var kpi = $('[data-cat-demos]');
       var probar = $('[data-probar]');
-      if (!cont) return;
+
+      /* La de muestra sale del listado publico, que es el unico lugar donde
+         figura marcada. Es la que abre el boton "Entrar ahora". */
       traer(API + '/municipios/public').then(function (ds) {
-        var muestra = null, lista = [];
-        ds.forEach(function (d) {
-          if (d.demo_publica && !muestra) muestra = d; else lista.push(d);
-        });
-
-        if (probar && muestra) {
-          probar.href = APP + '/' + muestra.codigo;
-          probar.hidden = false;
-        }
-
-        function pintar(filtro) {
-          var f = (filtro || '').trim().toLowerCase();
-          var vis = f ? lista.filter(function (d) {
-            return (d.nombre + ' ' + d.codigo).toLowerCase().indexOf(f) !== -1;
-          }) : lista;
-          cont.innerHTML = '';
-          if (!vis.length) {
-            cont.innerHTML = '<div class="dmex__vacio">No hay municipios que coincidan con “' + f + '”.</div>';
-            return;
+        for (var i = 0; i < ds.length; i++) {
+          if (ds[i].demo_publica) {
+            if (probar) { probar.href = APP + '/' + ds[i].codigo; probar.hidden = false; }
+            break;
           }
-          vis.forEach(function (d) {
-            var it = document.createElement('div');
-            it.className = 'dmit';
-            it.innerHTML = '<span class="dmit__p"></span><span class="dmit__n"></span>';
-            it.querySelector('.dmit__n').textContent = d.nombre;
-            cont.appendChild(it);
-          });
         }
-        pintar('');
-        if (buscador) buscador.addEventListener('input', function () { pintar(buscador.value); });
+      }).catch(function () {});
+
+      traer(API + '/municipios/public/demo-stats').then(function (st) {
+        var nombres = (st && st.municipios) || [];
+        if (kpi) kpi.textContent = st.generadas || nombres.length;
+        if (!cont) return;
+        if (!nombres.length) throw new Error('sin datos');
+        cont.innerHTML = '';
+        nombres.forEach(function (n) {
+          var it = document.createElement('div');
+          it.className = 'dmit';
+          it.innerHTML = '<span class="dmit__p"></span><span class="dmit__n"></span>';
+          it.querySelector('.dmit__n').textContent = n;
+          cont.appendChild(it);
+        });
       }).catch(function () {
-        cont.innerHTML = '<div class="dmex__vacio">No pudimos cargar el listado. Recargá la página.</div>';
+        /* Sin dato no se muestra media seccion: se esconden las dos, la del
+           listado y el KPI. Un "no pudimos cargar" en una pagina comercial es
+           peor que no tener la seccion. */
+        var sec = cont && cont.closest ? cont.closest('.dmex') : null;
+        if (sec) sec.style.display = 'none';
+        var caja = kpi && kpi.parentElement;
+        if (caja) caja.style.display = 'none';
       });
     }
 
@@ -670,7 +646,6 @@
   }
 
     cargarDemos();
-    cargarContador();
     precargarDesdeURL();
   }
 

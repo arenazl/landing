@@ -449,6 +449,18 @@
       }
       avanzar();
 
+      /* Cuantas demos habia ANTES de pedir la nuestra. Si el fetch se corta
+         (celular que apaga la pantalla, cambio de red: el alta tarda ~80s y
+         el backend termina igual), este numero permite saber si la demo
+         NACIO aunque la respuesta nunca haya llegado — y decirle la verdad
+         al prospecto en vez de invitarlo a generar un duplicado. Caso real:
+         2026-09-02, alta 200 OK en 84s con el paso de tesoreria en rojo. */
+      var demosAntes = -1;
+      fetch(API + '/municipios/public/demo-stats')
+        .then(function (r) { return r.json(); })
+        .then(function (s) { demosAntes = s.generadas || -1; })
+        .catch(function () {});
+
       fetch(API + '/municipios/crear-demo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -489,12 +501,38 @@
              "algo salio mal" generico. */
           marcar(Math.max(0, actual - 1), 'is-bad');
           btn.disabled = false;
-          var msg = document.createElement('div');
-          msg.className = 'dmestado__err';
-          msg.innerHTML = 'No pudimos crear la demo. Probá de nuevo o '
+
+          function mostrarError(html) {
+            var msg = document.createElement('div');
+            msg.className = 'dmestado__err';
+            msg.innerHTML = html;
+            estado.appendChild(msg);
+            estado.className = 'dmestado is-on dmestado--bad';
+          }
+          var waCreada = 'https://wa.me/5491138518148?text='
+            + encodeURIComponent('Hola! Generé la demo de ' + elegido.nombre
+              + ' desde la web y el enlace de acceso no me llegó. ¿Me lo pasan?');
+          var errComun = 'No pudimos crear la demo. Probá de nuevo o '
             + '<a href="https://wa.me/5491138518148" target="_blank" rel="noopener">escribinos por WhatsApp</a>.';
-          estado.appendChild(msg);
-          estado.className = 'dmestado is-on dmestado--bad';
+
+          /* La respuesta se perdio, pero puede que la demo haya nacido igual
+             (el backend no se entera de que el celular corto). Se verifica
+             contra el contador publico: si crecio, NO invitar a reintentar —
+             un segundo intento crea un municipio duplicado con sufijo -2. */
+          if (demosAntes < 0) { mostrarError(errComun); return; }
+          fetch(API + '/municipios/public/demo-stats')
+            .then(function (r) { return r.json(); })
+            .then(function (s) {
+              if ((s.generadas || 0) > demosAntes) {
+                mostrarError('La conexión se cortó, pero <b>tu demo de '
+                  + elegido.nombre + ' sí se creó</b>. No la generes de nuevo: '
+                  + '<a href="' + waCreada + '" target="_blank" rel="noopener">'
+                  + 'escribinos por WhatsApp</a> y te mandamos tu acceso.');
+              } else {
+                mostrarError(errComun);
+              }
+            })
+            .catch(function () { mostrarError(errComun); });
         });
     });
 
